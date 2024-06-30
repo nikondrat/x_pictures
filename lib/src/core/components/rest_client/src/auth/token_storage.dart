@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:template/src/core/components/rest_client/src/auth/auth_interceptor.dart';
+import 'package:x_pictures/src/core/components/rest_client/src/auth/auth_interceptor.dart';
 
 /// The interface for token storage.
 ///

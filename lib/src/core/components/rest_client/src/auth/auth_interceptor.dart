@@ -4,9 +4,9 @@ import 'package:async/async.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:template/src/core/components/rest_client/rest_client.dart';
-import 'package:template/src/core/components/rest_client/src/auth/refresh_client.dart';
-import 'package:template/src/core/utils/logger.dart';
+import 'package:x_pictures/src/core/components/rest_client/rest_client.dart';
+import 'package:x_pictures/src/core/components/rest_client/src/auth/refresh_client.dart';
+import 'package:x_pictures/src/core/utils/logger.dart';
 
 // coverage:ignore-start
 /// Throw this exception when refresh token fails

@@ -5,18 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "template",
+      "name": "x_pictures",
       "request": "launch",
       "type": "dart"
     },
     {
-      "name": "template (profile mode)",
+      "name": "x_pictures (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
-      "name": "template (release mode)",
+      "name": "x_pictures (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
