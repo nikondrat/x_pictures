@@ -1,4 +1,4 @@
-import 'package:template/src/feature/initialization/model/environment.dart';
+import 'package:x_pictures/src/feature/initialization/model/environment.dart';
 
 /// Application configuration
 class Config {

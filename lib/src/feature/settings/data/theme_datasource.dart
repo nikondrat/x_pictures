@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart' show ThemeMode, Color;
-import 'package:template/src/core/utils/preferences_dao.dart';
-import 'package:template/src/feature/app/model/app_theme.dart';
+import 'package:x_pictures/src/core/utils/preferences_dao.dart';
+import 'package:x_pictures/src/feature/app/model/app_theme.dart';
 
 /// [ThemeDataSource] is a data source that provides theme data.
 ///

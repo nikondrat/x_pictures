@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/widgets.dart';
-import 'package:template/src/core/utils/layout/layout.dart';
+import 'package:x_pictures/src/core/utils/layout/layout.dart';
 
 /// A spacer refers to the space between two panes in a layout.
 ///
