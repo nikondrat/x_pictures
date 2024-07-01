@@ -22,6 +22,11 @@ abstract class _AppThemeStore with Store {
             surface: AppColors.kBackgroundColor,
             subThemesData: FlexSubThemesData(
               filledButtonRadius: AppValues.kRadius,
+              inputDecoratorFillColor: AppColors.kSecondaryColor,
+              inputDecoratorRadius: AppValues.kRadius,
+              inputDecoratorBorderType: FlexInputBorderType.outline,
+              inputDecoratorUnfocusedBorderIsColored: false,
+              // inputDecoratorSchemeColor: SchemeColor.background,
             ),
             colors: const FlexSchemeColor(
                 primary: AppColors.kPrimaryColor,

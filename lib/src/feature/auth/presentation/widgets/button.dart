@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
 class AuthButton extends StatelessWidget {
@@ -29,7 +28,7 @@ class AuthButton extends StatelessWidget {
             color: AppColors.kBackgroundColor, fontWeight: FontWeight.bold),
         maxLines: 1,
       ),
-      style: ButtonStyle(
+      style: const ButtonStyle(
           padding: WidgetStatePropertyAll(EdgeInsets.symmetric(
               vertical: AppValues.kPadding * 1.4,
               horizontal: AppValues.kPadding)),

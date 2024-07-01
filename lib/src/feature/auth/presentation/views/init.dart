@@ -49,6 +49,7 @@ class InitView extends StatelessWidget {
                           horizontal: AppValues.kPadding * 2),
                       child: AutoSizeText(
                         t.init.description,
+                        textAlign: TextAlign.center,
                         style: textTheme.headlineSmall!
                             .copyWith(color: themeData.colorScheme.outline),
                         maxLines: 2,
