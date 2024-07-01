@@ -4,9 +4,14 @@ import 'package:x_pictures/src/core/constant/constant.dart';
 class GradientButton extends StatelessWidget {
   final Function() onPressed;
   final String text;
+  final bool isEnabled;
 
-  const GradientButton(
-      {super.key, required this.onPressed, required this.text});
+  const GradientButton({
+    super.key,
+    required this.onPressed,
+    required this.text,
+    this.isEnabled = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,24 +20,32 @@ class GradientButton extends StatelessWidget {
     final ColorScheme colorScheme = themeData.colorScheme;
 
     return GestureDetector(
-      onTap: onPressed,
+      onTap: isEnabled ? onPressed : null,
       child: Container(
         padding: const EdgeInsets.all(AppValues.kPadding),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              colorScheme.primary,
-              AppColors.kPrimaryAdditionallyColor,
-            ],
+            colors: isEnabled
+                ? [colorScheme.primary, AppColors.kPrimaryAdditionallyColor]
+                : [
+                    colorScheme.primary.withOpacity(0.5),
+                    AppColors.kPrimaryAdditionallyColor.withOpacity(0.5)
+                  ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
           borderRadius: BorderRadius.circular(AppValues.kRadius),
         ),
         child: Center(
-          child: Text(text,
-              style: textTheme.headlineSmall!
-                  .copyWith(fontWeight: FontWeight.bold)),
+          child: Text(
+            text,
+            style: textTheme.headlineSmall!.copyWith(
+              fontWeight: FontWeight.bold,
+              color: isEnabled
+                  ? textTheme.headlineSmall!.color
+                  : textTheme.headlineSmall!.color!.withOpacity(0.5),
+            ),
+          ),
         ),
       ),
     );

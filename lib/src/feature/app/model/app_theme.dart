@@ -20,13 +20,16 @@ abstract class _AppThemeStore with Store {
             fontFamily: 'Rubik',
             scaffoldBackground: AppColors.kBackgroundColor,
             surface: AppColors.kBackgroundColor,
-            subThemesData: FlexSubThemesData(
+            appBarBackground: AppColors.kBackgroundColor,
+            surfaceTint: AppColors.kBackgroundColor,
+            subThemesData: const FlexSubThemesData(
+              appBarCenterTitle: true,
+              appBarBackgroundSchemeColor: SchemeColor.background,
               filledButtonRadius: AppValues.kRadius,
               inputDecoratorFillColor: AppColors.kSecondaryColor,
               inputDecoratorRadius: AppValues.kRadius,
               inputDecoratorBorderType: FlexInputBorderType.outline,
               inputDecoratorUnfocusedBorderIsColored: false,
-              // inputDecoratorSchemeColor: SchemeColor.background,
             ),
             colors: const FlexSchemeColor(
                 primary: AppColors.kPrimaryColor,

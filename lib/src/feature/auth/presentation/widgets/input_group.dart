@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:x_pictures/src/data.dart';
 
-import 'input.dart';
-
 class InputGroup extends StatelessWidget {
   const InputGroup({super.key});
 
@@ -29,6 +27,7 @@ class InputGroup extends StatelessWidget {
                   formControlName: 'email',
                   style: textTheme.titleLarge!
                       .copyWith(color: colorScheme.onSecondary),
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(AppValues.kPadding),
                     hintStyle: textTheme.titleLarge!
@@ -44,8 +43,10 @@ class InputGroup extends StatelessWidget {
                   formControlName: 'password',
                   obscuringCharacter: '•',
                   obscureText: !store.isShowPassword,
+                  onSubmitted: (_) => authStore.signIn(),
                   style: textTheme.titleLarge!
                       .copyWith(color: colorScheme.onSecondary),
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(AppValues.kPadding),
                     suffixIcon: Padding(
@@ -69,8 +70,11 @@ class InputGroup extends StatelessWidget {
               }),
             ),
             const Gap(AppValues.kPadding),
-            GradientButton(
-                onPressed: authStore.signIn, text: t.common.continue_action)
+            Observer(
+                builder: (_) => GradientButton(
+                    onPressed: authStore.signIn,
+                    isEnabled: store.isValid,
+                    text: t.common.continue_action))
           ],
         ));
   }

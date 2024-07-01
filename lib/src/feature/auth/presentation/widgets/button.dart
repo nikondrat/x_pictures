@@ -6,12 +6,14 @@ class AuthButton extends StatelessWidget {
   final String title;
   final Widget icon;
   final void Function() onPressed;
+  final double windowHeight;
 
   const AuthButton({
     super.key,
     required this.icon,
     required this.title,
     required this.onPressed,
+    required this.windowHeight,
   });
 
   @override
@@ -24,15 +26,15 @@ class AuthButton extends StatelessWidget {
       icon: icon,
       label: AutoSizeText(
         title,
-        style: textTheme.headlineSmall!.copyWith(
+        style: textTheme.bodyLarge!.copyWith(
             color: AppColors.kBackgroundColor, fontWeight: FontWeight.bold),
         maxLines: 1,
       ),
-      style: const ButtonStyle(
+      style: ButtonStyle(
           padding: WidgetStatePropertyAll(EdgeInsets.symmetric(
-              vertical: AppValues.kPadding * 1.4,
-              horizontal: AppValues.kPadding)),
-          backgroundColor: WidgetStatePropertyAll(AppColors.kSecondaryColor)),
+              vertical: windowHeight * .02, horizontal: AppValues.kPadding)),
+          backgroundColor:
+              const WidgetStatePropertyAll(AppColors.kSecondaryColor)),
     );
   }
 }

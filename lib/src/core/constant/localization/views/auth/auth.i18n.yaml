@@ -6,8 +6,8 @@ hint:
   add: Add your email
   verify:
     title: Verify your email
-    description: We just sent code to filyapel@yandex.ru
-    did_not_get(rich): Didn't get the code? ${value($t)}
+    description: We just sent code to $email
+    did_not_get(rich): Didn't get the code? ${value(Try again)}
 
 errors:
   email: Oops! Email or password incorrect try another one.

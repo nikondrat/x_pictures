@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
 import 'package:x_pictures/src/data.dart';
-
 part 'auth.g.dart';
 
 class AuthStore extends _AuthStore with _$AuthStore {
@@ -12,6 +11,8 @@ abstract class _AuthStore with Store {
   _AuthStore({required this.signInViewStore});
 
   void signIn() {
-    if (signInViewStore.isValid) {}
+    // TODO add api func
+    router.goNamed(AppViews.verify);
+    signInViewStore.startTimer();
   }
 }

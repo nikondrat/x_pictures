@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
@@ -10,60 +9,33 @@ class SignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    final TextTheme textTheme = themeData.textTheme;
-
     return MultiProvider(
       providers: [
+        Provider<SignInViewStore>(
+          create: (_) => SignInViewStore(),
+          dispose: (context, value) => value.dispose(),
+        ),
         Provider(
-            create: (_) => SignInViewStore(),
-            dispose: (context, value) => value.dispose()),
-        ProxyProvider<SignInViewStore, AuthStore>(
-          update: (_, store, __) => AuthStore(signInViewStore: store),
+          create: (context) => AuthStore(signInViewStore: context.read()),
         ),
       ],
       child: Scaffold(
           appBar: AppBar(
+            leading: const CustomBackButton(),
             title: Text(t.auth.title),
-            centerTitle: true,
           ),
           body: AppBody(
             builder: (windowWidth, windowHeight, windowSize) {
-              return Padding(
+              return ListView(
                 padding: HorizontalSpacing.centered(windowWidth),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Gap(AppValues.kPadding),
-                    Align(
-                      alignment: Alignment.center,
-                      child: AutoSizeText(
-                        t.auth.hint.add,
-                        minFontSize: 16,
-                        style: textTheme.displayMedium!
-                            .copyWith(fontWeight: FontWeight.bold),
-                        maxLines: 1,
-                      ),
-                    ),
-                    const Gap(AppValues.kPadding),
-                    Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppValues.kPadding * 2),
-                          child: AutoSizeText(
-                            t.auth.description,
-                            textAlign: TextAlign.center,
-                            style: textTheme.headlineSmall!
-                                .copyWith(color: themeData.colorScheme.outline),
-                            maxLines: 2,
-                          ),
-                        )),
-                    const Gap(AppValues.kPadding),
-                    const InputGroup(),
-                    const Gap(AppValues.kPadding)
-                  ],
-                ),
+                children: [
+                  const Gap(AppValues.kPadding),
+                  TitleWithDesc(
+                      title: t.auth.hint.add, description: t.auth.description),
+                  const Gap(AppValues.kPadding),
+                  const InputGroup(),
+                  const Gap(AppValues.kPadding)
+                ],
               );
             },
           )),
