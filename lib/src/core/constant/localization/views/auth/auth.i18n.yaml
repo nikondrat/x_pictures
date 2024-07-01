@@ -1,0 +1,14 @@
+description: Add your email address to continue creating your account
+title: Sign in
+password: Password
+hint:
+  input: Your $t
+  add: Add your email
+  verify:
+    title: Verify your email
+    description: We just sent code to filyapel@yandex.ru
+    did_not_get(rich): Didn't get the code? ${value($t)}
+
+errors:
+  email: Oops! Email or password incorrect try another one.
+  invalid_code: Invalid code, please try again

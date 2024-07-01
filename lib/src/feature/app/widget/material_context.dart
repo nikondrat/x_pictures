@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -24,6 +25,7 @@ class MaterialContext extends StatelessWidget {
         theme: settings.lightTheme,
         darkTheme: settings.darkTheme,
         themeMode: settings.themeMode,
+        debugShowCheckedModeBanner: kDebugMode,
         localizationsDelegates: GlobalMaterialLocalizations.delegates,
         supportedLocales: AppLocaleUtils.supportedLocales,
         locale: TranslationProvider.of(context).flutterLocale,
