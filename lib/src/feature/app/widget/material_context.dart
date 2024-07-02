@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -18,22 +20,29 @@ class MaterialContext extends StatelessWidget {
   Widget build(BuildContext context) {
     final settings = Provider.of<Dependencies>(context).settingsStore;
 
-    return Observer(builder: (_) {
-      return MaterialApp.router(
-        routerConfig: router,
-        theme: settings.lightTheme,
-        darkTheme: settings.darkTheme,
-        themeMode: settings.themeMode,
-        localizationsDelegates: GlobalMaterialLocalizations.delegates,
-        supportedLocales: AppLocaleUtils.supportedLocales,
-        locale: TranslationProvider.of(context).flutterLocale,
-        builder: (context, child) => MediaQuery.withClampedTextScaling(
-          key: _globalKey,
-          minScaleFactor: 1.0,
-          maxScaleFactor: 2.0,
-          child: child!,
-        ),
-      );
-    });
+    return ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return Observer(builder: (_) {
+            return MaterialApp.router(
+              routerConfig: router,
+              theme: settings.lightTheme,
+              darkTheme: settings.darkTheme,
+              themeMode: settings.themeMode,
+              debugShowCheckedModeBanner: kDebugMode,
+              localizationsDelegates: GlobalMaterialLocalizations.delegates,
+              supportedLocales: AppLocaleUtils.supportedLocales,
+              locale: TranslationProvider.of(context).flutterLocale,
+              builder: (context, child) => MediaQuery.withClampedTextScaling(
+                key: _globalKey,
+                minScaleFactor: 1.0,
+                maxScaleFactor: 2.0,
+                child: child!,
+              ),
+            );
+          });
+        });
   }
 }

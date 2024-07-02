@@ -2,6 +2,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:x_pictures/src/data.dart';
 
 part 'app_theme.g.dart';
 
@@ -12,11 +13,28 @@ class AppThemeStore extends _AppThemeStore with _$AppThemeStore {
 abstract class _AppThemeStore with Store {
   _AppThemeStore({required this.mode, required this.seed})
       : lightTheme = FlexThemeData.light(
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(seedColor: seed)),
+          useMaterial3: true,
+        ),
         darkTheme = FlexThemeData.dark(
             useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(seedColor: seed));
+            fontFamily: 'Rubik',
+            scaffoldBackground: AppColors.kBackgroundColor,
+            surface: AppColors.kBackgroundColor,
+            appBarBackground: AppColors.kBackgroundColor,
+            surfaceTint: AppColors.kBackgroundColor,
+            subThemesData: const FlexSubThemesData(
+              appBarCenterTitle: true,
+              appBarBackgroundSchemeColor: SchemeColor.background,
+              filledButtonRadius: AppValues.kRadius,
+              inputDecoratorFillColor: AppColors.kSecondaryColor,
+              inputDecoratorRadius: AppValues.kRadius,
+              inputDecoratorBorderType: FlexInputBorderType.outline,
+              inputDecoratorUnfocusedBorderIsColored: false,
+              chipRadius: AppValues.kRadius * 2,
+            ),
+            colors: const FlexSchemeColor(
+                primary: AppColors.kPrimaryColor,
+                secondary: AppColors.kSecondaryColor));
 
   /// The type of theme to use.
   @observable

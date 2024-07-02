@@ -1,0 +1,17 @@
+title: Generate
+type:
+  images: Images
+  video: Video
+style: Style
+tags:
+  title: Tags
+  fisheye: Fisheye
+  oldAnime: Old anime
+  popArt: Pop art
+  darkLighting: Dark lighting
+
+add_description: Add a description
+format: Format
+input_hint: Describe what you want to create
+repeat: Repeat
+creating: Creating...

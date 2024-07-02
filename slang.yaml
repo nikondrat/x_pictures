@@ -1,4 +1,4 @@
 namespaces: true
-input_directory: lib/src/core/constant/localization/translations
+input_directory: lib/src/core/constant/localization
 input_file_pattern: .i18n.yaml
 output_directory: lib/src/core/constant/generated

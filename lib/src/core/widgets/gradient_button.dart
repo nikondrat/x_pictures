@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+import 'package:x_pictures/src/core/constant/constant.dart';
+
+class GradientButton extends StatelessWidget {
+  final Function() onPressed;
+  final String text;
+  final bool isEnabled;
+  final EdgeInsets? padding;
+  final TextStyle? textStyle;
+
+  const GradientButton({
+    super.key,
+    required this.onPressed,
+    required this.text,
+    this.isEnabled = true,
+    this.padding,
+    this.textStyle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    final TextTheme textTheme = themeData.textTheme;
+    final ColorScheme colorScheme = themeData.colorScheme;
+
+    return GestureDetector(
+      onTap: isEnabled ? onPressed : null,
+      child: Container(
+        padding: padding ?? const EdgeInsets.all(AppValues.kPadding),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: isEnabled
+                ? [colorScheme.primary, AppColors.kPrimaryAdditionallyColor]
+                : [
+                    colorScheme.primary.withOpacity(0.5),
+                    AppColors.kPrimaryAdditionallyColor.withOpacity(0.5)
+                  ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          borderRadius: BorderRadius.circular(AppValues.kRadius),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: textStyle ??
+                textTheme.headlineSmall!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: isEnabled
+                      ? textTheme.headlineSmall!.color
+                      : textTheme.headlineSmall!.color!.withOpacity(0.5),
+                ),
+          ),
+        ),
+      ),
+    );
+  }
+}

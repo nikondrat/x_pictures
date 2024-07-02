@@ -1,0 +1,8 @@
+sign_in_with: Sign in with $provider
+providers:
+  email: Email
+  apple: Apple
+  google: Google
+
+title: Create with us
+description: Join our community to bring your fantasy to life

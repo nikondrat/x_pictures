@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/widgets.dart';
-import 'package:x_pictures/src/core/utils/layout/layout.dart';
+import 'package:x_pictures/src/data.dart';
 
 /// A spacer refers to the space between two panes in a layout.
 ///
@@ -35,5 +35,6 @@ class HorizontalSpacing extends EdgeInsets {
     double windowWidth, [
     double maxWidth = 768,
   ]) =>
-      HorizontalSpacing._(math.max((windowWidth - maxWidth) / 2, 16));
+      HorizontalSpacing._(
+          math.max((windowWidth - maxWidth) / 2, AppValues.kPadding));
 }

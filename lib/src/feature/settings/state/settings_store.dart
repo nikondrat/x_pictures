@@ -43,7 +43,6 @@ abstract class _SettingsStore with Store {
   ThemeData get darkTheme => appTheme.darkTheme;
 
   /// Get the current [themeMode].
-  @computed
   ThemeMode get themeMode => appTheme.mode;
 
   /// Set locale to [locale].
