@@ -30,6 +30,7 @@ abstract class _AppThemeStore with Store {
               inputDecoratorRadius: AppValues.kRadius,
               inputDecoratorBorderType: FlexInputBorderType.outline,
               inputDecoratorUnfocusedBorderIsColored: false,
+              chipRadius: AppValues.kRadius * 2,
             ),
             colors: const FlexSchemeColor(
                 primary: AppColors.kPrimaryColor,

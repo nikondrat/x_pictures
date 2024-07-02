@@ -14,12 +14,15 @@ abstract class AppViews {
   static const String disclaimarPageRoute = 'disclaimarPage';
   static const String instructionPageRoute = 'instructionPage';
   static const String uploadingPhotosPageRoute = 'uploadingPhotosPage';
+
+  static const String generateView = 'generateView';
+  static const String resultView = 'resultView';
 }
 
 final GlobalKey<NavigatorState> navKey = GlobalKey();
 
 final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
-  // GoRoute(path: '/', builder: (_, __) => InitView())
+  // GoRoute(path: '/', builder: (_, __) => GenerationResult())
   GoRoute(
       name: AppViews.init,
       path: _Paths.init,
@@ -70,6 +73,16 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
             path: _Paths.viewAllPageRoute,
             name: AppViews.viewAllPageRoute,
             builder: (context, state) => const ViewAllPage()),
+        GoRoute(
+            path: _Paths.generateView,
+            name: AppViews.generateView,
+            builder: (context, state) => const GenerateView(),
+            routes: [
+              GoRoute(
+                  path: _Paths.resultView,
+                  name: AppViews.resultView,
+                  builder: (context, state) => const GenerationResult()),
+            ]),
       ]),
 ]);
 
@@ -85,4 +98,7 @@ abstract class _Paths {
   static const String instructionPageRoute = AppViews.instructionPageRoute;
   static const String uploadingPhotosPageRoute =
       AppViews.uploadingPhotosPageRoute;
+
+  static const String generateView = AppViews.generateView;
+  static const String resultView = AppViews.resultView;
 }

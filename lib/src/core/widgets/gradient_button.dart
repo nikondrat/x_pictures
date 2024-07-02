@@ -5,12 +5,16 @@ class GradientButton extends StatelessWidget {
   final Function() onPressed;
   final String text;
   final bool isEnabled;
+  final EdgeInsets? padding;
+  final TextStyle? textStyle;
 
   const GradientButton({
     super.key,
     required this.onPressed,
     required this.text,
     this.isEnabled = true,
+    this.padding,
+    this.textStyle,
   });
 
   @override
@@ -22,7 +26,7 @@ class GradientButton extends StatelessWidget {
     return GestureDetector(
       onTap: isEnabled ? onPressed : null,
       child: Container(
-        padding: const EdgeInsets.all(AppValues.kPadding),
+        padding: padding ?? const EdgeInsets.all(AppValues.kPadding),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: isEnabled
@@ -39,12 +43,13 @@ class GradientButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: textTheme.headlineSmall!.copyWith(
-              fontWeight: FontWeight.bold,
-              color: isEnabled
-                  ? textTheme.headlineSmall!.color
-                  : textTheme.headlineSmall!.color!.withOpacity(0.5),
-            ),
+            style: textStyle ??
+                textTheme.headlineSmall!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: isEnabled
+                      ? textTheme.headlineSmall!.color
+                      : textTheme.headlineSmall!.color!.withOpacity(0.5),
+                ),
           ),
         ),
       ),

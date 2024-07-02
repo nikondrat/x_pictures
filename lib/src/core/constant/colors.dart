@@ -5,4 +5,7 @@ class AppColors {
   static const Color kPrimaryAdditionallyColor = Color(0xffFF5833);
   static const Color kSecondaryColor = Colors.white;
   static const Color kBackgroundColor = Color(0xff0A0A19);
+
+  static const Color kAdditionalColor = Color(0xFF010140);
+  static const Color kSecondaryAdditionallyColor = Color(0xFF0D1120);
 }

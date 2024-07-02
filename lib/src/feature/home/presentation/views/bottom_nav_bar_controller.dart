@@ -18,12 +18,7 @@ class _BottomNavBarControllerPageState
 
   final List<Widget> _pages = [
     const HomePage(),
-    const Center(
-      child: Text(
-        'Working on it',
-        style: TextStyle(color: Colors.white),
-      ),
-    ),
+    const GenerateView(),
     const Center(
         child: Text(
       'Working on it, too',
