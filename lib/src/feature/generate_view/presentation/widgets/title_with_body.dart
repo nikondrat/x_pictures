@@ -22,7 +22,7 @@ class TitleWithBody extends StatelessWidget {
           children: [
             Text(
               title,
-              style: textTheme.headlineSmall!.copyWith(
+              style: textTheme.titleLarge!.copyWith(
                   color: colorScheme.secondary, fontWeight: FontWeight.bold),
             ),
             if (action != null) action!,

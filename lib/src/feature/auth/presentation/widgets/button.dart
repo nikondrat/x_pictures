@@ -27,12 +27,12 @@ class AuthButton extends StatelessWidget {
       label: AutoSizeText(
         title,
         style: textTheme.bodyLarge!.copyWith(
-            color: AppColors.kBackgroundColor, fontWeight: FontWeight.bold),
+            color: AppColors.kBackgroundColor, fontWeight: FontWeight.w700),
         maxLines: 1,
       ),
       style: ButtonStyle(
           padding: WidgetStatePropertyAll(EdgeInsets.symmetric(
-              vertical: windowHeight * .02, horizontal: AppValues.kPadding)),
+              vertical: windowHeight * .03, horizontal: AppValues.kPadding)),
           backgroundColor:
               const WidgetStatePropertyAll(AppColors.kSecondaryColor)),
     );

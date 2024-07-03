@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -64,11 +65,12 @@ class _FormatWidget extends StatelessWidget {
         height: height,
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: colorScheme.outline),
+            border: Border.all(color: AppColors.kOutlineColor),
             borderRadius: BorderRadius.circular(AppValues.kPadding / 2),
           ),
           child: Center(
-            child: Text('${format.width.toInt()}:${format.height.toInt()}',
+            child: AutoSizeText(
+                '${format.width.toInt()}:${format.height.toInt()}',
                 style: textTheme.bodyLarge!.copyWith(
                     color: colorScheme.secondary, fontWeight: FontWeight.bold)),
           ),

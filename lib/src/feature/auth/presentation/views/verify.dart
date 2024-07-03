@@ -35,12 +35,12 @@ class VerifyView extends StatelessWidget {
                     title: t.auth.hint.verify.title,
                     // TODO: change email
                     description: t.auth.hint.verify.description(email: '')),
-                const Gap(AppValues.kPadding),
+                const Gap(AppValues.kPadding * 4),
                 CustomPinput(
                   windowHeight: windowHeight,
                   windowWidth: windowWidth,
                 ),
-                const Gap(AppValues.kPadding),
+                const Gap(AppValues.kPadding * 1.5),
                 GradientButton(
                     onPressed: () {
                       router.goNamed(AppViews.homePageRoute);
@@ -51,7 +51,8 @@ class VerifyView extends StatelessWidget {
           ),
           bottomNavigationBar: Padding(
             padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom),
+                bottom: MediaQuery.of(context).viewInsets.bottom +
+                    AppValues.kPadding * 2),
             child: Observer(builder: (_) {
               return Text.rich(
                 t.auth.hint.verify.did_not_get(

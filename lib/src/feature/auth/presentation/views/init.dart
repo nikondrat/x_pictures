@@ -28,21 +28,21 @@ class InitView extends StatelessWidget {
               const Gap(AppValues.kPadding),
               TitleWithDesc(
                   title: t.init.title, description: t.init.description),
-              const Gap(AppValues.kPadding / 2),
+              const Gap(AppValues.kPadding * 2),
               AuthButton(
                 windowHeight: windowHeight,
                 icon: SvgPicture.asset(Assets.icons.apple),
                 title: t.init.sign_in_with(provider: t.init.providers.apple),
                 onPressed: () {},
               ),
-              const Gap(AppValues.kPadding / 2),
+              const Gap(AppValues.kPadding),
               AuthButton(
                 windowHeight: windowHeight,
                 icon: SvgPicture.asset(Assets.icons.google),
                 title: t.init.sign_in_with(provider: t.init.providers.google),
                 onPressed: () {},
               ),
-              const Gap(AppValues.kPadding / 2),
+              const Gap(AppValues.kPadding),
               AuthButton(
                 windowHeight: windowHeight,
                 icon: Icon(

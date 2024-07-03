@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:x_pictures/src/core/constant/constant.dart';
 
@@ -41,14 +42,15 @@ class GradientButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppValues.kRadius),
         ),
         child: Center(
-          child: Text(
+          child: AutoSizeText(
             text,
             style: textStyle ??
-                textTheme.headlineSmall!.copyWith(
+                textTheme.titleMedium!.copyWith(
                   fontWeight: FontWeight.bold,
+                  letterSpacing: 1.5,
                   color: isEnabled
-                      ? textTheme.headlineSmall!.color
-                      : textTheme.headlineSmall!.color!.withOpacity(0.5),
+                      ? textTheme.titleMedium!.color
+                      : textTheme.titleMedium!.color!.withOpacity(0.5),
                 ),
           ),
         ),

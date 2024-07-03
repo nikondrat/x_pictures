@@ -22,7 +22,7 @@ class InputWithTitleWidget extends StatelessWidget {
           title,
           style: textTheme.titleMedium!.copyWith(color: colorScheme.outline),
         ),
-        const Gap(AppValues.kPadding / 2),
+        const Gap(AppValues.kPadding / 3),
         inputWidget,
         const Gap(AppValues.kPadding)
       ],

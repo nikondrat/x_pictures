@@ -21,12 +21,13 @@ class GenerateTags extends StatelessWidget {
       title: t.generateView.tags.title,
       action: const ResetButton(),
       child: Wrap(
-        spacing: AppValues.kPadding,
-        runSpacing: AppValues.kPadding,
+        spacing: AppValues.kPadding / 2,
+        runSpacing: AppValues.kPadding / 2,
         children: tags
             .map((e) => ActionChip(
                   onPressed: () {},
                   label: Text(e, style: textTheme.bodyLarge),
+                  side: const BorderSide(color: AppColors.kOutlineColor),
                 ))
             .toList(),
       ),

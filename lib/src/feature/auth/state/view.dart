@@ -42,30 +42,5 @@ abstract class _SignInViewStore with Store {
   void dispose() {
     formGroup.dispose();
     _valueChangesSubscription.cancel();
-    stopTimer();
-  }
-
-  Timer? _timer;
-
-  @observable
-  int seconds = 0;
-
-  @action
-  void startTimer() {
-    _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 20), (timer) {
-      seconds++;
-    });
-  }
-
-  @action
-  void stopTimer() {
-    _timer?.cancel();
-  }
-
-  @action
-  void resetTimer() {
-    _timer?.cancel();
-    seconds = 0;
   }
 }

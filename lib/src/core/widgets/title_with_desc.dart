@@ -26,9 +26,8 @@ class TitleWithDesc extends StatelessWidget {
           alignment: Alignment.center,
           child: AutoSizeText(
             title,
-            minFontSize: 16,
-            style: titleStyle ??
-                textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold),
+            minFontSize: 17,
+            style: titleStyle ?? textTheme.headlineMedium,
             maxLines: 1,
           ),
         ),
@@ -42,8 +41,8 @@ class TitleWithDesc extends StatelessWidget {
                 description,
                 textAlign: TextAlign.center,
                 style: descriptionStyle ??
-                    textTheme.bodyLarge!
-                        .copyWith(color: themeData.colorScheme.outline),
+                    textTheme.titleLarge!
+                        .copyWith(color: AppColors.kOutlineColor),
                 maxLines: 2,
               ),
             )),

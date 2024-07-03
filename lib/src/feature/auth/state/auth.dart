@@ -13,6 +13,5 @@ abstract class _AuthStore with Store {
   void signIn() {
     // TODO add api func
     router.goNamed(AppViews.verify);
-    signInViewStore.startTimer();
   }
 }

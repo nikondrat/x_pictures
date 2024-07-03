@@ -32,7 +32,7 @@ class SignInView extends StatelessWidget {
                   const Gap(AppValues.kPadding),
                   TitleWithDesc(
                       title: t.auth.hint.add, description: t.auth.description),
-                  const Gap(AppValues.kPadding),
+                  const Gap(AppValues.kPadding * 2),
                   const InputGroup(),
                   const Gap(AppValues.kPadding)
                 ],

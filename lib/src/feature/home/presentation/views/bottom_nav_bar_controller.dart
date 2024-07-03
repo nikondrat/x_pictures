@@ -19,11 +19,7 @@ class _BottomNavBarControllerPageState
   final List<Widget> _pages = [
     const HomePage(),
     const GenerateView(),
-    const Center(
-        child: Text(
-      'Working on it, too',
-      style: TextStyle(color: Colors.white),
-    )),
+    const ProfileView()
   ];
 
   @override

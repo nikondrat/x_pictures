@@ -17,12 +17,21 @@ abstract class AppViews {
 
   static const String generateView = 'generateView';
   static const String resultView = 'resultView';
+  static const String settingsView = 'settingsView';
+  static const String legalView = 'legalView';
+  static const String documentView = 'documentView';
+  static const String faqView = 'faqView';
 }
 
 final GlobalKey<NavigatorState> navKey = GlobalKey();
 
 final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
-  // GoRoute(path: '/', builder: (_, __) => GenerationResult())
+  // GoRoute(
+  //     path: '/',
+  //     builder: (_, __) => DocumentView(
+  //           title: 'PPR',
+  //           content: 'dfsdfdfd',
+  //         ))
   GoRoute(
       name: AppViews.init,
       path: _Paths.init,
@@ -74,15 +83,33 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
             name: AppViews.viewAllPageRoute,
             builder: (context, state) => const ViewAllPage()),
         GoRoute(
-            path: _Paths.generateView,
-            name: AppViews.generateView,
-            builder: (context, state) => const GenerateView(),
+            path: _Paths.resultView,
+            name: AppViews.resultView,
+            builder: (context, state) => const GenerationResult()),
+        GoRoute(
+            path: _Paths.settingsView,
+            name: AppViews.settingsView,
+            builder: (context, state) => const SettingsView(),
             routes: [
               GoRoute(
-                  path: _Paths.resultView,
-                  name: AppViews.resultView,
-                  builder: (context, state) => const GenerationResult()),
-            ]),
+                path: _Paths.faqView,
+                name: AppViews.faqView,
+                builder: (context, state) => const FaqView(),
+              ),
+              GoRoute(
+                  path: _Paths.legalView,
+                  name: AppViews.legalView,
+                  builder: (context, state) => const LegalView(),
+                  routes: [
+                    GoRoute(
+                        path: _Paths.documentView,
+                        name: AppViews.documentView,
+                        builder: (context, state) => DocumentView(
+                              title: (state.extra as Map)['title'] ?? '',
+                              content: (state.extra as Map)['content'] ?? '',
+                            ))
+                  ]),
+            ])
       ]),
 ]);
 
@@ -101,4 +128,8 @@ abstract class _Paths {
 
   static const String generateView = AppViews.generateView;
   static const String resultView = AppViews.resultView;
+  static const String settingsView = AppViews.settingsView;
+  static const String legalView = AppViews.legalView;
+  static const String documentView = AppViews.documentView;
+  static const String faqView = AppViews.faqView;
 }

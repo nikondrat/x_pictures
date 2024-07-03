@@ -69,7 +69,7 @@ class InputGroup extends StatelessWidget {
                 );
               }),
             ),
-            const Gap(AppValues.kPadding),
+            const Gap(AppValues.kPadding / 2),
             Observer(
                 builder: (_) => GradientButton(
                     onPressed: authStore.signIn,

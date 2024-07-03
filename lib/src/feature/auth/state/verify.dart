@@ -15,7 +15,7 @@ abstract class _VerifyStore with Store {
   @action
   void startTimer() {
     _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (seconds <= 1) {
         stopTimer();
       }

@@ -79,6 +79,7 @@ dependencies:
   gap: ^3.0.1
   shimmer: ^3.0.0
   flutter_screenutil: ^5.9.3
+  settings_ui: ^2.0.2
 
 dev_dependencies:
   # -- testing -- #

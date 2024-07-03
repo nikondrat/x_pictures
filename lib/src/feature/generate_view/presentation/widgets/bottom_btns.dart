@@ -15,7 +15,7 @@ class ResultViewBottomButtons extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 6,
+          flex: 5,
           child: FilledButton.icon(
             onPressed: () {},
             label: Text(

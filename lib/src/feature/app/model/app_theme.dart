@@ -22,6 +22,12 @@ abstract class _AppThemeStore with Store {
             surface: AppColors.kBackgroundColor,
             appBarBackground: AppColors.kBackgroundColor,
             surfaceTint: AppColors.kBackgroundColor,
+            error: AppColors.kErrorColor,
+            textTheme: const TextTheme(
+                headlineMedium: TextStyle(
+                    fontSize: 34,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5)),
             subThemesData: const FlexSubThemesData(
               appBarCenterTitle: true,
               appBarBackgroundSchemeColor: SchemeColor.background,

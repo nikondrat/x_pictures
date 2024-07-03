@@ -23,6 +23,7 @@ class MaterialContext extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(360, 690),
         minTextAdapt: true,
+        enableScaleText: () => false,
         splitScreenMode: true,
         builder: (context, child) {
           return Observer(builder: (_) {

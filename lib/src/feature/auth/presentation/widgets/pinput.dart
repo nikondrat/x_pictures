@@ -30,11 +30,11 @@ class CustomPinput extends StatelessWidget {
           height: height,
           width: width,
           decoration: BoxDecoration(
-            color: colorScheme.primary,
+            // color: colorScheme.primary,
             border: Border.all(
-              color: const Color(0xffFF453A),
+              color: colorScheme.primary,
             ),
-            borderRadius: BorderRadius.circular(AppValues.kRadius),
+            borderRadius: BorderRadius.circular(AppValues.kRadius * 2),
           ),
           textStyle:
               textTheme.displaySmall!.copyWith(color: colorScheme.onPrimary)
@@ -48,11 +48,11 @@ class CustomPinput extends StatelessWidget {
           height: height,
           width: width,
           decoration: BoxDecoration(
-            color: AppColors.kPrimaryColor,
+            // color: AppColors.kPrimaryColor,
             border: Border.all(
               color: const Color(0xff3B3B5A),
             ),
-            borderRadius: BorderRadius.circular(AppValues.kRadius),
+            borderRadius: BorderRadius.circular(AppValues.kRadius * 2),
           ),
           textStyle:
               textTheme.displaySmall!.copyWith(color: colorScheme.onPrimary)

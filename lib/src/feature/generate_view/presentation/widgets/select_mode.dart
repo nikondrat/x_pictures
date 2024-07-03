@@ -50,14 +50,17 @@ class _Tab extends StatelessWidget {
             text: title,
             padding:
                 const EdgeInsets.symmetric(vertical: AppValues.kPadding / 3),
-            textStyle:
-                textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
+            textStyle: textTheme.bodyMedium,
           )
         : TextButton(
             onPressed: onTap,
+            style: const ButtonStyle(
+                backgroundColor:
+                    WidgetStatePropertyAll(AppColors.kAdditionalColor)),
             child: Text(
               title,
-              style: textTheme.bodyLarge!.copyWith(color: colorScheme.outline),
+              style:
+                  textTheme.bodyMedium!.copyWith(color: colorScheme.onSurface),
             ),
           );
   }

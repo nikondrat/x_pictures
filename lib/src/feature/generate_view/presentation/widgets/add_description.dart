@@ -20,7 +20,8 @@ class AddDescription extends StatelessWidget {
                   filled: false,
                   hintText: t.generateView.input_hint,
                   contentPadding: const EdgeInsets.all(AppValues.kPadding),
-                  border: const OutlineInputBorder()),
+                  border: const OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.kOutlineColor))),
             ),
             const Gap(AppValues.kPadding),
             ScrollConfiguration(
@@ -44,8 +45,12 @@ class AddDescription extends StatelessWidget {
                       'Other',
                       'Other'
                     ]
-                            .map((e) =>
-                                ActionChip(onPressed: () {}, label: Text(e)))
+                            .map((e) => ActionChip(
+                                  onPressed: () {},
+                                  label: Text(e),
+                                  side: const BorderSide(
+                                      color: AppColors.kOutlineColor),
+                                ))
                             .toList()),
               ),
             ),

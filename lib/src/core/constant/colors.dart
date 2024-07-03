@@ -8,4 +8,7 @@ class AppColors {
 
   static const Color kAdditionalColor = Color(0xFF010140);
   static const Color kSecondaryAdditionallyColor = Color(0xFF0D1120);
+
+  static const Color kOutlineColor = Color(0xFF7C7C9B);
+  static const Color kErrorColor = Color(0xFFFF453A);
 }

@@ -24,6 +24,7 @@ class GenerationResult extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(AppValues.kRadius),
                   child: CachedNetworkImage(
+                    // TODO change this
                     imageUrl: 'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
                     fit: BoxFit.cover,
                     height: windowHeight * 0.5,
@@ -44,7 +45,9 @@ class GenerationResult extends StatelessWidget {
                 ),
                 const Gap(AppValues.kPadding),
                 Row(
-                  children: [
+                  children:
+                      // TODO change this list to a variable
+                      [
                     'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
                     'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
                     'https://s1.1zoom.me/big3/446/375561-svetik.jpg',

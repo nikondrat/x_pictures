@@ -1,0 +1,34 @@
+title: Settings
+exit: Exit
+trial: Free trial
+
+account:
+  title: Account
+  sign_in: Sign in or create a Free Account
+
+subscription:
+  title: Subscription
+  manage: Manage Subscriptions
+
+help_center:
+  title: Help center
+  faq: FAQ
+  report: Report a problem
+
+notifications:
+  title: Notifications
+  receiveNews: Receive newsletters
+
+other:
+  title: Other
+  legal:
+    title: Legal
+    privacy_policy: Privacy policy
+    terms_of_use: Terms of Use
+  sendFeedback: Send feedback
+  rate_us: Rate us
+
+delete:
+  title: Delete
+  account: Delete my account
+  note: "Note: If you have an active subscription, you will need to cancel it before you delete your account. When deleted, all your data will be deleted from all servers."
