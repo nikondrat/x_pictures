@@ -11,13 +11,19 @@ class FaqView extends StatelessWidget {
         title: Text(t.settings.help_center.faq),
       ),
       body: AppBody(
-        builder: (windowWidth, windowHeight, windowSize) => Padding(
-            padding: HorizontalSpacing.centered(windowWidth),
-            child: SingleChildScrollView(
-                child: Column(
-              children: [],
-            ))),
-      ),
+          builder: (windowWidth, windowHeight, windowSize) => Padding(
+              padding: HorizontalSpacing.centered(windowWidth),
+              child: ListView(
+                padding:
+                    const EdgeInsets.symmetric(vertical: AppValues.kPadding),
+                children: const [
+                  // TODO change data
+                  CustomExpansionTile(
+                    title: 'hh',
+                    content: 'Content',
+                  ),
+                ],
+              ))),
     );
   }
 }

@@ -21,8 +21,7 @@ class LegalView extends StatelessWidget {
             settingsListBackground: colorScheme.surface,
             settingsSectionBackground: AppColors.kSecondaryAdditionallyColor,
           ),
-          platform: DevicePlatform.iOS,
-          // platform: PlatformUtils.detectPlatform(context),
+          platform: PlatformUtils.detectPlatform(context),
           sections: [
             SettingsSection(
               title: Text(

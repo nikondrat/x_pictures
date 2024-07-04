@@ -26,91 +26,86 @@ abstract class AppViews {
 final GlobalKey<NavigatorState> navKey = GlobalKey();
 
 final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
+  GoRoute(path: '/', builder: (_, __) => ProfileView())
   // GoRoute(
-  //     path: '/',
-  //     builder: (_, __) => DocumentView(
-  //           title: 'PPR',
-  //           content: 'dfsdfdfd',
-  //         ))
-  GoRoute(
-      name: AppViews.init,
-      path: _Paths.init,
-      builder: (context, state) => const InitView(),
-      routes: [
-        GoRoute(
-            name: AppViews.signIn,
-            path: _Paths.signIn,
-            builder: (context, state) => const SignInView(),
-            routes: [
-              GoRoute(
-                name: AppViews.verify,
-                path: _Paths.verify,
-                builder: (context, state) => const VerifyView(),
-              ),
-            ]),
-      ]),
-  GoRoute(
-      name: AppViews.homePageRoute,
-      path: _Paths.homePageRoute,
-      builder: (context, state) => const BottomNavBarControllerPage(),
-      routes: [
-        GoRoute(
-            name: AppViews.officePageRoute,
-            path: _Paths.officePageRoute,
-            builder: (context, state) => const OfficePage(),
-            routes: [
-              GoRoute(
-                  name: AppViews.disclaimarPageRoute,
-                  path: _Paths.disclaimarPageRoute,
-                  builder: (context, state) => const DisclaimarPage(),
-                  routes: [
-                    GoRoute(
-                        name: AppViews.instructionPageRoute,
-                        path: _Paths.instructionPageRoute,
-                        builder: (context, state) => const InstructionPage(),
-                        routes: [
-                          GoRoute(
-                            name: AppViews.uploadingPhotosPageRoute,
-                            path: _Paths.uploadingPhotosPageRoute,
-                            builder: (context, state) =>
-                                const UploadingPhotosPage(),
-                          )
-                        ]),
-                  ]),
-            ]),
-        GoRoute(
-            path: _Paths.viewAllPageRoute,
-            name: AppViews.viewAllPageRoute,
-            builder: (context, state) => const ViewAllPage()),
-        GoRoute(
-            path: _Paths.resultView,
-            name: AppViews.resultView,
-            builder: (context, state) => const GenerationResult()),
-        GoRoute(
-            path: _Paths.settingsView,
-            name: AppViews.settingsView,
-            builder: (context, state) => const SettingsView(),
-            routes: [
-              GoRoute(
-                path: _Paths.faqView,
-                name: AppViews.faqView,
-                builder: (context, state) => const FaqView(),
-              ),
-              GoRoute(
-                  path: _Paths.legalView,
-                  name: AppViews.legalView,
-                  builder: (context, state) => const LegalView(),
-                  routes: [
-                    GoRoute(
-                        path: _Paths.documentView,
-                        name: AppViews.documentView,
-                        builder: (context, state) => DocumentView(
-                              title: (state.extra as Map)['title'] ?? '',
-                              content: (state.extra as Map)['content'] ?? '',
-                            ))
-                  ]),
-            ])
-      ]),
+  //     name: AppViews.init,
+  //     path: _Paths.init,
+  //     builder: (context, state) => const InitView(),
+  //     routes: [
+  //       GoRoute(
+  //           name: AppViews.signIn,
+  //           path: _Paths.signIn,
+  //           builder: (context, state) => const SignInView(),
+  //           routes: [
+  //             GoRoute(
+  //               name: AppViews.verify,
+  //               path: _Paths.verify,
+  //               builder: (context, state) => const VerifyView(),
+  //             ),
+  //           ]),
+  //     ]),
+  // GoRoute(
+  //     name: AppViews.homePageRoute,
+  //     path: _Paths.homePageRoute,
+  //     builder: (context, state) => const BottomNavBarControllerPage(),
+  //     routes: [
+  //       GoRoute(
+  //           name: AppViews.officePageRoute,
+  //           path: _Paths.officePageRoute,
+  //           builder: (context, state) => const OfficePage(),
+  //           routes: [
+  //             GoRoute(
+  //                 name: AppViews.disclaimarPageRoute,
+  //                 path: _Paths.disclaimarPageRoute,
+  //                 builder: (context, state) => const DisclaimarPage(),
+  //                 routes: [
+  //                   GoRoute(
+  //                       name: AppViews.instructionPageRoute,
+  //                       path: _Paths.instructionPageRoute,
+  //                       builder: (context, state) => const InstructionPage(),
+  //                       routes: [
+  //                         GoRoute(
+  //                           name: AppViews.uploadingPhotosPageRoute,
+  //                           path: _Paths.uploadingPhotosPageRoute,
+  //                           builder: (context, state) =>
+  //                               const UploadingPhotosPage(),
+  //                         )
+  //                       ]),
+  //                 ]),
+  //           ]),
+  //       GoRoute(
+  //           path: _Paths.viewAllPageRoute,
+  //           name: AppViews.viewAllPageRoute,
+  //           builder: (context, state) => const ViewAllPage()),
+  //       GoRoute(
+  //           path: _Paths.resultView,
+  //           name: AppViews.resultView,
+  //           builder: (context, state) => const GenerationResult()),
+  //       GoRoute(
+  //           path: _Paths.settingsView,
+  //           name: AppViews.settingsView,
+  //           builder: (context, state) => const SettingsView(),
+  //           routes: [
+  //             GoRoute(
+  //               path: _Paths.faqView,
+  //               name: AppViews.faqView,
+  //               builder: (context, state) => const FaqView(),
+  //             ),
+  //             GoRoute(
+  //                 path: _Paths.legalView,
+  //                 name: AppViews.legalView,
+  //                 builder: (context, state) => const LegalView(),
+  //                 routes: [
+  //                   GoRoute(
+  //                       path: _Paths.documentView,
+  //                       name: AppViews.documentView,
+  //                       builder: (context, state) => DocumentView(
+  //                             title: (state.extra as Map)['title'] ?? '',
+  //                             content: (state.extra as Map)['content'] ?? '',
+  //                           )),
+  //                 ]),
+  //           ])
+  //     ]),
 ]);
 
 abstract class _Paths {
