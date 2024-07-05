@@ -23,7 +23,7 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
     return Scaffold(
       appBar: const CustomAppBar(textName: 'Uploading photos'),
       floatingActionButton:
-          CustomFloatingButton(buttonName: 'Continue', onTap: () {}),
+          CustomFloatingButton(buttonName: 'Continue', onTap: () => router.goNamed(AppViews.genderView)),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
