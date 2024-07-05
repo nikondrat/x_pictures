@@ -91,19 +91,18 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                         builder: (context, state) => const InstructionPage(),
                         routes: [
                           GoRoute(
-                            name: AppViews.uploadingPhotosPageRoute,
-                            path: _Paths.uploadingPhotosPageRoute,
-                            builder: (context, state) =>
-                                const UploadingPhotosPage(),
-                                routes: [
-                                  GoRoute(
-                                      name: AppViews.genderView,
-                                      path: _Paths.genderView,
-                                      builder: (context, state) =>
-                                        const GenderView(),
-                                  )
-                                ]
-                          )
+                              name: AppViews.uploadingPhotosPageRoute,
+                              path: _Paths.uploadingPhotosPageRoute,
+                              builder: (context, state) =>
+                                  const UploadingPhotosPage(),
+                              routes: [
+                                GoRoute(
+                                  name: AppViews.genderView,
+                                  path: _Paths.genderView,
+                                  builder: (context, state) =>
+                                      const GenderView(),
+                                )
+                              ])
                         ]),
                   ]),
             ]),
@@ -115,8 +114,8 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
             path: _Paths.resultView,
             name: AppViews.resultView,
             builder: (context, state) {
-              final Map data = state.extra as Map;
-              final MediaModel? model = data['model'];
+              final Map? data = state.extra as Map?;
+              final MediaModel? model = data?['model'];
               return GenerationResult(
                 model: model,
               );
@@ -162,8 +161,8 @@ abstract class _Paths {
   static const signIn = AppViews.signIn;
   static const verify = AppViews.verify;
 
-  static const String homePageRoute = '/';
-  // static const String homePageRoute = '/${AppViews.homePageRoute}';
+  // static const String homePageRoute = '/';
+  static const String homePageRoute = '/${AppViews.homePageRoute}';
   static const String viewAllPageRoute = AppViews.viewAllPageRoute;
   static const String officePageRoute = AppViews.officePageRoute;
   static const String disclaimarPageRoute = AppViews.disclaimarPageRoute;
