@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_pictures/src/core/constant/constant.dart';
 
 class GradientButton extends StatelessWidget {
@@ -27,6 +28,7 @@ class GradientButton extends StatelessWidget {
     return GestureDetector(
       onTap: isEnabled ? onPressed : null,
       child: Container(
+        height: 50.h,
         padding: padding ?? const EdgeInsets.all(AppValues.kPadding),
         decoration: BoxDecoration(
           gradient: LinearGradient(

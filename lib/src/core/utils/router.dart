@@ -26,6 +26,7 @@ abstract class AppViews {
 
   static const String allStyles = 'allStyles';
   static const String imageWithBackground = 'imageWithBackground';
+  static const String genderView = 'genderView';
 }
 
 final GlobalKey<NavigatorState> navKey = GlobalKey();
@@ -94,6 +95,14 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                             path: _Paths.uploadingPhotosPageRoute,
                             builder: (context, state) =>
                                 const UploadingPhotosPage(),
+                                routes: [
+                                  GoRoute(
+                                      name: AppViews.genderView,
+                                      path: _Paths.genderView,
+                                      builder: (context, state) =>
+                                        const GenderView(),
+                                  )
+                                ]
                           )
                         ]),
                   ]),
@@ -173,4 +182,5 @@ abstract class _Paths {
 
   static const String allStyles = AppViews.allStyles;
   static const String imageWithBackground = AppViews.imageWithBackground;
+  static const String genderView = AppViews.genderView;
 }
