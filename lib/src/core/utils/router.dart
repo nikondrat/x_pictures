@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:path/path.dart';
 import 'package:x_pictures/src/data.dart';
 
 abstract class AppViews {
@@ -36,6 +35,7 @@ abstract class AppViews {
   static const String backgroundsView = 'backgroundsView';
   static const String enhanceView = 'enhanceView';
   static const String studyingView = 'studyingView';
+  static const String photosView = 'photosView';
 }
 
 final GlobalKey<NavigatorState> navKey = GlobalKey();
@@ -188,65 +188,73 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                                       state.extra as Map?;
                                                   final StyleModel model =
                                                       data?['model'];
-                                                  return MasterpieseView(
+                                                  return MasterpieceView(
                                                     model: model,
                                                   );
-                                                })
+                                                },
+                                                routes: [
+                                                  GoRoute(
+                                                      name: AppViews.photosView,
+                                                      path: _Paths.photosView,
+                                                      builder: (context,
+                                                              state) =>
+                                                          const PhotosView())
+                                                ])
                                           ])
                                     ])
-                              ])
-                        ]),
+                              ]),
+                        ])
                   ]),
             ]),
+      ]),
+  GoRoute(
+      path: _Paths.allStyles,
+      name: AppViews.allStyles,
+      builder: (context, state) {
+        final Map? data = state.extra as Map?;
+        final String title = data?['title'] ?? '';
+        final onTap = data?['onTap'];
+        final items = data?['items'];
+        return AllView(
+          title: title,
+          onTap: onTap,
+          items: items,
+        );
+      }),
+  GoRoute(
+      path: _Paths.resultView,
+      name: AppViews.resultView,
+      builder: (context, state) {
+        final Map? data = state.extra as Map?;
+        final MediaModel? model = data?['model'];
+        return GenerationResult(
+          model: model,
+        );
+      }),
+  GoRoute(
+      path: _Paths.settingsView,
+      name: AppViews.settingsView,
+      builder: (context, state) => const SettingsView(),
+      routes: [
         GoRoute(
-            path: _Paths.allStyles,
-            name: AppViews.allStyles,
-            builder: (context, state) {
-              final Map? data = state.extra as Map?;
-              final String title = data?['title'] ?? '';
-              final onTap = data?['onTap'];
-              final items = data?['items'];
-              return AllView(
-                title: title,
-                onTap: onTap,
-                items: items,
-              );
-            }),
+          path: _Paths.faqView,
+          name: AppViews.faqView,
+          builder: (context, state) => const FaqView(),
+        ),
         GoRoute(
-            path: _Paths.resultView,
-            name: AppViews.resultView,
-            builder: (context, state) {
-              final Map? data = state.extra as Map?;
-              final MediaModel? model = data?['model'];
-              return GenerationResult(
-                model: model,
-              );
-            }),
-        GoRoute(
-            path: _Paths.settingsView,
-            name: AppViews.settingsView,
-            builder: (context, state) => const SettingsView(),
+            path: _Paths.legalView,
+            name: AppViews.legalView,
+            builder: (context, state) => const LegalView(),
             routes: [
               GoRoute(
-                path: _Paths.faqView,
-                name: AppViews.faqView,
-                builder: (context, state) => const FaqView(),
-              ),
-              GoRoute(
-                  path: _Paths.legalView,
-                  name: AppViews.legalView,
-                  builder: (context, state) => const LegalView(),
-                  routes: [
-                    GoRoute(
-                        path: _Paths.documentView,
-                        name: AppViews.documentView,
-                        builder: (context, state) => DocumentView(
-                              title: (state.extra as Map)['title'] ?? '',
-                              content: (state.extra as Map)['content'] ?? '',
-                            )),
-                  ]),
-            ])
-      ]),
+                  path: _Paths.documentView,
+                  name: AppViews.documentView,
+                  builder: (context, state) => DocumentView(
+                        title: (state.extra as Map)['title'] ?? '',
+                        content: (state.extra as Map)['content'] ?? '',
+                      )),
+            ]),
+      ])
 ]);
 
 abstract class _Paths {
@@ -284,4 +292,5 @@ abstract class _Paths {
   static const String enhanceView = AppViews.enhanceView;
 
   static const String studyingView = AppViews.studyingView;
+  static const String photosView = AppViews.photosView;
 }

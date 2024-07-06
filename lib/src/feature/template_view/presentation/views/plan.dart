@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/feature/template_view/presentation/widgets/cover_image_plan_page.dart';
-import 'package:x_pictures/src/feature/template_view/state/plan.dart';
 
 class PlanView extends StatelessWidget {
   final StyleModel model;
