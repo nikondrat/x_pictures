@@ -22,9 +22,14 @@ class GenderView extends StatelessWidget {
             builder: (context, consumerValue, child) {
               return Padding(
                 padding: EdgeInsets.only(left: 30.w),
-                child: GradientButton(onPressed: () {},
-                text: 'Continue',
-                  isEnabled: consumerValue.isSelected,
+                child: SizedBox(
+                  height: 50.h,
+                  child: GradientButton(onPressed: () {
+                    router.goNamed(AppViews.planView);
+                  },
+                  text: 'Continue',
+                    isEnabled: consumerValue.isSelected,
+                  ),
                 ),
               );
             }
@@ -61,7 +66,7 @@ class GenderView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 5.h,
+                      height: 10.h,
                     ),
                     RadioButton(text: 'Female',
                         isSelected: consumerValue.isSelectedList[0],
@@ -70,7 +75,29 @@ class GenderView extends StatelessWidget {
                         onChanged: (value) {
                           consumerValue.changeCurrentGender(value);
                           consumerValue.setTrueToIsSelectedList(0);
-                        })
+                        }),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    RadioButton(text: 'Male',
+                        isSelected: consumerValue.isSelectedList[1],
+                        value: Gender.Male,
+                        groupValue: consumerValue.currentGender,
+                        onChanged: (value) {
+                          consumerValue.changeCurrentGender(value);
+                          consumerValue.setTrueToIsSelectedList(1);
+                        }),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    RadioButton(text: 'Other',
+                        isSelected: consumerValue.isSelectedList[2],
+                        value: Gender.Other,
+                        groupValue: consumerValue.currentGender,
+                        onChanged: (value) {
+                          consumerValue.changeCurrentGender(value);
+                          consumerValue.setTrueToIsSelectedList(2);
+                        }),
                       ],
                     ),
               );
