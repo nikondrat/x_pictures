@@ -30,6 +30,7 @@ abstract class AppViews {
   static const String genderView = 'genderView';
   static const String planView = 'planView';
   static const String masterpieceView = 'masterpieceView';
+  static const String photosView = 'photosView';
 }
 
 final GlobalKey<NavigatorState> navKey = GlobalKey();
@@ -126,7 +127,14 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                             name: AppViews.masterpieceView,
                                             path: _Paths.masterpieceView,
                                             builder: (context, state) =>
-                                              const MasterpieceView())
+                                              const MasterpieceView(),
+                                          routes: [
+                                            GoRoute(
+                                                name: AppViews.photosView,
+                                                path: _Paths.photosView,
+                                                builder: (context, state) =>
+                                                  const PhotosView())
+                                          ])
                                       ])
                                   ]
                                 )
@@ -204,4 +212,5 @@ abstract class _Paths {
   static const String genderView = AppViews.genderView;
   static const String planView = AppViews.planView;
   static const String masterpieceView = AppViews.masterpieceView;
+  static const String photosView = AppViews.photosView;
 }

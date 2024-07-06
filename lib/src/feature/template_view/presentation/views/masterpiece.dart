@@ -20,9 +20,9 @@ class _MasterpieceViewState extends State<MasterpieceView> {
     return ChangeNotifierProvider(
       create: (context) => TimeIndicator(),
       child: Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           leading: const CustomBackButton(),
-        ),
+        ),*/
         body: Padding(
           padding: const EdgeInsets.all(AppValues.kPadding),
           child: Container(
@@ -50,7 +50,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                       consumerValue.startTimer();
                       if (consumerValue.getCurrentTimeRemained == 0)
                         {
-                          print('hi');
+
                         }
                       return CircularPercentIndicator(
                         radius: 100.w,

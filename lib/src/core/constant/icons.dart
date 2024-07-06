@@ -10,4 +10,7 @@ class AppIcons {
   static const String proIcon = '$baseUrl/Pro.svg';
   static const String homeIcon = '$baseUrl/home.svg';
   static const String generateIcon = '$baseUrl/generate.svg';
+  static const String download = '$baseUrl/download.svg';
+  static const String downloadGreyCircle = '$baseUrl/download_grey_circle.svg';
+  static const String upload = '$baseUrl/upload.svg';
 }

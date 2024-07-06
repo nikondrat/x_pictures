@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:x_pictures/src/data.dart';
 
 class TimeIndicator extends ChangeNotifier {
   final int _totalTime = 5;
@@ -17,6 +18,7 @@ class TimeIndicator extends ChangeNotifier {
           if (_start == 0)
             {
               timer.cancel();
+              router.goNamed(AppViews.photosView);
             } else {
             _start--;
             _percent = 1 - (_start / _totalTime);
