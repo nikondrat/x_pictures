@@ -13,7 +13,8 @@ class CustomBackButton extends StatelessWidget {
 
     return IconButton(
       onPressed: () => context.pop(),
-      icon: Icon(Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios, size: 18, color: colorScheme.outline),
+      icon: Icon(Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
+          size: 18, color: colorScheme.outline),
     );
   }
 }

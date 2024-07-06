@@ -3,3 +3,5 @@ reset: Reset
 create: Create
 copy: Copy
 all: All
+next: Next
+remove: Remove

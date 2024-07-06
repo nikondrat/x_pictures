@@ -91,8 +91,9 @@ class HomeView extends StatelessWidget {
             description:
                 'This style is suitable for showing in a business style to show all your inner qualities',
             images: [
-              'https://images.glavred.info/2019_10/thumb_files/1200x0/1570396895-1764.jpg',
-              'https://www.ewparik.com/upload/resize_cache/iblock/56a/1200_1200_1fa72c7c719b9bf5d96a98e09d4c1005a/3h03d42ar041tzveazrh5qsnpg11giwd.jpg'
+              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
+              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
+              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
             ]),
         StyleModel(
             url:
@@ -103,8 +104,8 @@ class HomeView extends StatelessWidget {
             description:
                 'This style is suitable for showing in a business style to show all your inner qualities',
             images: [
-              'https://images.glavred.info/2019_10/thumb_files/1200x0/1570396895-1764.jpg',
-              'https://www.ewparik.com/upload/resize_cache/iblock/56a/1200_1200_1fa72c7c719b9bf5d96a98e09d4c1005a/3h03d42ar041tzveazrh5qsnpg11giwd.jpg'
+              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
+              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
             ]),
         StyleModel(
             url:
@@ -115,9 +116,51 @@ class HomeView extends StatelessWidget {
             description:
                 'This style is suitable for showing in a business style to show all your inner qualities',
             images: [
-              'https://images.glavred.info/2019_10/thumb_files/1200x0/1570396895-1764.jpg',
-              'https://www.ewparik.com/upload/resize_cache/iblock/56a/1200_1200_1fa72c7c719b9bf5d96a98e09d4c1005a/3h03d42ar041tzveazrh5qsnpg11giwd.jpg'
+              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
+              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
             ]),
+      ]),
+      BackgroundSectionModel(title: t.homeView.styles.smart_tool.title, items: [
+        StyleModel(
+          url: 'https://zeerk.com/storage/uploads/2023/07/1-1.jpg',
+          title: t.homeView.styles.smart_tool.types.remove_background,
+          subTitle: '6 ${t.profile.photos}',
+          data: ['Description', 'Description', 'Description'],
+          actionTitle: t.common.next,
+          onTap: (model) {
+            router.goNamed(AppViews.toolsView,
+                extra: {'model': model, 'isRemoveBackground': true});
+          },
+          description:
+              'This style is suitable for showing in a business style to show all your inner qualities',
+        ),
+        StyleModel(
+          url:
+              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
+          title: t.homeView.styles.smart_tool.types.enhance,
+          subTitle: '6 ${t.profile.photos}',
+          actionTitle: t.common.next,
+          data: ['Description', 'Description', 'Description'],
+          onTap: (model) {
+            router.goNamed(AppViews.enhanceView, extra: {'model': model});
+          },
+          description:
+              'This style is suitable for showing in a business style to show all your inner qualities',
+        ),
+        StyleModel(
+          url:
+              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
+          title: t.homeView.styles.smart_tool.types.remove_objects,
+          subTitle: '6 ${t.profile.photos}',
+          actionTitle: t.common.next,
+          onTap: (model) {
+            router.goNamed(AppViews.toolsView,
+                extra: {'model': model, 'isRemoveBackground': false});
+          },
+          data: ['Description', 'Description', 'Description'],
+          description:
+              'This style is suitable for showing in a business style to show all your inner qualities',
+        ),
       ]),
     ];
 

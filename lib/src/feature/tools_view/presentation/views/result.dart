@@ -1,12 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ImageWithBackgroundResultView extends StatelessWidget {
-  final ItemModel model;
+  final StyleModel model;
   const ImageWithBackgroundResultView({super.key, required this.model});
 
   @override
@@ -48,7 +49,7 @@ class ImageWithBackgroundResultView extends StatelessWidget {
                             title: t.backgrounds.types.texture.types.wood,
                             url:
                                 'https://i.pinimg.com/originals/89/c3/be/89c3beddf3c836e9b04430020d9cf32b.jpg'),
-                      ].map((e) {
+                      ].mapIndexed((i, e) {
                         return Stack(
                           fit: StackFit.expand,
                           children: [
@@ -60,7 +61,7 @@ class ImageWithBackgroundResultView extends StatelessWidget {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            if (!isPro)
+                            if (!isPro && i != 0)
                               Align(
                                   alignment: Alignment.topRight,
                                   child: Padding(

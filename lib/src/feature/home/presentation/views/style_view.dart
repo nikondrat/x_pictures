@@ -61,15 +61,19 @@ class StyleView extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: HorizontalSpacing.centered(windowWidth) +
-                      EdgeInsets.only(bottom: AppValues.kPadding * 2),
+                      const EdgeInsets.only(bottom: AppValues.kPadding * 2),
                   child: SizedBox(
                       height: 80,
                       child: GradientButton(
                           onPressed: () {
-                            router.goNamed(AppViews.disclaimarPageRoute,
-                                extra: {'model': model});
+                            if (model.onTap != null) {
+                              model.onTap!(model);
+                            } else {
+                              router.goNamed(AppViews.disclaimarPageRoute,
+                                  extra: {'model': model});
+                            }
                           },
-                          text: t.homeView.get_pack)),
+                          text: model.actionTitle ?? t.homeView.get_pack)),
                 ),
               ),
             ],

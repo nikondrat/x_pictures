@@ -19,6 +19,17 @@ styles:
       chest: Chest
   decades:
     title: Decades
+    styles:
+      y40s: 1940s
+      y60s: 1960s
+      y80s: 1980s
+
+  smart_tool:
+    title: Smart Tool
+    types:
+      remove_background: Remove BG
+      enhance: Enhance
+      remove_objects: Remove objects
 
 title: Create 30 office of you
 try_office: Try Office

@@ -30,54 +30,34 @@ abstract class AppViews {
   static const String genderView = 'genderView';
   static const String planView = 'planView';
   static const String masterpieceView = 'masterpieceView';
+
+  static const String toolsView = 'toolsView';
+
+  static const String backgroundsView = 'backgroundsView';
+  static const String enhanceView = 'enhanceView';
+  static const String studyingView = 'studyingView';
 }
 
 final GlobalKey<NavigatorState> navKey = GlobalKey();
 
 final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
-  // GoRoute(
-  //   path: '/',
-  //   builder: (context, state) => HomeView(),
-  // )
-  // GoRoute(path: '/', builder: (_, __) => BackgroundsView(), routes: [
-  //   GoRoute(
-  //       name: AppViews.allStyles,
-  //       path: _Paths.allStyles,
-  //       builder: (_, state) {
-  //         final Map map = state.extra as Map;
-  //         return AllView(
-  //           title: map['title'],
-  //           items: map['items'],
-  //           onTap: map['onTap'],
-  //         );
-  //       }),
-  //   GoRoute(
-  //       name: AppViews.imageWithBackground,
-  //       path: _Paths.imageWithBackground,
-  //       builder: (_, state) {
-  //         final Map map = state.extra as Map;
-  //         final ItemModel model = map['model'] as ItemModel;
-  //         return ImageWithBackgroundResultView(model: model);
-  //       })
-  // ])
-
-  // GoRoute(
-  //     name: AppViews.init,
-  //     path: _Paths.init,
-  //     builder: (context, state) => const InitView(),
-  //     routes: [
-  //       GoRoute(
-  //           name: AppViews.signIn,
-  //           path: _Paths.signIn,
-  //           builder: (context, state) => const SignInView(),
-  //           routes: [
-  //             GoRoute(
-  //               name: AppViews.verify,
-  //               path: _Paths.verify,
-  //               builder: (context, state) => const VerifyView(),
-  //             ),
-  //           ]),
-  //     ]),
+  GoRoute(
+      name: AppViews.init,
+      path: _Paths.init,
+      builder: (context, state) => const InitView(),
+      routes: [
+        GoRoute(
+            name: AppViews.signIn,
+            path: _Paths.signIn,
+            builder: (context, state) => const SignInView(),
+            routes: [
+              GoRoute(
+                name: AppViews.verify,
+                path: _Paths.verify,
+                builder: (context, state) => const VerifyView(),
+              ),
+            ]),
+      ]),
   GoRoute(
       name: AppViews.homePageRoute,
       path: _Paths.homePageRoute,
@@ -94,6 +74,54 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
               );
             },
             routes: [
+              GoRoute(
+                name: AppViews.enhanceView,
+                path: _Paths.enhanceView,
+                builder: (context, state) {
+                  final Map? data = state.extra as Map?;
+                  final StyleModel model = data?['model'];
+                  return EnhanceView(
+                    model: model,
+                  );
+                },
+              ),
+              GoRoute(
+                  name: AppViews.toolsView,
+                  path: _Paths.toolsView,
+                  builder: (context, state) {
+                    final Map? data = state.extra as Map?;
+                    final StyleModel model = data?['model'];
+                    final bool isRemoveBackground =
+                        data?['isRemoveBackground'] ?? false;
+                    return ToolsView(
+                      model: model,
+                      isRemoveBackground: isRemoveBackground,
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                        name: AppViews.backgroundsView,
+                        path: _Paths.backgroundsView,
+                        builder: (context, state) {
+                          final Map? data = state.extra as Map?;
+                          final StyleModel model = data?['model'];
+                          return BackgroundsView(
+                            model: model,
+                          );
+                        },
+                        routes: [
+                          GoRoute(
+                              name: AppViews.imageWithBackground,
+                              path: _Paths.imageWithBackground,
+                              builder: (_, state) {
+                                final Map map = state.extra as Map;
+                                final StyleModel model =
+                                    map['model'] as StyleModel;
+                                return ImageWithBackgroundResultView(
+                                    model: model);
+                              })
+                        ])
+                  ]),
               GoRoute(
                   name: AppViews.disclaimarPageRoute,
                   path: _Paths.disclaimarPageRoute,
@@ -229,7 +257,6 @@ abstract class _Paths {
   // TODO
   static const String homePageRoute = '/';
   // static const String homePageRoute = '/${AppViews.homePageRoute}';
-  static const String viewAllPageRoute = AppViews.viewAllPageRoute;
   static const String officePageRoute = AppViews.officePageRoute;
   static const String disclaimarPageRoute = AppViews.disclaimarPageRoute;
   static const String instructionPageRoute = AppViews.instructionPageRoute;
@@ -250,4 +277,11 @@ abstract class _Paths {
   static const String genderView = AppViews.genderView;
   static const String planView = AppViews.planView;
   static const String masterpieceView = AppViews.masterpieceView;
+
+  static const String toolsView = AppViews.toolsView;
+  static const String backgroundsView = AppViews.backgroundsView;
+
+  static const String enhanceView = AppViews.enhanceView;
+
+  static const String studyingView = AppViews.studyingView;
 }
