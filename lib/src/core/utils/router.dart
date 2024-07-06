@@ -115,7 +115,7 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                             name: AppViews.masterpieceView,
                                             path: _Paths.masterpieceView,
                                             builder: (context, state) =>
-                                              const MasterpieseView())
+                                              const MasterpieceView())
                                       ])
                                   ]
                                 )
