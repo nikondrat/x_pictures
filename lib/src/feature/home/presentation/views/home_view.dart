@@ -169,8 +169,10 @@ class HomeView extends StatelessWidget {
         builder: (windowWidth, windowHeight, windowSize) {
           return CustomScrollView(
             slivers: [
-              const SliverToBoxAdapter(
-                child: AppBarHomeView(),
+              SliverToBoxAdapter(
+                child: AppBarHomeView(
+                  model: sections[0].items[1],
+                ),
               ),
               SliverPadding(
                 padding: HorizontalSpacing.centered(windowWidth),

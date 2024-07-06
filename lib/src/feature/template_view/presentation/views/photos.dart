@@ -47,74 +47,77 @@ class _PhotosViewState extends State<PhotosView> {
               ))
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Ready',
-              style: AppStyles.subTitleTextStyle.copyWith(
-                fontSize: 10.sp,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Ready',
+                style: AppStyles.subTitleTextStyle.copyWith(
+                  fontSize: 10.sp,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 5.h,
-            ),
-            Text(
-              'Your photos is ready',
-              style: AppStyles.head1TextStyle,
-            ),
-            SizedBox(
-              height: 5.h,
-            ),
-            Text(
-              'They will be stored in your personal account',
-              style: AppStyles.subTitleTextStyle.copyWith(
-                fontSize: 17.sp,
+              SizedBox(
+                height: 5.h,
               ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 1.5,
-              child: GridView.count(
-                physics: const ScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                crossAxisSpacing: 6,
-                mainAxisSpacing: 6,
-                crossAxisCount: 3,
-                childAspectRatio: (itemWidth / itemHeight),
-                children: widget.urls.map((e) {
-                  return GestureDetector(
-                    onTap: () => _showCustomDialog(e),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppValues.kRadius),
-                        image: DecorationImage(
-                            image: CachedNetworkImageProvider(e),
-                            fit: BoxFit.cover),
-                      ),
-                      child: Align(
-                        alignment: Alignment(0.9, -0.9),
-                        child: Container(
-                          width: 18.h,
-                          height: 18.h,
-                          child: GestureDetector(
-                            child: SvgPicture.asset(
-                              AppIcons.downloadGreyCircle,
+              Text(
+                'Your photos is ready',
+                style: AppStyles.head1TextStyle,
+              ),
+              SizedBox(
+                height: 5.h,
+              ),
+              Text(
+                'They will be stored in your personal account',
+                style: AppStyles.subTitleTextStyle.copyWith(
+                  fontSize: 17.sp,
+                ),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 1.5,
+                child: GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  crossAxisSpacing: 6,
+                  mainAxisSpacing: 6,
+                  crossAxisCount: 3,
+                  childAspectRatio: (itemWidth / itemHeight),
+                  children: widget.urls.map((e) {
+                    return GestureDetector(
+                      onTap: () => _showCustomDialog(e),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(AppValues.kRadius),
+                          image: DecorationImage(
+                              image: CachedNetworkImageProvider(e),
+                              fit: BoxFit.cover),
+                        ),
+                        child: Align(
+                          alignment: Alignment(0.9, -0.9),
+                          child: Container(
+                            width: 18.h,
+                            height: 18.h,
+                            child: GestureDetector(
+                              child: SvgPicture.asset(
+                                AppIcons.downloadGreyCircle,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            )
-          ],
+                    );
+                  }).toList(),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

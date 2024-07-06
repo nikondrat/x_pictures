@@ -6,7 +6,8 @@ import 'package:x_pictures/src/core/constant/icons.dart';
 import 'package:x_pictures/src/data.dart';
 
 class AppBarHomeView extends StatelessWidget {
-  const AppBarHomeView({super.key});
+  final ItemModel model;
+  const AppBarHomeView({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +68,11 @@ class AppBarHomeView extends StatelessWidget {
               ),
               const Gap(AppValues.kPadding),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  router.goNamed(AppViews.officePageRoute, extra: {
+                    'model': model,
+                  });
+                },
                 child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
