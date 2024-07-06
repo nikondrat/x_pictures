@@ -11,4 +11,5 @@ class AppImages {
   static const String badPhotoExa3 = '$baseUrl/badphotoexa3.png';
 
   static const String monro = '$baseUrl/monro.png';
+  static const String bannerNoSign = '$baseUrl/banner_no_sign.png';
 }

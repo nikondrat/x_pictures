@@ -28,7 +28,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
           child: Container(
             decoration: BoxDecoration(
               image: const DecorationImage(
-                image: AssetImage(AppImages.bannerImage,),
+                image: AssetImage(AppImages.bannerNoSign,),
                 fit: BoxFit.cover
               ),
               borderRadius: BorderRadius.circular(AppValues.kRadius)
