@@ -19,7 +19,7 @@ class _BottomNavBarControllerPageState
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      const HomePage(),
+      const HomeView(),
       const GenerateView(),
       ProfileView(
         goHome: () {

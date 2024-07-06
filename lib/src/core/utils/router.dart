@@ -32,6 +32,10 @@ abstract class AppViews {
 final GlobalKey<NavigatorState> navKey = GlobalKey();
 
 final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
+  // GoRoute(
+  //   path: '/',
+  //   builder: (context, state) => HomeView(),
+  // )
   // GoRoute(path: '/', builder: (_, __) => BackgroundsView(), routes: [
   //   GoRoute(
   //       name: AppViews.allStyles,
@@ -53,23 +57,24 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
   //         return ImageWithBackgroundResultView(model: model);
   //       })
   // ])
-  GoRoute(
-      name: AppViews.init,
-      path: _Paths.init,
-      builder: (context, state) => const InitView(),
-      routes: [
-        GoRoute(
-            name: AppViews.signIn,
-            path: _Paths.signIn,
-            builder: (context, state) => const SignInView(),
-            routes: [
-              GoRoute(
-                name: AppViews.verify,
-                path: _Paths.verify,
-                builder: (context, state) => const VerifyView(),
-              ),
-            ]),
-      ]),
+
+  // GoRoute(
+  //     name: AppViews.init,
+  //     path: _Paths.init,
+  //     builder: (context, state) => const InitView(),
+  //     routes: [
+  //       GoRoute(
+  //           name: AppViews.signIn,
+  //           path: _Paths.signIn,
+  //           builder: (context, state) => const SignInView(),
+  //           routes: [
+  //             GoRoute(
+  //               name: AppViews.verify,
+  //               path: _Paths.verify,
+  //               builder: (context, state) => const VerifyView(),
+  //             ),
+  //           ]),
+  //     ]),
   GoRoute(
       name: AppViews.homePageRoute,
       path: _Paths.homePageRoute,
@@ -78,7 +83,13 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
         GoRoute(
             name: AppViews.officePageRoute,
             path: _Paths.officePageRoute,
-            builder: (context, state) => const OfficePage(),
+            builder: (context, state) {
+              final Map data = state.extra as Map;
+              final StyleModel model = data['model'];
+              return StyleView(
+                model: model,
+              );
+            },
             routes: [
               GoRoute(
                   name: AppViews.disclaimarPageRoute,
@@ -120,15 +131,6 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                 model: model,
               );
             }),
-        // GoRoute(
-        //   name: AppViews.image,
-        //   path: _Paths.image,
-        //   pageBuilder: (context, state) => CustomTransitionPage(
-        //       fullscreenDialog: true,
-        //       opaque: true,
-        //       transitionsBuilder: (_, __, ___, child) => child,
-        //       child: const ImageView()),
-        // ),
         GoRoute(
             path: _Paths.settingsView,
             name: AppViews.settingsView,
@@ -161,8 +163,9 @@ abstract class _Paths {
   static const signIn = AppViews.signIn;
   static const verify = AppViews.verify;
 
-  // static const String homePageRoute = '/';
-  static const String homePageRoute = '/${AppViews.homePageRoute}';
+  // TODO
+  static const String homePageRoute = '/';
+  // static const String homePageRoute = '/${AppViews.homePageRoute}';
   static const String viewAllPageRoute = AppViews.viewAllPageRoute;
   static const String officePageRoute = AppViews.officePageRoute;
   static const String disclaimarPageRoute = AppViews.disclaimarPageRoute;

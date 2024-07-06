@@ -1,4 +1,4 @@
-export 'cover_image_home_page.dart';
+export 'app_bar.dart';
 export 'cover_image_office_page.dart';
 export 'custom_all_text.dart';
 export 'decades_list_items.dart';
@@ -13,3 +13,5 @@ export 'tatto_list_items.dart';
 export 'custom_button.dart';
 export 'custom_app_bar.dart';
 export 'custom_floating_button.dart';
+export 'shader_image.dart';
+export 'style_btm.dart';

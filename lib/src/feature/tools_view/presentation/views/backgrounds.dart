@@ -68,7 +68,13 @@ class BackgroundsView extends StatelessWidget {
         padding: const EdgeInsets.only(
             left: AppValues.kPadding, top: AppValues.kPadding),
         children: sections.map((e) {
-          return BackgroundSection(section: e);
+          return BackgroundSection(
+            section: e,
+            onTap: (model) {
+              router.goNamed(AppViews.imageWithBackground,
+                  extra: {'model': model});
+            },
+          );
         }).toList(),
       ),
     );

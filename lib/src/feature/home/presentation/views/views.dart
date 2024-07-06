@@ -6,3 +6,5 @@ export 'instruction_page.dart';
 export 'office_page.dart';
 export 'uploading_photos_page.dart';
 export 'view_all_page.dart';
+export 'home_view.dart';
+export 'style_view.dart';
