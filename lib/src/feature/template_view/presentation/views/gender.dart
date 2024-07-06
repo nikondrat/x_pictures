@@ -61,7 +61,7 @@ class GenderView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 5.h,
+                      height: 10.h,
                     ),
                     RadioButton(text: 'Female',
                         isSelected: consumerValue.isSelectedList[0],
@@ -70,7 +70,29 @@ class GenderView extends StatelessWidget {
                         onChanged: (value) {
                           consumerValue.changeCurrentGender(value);
                           consumerValue.setTrueToIsSelectedList(0);
-                        })
+                        }),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    RadioButton(text: 'Male',
+                        isSelected: consumerValue.isSelectedList[1],
+                        value: Gender.Male,
+                        groupValue: consumerValue.currentGender,
+                        onChanged: (value) {
+                          consumerValue.changeCurrentGender(value);
+                          consumerValue.setTrueToIsSelectedList(1);
+                        }),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    RadioButton(text: 'Other',
+                        isSelected: consumerValue.isSelectedList[2],
+                        value: Gender.Other,
+                        groupValue: consumerValue.currentGender,
+                        onChanged: (value) {
+                          consumerValue.changeCurrentGender(value);
+                          consumerValue.setTrueToIsSelectedList(2);
+                        }),
                       ],
                     ),
               );
