@@ -16,14 +16,25 @@ class _BottomNavBarControllerPageState
     extends State<BottomNavBarControllerPage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [
-    const HomePage(),
-    const GenerateView(),
-    const ProfileView()
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      const HomePage(),
+      const GenerateView(),
+      ProfileView(
+        goHome: () {
+          setState(() {
+            _selectedIndex = 0;
+          });
+        },
+        goGenerate: () {
+          setState(() {
+            _selectedIndex = 1;
+          });
+        },
+        selectedIndex: _selectedIndex,
+      )
+    ];
     return Scaffold(
         backgroundColor: Colors.transparent,
         bottomNavigationBar: ClipRRect(
@@ -88,6 +99,6 @@ class _BottomNavBarControllerPageState
             ],
           ),
         ),
-        body: _pages[_selectedIndex]);
+        body: pages[_selectedIndex]);
   }
 }

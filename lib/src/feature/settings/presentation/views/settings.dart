@@ -21,7 +21,9 @@ class SettingsView extends StatelessWidget {
           darkTheme: SettingsThemeData(
             titleTextColor: AppColors.kOutlineColor,
             settingsListBackground: colorScheme.surface,
-            settingsSectionBackground: AppColors.kSecondaryAdditionallyColor,
+            settingsSectionBackground: Platform.isAndroid
+                ? colorScheme.surface
+                : AppColors.kSecondaryAdditionallyColor,
           ),
           platform: DevicePlatform.iOS,
           // platform: PlatformUtils.detectPlatform(context),
@@ -87,6 +89,7 @@ class SettingsView extends StatelessWidget {
                       t.settings.help_center.faq,
                       style: textTheme.bodyLarge,
                     ),
+                    onPressed: (context) => router.goNamed(AppViews.faqView),
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),
                   SettingsTile.navigation(

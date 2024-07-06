@@ -11,6 +11,9 @@ class CoverImageHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Theme.of(context);
+    final ColorScheme colorScheme = themeData.colorScheme;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -59,9 +62,11 @@ class CoverImageHomePage extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30.r)),
-                child: const Text(
+                child: Text(
                   'Try office',
-                  style: TextStyle(fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: colorScheme.onSecondary),
                 ),
               ),
             ),

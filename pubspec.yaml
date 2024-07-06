@@ -80,6 +80,8 @@ dependencies:
   shimmer: ^3.0.0
   flutter_screenutil: ^5.9.3
   settings_ui: ^2.0.2
+  flutter_slidable: ^3.1.0
+  pro_image_editor: ^4.2.5
 
 dev_dependencies:
   # -- testing -- #

@@ -1,0 +1,24 @@
+title: Backgrounds
+types:
+  trending:
+    title: Trending
+    types:
+      sunset: Sunset
+      moon: Moon
+      beach: Beach
+      forest: Forest
+      paris: Paris
+      mountains: Mountains
+  colors:
+    title: Colors
+    types:
+      white: White
+      black: Black
+      blue: Blue
+  texture:
+    title: Texture
+    types:
+      wood: Wood
+      marble: Marble
+      concrete: Concrete
+  patterns: Patterns

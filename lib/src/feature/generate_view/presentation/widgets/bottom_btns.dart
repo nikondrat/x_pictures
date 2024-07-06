@@ -4,7 +4,8 @@ import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ResultViewBottomButtons extends StatelessWidget {
-  const ResultViewBottomButtons({super.key});
+  final MediaModel? model;
+  const ResultViewBottomButtons({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +20,13 @@ class ResultViewBottomButtons extends StatelessWidget {
           child: FilledButton.icon(
             onPressed: () {},
             label: Text(
-              t.generateView.repeat,
+              model != null ? t.common.copy : t.generateView.repeat,
               style: textTheme.titleLarge!.copyWith(
                   color: colorScheme.onSecondary, fontWeight: FontWeight.bold),
             ),
-            icon: SvgPicture.asset(Assets.icons.generate),
+            icon: model != null
+                ? SizedBox.shrink()
+                : SvgPicture.asset(Assets.icons.generate),
             style: ButtonStyle(
                 padding: const WidgetStatePropertyAll(
                     EdgeInsets.all(AppValues.kPadding)),

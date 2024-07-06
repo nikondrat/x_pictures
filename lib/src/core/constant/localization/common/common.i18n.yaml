@@ -1,3 +1,5 @@
 continue_action: Continue
 reset: Reset
 create: Create
+copy: Copy
+all: All

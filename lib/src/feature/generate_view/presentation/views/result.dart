@@ -6,13 +6,15 @@ import 'package:shimmer/shimmer.dart';
 import 'package:x_pictures/src/data.dart';
 
 class GenerationResult extends StatelessWidget {
-  const GenerationResult({super.key});
+  final MediaModel? model;
+  const GenerationResult({super.key, this.model});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(t.generateView.title),
+        title: Text(
+            model == null ? t.generateView.title : t.generateView.type.video),
       ),
       body: AppBody(builder: (windowWidth, windowHeight, windowSize) {
         return SingleChildScrollView(
@@ -44,29 +46,32 @@ class GenerationResult extends StatelessWidget {
                   ),
                 ),
                 const Gap(AppValues.kPadding),
-                Row(
-                  children:
-                      // TODO change this list to a variable
-                      [
-                    'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
-                    'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
-                    'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
-                    'https://s1.1zoom.me/big3/446/375561-svetik.jpg'
-                  ].mapIndexed((i, e) {
-                    return Expanded(
-                        child: ResultItem(
-                            url: e,
-                            windowHeight: windowHeight,
-                            needPro: i > 0));
-                  }).toList(),
-                ),
+                if (model == null)
+                  Row(
+                    children:
+                        // TODO change this list to a variable
+                        [
+                      'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
+                      'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
+                      'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
+                      'https://s1.1zoom.me/big3/446/375561-svetik.jpg'
+                    ].mapIndexed((i, e) {
+                      return Expanded(
+                          child: ResultItem(
+                              url: e,
+                              windowHeight: windowHeight,
+                              needPro: i > 0));
+                    }).toList(),
+                  ),
                 const Gap(AppValues.kPadding),
                 const DecoratedContentWidget(
                     content:
                         // TODO change this text to a variable
                         'Tropical forest with a path in the middle, Far ahead you can see a high mountain, ((On the side of the road there is an old hut)), realistic ambient occlusion, ray tracing lighting, bloom in the sky, high detailed'),
                 const Gap(AppValues.kPadding),
-                const ResultViewBottomButtons(),
+                ResultViewBottomButtons(
+                  model: model,
+                ),
               ]),
             ));
       }),
