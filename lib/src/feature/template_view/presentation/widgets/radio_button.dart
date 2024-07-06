@@ -22,8 +22,13 @@ class RadioButton extends StatelessWidget {
     return RadioListTile(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppValues.kRadius),
-            side: BorderSide(color: isSelected ? Colors.orange[900]! : const Color(0xff6F6F72))
+            side: BorderSide(color: isSelected ? Colors.orange[900]! : const Color(0xff3B3B5A),
+            // width: 2
+            )
         ),
+        activeColor: Colors.orange[900],
+        // fillColor: WidgetStateProperty.all(const Color(0xff3B3B5A)),
+
         title: Text(text,
           style: AppStyles.buttonTextStyle.copyWith(
               color: Colors.white

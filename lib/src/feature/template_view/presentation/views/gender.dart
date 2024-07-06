@@ -22,9 +22,14 @@ class GenderView extends StatelessWidget {
             builder: (context, consumerValue, child) {
               return Padding(
                 padding: EdgeInsets.only(left: 30.w),
-                child: GradientButton(onPressed: () {},
-                text: 'Continue',
-                  isEnabled: consumerValue.isSelected,
+                child: SizedBox(
+                  height: 50.h,
+                  child: GradientButton(onPressed: () {
+                    router.goNamed(AppViews.planView);
+                  },
+                  text: 'Continue',
+                    isEnabled: consumerValue.isSelected,
+                  ),
                 ),
               );
             }

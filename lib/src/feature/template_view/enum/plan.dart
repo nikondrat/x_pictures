@@ -1,0 +1,1 @@
+enum Plan { firstPlan, secondPlan, thirdPlan, notSelected }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path/path.dart';
 import 'package:x_pictures/src/data.dart';
 
 abstract class AppViews {
@@ -27,6 +28,8 @@ abstract class AppViews {
   static const String allStyles = 'allStyles';
   static const String imageWithBackground = 'imageWithBackground';
   static const String genderView = 'genderView';
+  static const String planView = 'planView';
+  static const String masterpieceView = 'masterpieceView';
 }
 
 final GlobalKey<NavigatorState> navKey = GlobalKey();
@@ -101,6 +104,20 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                   path: _Paths.genderView,
                                   builder: (context, state) =>
                                       const GenderView(),
+                                  routes: [
+                                    GoRoute(
+                                        name: AppViews.planView,
+                                        path: _Paths.planView,
+                                        builder: (context, state) =>
+                                          const PlanView(),
+                                      routes: [
+                                        GoRoute(
+                                            name: AppViews.masterpieceView,
+                                            path: _Paths.masterpieceView,
+                                            builder: (context, state) =>
+                                              const MasterpieseView())
+                                      ])
+                                  ]
                                 )
                               ])
                         ]),
@@ -182,4 +199,6 @@ abstract class _Paths {
   static const String allStyles = AppViews.allStyles;
   static const String imageWithBackground = AppViews.imageWithBackground;
   static const String genderView = AppViews.genderView;
+  static const String planView = AppViews.planView;
+  static const String masterpieceView = AppViews.masterpieceView;
 }
