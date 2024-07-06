@@ -64,6 +64,54 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
       builder: (context, state) => const BottomNavBarControllerPage(),
       routes: [
         GoRoute(
+            path: _Paths.settingsView,
+            name: AppViews.settingsView,
+            builder: (context, state) => const SettingsView(),
+            routes: [
+              GoRoute(
+                path: _Paths.faqView,
+                name: AppViews.faqView,
+                builder: (context, state) => const FaqView(),
+              ),
+              GoRoute(
+                  path: _Paths.legalView,
+                  name: AppViews.legalView,
+                  builder: (context, state) => const LegalView(),
+                  routes: [
+                    GoRoute(
+                        path: _Paths.documentView,
+                        name: AppViews.documentView,
+                        builder: (context, state) => DocumentView(
+                              title: (state.extra as Map)['title'] ?? '',
+                              content: (state.extra as Map)['content'] ?? '',
+                            )),
+                  ]),
+            ]),
+        GoRoute(
+            path: _Paths.allStyles,
+            name: AppViews.allStyles,
+            builder: (context, state) {
+              final Map? data = state.extra as Map?;
+              final String title = data?['title'] ?? '';
+              final onTap = data?['onTap'];
+              final items = data?['items'];
+              return AllView(
+                title: title,
+                onTap: onTap,
+                items: items,
+              );
+            }),
+        GoRoute(
+            path: _Paths.resultView,
+            name: AppViews.resultView,
+            builder: (context, state) {
+              final Map? data = state.extra as Map?;
+              final MediaModel? model = data?['model'];
+              return GenerationResult(
+                model: model,
+              );
+            }),
+        GoRoute(
             name: AppViews.officePageRoute,
             path: _Paths.officePageRoute,
             builder: (context, state) {
@@ -196,9 +244,19 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                                   GoRoute(
                                                       name: AppViews.photosView,
                                                       path: _Paths.photosView,
-                                                      builder: (context,
-                                                              state) =>
-                                                          const PhotosView())
+                                                      builder:
+                                                          (context, state) {
+                                                        final Map? data =
+                                                            state.extra as Map?;
+                                                        final List<String>
+                                                            urls =
+                                                            data?['urls'] ?? [];
+                                                        // final StyleModel model =
+                                                        //     data?['model'];
+                                                        return PhotosView(
+                                                          urls: urls,
+                                                        );
+                                                      })
                                                 ])
                                           ])
                                     ])
@@ -207,54 +265,6 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                   ]),
             ]),
       ]),
-  GoRoute(
-      path: _Paths.allStyles,
-      name: AppViews.allStyles,
-      builder: (context, state) {
-        final Map? data = state.extra as Map?;
-        final String title = data?['title'] ?? '';
-        final onTap = data?['onTap'];
-        final items = data?['items'];
-        return AllView(
-          title: title,
-          onTap: onTap,
-          items: items,
-        );
-      }),
-  GoRoute(
-      path: _Paths.resultView,
-      name: AppViews.resultView,
-      builder: (context, state) {
-        final Map? data = state.extra as Map?;
-        final MediaModel? model = data?['model'];
-        return GenerationResult(
-          model: model,
-        );
-      }),
-  GoRoute(
-      path: _Paths.settingsView,
-      name: AppViews.settingsView,
-      builder: (context, state) => const SettingsView(),
-      routes: [
-        GoRoute(
-          path: _Paths.faqView,
-          name: AppViews.faqView,
-          builder: (context, state) => const FaqView(),
-        ),
-        GoRoute(
-            path: _Paths.legalView,
-            name: AppViews.legalView,
-            builder: (context, state) => const LegalView(),
-            routes: [
-              GoRoute(
-                  path: _Paths.documentView,
-                  name: AppViews.documentView,
-                  builder: (context, state) => DocumentView(
-                        title: (state.extra as Map)['title'] ?? '',
-                        content: (state.extra as Map)['content'] ?? '',
-                      )),
-            ]),
-      ])
 ]);
 
 abstract class _Paths {
@@ -263,8 +273,8 @@ abstract class _Paths {
   static const verify = AppViews.verify;
 
   // TODO
-  static const String homePageRoute = '/';
-  // static const String homePageRoute = '/${AppViews.homePageRoute}';
+  // static const String homePageRoute = '/';
+  static const String homePageRoute = '/${AppViews.homePageRoute}';
   static const String officePageRoute = AppViews.officePageRoute;
   static const String disclaimarPageRoute = AppViews.disclaimarPageRoute;
   static const String instructionPageRoute = AppViews.instructionPageRoute;

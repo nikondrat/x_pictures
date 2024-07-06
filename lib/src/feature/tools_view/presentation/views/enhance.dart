@@ -30,11 +30,14 @@ class EnhanceView extends StatelessWidget {
               )
             ],
           ),
-          body: Center(
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(AppValues.kRadius),
-                child: CachedNetworkImage(imageUrl: model.url)),
+          body: EnhanceBody(
+            model: model,
           ),
+          // body: Center(
+          //   child: ClipRRect(
+          //       borderRadius: BorderRadius.circular(AppValues.kRadius),
+          //       child: CachedNetworkImage(imageUrl: model.url)),
+          // ),
           bottomNavigationBar: Padding(
             padding: HorizontalSpacing.centered(windowWidth),
             child: Column(

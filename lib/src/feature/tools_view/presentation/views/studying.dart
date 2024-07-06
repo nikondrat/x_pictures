@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:x_pictures/src/data.dart';
@@ -20,7 +21,7 @@ class _StudyingViewState extends State<StudyingView> {
 
   @override
   void initState() {
-    Timer(const Duration(seconds: 5), () {
+    Timer(Duration(seconds: kDebugMode ? 0 : 5), () {
       setState(() {
         showView = true;
       });

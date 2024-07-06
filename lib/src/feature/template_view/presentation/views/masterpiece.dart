@@ -49,7 +49,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                   ),
                   Consumer<TimeIndicator>(
                       builder: (context, consumerValue, child) {
-                    consumerValue.startTimer();
+                    consumerValue.startTimer(widget.model);
                     if (consumerValue.getCurrentTimeRemained == 0) {}
                     return CircularPercentIndicator(
                       radius: 100.w,

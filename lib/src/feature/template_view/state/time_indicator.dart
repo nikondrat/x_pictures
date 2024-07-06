@@ -10,21 +10,31 @@ class TimeIndicator extends ChangeNotifier {
   int get getCurrentTimeRemained => _start;
   double get currentPercent => _percent;
 
-
-  void startTimer() {
+  void startTimer(StyleModel model) {
     const int oneSec = 1;
-    Timer.periodic(const Duration(seconds: oneSec),
-        (Timer timer) {
-          if (_start == 0)
-            {
-              timer.cancel();
-              router.goNamed(AppViews.photosView);
-            } else {
-            _start--;
-            _percent = 1 - (_start / _totalTime);
-            notifyListeners();
-          }
-        }
-    );
+    Timer.periodic(const Duration(seconds: oneSec), (Timer timer) {
+      if (_start == 0) {
+        timer.cancel();
+        router.goNamed(AppViews.photosView, extra: {
+          'model': model,
+          'urls': [
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+            'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+          ]
+        });
+      } else {
+        _start--;
+        _percent = 1 - (_start / _totalTime);
+        notifyListeners();
+      }
+    });
   }
 }

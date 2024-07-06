@@ -1,94 +1,29 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/core/constant/icons.dart';
-import 'package:x_pictures/src/core/constant/images.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PhotosView extends StatefulWidget {
-  const PhotosView({super.key});
+  final List<String> urls;
+  const PhotosView({super.key, required this.urls});
 
   @override
   State<PhotosView> createState() => _PhotosViewState();
 }
 
 class _PhotosViewState extends State<PhotosView> {
-
-  Future<void> _showCustomDialog() async {
+  Future<void> _showCustomDialog(String url) async {
     return showDialog<void>(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.6,
-          child: AlertDialog(
-            contentPadding: EdgeInsets.zero,
-            backgroundColor: Colors.transparent,
-            insetPadding: EdgeInsets.zero,
-            content: Builder(
-              builder: (context) {
-                return Padding(
-                  padding: const EdgeInsets.all(AppValues.kPadding),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppValues.kRadius),
-                      image: DecorationImage(
-                          image: AssetImage(AppImages.monro),
-                          alignment: FractionalOffset.topCenter,
-                          fit: BoxFit.fitWidth
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-            actions: [
-              SizedBox(
-                width: 250.w,
-                height: 50.h,
-                child: ElevatedButton.icon(
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(Colors.white),
-                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                     RoundedRectangleBorder(
-                       borderRadius: BorderRadius.circular(AppValues.kRadius)
-                     ) 
-                    )
-                  ),
-                  onPressed: () {},
-                  icon: SvgPicture.asset(AppIcons.download,
-                  color: AppColors.kAdditionalColor,
-                  width: 20.h,
-                  height: 20.h,),
-                  label: const Text('Save', style: TextStyle(color: AppColors.kAdditionalColor,
-                  fontWeight: FontWeight.bold),),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.kAdditionalColor,
-                  borderRadius: BorderRadius.circular(AppValues.kRadius)
-                ),
-                width: 50.h,
-                height: 50.h,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(AppIcons.download,
-                  width: 20.h,
-                  height: 20.h,
-                  color: Colors.white,),
-                )
-              )
-            ],
-
-          ),
-        );
-      }
-    );
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return PopupImage(
+            url: url,
+          );
+        });
   }
 
   @override
@@ -104,8 +39,12 @@ class _PhotosViewState extends State<PhotosView> {
         leading: const CustomBackButton(),
         title: Text('Office'),
         actions: <Widget>[
-          TextButton(onPressed: () {},
-              child: Text('Save All', style: TextStyle(color: Colors.white),))
+          TextButton(
+              onPressed: () {},
+              child: Text(
+                'Save All',
+                style: TextStyle(color: Colors.white),
+              ))
         ],
       ),
       body: Padding(
@@ -113,10 +52,12 @@ class _PhotosViewState extends State<PhotosView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Ready',
-            style: AppStyles.subTitleTextStyle.copyWith(
-              fontSize: 10.sp,
-            ),),
+            Text(
+              'Ready',
+              style: AppStyles.subTitleTextStyle.copyWith(
+                fontSize: 10.sp,
+              ),
+            ),
             SizedBox(
               height: 5.h,
             ),
@@ -146,32 +87,31 @@ class _PhotosViewState extends State<PhotosView> {
                 mainAxisSpacing: 6,
                 crossAxisCount: 3,
                 childAspectRatio: (itemWidth / itemHeight),
-                children: List.generate(11, (index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(AppImages.monro),
-                        fit: BoxFit.fill
+                children: widget.urls.map((e) {
+                  return GestureDetector(
+                    onTap: () => _showCustomDialog(e),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppValues.kRadius),
+                        image: DecorationImage(
+                            image: CachedNetworkImageProvider(e),
+                            fit: BoxFit.cover),
                       ),
-                    ),
-                    child: Align(
-                      alignment: Alignment(0.9, -0.9),
-                      child: Container(
-                        width: 20.h,
-                        height: 20.h,
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () {
-                            _showCustomDialog();
-                          },
-                          icon: SvgPicture.asset(AppIcons.downloadGreyCircle,
-                          width: 16.h,
-                          height: 16.h,),
+                      child: Align(
+                        alignment: Alignment(0.9, -0.9),
+                        child: Container(
+                          width: 18.h,
+                          height: 18.h,
+                          child: GestureDetector(
+                            child: SvgPicture.asset(
+                              AppIcons.downloadGreyCircle,
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   );
-                }),
+                }).toList(),
               ),
             )
           ],
