@@ -1,5 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ImageWithBackgroundResultView extends StatelessWidget {
@@ -8,22 +11,99 @@ class ImageWithBackgroundResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    final TextTheme textTheme = themeData.textTheme;
+    final ColorScheme colorScheme = themeData.colorScheme;
+    final bool isPro = false;
+
     return Scaffold(
       appBar: AppBar(title: Text(model.title)),
       body: AppBody(
         builder: (windowWidth, windowHeight, windowSize) {
-          return GridView.builder(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200),
-            itemBuilder: (context, index) {
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(AppValues.kRadius),
-                child: CachedNetworkImage(
-                  imageUrl: model.url,
-                  fit: BoxFit.cover,
-                ),
-              );
-            },
+          return SingleChildScrollView(
+            child: Padding(
+              padding: HorizontalSpacing.centered(windowWidth),
+              child: Column(
+                children: [
+                  GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: AppValues.kPadding,
+                      mainAxisSpacing: AppValues.kPadding,
+                      childAspectRatio: .6,
+                      children: [
+                        ItemModel(
+                            title: t.backgrounds.types.texture.types.wood,
+                            url:
+                                'https://i.pinimg.com/originals/89/c3/be/89c3beddf3c836e9b04430020d9cf32b.jpg'),
+                        ItemModel(
+                            title: t.backgrounds.types.texture.types.wood,
+                            url:
+                                'https://i.pinimg.com/originals/89/c3/be/89c3beddf3c836e9b04430020d9cf32b.jpg'),
+                        ItemModel(
+                            title: t.backgrounds.types.texture.types.wood,
+                            url:
+                                'https://i.pinimg.com/originals/89/c3/be/89c3beddf3c836e9b04430020d9cf32b.jpg'),
+                        ItemModel(
+                            title: t.backgrounds.types.texture.types.wood,
+                            url:
+                                'https://i.pinimg.com/originals/89/c3/be/89c3beddf3c836e9b04430020d9cf32b.jpg'),
+                      ].map((e) {
+                        return Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(AppValues.kRadius),
+                              child: CachedNetworkImage(
+                                imageUrl: model.url,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            if (!isPro)
+                              Align(
+                                  alignment: Alignment.topRight,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(
+                                        AppValues.kPadding / 2),
+                                    child: SvgPicture.asset(Assets.icons.pro),
+                                  ))
+                          ],
+                        );
+                      }).toList()),
+                  const Gap(AppValues.kPadding),
+                  isPro
+                      ? Row(
+                          children: [
+                            Expanded(
+                              child: FilledButton.icon(
+                                onPressed: () {},
+                                label: AutoSizeText(
+                                  t.generateView.repeat,
+                                  style: textTheme.titleLarge!.copyWith(
+                                      color: colorScheme.onSecondary,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                icon: SvgPicture.asset(Assets.icons.generate),
+                                style: ButtonStyle(
+                                    padding: const WidgetStatePropertyAll(
+                                        EdgeInsets.symmetric(
+                                            horizontal: AppValues.kPadding,
+                                            vertical:
+                                                AppValues.kPadding * 1.5)),
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        colorScheme.secondary)),
+                              ),
+                            ),
+                          ],
+                        )
+                      : GradientButton(
+                          onPressed: () {},
+                          text: t.toolsView.unlock,
+                        )
+                ],
+              ),
+            ),
           );
         },
       ),

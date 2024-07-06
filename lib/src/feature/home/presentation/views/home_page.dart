@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           const SliverToBoxAdapter(
-            child: CoverImageHomePage(),
+            child: AppBarHomeView(),
           ),
           SliverToBoxAdapter(
             child: SizedBox(

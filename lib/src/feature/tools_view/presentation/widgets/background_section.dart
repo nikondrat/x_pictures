@@ -5,16 +5,14 @@ import 'package:x_pictures/src/data.dart';
 
 class BackgroundSection extends StatelessWidget {
   final BackgroundSectionModel section;
-  const BackgroundSection({super.key, required this.section});
+  final Function(ItemModel model) onTap;
+  const BackgroundSection(
+      {super.key, required this.section, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
-
-    void onTap(ItemModel model) {
-      router.goNamed(AppViews.imageWithBackground, extra: {'model': model});
-    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +41,7 @@ class BackgroundSection extends StatelessWidget {
             ),
           ],
         ),
-        Gap(AppValues.kPadding),
+        const Gap(AppValues.kPadding),
         SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(

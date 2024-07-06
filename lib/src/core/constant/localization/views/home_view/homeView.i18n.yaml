@@ -1,0 +1,25 @@
+styles:
+  linkedin:
+    title: Linkedin
+    styles:
+      streetCasual: Street Casual
+      office: Office
+      notebook: Notebook
+  hairStyle:
+    title: Hair Style
+    styles:
+      bobCut: Bob Cut
+      green: Green
+      pink: Pink
+  tattoo:
+    title: Tattoo
+    styles:
+      classic: Classic
+      hot: Hot
+      chest: Chest
+  decades:
+    title: Decades
+
+title: Create 30 office of you
+try_office: Try Office
+get_pack: Get this pack
