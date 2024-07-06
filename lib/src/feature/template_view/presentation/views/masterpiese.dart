@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:x_pictures/src/data.dart';
 
 class MasterpieseView extends StatefulWidget {
-  const MasterpieseView({super.key});
+  final StyleModel model;
+  const MasterpieseView({super.key, required this.model});
 
   @override
   State<MasterpieseView> createState() => _MasterpieseViewState();
@@ -10,8 +12,6 @@ class MasterpieseView extends StatefulWidget {
 class _MasterpieseViewState extends State<MasterpieseView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-    );
+    return Scaffold();
   }
 }

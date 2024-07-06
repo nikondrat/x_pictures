@@ -8,11 +8,16 @@ class StyleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(model.title),
+        leading: const CustomBackButton(),
+        title: Text(
+          model.title,
+          style: textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w700),
+        ),
       ),
       body: AppBody(
         builder: (windowWidth, _, __) => SafeArea(
@@ -42,6 +47,14 @@ class StyleView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: HorizontalSpacing.centered(windowWidth),
+                      child: StyleViewBody(
+                        model: model,
+                      ),
+                    ),
+                  )
                 ],
               ),
               Align(
@@ -52,15 +65,17 @@ class StyleView extends StatelessWidget {
                   child: SizedBox(
                       height: 80,
                       child: GradientButton(
-                          onPressed: () {}, text: t.homeView.get_pack)),
+                          onPressed: () {
+                            router.goNamed(AppViews.disclaimarPageRoute,
+                                extra: {'model': model});
+                          },
+                          text: t.homeView.get_pack)),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
-      // floatingActionButton:
-      //     GradientButton(onPressed: () {}, text: t.homeView.get_pack),
     );
   }
 }

@@ -14,4 +14,20 @@ abstract class _GenerateViewStore with Store {
   void setSelected(int index) {
     selected = index;
   }
+
+  @observable
+  int selectedStyle = 0;
+
+  @action
+  void setSelectedStyle(int index) {
+    selectedStyle = index;
+  }
+
+  @observable
+  int selectedFormat = 0;
+
+  @action
+  void setSelectedFormat(int index) {
+    selectedFormat = index;
+  }
 }

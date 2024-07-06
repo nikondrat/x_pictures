@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:x_pictures/src/data.dart';
 
 class StyleBottomWidget extends StatelessWidget {
@@ -10,7 +11,6 @@ class StyleBottomWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
-    final ColorScheme colorScheme = themeData.colorScheme;
     // return ImageWithShader(url: model.url);
 
     return ClipRRect(
@@ -20,10 +20,16 @@ class StyleBottomWidget extends StatelessWidget {
         children: [
           ImageWithShader(url: model.url),
           Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              AutoSizeText(model.title, style: textTheme.titleLarge),
+              AutoSizeText(model.title, style: textTheme.headlineLarge),
+              const Gap(AppValues.kPadding / 2),
+              AutoSizeText(model.subTitle!,
+                  style: textTheme.bodyLarge!
+                      .copyWith(color: AppColors.kOutlineColor)),
+              const Gap(AppValues.kPadding * 3)
             ],
-          )
+          ),
           // Positioned(
           //   bottom: 40,
           //   // left: MediaQuery.of(context).size.width / 2.w - 20.w,

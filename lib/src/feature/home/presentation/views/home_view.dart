@@ -21,10 +21,10 @@ class HomeView extends StatelessWidget {
               'Description'
             ],
             images: [
-              'https://i.pinimg.com/736x/92/ee/c0/92eec00db6ec4b688f045e2b035279cd--interesting-faces-facial-hair.jpg',
-              'https://i.pinimg.com/736x/92/ee/c0/92eec00db6ec4b688f045e2b035279cd--interesting-faces-facial-hair.jpg',
-              'https://i.pinimg.com/736x/92/ee/c0/92eec00db6ec4b688f045e2b035279cd--interesting-faces-facial-hair.jpg',
-              'https://i.pinimg.com/736x/92/ee/c0/92eec00db6ec4b688f045e2b035279cd--interesting-faces-facial-hair.jpg',
+              'https://i.pinimg.com/originals/e8/99/05/e89905c4d9f7108cde6e4982e47baab1.jpg',
+              'https://i.pinimg.com/originals/e8/99/05/e89905c4d9f7108cde6e4982e47baab1.jpg',
+              'https://i.pinimg.com/originals/e8/99/05/e89905c4d9f7108cde6e4982e47baab1.jpg',
+              'https://i.pinimg.com/originals/e8/99/05/e89905c4d9f7108cde6e4982e47baab1.jpg'
             ]),
         StyleModel(
             url:

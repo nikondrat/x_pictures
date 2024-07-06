@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class _Format {
@@ -14,6 +17,8 @@ class GenerateFormats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GenerateViewStore store = Provider.of<GenerateViewStore>(context);
+
     final List<_Format> formats = [
       _Format(width: 2, height: 3),
       _Format(width: 3, height: 2),
@@ -29,10 +34,18 @@ class GenerateFormats extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: formats
-              .map((e) => _FormatWidget(
-                    format: e,
-                    windowHeight: windowHeight,
-                  ))
+              .mapIndexed((i, e) => Observer(builder: (context) {
+                    return GestureDetector(
+                      onTap: () {
+                        store.setSelectedFormat(i);
+                      },
+                      child: _FormatWidget(
+                        format: e,
+                        isSelected: i == store.selectedFormat,
+                        windowHeight: windowHeight,
+                      ),
+                    );
+                  }))
               .toList(),
         ),
       ),
@@ -43,10 +56,12 @@ class GenerateFormats extends StatelessWidget {
 class _FormatWidget extends StatelessWidget {
   final _Format format;
   final double windowHeight;
+  final bool isSelected;
 
   const _FormatWidget({
     required this.format,
     required this.windowHeight,
+    required this.isSelected,
   });
 
   @override
@@ -65,7 +80,9 @@ class _FormatWidget extends StatelessWidget {
         height: height,
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.kOutlineColor),
+            border: Border.all(
+                color:
+                    isSelected ? colorScheme.primary : AppColors.kOutlineColor),
             borderRadius: BorderRadius.circular(AppValues.kPadding / 2),
           ),
           child: Center(

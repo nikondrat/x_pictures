@@ -11,7 +11,7 @@ class ImageWithShader extends StatelessWidget {
         blendMode: BlendMode.srcATop,
         shaderCallback: (Rect bounds) {
           return const LinearGradient(
-            colors: [Colors.white24, Colors.transparent],
+            colors: [Colors.black, Colors.white12, Colors.transparent],
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
           ).createShader(bounds);

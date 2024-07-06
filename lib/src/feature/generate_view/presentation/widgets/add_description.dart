@@ -9,6 +9,9 @@ class AddDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    final TextTheme textTheme = themeData.textTheme;
+
     return TitleWithBody(
         action: const ResetButton(),
         title: t.generateView.add_description,
@@ -47,7 +50,7 @@ class AddDescription extends StatelessWidget {
                     ]
                             .map((e) => ActionChip(
                                   onPressed: () {},
-                                  label: Text(e),
+                                  label: Text(e, style: textTheme.bodyLarge),
                                   side: const BorderSide(
                                       color: AppColors.kOutlineColor),
                                 ))

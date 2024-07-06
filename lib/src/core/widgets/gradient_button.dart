@@ -45,7 +45,7 @@ class GradientButton extends StatelessWidget {
           child: AutoSizeText(
             text,
             style: textStyle ??
-                textTheme.titleMedium!.copyWith(
+                textTheme.headlineSmall!.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.5,
                   color: isEnabled

@@ -15,3 +15,4 @@ export 'custom_app_bar.dart';
 export 'custom_floating_button.dart';
 export 'shader_image.dart';
 export 'style_btm.dart';
+export 'style_view_body.dart';

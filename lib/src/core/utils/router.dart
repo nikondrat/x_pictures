@@ -87,8 +87,8 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
             name: AppViews.officePageRoute,
             path: _Paths.officePageRoute,
             builder: (context, state) {
-              final Map data = state.extra as Map;
-              final StyleModel model = data['model'];
+              final Map? data = state.extra as Map?;
+              final StyleModel model = data?['model'];
               return StyleView(
                 model: model,
               );
@@ -97,47 +97,93 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
               GoRoute(
                   name: AppViews.disclaimarPageRoute,
                   path: _Paths.disclaimarPageRoute,
-                  builder: (context, state) => const DisclaimarPage(),
+                  builder: (context, state) {
+                    final Map? data = state.extra as Map?;
+                    final StyleModel model = data?['model'];
+
+                    return DisclaimarPage(
+                      model: model,
+                    );
+                  },
                   routes: [
                     GoRoute(
                         name: AppViews.instructionPageRoute,
                         path: _Paths.instructionPageRoute,
-                        builder: (context, state) => const InstructionPage(),
+                        builder: (context, state) {
+                          final Map? data = state.extra as Map?;
+                          final StyleModel model = data?['model'];
+                          return InstructionPage(
+                            model: model,
+                          );
+                        },
                         routes: [
                           GoRoute(
                               name: AppViews.uploadingPhotosPageRoute,
                               path: _Paths.uploadingPhotosPageRoute,
-                              builder: (context, state) =>
-                                  const UploadingPhotosPage(),
+                              builder: (context, state) {
+                                final Map? data = state.extra as Map?;
+                                final StyleModel model = data?['model'];
+                                return UploadingPhotosPage(
+                                  model: model,
+                                );
+                              },
                               routes: [
                                 GoRoute(
-                                  name: AppViews.genderView,
-                                  path: _Paths.genderView,
-                                  builder: (context, state) =>
-                                      const GenderView(),
-                                  routes: [
-                                    GoRoute(
-                                        name: AppViews.planView,
-                                        path: _Paths.planView,
-                                        builder: (context, state) =>
-                                          const PlanView(),
-                                      routes: [
-                                        GoRoute(
-                                            name: AppViews.masterpieceView,
-                                            path: _Paths.masterpieceView,
-                                            builder: (context, state) =>
-                                              const MasterpieseView())
-                                      ])
-                                  ]
-                                )
+                                    name: AppViews.genderView,
+                                    path: _Paths.genderView,
+                                    builder: (context, state) {
+                                      final Map? data = state.extra as Map?;
+                                      final StyleModel model = data?['model'];
+                                      return GenderView(
+                                        model: model,
+                                      );
+                                    },
+                                    routes: [
+                                      GoRoute(
+                                          name: AppViews.planView,
+                                          path: _Paths.planView,
+                                          builder: (context, state) {
+                                            final Map? data =
+                                                state.extra as Map?;
+                                            final StyleModel model =
+                                                data?['model'];
+                                            return PlanView(
+                                              model: model,
+                                            );
+                                          },
+                                          routes: [
+                                            GoRoute(
+                                                name: AppViews.masterpieceView,
+                                                path: _Paths.masterpieceView,
+                                                builder: (context, state) {
+                                                  final Map? data =
+                                                      state.extra as Map?;
+                                                  final StyleModel model =
+                                                      data?['model'];
+                                                  return MasterpieseView(
+                                                    model: model,
+                                                  );
+                                                })
+                                          ])
+                                    ])
                               ])
                         ]),
                   ]),
             ]),
         GoRoute(
-            path: _Paths.viewAllPageRoute,
-            name: AppViews.viewAllPageRoute,
-            builder: (context, state) => const ViewAllPage()),
+            path: _Paths.allStyles,
+            name: AppViews.allStyles,
+            builder: (context, state) {
+              final Map? data = state.extra as Map?;
+              final String title = data?['title'] ?? '';
+              final onTap = data?['onTap'];
+              final items = data?['items'];
+              return AllView(
+                title: title,
+                onTap: onTap,
+                items: items,
+              );
+            }),
         GoRoute(
             path: _Paths.resultView,
             name: AppViews.resultView,
