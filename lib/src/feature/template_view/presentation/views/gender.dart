@@ -16,7 +16,7 @@ class GenderView extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             leading: const CustomBackButton(),
-            title: Text('Pick your gender'),
+            title: Text(t.gender.title),
           ),
           // floatingActionButton:
           //     Consumer<GenderState>(builder: (context, consumerValue, child) {
@@ -45,7 +45,7 @@ class GenderView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Step 3 of 3',
+                                    t.template.step_third,
                                     style: AppStyles.subTitleTextStyle.copyWith(
                                       fontSize: 10.sp,
                                     ),
@@ -56,7 +56,7 @@ class GenderView extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.only(right: 50.w),
                                     child: Text(
-                                      'Pick your gender',
+                                      t.gender.title,
                                       style: AppStyles.head1TextStyle,
                                     ),
                                   ),
@@ -64,7 +64,7 @@ class GenderView extends StatelessWidget {
                                     height: 5.h,
                                   ),
                                   Text(
-                                    'This information will improve our selection of model images for the generation of your photos.',
+                                    t.gender.description,
                                     style: AppStyles.subTitleTextStyle.copyWith(
                                       fontSize: 17.sp,
                                     ),
@@ -73,7 +73,7 @@ class GenderView extends StatelessWidget {
                                     height: 10.h,
                                   ),
                                   RadioButton(
-                                      text: 'Female',
+                                      text: t.gender.female,
                                       isSelected:
                                           consumerValue.isSelectedList[0],
                                       value: Gender.Female,
@@ -88,7 +88,7 @@ class GenderView extends StatelessWidget {
                                     height: 10.h,
                                   ),
                                   RadioButton(
-                                      text: 'Male',
+                                      text: t.gender.male,
                                       isSelected:
                                           consumerValue.isSelectedList[1],
                                       value: Gender.Male,
@@ -103,7 +103,7 @@ class GenderView extends StatelessWidget {
                                     height: 10.h,
                                   ),
                                   RadioButton(
-                                      text: 'Other',
+                                      text: t.gender.other,
                                       isSelected:
                                           consumerValue.isSelectedList[2],
                                       value: Gender.Other,

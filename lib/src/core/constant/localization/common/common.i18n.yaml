@@ -5,3 +5,8 @@ copy: Copy
 all: All
 next: Next
 remove: Remove
+terms_use: Terms of Use
+point: •
+privacy_police: Privacy police
+restore_purchase: Restore Purchase
+

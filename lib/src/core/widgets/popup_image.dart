@@ -57,7 +57,7 @@ class PopupImage extends StatelessWidget {
                 height: 20.h,
               ),
               label: Text(
-                'Save',
+                t.photos.save,
                 style: textTheme.headlineSmall!
                     .copyWith(color: colorScheme.onSecondary),
                 // style: TextStyle(
@@ -72,10 +72,10 @@ class PopupImage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(AppValues.kRadius)),
               width: 50.h,
               height: 50.h,
-              padding: const EdgeInsets.all(AppValues.kPadding * 1.5),
+              padding: const EdgeInsets.all(AppValues.kPadding * 0.9),
               child: GestureDetector(
                 child: SvgPicture.asset(
-                  Assets.icons.download,
+                  Assets.icons.upload,
                   width: 20.h,
                   height: 20.h,
                   color: Colors.white,

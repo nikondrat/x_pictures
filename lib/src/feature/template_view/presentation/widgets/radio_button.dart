@@ -20,6 +20,7 @@ class RadioButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RadioListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: AppValues.kPadding * 0.8, vertical: AppValues.kPadding * 0.25),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppValues.kRadius),
             side: BorderSide(color: isSelected ? Colors.orange[900]! : const Color(0xff3B3B5A),
@@ -30,7 +31,7 @@ class RadioButton extends StatelessWidget {
         // fillColor: WidgetStateProperty.all(const Color(0xff3B3B5A)),
 
         title: Text(text,
-          style: AppStyles.buttonTextStyle.copyWith(
+          style: AppStyles.title2TextStyle.copyWith(
               color: Colors.white
           ),),
         value: value,

@@ -40,7 +40,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'We are creating a masterpiece...',
+                    t.masterpiece.title,
                     style: AppStyles.head1TextStyle,
                     textAlign: TextAlign.center,
                   ),
@@ -66,7 +66,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'remained',
+                            t.masterpiece.remained,
                             style: AppStyles.subTitleTextStyle,
                           ),
                           Text(
@@ -81,7 +81,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                     height: 30.h,
                   ),
                   Text(
-                    'You will receive a notification when everything is ready!',
+                    t.masterpiece.description,
                     style: AppStyles.subTitleTextStyle,
                     textAlign: TextAlign.center,
                   )

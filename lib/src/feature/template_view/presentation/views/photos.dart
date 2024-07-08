@@ -37,12 +37,12 @@ class _PhotosViewState extends State<PhotosView> {
     return Scaffold(
       appBar: AppBar(
         leading: const CustomBackButton(),
-        title: Text('Office'),
+        title: Text(t.photos.title),
         actions: <Widget>[
           TextButton(
               onPressed: () {},
               child: Text(
-                'Save All',
+                t.photos.save_all,
                 style: TextStyle(color: Colors.white),
               ))
         ],
@@ -54,7 +54,7 @@ class _PhotosViewState extends State<PhotosView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Ready',
+                t.photos.save_all,
                 style: AppStyles.subTitleTextStyle.copyWith(
                   fontSize: 10.sp,
                 ),
@@ -63,14 +63,14 @@ class _PhotosViewState extends State<PhotosView> {
                 height: 5.h,
               ),
               Text(
-                'Your photos is ready',
+                t.photos.photos_ready,
                 style: AppStyles.head1TextStyle,
               ),
               SizedBox(
                 height: 5.h,
               ),
               Text(
-                'They will be stored in your personal account',
+                t.photos.account,
                 style: AppStyles.subTitleTextStyle.copyWith(
                   fontSize: 17.sp,
                 ),
