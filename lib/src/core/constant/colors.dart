@@ -11,4 +11,6 @@ class AppColors {
 
   static const Color kOutlineColor = Color(0xFF7C7C9B);
   static const Color kErrorColor = Color(0xFFFF453A);
+
+  static const Color kInactiveColor = Color(0xFF192039);
 }

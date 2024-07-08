@@ -16,6 +16,12 @@ class MediaItem extends StatelessWidget {
         if (model.type == MediaType.video) {
           router.goNamed(AppViews.resultView, extra: {'model': model});
         } else {
+          showDialog(
+              context: context,
+              barrierDismissible: true,
+              builder: (_) {
+                return PopupImage(url: model.url);
+              });
           // router.goNamed(AppViews.image);
         }
       },

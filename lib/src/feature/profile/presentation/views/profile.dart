@@ -32,49 +32,49 @@ class _ProfileViewState extends State<ProfileView>
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
     ]),
-    PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
+    PackModel(title: 'Pack 1', length: 10, urls: [
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
     ]),
-    PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
+    PackModel(title: 'Pack 1', length: 10, urls: [
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
     ]),
-    PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
+    PackModel(title: 'Pack 1', length: 10, urls: [
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
     ]),
-    PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
+    PackModel(title: 'Pack 1', length: 10, urls: [
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
     ]),
-    PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
+    PackModel(title: 'Pack 1', length: 10, urls: [
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
     ]),
-    PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
+    PackModel(title: 'Pack 1', length: 10, urls: [
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
     ]),
-    PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
+    PackModel(title: 'Pack 1', length: 10, urls: [
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
     ]),
-    PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
+    PackModel(title: 'Pack 1', length: 10, urls: [
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
       'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',

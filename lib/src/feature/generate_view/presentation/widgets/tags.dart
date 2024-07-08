@@ -26,6 +26,7 @@ class GenerateTags extends StatelessWidget {
         children: tags
             .map((e) => ActionChip(
                   onPressed: () {},
+                  backgroundColor: AppColors.kSecondaryAdditionallyColor,
                   label: Text(e, style: textTheme.bodyLarge),
                   side: const BorderSide(color: AppColors.kOutlineColor),
                 ))

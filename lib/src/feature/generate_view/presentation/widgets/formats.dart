@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class _Format {
@@ -14,6 +17,8 @@ class GenerateFormats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GenerateViewStore store = Provider.of<GenerateViewStore>(context);
+
     final List<_Format> formats = [
       _Format(width: 2, height: 3),
       _Format(width: 3, height: 2),
@@ -27,14 +32,24 @@ class GenerateFormats extends StatelessWidget {
       action: const ResetButton(),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Row(
-          children: formats
-              .map((e) => _FormatWidget(
-                    format: e,
-                    windowHeight: windowHeight,
-                  ))
-              .toList(),
-        ),
+        child: LayoutBuilder(builder: (context, size) {
+          return Row(
+            children: formats
+                .mapIndexed((i, e) => Observer(builder: (context) {
+                      return GestureDetector(
+                        onTap: () {
+                          store.setSelectedFormat(i);
+                        },
+                        child: _FormatWidget(
+                          format: e,
+                          isSelected: i == store.selectedFormat,
+                          windowHeight: windowHeight,
+                        ),
+                      );
+                    }))
+                .toList(),
+          );
+        }),
       ),
     );
   }
@@ -43,36 +58,45 @@ class GenerateFormats extends StatelessWidget {
 class _FormatWidget extends StatelessWidget {
   final _Format format;
   final double windowHeight;
+  final bool isSelected;
 
   const _FormatWidget({
     required this.format,
     required this.windowHeight,
+    required this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    final TextTheme textTheme = themeData.textTheme;
-    final ColorScheme colorScheme = themeData.colorScheme;
+    final themeData = Theme.of(context);
+    final textTheme = themeData.textTheme;
+    final colorScheme = themeData.colorScheme;
 
-    final double fixedWidth = windowHeight * .06;
-    final double height = fixedWidth * (format.height / format.width);
+    final double fixedWidth = windowHeight * .07;
+    final bool isSquare = format.width == format.height;
+    final double height =
+        isSquare ? fixedWidth : (format.height / format.width) * 50;
 
     return Padding(
-      padding: const EdgeInsets.all(AppValues.kPadding / 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: SizedBox(
         width: fixedWidth,
         height: height,
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.kOutlineColor),
-            borderRadius: BorderRadius.circular(AppValues.kPadding / 2),
+            border: Border.all(
+              color: isSelected ? colorScheme.primary : Colors.grey,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
           ),
           child: Center(
             child: AutoSizeText(
-                '${format.width.toInt()}:${format.height.toInt()}',
-                style: textTheme.bodyLarge!.copyWith(
-                    color: colorScheme.secondary, fontWeight: FontWeight.bold)),
+              '${format.width.toInt()}:${format.height.toInt()}',
+              style: textTheme.bodyLarge?.copyWith(
+                color: colorScheme.secondary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       ),

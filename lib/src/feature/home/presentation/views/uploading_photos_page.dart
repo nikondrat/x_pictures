@@ -8,7 +8,8 @@ import 'package:x_pictures/src/data.dart';
 import 'package:x_pictures/src/feature/home/presentation/widgets/image_item_uploading_photos_page.dart';
 
 class UploadingPhotosPage extends StatefulWidget {
-  const UploadingPhotosPage({super.key});
+  final StyleModel model;
+  const UploadingPhotosPage({super.key, required this.model});
 
   @override
   State<UploadingPhotosPage> createState() => _UploadingPhotosPageState();
@@ -20,74 +21,107 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    final TextTheme textTheme = themeData.textTheme;
+
     return Scaffold(
-      appBar: const CustomAppBar(textName: 'Uploading photos'),
-      floatingActionButton:
-          CustomFloatingButton(buttonName: 'Continue', onTap: () => router.goNamed(AppViews.genderView)),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Step 2 of 3',
-                    style: AppStyles.subTitleTextStyle.copyWith(
-                      fontSize: 10.sp,
+        // appBar: const CustomAppBar(textName: 'Uploading photos'),
+        appBar: AppBar(
+            leading: const CustomBackButton(),
+            title: Text(
+              t.homeView.uploading_photos,
+              style: textTheme.headlineSmall!
+                  .copyWith(fontWeight: FontWeight.w700),
+            )),
+        // floatingActionButton: CustomFloatingButton(
+        //     buttonName: 'Continue',
+        //     onTap: () => router
+        //         .goNamed(AppViews.genderView, extra: {"model": widget.model})),
+        body: AppBody(
+            builder: (windowWidth, windowHeight, __) => SafeArea(
+                    child: Stack(fit: StackFit.expand, children: [
+                  CustomScrollView(
+                    slivers: <Widget>[
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15.w, vertical: 15.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Step 2 of 3',
+                                style: AppStyles.subTitleTextStyle.copyWith(
+                                  fontSize: 10.sp,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 50.w),
+                                child: Text(
+                                  'Your photos have been processed',
+                                  style: AppStyles.head1TextStyle,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Text(
+                                'Description',
+                                style: AppStyles.subTitleTextStyle.copyWith(
+                                  fontSize: 17.sp,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              Text(
+                                'Your photos',
+                                style: AppStyles.title2TextStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SliverPadding(
+                        padding: EdgeInsets.only(
+                            left: 15.w, right: 15.w, bottom: 80.h),
+                        sliver: SliverGrid(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              return uploadPhoto(index, context);
+                            },
+                            childCount: imageFiles.length + 1,
+                          ),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            childAspectRatio: .99,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: HorizontalSpacing.centered(windowWidth) +
+                          const EdgeInsets.only(bottom: AppValues.kPadding * 2),
+                      child: SizedBox(
+                          height: 80,
+                          child: GradientButton(
+                              onPressed: () {
+                                router.goNamed(AppViews.genderView,
+                                    extra: {'model': widget.model});
+                              },
+                              text: t.common.continue_action)),
                     ),
                   ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 50.w),
-                    child: Text(
-                      'Your photos have been processed',
-                      style: AppStyles.head1TextStyle,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  Text(
-                    'Description',
-                    style: AppStyles.subTitleTextStyle.copyWith(
-                      fontSize: 17.sp,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Text(
-                    'Your photos',
-                    style: AppStyles.title2TextStyle,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(left: 15.w, right: 15.w, bottom: 80.h),
-            sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return uploadPhoto(index, context);
-                },
-                childCount: imageFiles.length + 1,
-              ),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: .99,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+                ]))));
   }
 
   Widget uploadPhoto(int index, BuildContext context) {

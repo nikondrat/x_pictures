@@ -8,11 +8,16 @@ class StyleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(model.title),
+        leading: const CustomBackButton(),
+        title: Text(
+          model.title,
+          style: textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w700),
+        ),
       ),
       body: AppBody(
         builder: (windowWidth, _, __) => SafeArea(
@@ -42,25 +47,39 @@ class StyleView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: HorizontalSpacing.centered(windowWidth),
+                      child: StyleViewBody(
+                        model: model,
+                      ),
+                    ),
+                  )
                 ],
               ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: HorizontalSpacing.centered(windowWidth) +
-                      EdgeInsets.only(bottom: AppValues.kPadding * 2),
+                      const EdgeInsets.only(bottom: AppValues.kPadding * 2),
                   child: SizedBox(
                       height: 80,
                       child: GradientButton(
-                          onPressed: () {}, text: t.homeView.get_pack)),
+                          onPressed: () {
+                            if (model.onTap != null) {
+                              model.onTap!(model);
+                            } else {
+                              router.goNamed(AppViews.disclaimarPageRoute,
+                                  extra: {'model': model});
+                            }
+                          },
+                          text: model.actionTitle ?? t.homeView.get_pack)),
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
-      // floatingActionButton:
-      //     GradientButton(onPressed: () {}, text: t.homeView.get_pack),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:svg_flutter/svg.dart';
@@ -7,7 +6,8 @@ import 'package:x_pictures/src/core/constant/icons.dart';
 import 'package:x_pictures/src/data.dart';
 
 class AppBarHomeView extends StatelessWidget {
-  const AppBarHomeView({super.key});
+  final ItemModel model;
+  const AppBarHomeView({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,11 @@ class AppBarHomeView extends StatelessWidget {
               ),
               const Gap(AppValues.kPadding),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  router.goNamed(AppViews.officePageRoute, extra: {
+                    'model': model,
+                  });
+                },
                 child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(

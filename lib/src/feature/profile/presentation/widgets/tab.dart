@@ -21,6 +21,7 @@ class CustomTabWidget extends StatelessWidget {
 
     return isSelected
         ? GradientButton(
+            textStyle: textTheme.bodyLarge,
             padding:
                 const EdgeInsets.symmetric(vertical: AppValues.kPadding / 2),
             onPressed: onTap,

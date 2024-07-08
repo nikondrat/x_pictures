@@ -10,9 +10,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
-          const SliverToBoxAdapter(
-            child: AppBarHomeView(),
-          ),
+          // const SliverToBoxAdapter(
+          //   child: AppBarHomeView(),
+          // ),
           SliverToBoxAdapter(
             child: SizedBox(
               height: 40.h,

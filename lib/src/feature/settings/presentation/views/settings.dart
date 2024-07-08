@@ -13,6 +13,9 @@ class SettingsView extends StatelessWidget {
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
+    final bool isAndroid = Platform.isAndroid;
+    // final bool isAndroid = false;
+
     return Scaffold(
         appBar: AppBar(
           title: Text(t.settings.title),
@@ -21,12 +24,12 @@ class SettingsView extends StatelessWidget {
           darkTheme: SettingsThemeData(
             titleTextColor: AppColors.kOutlineColor,
             settingsListBackground: colorScheme.surface,
-            settingsSectionBackground: Platform.isAndroid
+            settingsSectionBackground: isAndroid
                 ? colorScheme.surface
                 : AppColors.kSecondaryAdditionallyColor,
           ),
-          platform: DevicePlatform.iOS,
-          // platform: PlatformUtils.detectPlatform(context),
+          // platform: DevicePlatform.iOS,
+          platform: PlatformUtils.detectPlatform(context),
           sections: [
             SettingsSection(
               title: Text(
@@ -50,7 +53,7 @@ class SettingsView extends StatelessWidget {
                   ),
                   trailing: const SizedBox.shrink(),
                 ),
-                if (Platform.isAndroid) SettingsTile(title: const Divider())
+                if (isAndroid) SettingsTile(title: const Divider())
               ],
             ),
             SettingsSection(
@@ -75,7 +78,7 @@ class SettingsView extends StatelessWidget {
                     ),
                     trailing: const SizedBox.shrink(),
                   ),
-                  if (Platform.isAndroid) SettingsTile(title: const Divider())
+                  if (isAndroid) SettingsTile(title: const Divider())
                 ]),
             SettingsSection(
                 title: Text(
@@ -99,7 +102,7 @@ class SettingsView extends StatelessWidget {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                   ),
-                  if (Platform.isAndroid) SettingsTile(title: const Divider())
+                  if (isAndroid) SettingsTile(title: const Divider())
                 ]),
             SettingsSection(
                 title: Text(
@@ -111,7 +114,9 @@ class SettingsView extends StatelessWidget {
                   SettingsTile.switchTile(
                     onToggle: (value) {},
                     initialValue: true,
-                    activeSwitchColor: colorScheme.primary,
+                    activeSwitchColor: Platform.isIOS || Platform.isMacOS
+                        ? colorScheme.primary
+                        : null,
                     title: Text(
                       t.settings.notifications.receiveNews,
                       style: textTheme.bodyLarge,
@@ -148,7 +153,7 @@ class SettingsView extends StatelessWidget {
                     ),
                     trailing: const SizedBox.shrink(),
                   ),
-                  if (Platform.isAndroid) SettingsTile(title: const Divider())
+                  if (isAndroid) SettingsTile(title: const Divider())
                 ]),
             SettingsSection(
                 title: Text(
