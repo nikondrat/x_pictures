@@ -51,6 +51,8 @@ class AddDescription extends StatelessWidget {
                             .map((e) => ActionChip(
                                   onPressed: () {},
                                   label: Text(e, style: textTheme.bodyLarge),
+                                  backgroundColor:
+                                      AppColors.kSecondaryAdditionallyColor,
                                   side: const BorderSide(
                                       color: AppColors.kOutlineColor),
                                 ))

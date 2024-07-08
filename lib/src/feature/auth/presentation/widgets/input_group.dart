@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -29,7 +30,9 @@ class InputGroup extends StatelessWidget {
                       .copyWith(color: colorScheme.onSecondary),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.all(AppValues.kPadding),
+                    contentPadding: EdgeInsets.symmetric(
+                        horizontal: AppValues.kPadding,
+                        vertical: AppValues.kPadding.h),
                     hintStyle: textTheme.titleLarge!
                         .copyWith(color: colorScheme.outline),
                     hintText: t.auth.hint
@@ -48,7 +51,9 @@ class InputGroup extends StatelessWidget {
                       .copyWith(color: colorScheme.onSecondary),
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.all(AppValues.kPadding),
+                    contentPadding: EdgeInsets.symmetric(
+                        horizontal: AppValues.kPadding,
+                        vertical: AppValues.kPadding.h),
                     suffixIcon: Padding(
                       padding: const EdgeInsets.only(right: AppValues.kPadding),
                       child: IconButton(

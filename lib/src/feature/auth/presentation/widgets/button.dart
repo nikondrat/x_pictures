@@ -26,7 +26,7 @@ class AuthButton extends StatelessWidget {
       icon: icon,
       label: AutoSizeText(
         title,
-        style: textTheme.bodyLarge!.copyWith(
+        style: textTheme.titleLarge!.copyWith(
             color: AppColors.kBackgroundColor, fontWeight: FontWeight.w700),
         maxLines: 1,
       ),

@@ -40,11 +40,22 @@ class ItemWithShadow extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: AppValues.kPadding,
-                    vertical: AppValues.kPadding * 2),
-                child: AutoSizeText(
-                  model.title,
-                  style: textTheme.titleMedium!
-                      .copyWith(color: colorScheme.onSurface),
+                    vertical: AppValues.kPadding),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText(
+                      model.title,
+                      style: textTheme.titleMedium!
+                          .copyWith(color: colorScheme.onSurface),
+                    ),
+                    if (model.subTitle != null)
+                      AutoSizeText(model.subTitle!,
+                          style: textTheme.titleSmall!
+                              .copyWith(color: AppColors.kOutlineColor)),
+                  ],
                 ),
               )),
         ],
