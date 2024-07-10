@@ -6,7 +6,8 @@ import 'package:x_pictures/src/data.dart';
 
 class PopupImage extends StatelessWidget {
   final String url;
-  const PopupImage({super.key, required this.url});
+  final bool isProfile;
+  const PopupImage({super.key, required this.url, required this.isProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class PopupImage extends StatelessWidget {
         ),
         actions: [
           SizedBox(
-            width: 250.w,
+            width: isProfile ? 190.w : 250.w,
             height: 50.h,
             child: ElevatedButton.icon(
               style: ButtonStyle(
@@ -57,7 +58,7 @@ class PopupImage extends StatelessWidget {
                 height: 20.h,
               ),
               label: Text(
-                t.photos.save,
+                t.photos.download,
                 style: textTheme.headlineSmall!
                     .copyWith(color: colorScheme.onSecondary),
                 // style: TextStyle(
@@ -75,10 +76,25 @@ class PopupImage extends StatelessWidget {
               padding: const EdgeInsets.all(AppValues.kPadding * 0.9),
               child: GestureDetector(
                 child: SvgPicture.asset(
-                  Assets.icons.upload,
+                  Assets.icons.share,
                   width: 20.h,
                   height: 20.h,
                   color: Colors.white,
+                ),
+              )),
+           if (isProfile)
+           Container(
+              decoration: BoxDecoration(
+                  color: AppColors.kAdditionalColor,
+                  borderRadius: BorderRadius.circular(AppValues.kRadius)),
+              width: 50.h,
+              height: 50.h,
+              padding: const EdgeInsets.all(AppValues.kPadding * 0.9),
+              child: GestureDetector(
+                child: SvgPicture.asset(
+                  Assets.icons.trashBinMinimalistic,
+                  width: 20.h,
+                  height: 20.h,
                 ),
               ))
         ],

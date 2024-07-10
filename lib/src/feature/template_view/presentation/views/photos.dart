@@ -22,6 +22,7 @@ class _PhotosViewState extends State<PhotosView> {
         builder: (BuildContext context) {
           return PopupImage(
             url: url,
+            isProfile: false,
           );
         });
   }
