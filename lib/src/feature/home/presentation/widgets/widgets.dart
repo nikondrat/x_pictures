@@ -16,3 +16,4 @@ export 'custom_floating_button.dart';
 export 'shader_image.dart';
 export 'style_btm.dart';
 export 'style_view_body.dart';
+export 'search_bar.dart';

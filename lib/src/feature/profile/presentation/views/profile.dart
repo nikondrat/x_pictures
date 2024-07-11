@@ -84,67 +84,84 @@ class _ProfileViewState extends State<ProfileView>
 
   final List<MediaModel> images = [
     MediaModel(
+      type: MediaType.image,
+      url:
+          'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+      createdDate: DateTime(2024, 7, 10),
+    ),
+    MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.image,
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
   ];
@@ -152,14 +169,17 @@ class _ProfileViewState extends State<ProfileView>
   final List<MediaModel> videos = [
     MediaModel(
         type: MediaType.video,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.video,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
     MediaModel(
         type: MediaType.video,
+        createdDate: DateTime(2024, 7, 10),
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
   ];
@@ -218,8 +238,10 @@ class _ProfileViewState extends State<ProfileView>
                           packs: packs,
                           onBannerTap: widget.goHome,
                         ),
-                        MediaView(onBannerTap: widget.goGenerate, urls: images),
-                        MediaView(onBannerTap: widget.goGenerate, urls: videos),
+                        MediaView(
+                            onBannerTap: widget.goGenerate, items: images),
+                        MediaView(
+                            onBannerTap: widget.goGenerate, items: videos),
                       ]),
                     ),
                   ],

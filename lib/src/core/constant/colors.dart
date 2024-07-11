@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color kPrimaryColor = Color(0xffFF710A);
-  static const Color kPrimaryAdditionallyColor = Color(0xffFF5833);
+  static const Color kPrimaryColor = Color(0xffFF723A);
+  static const Color kPrimaryAdditionallyColor = Color(0xffFF5D0C);
   static const Color kSecondaryColor = Colors.white;
   static const Color kBackgroundColor = Color(0xff0A0A19);
 
@@ -13,4 +13,6 @@ class AppColors {
   static const Color kErrorColor = Color(0xFFFF453A);
 
   static const Color kInactiveColor = Color(0xFF192039);
+
+  static Color kSearchBarActiveColor = const Color(0xFF767680).withOpacity(0.3);
 }

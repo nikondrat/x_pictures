@@ -120,48 +120,51 @@ class HomeView extends StatelessWidget {
               'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
             ]),
       ]),
-      BackgroundSectionModel(title: t.homeView.styles.smart_tool.title, items: [
-        StyleModel(
-          url: 'https://zeerk.com/storage/uploads/2023/07/1-1.jpg',
-          title: t.homeView.styles.smart_tool.types.remove_background,
-          subTitle: '6 ${t.profile.photos}',
-          data: ['Description', 'Description', 'Description'],
-          actionTitle: t.common.next,
-          onTap: (model) {
-            router.goNamed(AppViews.toolsView,
-                extra: {'model': model, 'isRemoveBackground': true});
-          },
-          description:
-              'This style is suitable for showing in a business style to show all your inner qualities',
-        ),
-        StyleModel(
-          url:
-              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
-          title: t.homeView.styles.smart_tool.types.enhance,
-          subTitle: '6 ${t.profile.photos}',
-          actionTitle: t.common.next,
-          data: ['Description', 'Description', 'Description'],
-          onTap: (model) {
-            router.goNamed(AppViews.enhanceView, extra: {'model': model});
-          },
-          description:
-              'This style is suitable for showing in a business style to show all your inner qualities',
-        ),
-        StyleModel(
-          url:
-              'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
-          title: t.homeView.styles.smart_tool.types.remove_objects,
-          subTitle: '6 ${t.profile.photos}',
-          actionTitle: t.common.next,
-          onTap: (model) {
-            router.goNamed(AppViews.toolsView,
-                extra: {'model': model, 'isRemoveBackground': false});
-          },
-          data: ['Description', 'Description', 'Description'],
-          description:
-              'This style is suitable for showing in a business style to show all your inner qualities',
-        ),
-      ]),
+      BackgroundSectionModel(
+          title: t.homeView.styles.smart_tool.title,
+          cardHeight: 160,
+          items: [
+            StyleModel(
+              url: 'https://zeerk.com/storage/uploads/2023/07/1-1.jpg',
+              title: t.homeView.styles.smart_tool.types.remove_background,
+              subTitle: '6 ${t.profile.photos}',
+              data: ['Description', 'Description', 'Description'],
+              actionTitle: t.common.next,
+              onTap: (model) {
+                router.goNamed(AppViews.toolsView,
+                    extra: {'model': model, 'isRemoveBackground': true});
+              },
+              description:
+                  'This style is suitable for showing in a business style to show all your inner qualities',
+            ),
+            StyleModel(
+              url:
+                  'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
+              title: t.homeView.styles.smart_tool.types.enhance,
+              subTitle: '6 ${t.profile.photos}',
+              actionTitle: t.common.next,
+              data: ['Description', 'Description', 'Description'],
+              onTap: (model) {
+                router.goNamed(AppViews.enhanceView, extra: {'model': model});
+              },
+              description:
+                  'This style is suitable for showing in a business style to show all your inner qualities',
+            ),
+            StyleModel(
+              url:
+                  'https://humple.club/uploads/posts/2022-11/1668592044_34-humple-club-p-strizhka-pryamoe-kare-zhenskie-oboi-34.jpg',
+              title: t.homeView.styles.smart_tool.types.remove_objects,
+              subTitle: '6 ${t.profile.photos}',
+              actionTitle: t.common.next,
+              onTap: (model) {
+                router.goNamed(AppViews.toolsView,
+                    extra: {'model': model, 'isRemoveBackground': false});
+              },
+              data: ['Description', 'Description', 'Description'],
+              description:
+                  'This style is suitable for showing in a business style to show all your inner qualities',
+            ),
+          ]),
     ];
 
     return Scaffold(
@@ -175,7 +178,14 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               SliverPadding(
-                padding: HorizontalSpacing.centered(windowWidth),
+                  padding: HorizontalSpacing.centered(windowWidth) +
+                      const EdgeInsets.only(top: AppValues.kPadding),
+                  sliver: SliverToBoxAdapter(
+                    child: SearchBarWidget(),
+                  )),
+              SliverPadding(
+                padding: HorizontalSpacing.centered(windowWidth) +
+                    const EdgeInsets.only(bottom: AppValues.kPadding),
                 sliver: SliverList.list(
                     children: sections.map((e) {
                   return BackgroundSection(

@@ -18,6 +18,7 @@ class BackgroundSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
+        const Gap(AppValues.kPadding),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -46,7 +47,8 @@ class BackgroundSection extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: section.items
-                  .map((e) => BackgroundItem(model: e, onTap: onTap))
+                  .map((e) => BackgroundItem(
+                      model: e, cardHeight: section.cardHeight, onTap: onTap))
                   .toList(),
             ))
       ],
