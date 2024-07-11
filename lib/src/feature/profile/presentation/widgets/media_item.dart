@@ -20,7 +20,7 @@ class MediaItem extends StatelessWidget {
               context: context,
               barrierDismissible: true,
               builder: (_) {
-                return PopupImage(url: model.url);
+                return PopupImage(url: model.url, isProfile: true,);
               });
           // router.goNamed(AppViews.image);
         }

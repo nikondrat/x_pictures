@@ -13,4 +13,6 @@ class AppIcons {
   static const String download = '$baseUrl/download.svg';
   static const String downloadGreyCircle = '$baseUrl/download_grey_circle.svg';
   static const String upload = '$baseUrl/upload.svg';
+  static const String share = '$baseUrl/share.svg';
+  static const String trashBinMinimalistic = '$baseUrl/trash_bin_minimalistic.svg';
 }
