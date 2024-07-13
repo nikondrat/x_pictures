@@ -34,6 +34,12 @@ abstract class _SignInViewStore with Store {
     ]),
   });
 
+  @computed
+  String get email => formGroup.control('email').value;
+
+  @computed
+  String get password => formGroup.control('password').value;
+
   @observable
   bool isValid = false;
 

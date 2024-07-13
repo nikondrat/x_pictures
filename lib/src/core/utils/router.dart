@@ -40,6 +40,14 @@ abstract class AppViews {
 
 final GlobalKey<NavigatorState> navKey = GlobalKey();
 
+// final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
+//   GoRoute(
+//     path: '/',
+//     builder: (context, state) =>
+//         ProfileView(goHome: () {}, goGenerate: () {}, selectedIndex: 0),
+//   )
+// ]);
+
 final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
   GoRoute(
       name: AppViews.init,

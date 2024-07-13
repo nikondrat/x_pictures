@@ -4,7 +4,6 @@ import 'package:x_pictures/src/core/components/rest_client/rest_client.dart';
 
 /// Rest client that uses [Dio] as HTTP library.
 final class RestClientDio extends RestClientBase {
-  /// {@macro rest_client_dio}
   RestClientDio({required super.baseUrl, required Dio dio}) : _dio = dio;
 
   final Dio _dio;

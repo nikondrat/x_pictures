@@ -145,5 +145,5 @@ pubspec.lock
 .fvm/
 
 
-# Env
 
+.vscode/

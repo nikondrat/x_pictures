@@ -1,24 +1,41 @@
-import 'package:flutter/widgets.dart';
-import 'package:gap/gap.dart';
-import 'package:grouped_list/grouped_list.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:grouped_grid/grouped_grid.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class MediaBody extends StatelessWidget {
-  final List<MediaModel> items;
-  const MediaBody({super.key, required this.items});
+  const MediaBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GroupedListView(
-      elements: items,
-      shrinkWrap: true,
-      groupBy: (element) => element.createdDate,
-      groupSeparatorBuilder: (groupBy) => const Gap(AppValues.kPadding),
-      itemBuilder: (context, element) => MediaItem(model: element),
-      itemComparator: (item1, item2) =>
-          item1.createdDate.compareTo(item2.createdDate),
-      order: GroupedListOrder.ASC,
-      useStickyGroupSeparators: true,
+    final ThemeData theme = Theme.of(context);
+    final TextTheme textTheme = theme.textTheme;
+    final MediaBodyStore store = context.read<MediaBodyStore>();
+
+    return GroupedGridView(
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          crossAxisSpacing: AppValues.kPadding,
+          mainAxisSpacing: AppValues.kPadding,
+          maxCrossAxisExtent: 200,
+          childAspectRatio: .6),
+      groupKeys: store.groupedItems.keys,
+      itemBuilder: (context, group) {
+        MediaModel model = store.groupedItems[group.key]![group.itemIndex];
+        return MediaItem(model: model);
+      },
+      itemCountForGroup: (group) => store.groupedItems[group]?.length ?? 0,
+      groupHeaderBuilder: (context, key) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppValues.kPadding),
+          child: AutoSizeText(
+            t.common.now(month: t.common.months[key.month], day: key.day),
+            style:
+                textTheme.bodyLarge!.copyWith(color: AppColors.kOutlineColor),
+          ),
+        );
+      },
+      groupStickyHeaders: false,
     );
   }
 }

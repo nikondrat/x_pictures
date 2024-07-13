@@ -21,6 +21,9 @@ class Config {
   /// The Sentry DSN.
   String get sentryDsn => const String.fromEnvironment('SENTRY_DSN');
 
+  /// The API URL.
+  String get apiUrl => const String.fromEnvironment('API_URL');
+
   /// Whether Sentry is enabled.
   bool get enableSentry => sentryDsn.isNotEmpty;
 }

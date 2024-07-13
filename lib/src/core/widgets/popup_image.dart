@@ -82,21 +82,21 @@ class PopupImage extends StatelessWidget {
                   color: Colors.white,
                 ),
               )),
-           if (isProfile)
-           Container(
-              decoration: BoxDecoration(
-                  color: AppColors.kAdditionalColor,
-                  borderRadius: BorderRadius.circular(AppValues.kRadius)),
-              width: 50.h,
-              height: 50.h,
-              padding: const EdgeInsets.all(AppValues.kPadding * 0.9),
-              child: GestureDetector(
-                child: SvgPicture.asset(
-                  Assets.icons.trashBinMinimalistic,
-                  width: 20.h,
-                  height: 20.h,
-                ),
-              ))
+          if (isProfile)
+            Container(
+                decoration: BoxDecoration(
+                    color: AppColors.kAdditionalColor,
+                    borderRadius: BorderRadius.circular(AppValues.kRadius)),
+                width: 50.h,
+                height: 50.h,
+                padding: const EdgeInsets.all(AppValues.kPadding * 0.9),
+                child: GestureDetector(
+                  child: SvgPicture.asset(
+                    Assets.icons.trashBinMinimalistic,
+                    width: 20.h,
+                    height: 20.h,
+                  ),
+                ))
         ],
       ),
     );

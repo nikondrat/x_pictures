@@ -1,3 +1,4 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:x_pictures/src/data.dart';
@@ -5,10 +6,22 @@ import 'package:x_pictures/src/data.dart';
 /// Dependencies container
 base class Dependencies {
   const Dependencies({
+    required this.restClient,
+    required this.tokenStorage,
+    required this.secureStorage,
     required this.sharedPreferences,
     required this.settingsStore,
     required this.errorTrackingManager,
   });
+
+  /// [RestClient] instance, used to send HTTP requests.
+  final RestClient restClient;
+
+  /// [TokenStorage] instance, used to store and retrieve Auth tokens.
+  final TokenStorage tokenStorage;
+
+  /// [FlutterSecureStorage] instance, used to securely store Key-Value pairs.
+  final FlutterSecureStorage secureStorage;
 
   /// [SharedPreferences] instance, used to store Key-Value pairs.
   final SharedPreferences sharedPreferences;

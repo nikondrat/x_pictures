@@ -12,3 +12,5 @@ restore_purchase: Restore Purchase
 cancel: Cancel
 select: Select
 select_all: Select all
+months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+now: "${month} ${day}th"

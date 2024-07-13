@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:network_info_plus/network_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 import 'package:x_pictures/src/feature/auth/presentation/widgets/input_group.dart';
@@ -15,8 +16,15 @@ class SignInView extends StatelessWidget {
           create: (_) => SignInViewStore(),
           dispose: (context, value) => value.dispose(),
         ),
+        Provider<NetworkInfo>(
+          create: (_) => NetworkInfo(),
+        ),
         Provider(
-          create: (context) => AuthStore(signInViewStore: context.read()),
+          create: (context) => AuthStore(
+              restClient: context.read<Dependencies>().restClient,
+              tokenStorage: context.read<Dependencies>().tokenStorage,
+              signInViewStore: context.read(),
+              networkInfo: context.read()),
         ),
       ],
       child: Scaffold(

@@ -9,7 +9,6 @@ import 'package:x_pictures/src/core/components/rest_client/rest_client.dart';
 /// {@macro rest_client}
 @immutable
 abstract base class RestClientBase implements RestClient {
-  /// {@macro rest_client}
   RestClientBase({required String baseUrl}) : baseUri = Uri.parse(baseUrl);
 
   /// The base url for the client
@@ -35,13 +34,16 @@ abstract base class RestClientBase implements RestClient {
   @protected
   @visibleForTesting
   Uri buildUri({required String path, Map<String, Object?>? queryParams}) {
-    final finalPath = p.canonicalize(p.join(baseUri.path, path));
+    final finalPath = p.join(baseUri.path, path);
     return baseUri.replace(
       path: finalPath,
-      queryParameters: {
-        ...baseUri.queryParameters,
-        if (queryParams != null) ...queryParams,
-      },
+      queryParameters:
+          (queryParams != null && baseUri.queryParameters.isNotEmpty)
+              ? {
+                  ...baseUri.queryParameters,
+                  ...queryParams,
+                }
+              : null,
     );
   }
 

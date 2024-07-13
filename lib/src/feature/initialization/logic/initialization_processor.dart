@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:x_pictures/src/core/components/rest_client/src/rest_client_dio.dart';
 import 'package:x_pictures/src/data.dart';
 
 final class InitializationProcessor {
@@ -11,10 +14,16 @@ final class InitializationProcessor {
 
   Future<Dependencies> _initDependencies() async {
     final sharedPreferences = await SharedPreferences.getInstance();
+    const secureStorage = FlutterSecureStorage();
+    final tokenStorage = TokenStorageImpl(storage: secureStorage);
+    final restClient = await _initRestClient(secureStorage, tokenStorage);
     final errorTrackingManager = await _initErrorTrackingManager();
     final settingsStore = await _initSettingsStore(sharedPreferences);
 
     return Dependencies(
+      restClient: restClient,
+      tokenStorage: tokenStorage,
+      secureStorage: secureStorage,
       sharedPreferences: sharedPreferences,
       settingsStore: settingsStore,
       errorTrackingManager: errorTrackingManager,
@@ -58,6 +67,36 @@ final class InitializationProcessor {
           AppThemeStore(mode: ThemeMode.dark, seed: AppColors.kPrimaryColor),
     );
     return settingsStore;
+  }
+
+  // Initializes the REST client with the provided FlutterSecureStorage.
+  Future<RestClient> _initRestClient(
+      FlutterSecureStorage storage, TokenStorageImpl tokenStorage) async {
+    final dio = Dio();
+    final refreshClient = RefreshClientImpl(tokenStorage: tokenStorage);
+
+    // Configure AuthInterceptor with tokenStorage and refreshClient
+    final authInterceptor = AuthInterceptor<Future?>(
+      storage: tokenStorage,
+      refreshClient: refreshClient,
+      buildHeaders: (token) async {
+        if (await token != null) {
+          return {'Authorization': 'Bearer $token'};
+        }
+        return {};
+      },
+    );
+
+    // Add AuthInterceptor to Dio’s interceptors
+    dio.interceptors.add(authInterceptor);
+    dio.interceptors.add(LogInterceptor(
+        requestBody: true,
+        request: true,
+        requestHeader: true,
+        responseHeader: true,
+        responseBody: true));
+
+    return RestClientDio(baseUrl: config.apiUrl, dio: dio);
   }
 
   /// Initializes dependencies and returns the result of the initialization.
