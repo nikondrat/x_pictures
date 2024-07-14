@@ -3,138 +3,42 @@ import 'package:x_pictures/src/data.dart';
 
 part 'media.g.dart';
 
-class MediaBodyStore extends _MediaBodyStore with _$MediaBodyStore {
-  MediaBodyStore();
+class MediaStore extends _MediaStore with _$MediaStore {
+  MediaStore({required super.restClient});
 }
 
-abstract class _MediaBodyStore with Store {
-  @observable
-  ObservableList<MediaModel> items = ObservableList.of([
-    MediaModel(
-      type: MediaType.image,
-      url:
-          'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      createdDate: DateTime(2024, 6, 10),
-    ),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 6, 10),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 6, 10),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 6, 10),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 7, 8),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 7, 6),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 7, 4),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 7, 6),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 7, 6),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 7, 6),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 7, 3),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 7, 3),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 6, 10),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 6, 10),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 6, 10),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-    MediaModel(
-        type: MediaType.image,
-        createdDate: DateTime(2024, 6, 10),
-        url:
-            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
-  ]);
-  @computed
-  Map<DateTime, List<MediaModel>> get groupedItems {
-    Map<DateTime, List<MediaModel>> grouped = <DateTime, List<MediaModel>>{};
-    for (var item in items) {
-      if (grouped.containsKey(item.createdDate)) {
-        grouped[item.createdDate]!.add(item);
-      } else {
-        grouped[item.createdDate] = [item];
-      }
-    }
-    return grouped;
-  }
+abstract class _MediaStore with Store {
+  final RestClient restClient;
 
-  @computed
-  ObservableList<MediaModel> get selectedItems =>
-      ObservableList.of(items.where((item) => item.isSelected));
+  _MediaStore({required this.restClient});
 
-  @computed
-  bool get isHasSelectedItems => selectedItems.isNotEmpty;
+  LorasBody body = LorasBody(
+    count: 0,
+    total: 0,
+    nextUrl: '',
+    previousUrl: '',
+    loras: [],
+  );
 
   @observable
-  bool isSelect = false;
+  ObservableFuture<List<LoraModel>> fetchLorasFuture = emptyResponse;
 
   @action
-  void toggleSelect() {
-    isSelect = !isSelect;
+  Future<List<LoraModel>> fetchLoras() async {
+    final future = restClient.get(Endpoint().loras).then((v) {
+      body = LorasBody.fromJson(v!);
 
-    if (!isSelect) {
-      markAllNotSelected();
-    }
+      return body.loras;
+    });
+    fetchLorasFuture = ObservableFuture(future);
+    return await future;
   }
 
-  @action
-  void markAllNotSelected() {
-    for (var item in items) {
-      item.isSelected = false;
-    }
-  }
+  @computed
+  bool get hasResults =>
+      fetchLorasFuture != emptyResponse &&
+      fetchLorasFuture.status == FutureStatus.fulfilled;
 
-  @action
-  void markAllSelected() {
-    for (var item in items) {
-      item.isSelected = true;
-    }
-  }
+  static ObservableFuture<List<LoraModel>> emptyResponse =
+      ObservableFuture.value([]);
 }

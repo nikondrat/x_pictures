@@ -27,7 +27,7 @@ class PackItem extends StatelessWidget {
       ]),
       child: GestureDetector(
         onTap: () {
-          router.pushNamed(AppViews.photosView, extra: {'urls': pack.urls});
+          router.pushNamed(AppViews.photosView, extra: {'models': pack.images});
         },
         child: Container(
             margin: const EdgeInsets.only(bottom: AppValues.kPadding),
@@ -39,12 +39,13 @@ class PackItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AutoSizeText(pack.title, style: textTheme.titleLarge),
+                AutoSizeText(pack.category, style: textTheme.titleLarge),
                 const Gap(AppValues.kPadding / 3),
                 AutoSizeText(
-                  pack.progress != null
-                      ? '${t.profile.getting_ready} ~${pack.progress} ${t.profile.minutes}'
-                      : '${pack.length} ${t.profile.photos}',
+                  // pack.progress != null
+                  // ? '${t.profile.getting_ready} ~${pack.progress} ${t.profile.minutes}'
+                  // :
+                  '${pack.length} ${t.profile.photos}',
                   style: textTheme.bodyLarge!
                       .copyWith(color: AppColors.kOutlineColor),
                 ),
@@ -52,8 +53,8 @@ class PackItem extends StatelessWidget {
                 LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
                     return Row(
-                      children: pack.urls
-                          .map((url) => Expanded(
+                      children: pack.images
+                          .map((model) => Expanded(
                                 child: Padding(
                                   padding: const EdgeInsets.all(
                                       AppValues.kPadding / 4),
@@ -61,12 +62,11 @@ class PackItem extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(
                                         AppValues.kRadius / 2),
                                     child: CachedNetworkImage(
-                                      imageUrl: url,
+                                      imageUrl: model.url,
                                       fit: BoxFit.cover,
-                                      width: constraints.maxWidth /
-                                          pack.urls.length,
-                                      height: constraints.maxWidth /
-                                          pack.urls.length,
+                                      width: constraints.maxWidth / pack.length,
+                                      height:
+                                          constraints.maxWidth / pack.length,
                                     ),
                                   ),
                                 ),

@@ -76,11 +76,11 @@ final class InitializationProcessor {
     final refreshClient = RefreshClientImpl(tokenStorage: tokenStorage);
 
     // Configure AuthInterceptor with tokenStorage and refreshClient
-    final authInterceptor = AuthInterceptor<Future?>(
+    final authInterceptor = AuthInterceptor(
       storage: tokenStorage,
       refreshClient: refreshClient,
       buildHeaders: (token) async {
-        if (await token != null) {
+        if (token != null) {
           return {'Authorization': 'Bearer $token'};
         }
         return {};
@@ -93,7 +93,7 @@ final class InitializationProcessor {
         requestBody: true,
         request: true,
         requestHeader: true,
-        responseHeader: true,
+        responseHeader: false,
         responseBody: true));
 
     return RestClientDio(baseUrl: config.apiUrl, dio: dio);

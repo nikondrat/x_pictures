@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:x_pictures/src/data.dart';
 
-class RefreshClientImpl implements RefreshClient<Future<String?>> {
+class RefreshClientImpl implements RefreshClient<String?> {
   final TokenStorageImpl tokenStorage;
 
   RefreshClientImpl({required this.tokenStorage});
@@ -10,7 +10,7 @@ class RefreshClientImpl implements RefreshClient<Future<String?>> {
   // final Dio _dio = Dio(); // Assuming you are using Dio for HTTP requests
 
   @override
-  Future<Future<String?>> refreshToken(token) async {
+  Future<String?> refreshToken(token) async {
     try {
       // Make a POST request to your token refresh endpoint
       // final response = await _dio.post(
@@ -23,7 +23,7 @@ class RefreshClientImpl implements RefreshClient<Future<String?>> {
       // Assuming your API responds with the new token in the 'newToken' key
       // final newToken = response.data['access'];
 
-      return await Future.value(null);
+      return await Future.value();
     } catch (e) {
       // Handle any errors that occur during the token refresh process
       log('Error refreshing token: $e');

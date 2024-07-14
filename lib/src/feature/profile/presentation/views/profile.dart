@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ProfileView extends StatefulWidget {
@@ -25,62 +26,62 @@ class _ProfileViewState extends State<ProfileView>
     t.profile.video,
   ];
 
-  final List<PackModel> packs = [
-    PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-    ]),
-    PackModel(title: 'Pack 1', length: 10, urls: [
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-    ]),
-    PackModel(title: 'Pack 1', length: 10, urls: [
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-    ]),
-    PackModel(title: 'Pack 1', length: 10, urls: [
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-    ]),
-    PackModel(title: 'Pack 1', length: 10, urls: [
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-    ]),
-    PackModel(title: 'Pack 1', length: 10, urls: [
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-    ]),
-    PackModel(title: 'Pack 1', length: 10, urls: [
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-    ]),
-    PackModel(title: 'Pack 1', length: 10, urls: [
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-    ]),
-    PackModel(title: 'Pack 1', length: 10, urls: [
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-      'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-    ]),
-  ];
+  // final List<PackModel> packs = [
+  //   PackModel(title: 'Pack 1', length: 10, progress: 6, urls: [
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //   ]),
+  //   PackModel(title: 'Pack 1', length: 10, urls: [
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //   ]),
+  //   PackModel(title: 'Pack 1', length: 10, urls: [
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //   ]),
+  //   PackModel(title: 'Pack 1', length: 10, urls: [
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //   ]),
+  //   PackModel(title: 'Pack 1', length: 10, urls: [
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //   ]),
+  //   PackModel(title: 'Pack 1', length: 10, urls: [
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //   ]),
+  //   PackModel(title: 'Pack 1', length: 10, urls: [
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //   ]),
+  //   PackModel(title: 'Pack 1', length: 10, urls: [
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //   ]),
+  //   PackModel(title: 'Pack 1', length: 10, urls: [
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //     'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+  //   ]),
+  // ];
 
   final List<MediaModel> images = [
     MediaModel(
@@ -200,54 +201,64 @@ class _ProfileViewState extends State<ProfileView>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AppBody(
-        builder: (windowWidth, windowHeight, windowSize) {
-          return SafeArea(
-              child: Padding(
-                  padding: HorizontalSpacing.centered(windowWidth) +
-                      const EdgeInsets.symmetric(vertical: AppValues.kPadding),
-                  child: Column(
-                    children: [
-                      ProfileInfoWidget(
-                        name: 'Kary Filatova',
-                        email: 'filyapel@yandex.ru',
-                        url:
-                            'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-                        onTap: () => router.goNamed(AppViews.settingsView),
-                      ),
-                      const Gap(AppValues.kPadding),
-                      Container(
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(AppValues.kRadius)),
-                              color: AppColors.kSecondaryAdditionallyColor),
-                          child: Row(
-                              children: tabs.mapIndexed((index, title) {
-                            return Expanded(
-                                child: CustomTabWidget(
-                                    isSelected: index == controller.index,
-                                    title: title,
-                                    onTap: () {
-                                      setState(() {
-                                        controller.animateTo(index);
-                                      });
-                                    }));
-                          }).toList())),
-                      Expanded(
-                        child: TabBarView(controller: controller, children: [
-                          PackView(
-                            packs: packs,
-                            onBannerTap: widget.goHome,
-                          ),
-                          MediaView(onBannerTap: widget.goGenerate),
-                          MediaView(onBannerTap: widget.goGenerate),
-                        ]),
-                      ),
-                    ],
-                  )));
-        },
-      ),
-    );
+    return Provider(
+        create: (context) =>
+            PacksStore(restClient: context.read<Dependencies>().restClient),
+        builder: (context, _) {
+          final PacksStore store = Provider.of<PacksStore>(context);
+          return Scaffold(
+            body: AppBody(
+              builder: (windowWidth, windowHeight, windowSize) {
+                return SafeArea(
+                    child: Padding(
+                        padding: HorizontalSpacing.centered(windowWidth) +
+                            const EdgeInsets.symmetric(
+                                vertical: AppValues.kPadding),
+                        child: Column(
+                          children: [
+                            ProfileInfoWidget(
+                              name: 'Kary Filatova',
+                              email: 'filyapel@yandex.ru',
+                              url:
+                                  'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+                              onTap: () =>
+                                  router.goNamed(AppViews.settingsView),
+                            ),
+                            const Gap(AppValues.kPadding),
+                            Container(
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(AppValues.kRadius)),
+                                    color:
+                                        AppColors.kSecondaryAdditionallyColor),
+                                child: Row(
+                                    children: tabs.mapIndexed((index, title) {
+                                  return Expanded(
+                                      child: CustomTabWidget(
+                                          isSelected: index == controller.index,
+                                          title: title,
+                                          onTap: () {
+                                            setState(() {
+                                              controller.animateTo(index);
+                                            });
+                                          }));
+                                }).toList())),
+                            Expanded(
+                              child:
+                                  TabBarView(controller: controller, children: [
+                                PackView(
+                                  store: store,
+                                  onBannerTap: widget.goHome,
+                                ),
+                                MediaView(onBannerTap: widget.goGenerate),
+                                MediaView(onBannerTap: widget.goGenerate),
+                              ]),
+                            ),
+                          ],
+                        )));
+              },
+            ),
+          );
+        });
   }
 }

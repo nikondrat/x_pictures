@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 abstract class AppViews {
@@ -53,6 +54,16 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
       name: AppViews.init,
       path: _Paths.init,
       builder: (context, state) => const InitView(),
+      redirect: (context, state) {
+        final TokenStorage tokenStorage =
+            context.read<Dependencies>().tokenStorage;
+        return tokenStorage.loadTokenPair().then((value) {
+          if (value != null) {
+            return _Paths.homePageRoute;
+          }
+          return null;
+        });
+      },
       routes: [
         GoRoute(
             name: AppViews.signIn,
@@ -256,13 +267,14 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                                           (context, state) {
                                                         final Map? data =
                                                             state.extra as Map?;
-                                                        final List<String>
-                                                            urls =
-                                                            data?['urls'] ?? [];
+                                                        final List<ImageModel>
+                                                            models =
+                                                            data?['models'] ??
+                                                                [];
                                                         // final StyleModel model =
                                                         //     data?['model'];
                                                         return PhotosView(
-                                                          urls: urls,
+                                                          models: models,
                                                         );
                                                       })
                                                 ])
@@ -309,6 +321,6 @@ abstract class _Paths {
 
   static const String enhanceView = AppViews.enhanceView;
 
-  static const String studyingView = AppViews.studyingView;
+  // static const String studyingView = AppViews.studyingView;
   static const String photosView = AppViews.photosView;
 }

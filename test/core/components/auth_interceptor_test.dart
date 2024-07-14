@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:x_pictures/src/core/components/rest_client/rest_client.dart';
-import 'package:x_pictures/src/core/components/rest_client/src/auth/refresh_client.dart';
 
 import 'rest_client_test.dart';
 
@@ -80,7 +79,7 @@ class MockErrorInterceptorHandler extends Mock
 
 class MockTokenStorage extends Mock implements TokenStorage<TokenPair> {}
 
-Map<String, String> buildHeaders(TokenPair pair) =>
+Future<Map<String, String>> buildHeaders(TokenPair pair) async =>
     {'Authorization': 'Bearer ${pair.accessToken}'};
 
 void main() {

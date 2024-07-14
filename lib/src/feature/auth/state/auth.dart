@@ -33,11 +33,10 @@ abstract class _AuthStore with Store {
       'password': signInViewStore.password,
       'ip_address': ipAddress
     }).then((value) {
-      final token = value?['token'];
+      final String? token = value?['token'] as String?;
 
-      print(token);
       if (token != null) {
-        tokenStorage.saveTokenPair(token);
+        tokenStorage.saveTokenPair(Future.value(token));
         router.goNamed(AppViews.verify);
       }
     });

@@ -7,8 +7,8 @@ import 'package:x_pictures/src/data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PhotosView extends StatefulWidget {
-  final List<String> urls;
-  const PhotosView({super.key, required this.urls});
+  final List<ImageModel> models;
+  const PhotosView({super.key, required this.models});
 
   @override
   State<PhotosView> createState() => _PhotosViewState();
@@ -89,15 +89,15 @@ class _PhotosViewState extends State<PhotosView> {
                   mainAxisSpacing: 6,
                   crossAxisCount: 3,
                   childAspectRatio: (itemWidth / itemHeight),
-                  children: widget.urls.map((e) {
+                  children: widget.models.map((e) {
                     return GestureDetector(
-                      onTap: () => _showCustomDialog(e),
+                      onTap: () => _showCustomDialog(e.url),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(AppValues.kRadius),
                           image: DecorationImage(
-                              image: CachedNetworkImageProvider(e),
+                              image: CachedNetworkImageProvider(e.url),
                               fit: BoxFit.cover),
                         ),
                         child: Align(
