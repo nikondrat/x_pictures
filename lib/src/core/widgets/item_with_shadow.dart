@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ItemWithShadow extends StatelessWidget {
-  final ItemModel model;
-  final Function(ItemModel model) onTap;
+  final PackModel model;
+  final Function(PackModel model) onTap;
   const ItemWithShadow({super.key, required this.model, required this.onTap});
 
   @override
@@ -15,7 +15,9 @@ class ItemWithShadow extends StatelessWidget {
     final ColorScheme colorScheme = themeData.colorScheme;
 
     return GestureDetector(
-      onTap: () => onTap(model),
+      onTap: () {
+        onTap(model);
+      },
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -28,13 +30,22 @@ class ItemWithShadow extends StatelessWidget {
                   end: Alignment.topCenter,
                 ).createShader(bounds);
               },
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(AppValues.kRadius),
-                child: CachedNetworkImage(
-                  imageUrl: model.url,
-                  fit: BoxFit.cover,
-                ),
-              )),
+              child: model.images.isNotEmpty
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(AppValues.kRadius),
+                      child: CachedNetworkImage(
+                        imageUrl: model.images[0].url,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) {
+                          return Center(
+                            child: Text('$error'),
+                          );
+                        },
+                      ),
+                    )
+                  : const Center(
+                      child: Icon(Icons.hourglass_empty),
+                    )),
           Align(
               alignment: Alignment.bottomLeft,
               child: Padding(
@@ -51,8 +62,8 @@ class ItemWithShadow extends StatelessWidget {
                       style: textTheme.titleMedium!
                           .copyWith(color: colorScheme.onSurface),
                     ),
-                    if (model.subTitle != null)
-                      AutoSizeText(model.subTitle!,
+                    if (model.images.isNotEmpty)
+                      AutoSizeText('${model.length} ${t.profile.photos}',
                           style: textTheme.titleSmall!
                               .copyWith(color: AppColors.kOutlineColor)),
                   ],

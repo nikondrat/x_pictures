@@ -4,10 +4,14 @@ import 'package:gap/gap.dart';
 import 'package:x_pictures/src/data.dart';
 
 class BackgroundSection extends StatelessWidget {
-  final BackgroundSectionModel section;
-  final Function(ItemModel model) onTap;
+  final String title;
+  final List<PackModel> packs;
+  final Function(PackModel model) onTap;
   const BackgroundSection(
-      {super.key, required this.section, required this.onTap});
+      {super.key,
+      required this.title,
+      required this.packs,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class BackgroundSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AutoSizeText(
-              section.title,
+              title,
               style: textTheme.titleLarge,
             ),
             Padding(
@@ -32,8 +36,8 @@ class BackgroundSection extends StatelessWidget {
                   onPressed: () {
                     router.goNamed(AppViews.allStyles, extra: {
                       'title': t.backgrounds.title,
-                      'items': section.items,
-                      'onTap': (ItemModel model) {
+                      'items': packs,
+                      'onTap': (PackModel model) {
                         onTap(model);
                       }
                     });
@@ -46,9 +50,11 @@ class BackgroundSection extends StatelessWidget {
         SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: section.items
+              children: packs
                   .map((e) => BackgroundItem(
-                      model: e, cardHeight: section.cardHeight, onTap: onTap))
+                      model: e,
+                      //  cardHeight: section.cardHeight,
+                      onTap: onTap))
                   .toList(),
             ))
       ],

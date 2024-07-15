@@ -17,3 +17,4 @@ export 'shader_image.dart';
 export 'style_btm.dart';
 export 'style_view_body.dart';
 export 'search_bar.dart';
+export 'home_body.dart';

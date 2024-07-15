@@ -3,13 +3,13 @@ import 'package:x_pictures/src/data.dart';
 
 class AllView extends StatelessWidget {
   final String title;
-  final List<ItemModel> items;
-  final Function(ItemModel model) onTap;
+  final List<PackModel> packs;
+  final Function(PackModel model) onTap;
   const AllView(
       {super.key,
       required this.title,
       required this.onTap,
-      required this.items});
+      required this.packs});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class AllView extends StatelessWidget {
               childAspectRatio: .7,
               mainAxisSpacing: AppValues.kPadding,
               crossAxisSpacing: AppValues.kPadding),
-          children: items
+          children: packs
               .map((e) => ItemWithShadow(model: e, onTap: (e) => onTap(e)))
               .toList(),
         ),

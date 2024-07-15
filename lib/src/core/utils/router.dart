@@ -117,7 +117,7 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
               return AllView(
                 title: title,
                 onTap: onTap,
-                items: items,
+                packs: items,
               );
             }),
         GoRoute(
@@ -135,7 +135,7 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
             path: _Paths.officePageRoute,
             builder: (context, state) {
               final Map? data = state.extra as Map?;
-              final StyleModel model = data?['model'];
+              final PackModel model = data?['model'];
               return StyleView(
                 model: model,
               );

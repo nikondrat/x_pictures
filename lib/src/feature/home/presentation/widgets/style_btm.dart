@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:x_pictures/src/data.dart';
 
 class StyleBottomWidget extends StatelessWidget {
-  final StyleModel model;
+  final PackModel model;
   const StyleBottomWidget({super.key, required this.model});
 
   @override
@@ -18,13 +18,15 @@ class StyleBottomWidget extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          ImageWithShader(url: model.url),
+          model.images.isNotEmpty
+              ? ImageWithShader(url: model.images[0].url)
+              : const Icon(Icons.hourglass_empty),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               AutoSizeText(model.title, style: textTheme.headlineLarge),
               const Gap(AppValues.kPadding / 2),
-              AutoSizeText(model.subTitle!,
+              AutoSizeText('${model.length} ${t.profile.photos}',
                   style: textTheme.bodyLarge!
                       .copyWith(color: AppColors.kOutlineColor)),
               const Gap(AppValues.kPadding * 3)

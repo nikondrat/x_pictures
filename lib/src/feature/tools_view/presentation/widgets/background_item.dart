@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:x_pictures/src/data.dart';
 
 class BackgroundItem extends StatelessWidget {
-  final ItemModel model;
+  final PackModel model;
   final double? cardHeight;
-  final Function(ItemModel model) onTap;
+  final Function(PackModel model) onTap;
   const BackgroundItem(
-      {super.key,
-      required this.model,
-      required this.cardHeight,
-      required this.onTap});
+      {super.key, required this.model, this.cardHeight, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

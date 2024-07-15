@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class HomeView extends StatelessWidget {
@@ -167,41 +168,36 @@ class HomeView extends StatelessWidget {
           ]),
     ];
 
-    return Scaffold(
-      body: AppBody(
-        builder: (windowWidth, windowHeight, windowSize) {
-          return CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: AppBarHomeView(
-                  model: sections[0].items[1],
-                ),
-              ),
-              SliverPadding(
-                  padding: HorizontalSpacing.centered(windowWidth) +
-                      const EdgeInsets.only(top: AppValues.kPadding),
-                  sliver: SliverToBoxAdapter(
-                    child: SearchBarWidget(),
-                  )),
-              SliverPadding(
-                padding: HorizontalSpacing.centered(windowWidth) +
-                    const EdgeInsets.only(bottom: AppValues.kPadding),
-                sliver: SliverList.list(
-                    children: sections.map((e) {
-                  return BackgroundSection(
-                    section: e,
-                    onTap: (model) {
-                      router.goNamed(AppViews.officePageRoute, extra: {
-                        'model': model,
-                      });
-                    },
-                  );
-                }).toList()),
-              )
-            ],
+    return Provider(
+        create: (context) =>
+            PacksStore(restClient: context.read<Dependencies>().restClient),
+        builder: (context, _) {
+          final PacksStore store = Provider.of<PacksStore>(context);
+
+          return Scaffold(
+            body: AppBody(
+              builder: (windowWidth, windowHeight, windowSize) {
+                return CustomScrollView(
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: AppBarHomeView(
+                        model: sections[0].items[1],
+                      ),
+                    ),
+                    SliverPadding(
+                        padding: HorizontalSpacing.centered(windowWidth) +
+                            const EdgeInsets.only(top: AppValues.kPadding),
+                        sliver: SliverToBoxAdapter(
+                          child: SearchBarWidget(),
+                        )),
+                    SliverToBoxAdapter(
+                      child: HomeBody(store: store, windowWidth: windowWidth),
+                    )
+                  ],
+                );
+              },
+            ),
           );
-        },
-      ),
-    );
+        });
   }
 }

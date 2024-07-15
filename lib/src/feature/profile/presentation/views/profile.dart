@@ -203,60 +203,52 @@ class _ProfileViewState extends State<ProfileView>
   Widget build(BuildContext context) {
     return Provider(
         create: (context) =>
-            PacksStore(restClient: context.read<Dependencies>().restClient),
-        builder: (context, _) {
-          final PacksStore store = Provider.of<PacksStore>(context);
+            JobsStore(restClient: context.read<Dependencies>().restClient),
+        builder: (context, child) {
+          final JobsStore jobsStore = context.read<JobsStore>();
+
           return Scaffold(
             body: AppBody(
-              builder: (windowWidth, windowHeight, windowSize) {
-                return SafeArea(
-                    child: Padding(
-                        padding: HorizontalSpacing.centered(windowWidth) +
-                            const EdgeInsets.symmetric(
-                                vertical: AppValues.kPadding),
-                        child: Column(
-                          children: [
-                            ProfileInfoWidget(
-                              name: 'Kary Filatova',
-                              email: 'filyapel@yandex.ru',
-                              url:
-                                  'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
-                              onTap: () =>
-                                  router.goNamed(AppViews.settingsView),
-                            ),
-                            const Gap(AppValues.kPadding),
-                            Container(
-                                decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(AppValues.kRadius)),
-                                    color:
-                                        AppColors.kSecondaryAdditionallyColor),
-                                child: Row(
-                                    children: tabs.mapIndexed((index, title) {
-                                  return Expanded(
-                                      child: CustomTabWidget(
-                                          isSelected: index == controller.index,
-                                          title: title,
-                                          onTap: () {
-                                            setState(() {
-                                              controller.animateTo(index);
-                                            });
-                                          }));
-                                }).toList())),
-                            Expanded(
-                              child:
-                                  TabBarView(controller: controller, children: [
-                                PackView(
-                                  store: store,
-                                  onBannerTap: widget.goHome,
-                                ),
-                                MediaView(onBannerTap: widget.goGenerate),
-                                MediaView(onBannerTap: widget.goGenerate),
-                              ]),
-                            ),
-                          ],
-                        )));
-              },
+              builder: (windowWidth, windowHeight, windowSize) => SafeArea(
+                  child: Padding(
+                      padding: HorizontalSpacing.centered(windowWidth) +
+                          const EdgeInsets.symmetric(
+                              vertical: AppValues.kPadding),
+                      child: Column(
+                        children: [
+                          ProfileInfoWidget(
+                            name: 'Kary Filatova',
+                            email: 'filyapel@yandex.ru',
+                            url:
+                                'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+                            onTap: () => router.goNamed(AppViews.settingsView),
+                          ),
+                          const Gap(AppValues.kPadding),
+                          Container(
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(AppValues.kRadius)),
+                                  color: AppColors.kSecondaryAdditionallyColor),
+                              child: Row(
+                                  children: tabs.mapIndexed((index, title) {
+                                return Expanded(
+                                    child: CustomTabWidget(
+                                        isSelected: index == controller.index,
+                                        title: title,
+                                        onTap: () {
+                                          setState(() {
+                                            controller.animateTo(index);
+                                          });
+                                        }));
+                              }).toList())),
+                          Expanded(
+                              child: ProfileBody(
+                                  jobsStore: jobsStore,
+                                  controller: controller,
+                                  goHome: widget.goHome,
+                                  goGenerate: widget.goGenerate)),
+                        ],
+                      ))),
             ),
           );
         });

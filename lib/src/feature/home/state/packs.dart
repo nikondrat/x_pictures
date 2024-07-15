@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:mobx/mobx.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -18,6 +19,14 @@ abstract class _PacksStore with Store {
   @observable
   ObservableFuture<List<PackModel>> fetchPacksFuture = emptyResponse;
 
+  @observable
+  ObservableList<PackModel> packs = ObservableList();
+
+  @computed
+  Map<String, List<PackModel>> get groupedPacks {
+    return groupBy(packs, (PackModel pack) => pack.category);
+  }
+
   @action
   Future<List<PackModel>> fetchPacks() async {
     final future = restClient.get(Endpoint().packs).then((v) {
@@ -26,7 +35,7 @@ abstract class _PacksStore with Store {
       return body.packs;
     });
     fetchPacksFuture = ObservableFuture(future);
-    return await future;
+    return packs = ObservableList.of(await future);
   }
 
   @computed

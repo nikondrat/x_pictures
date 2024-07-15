@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:x_pictures/src/data.dart';
 
 class StyleView extends StatelessWidget {
-  final StyleModel model;
+  final PackModel model;
   const StyleView({super.key, required this.model});
 
   @override
@@ -66,14 +66,16 @@ class StyleView extends StatelessWidget {
                       height: 80,
                       child: GradientButton(
                           onPressed: () {
-                            if (model.onTap != null) {
-                              model.onTap!(model);
-                            } else {
-                              router.goNamed(AppViews.disclaimarPageRoute,
-                                  extra: {'model': model});
-                            }
+                            // if (model.onTap != null) {
+                            //   model.onTap!(model);
+                            // } else {
+                            //   router.goNamed(AppViews.disclaimarPageRoute,
+                            //       extra: {'model': model});
+                            // }
                           },
-                          text: model.actionTitle ?? t.homeView.get_pack)),
+                          text:
+                              //  model.actionTitle ??
+                              t.homeView.get_pack)),
                 ),
               ),
             ],
