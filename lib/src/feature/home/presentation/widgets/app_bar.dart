@@ -6,7 +6,7 @@ import 'package:x_pictures/src/core/constant/icons.dart';
 import 'package:x_pictures/src/data.dart';
 
 class AppBarHomeView extends StatelessWidget {
-  final ItemModel model;
+  final PackModel model;
   const AppBarHomeView({super.key, required this.model});
 
   @override

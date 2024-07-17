@@ -4,9 +4,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:x_pictures/src/data.dart';
 
 class ImageItemUploadingPhotosPage extends StatelessWidget {
-  final File imageFile;
+  final XFile imageFile;
 
   const ImageItemUploadingPhotosPage({
     super.key,
@@ -15,17 +18,19 @@ class ImageItemUploadingPhotosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LoraStore loraStore = Provider.of<LoraStore>(context);
+
     return Container(
       alignment: Alignment.topRight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.r),
         image: DecorationImage(
-          image: FileImage(imageFile),
+          image: FileImage(File(imageFile.path)),
           fit: BoxFit.cover,
         ),
       ),
       child: GestureDetector(
-        // onTap: ,
+        onTap: () => loraStore.removePhoto(imageFile),
         child: Container(
           margin: EdgeInsets.all(5.r),
           decoration: BoxDecoration(

@@ -6,7 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:x_pictures/src/data.dart'; // Import CachedNetworkImage package
 
 class EnhanceBody extends StatefulWidget {
-  final StyleModel model;
+  final PackModel model;
   const EnhanceBody({super.key, required this.model});
 
   @override
@@ -27,7 +27,7 @@ class _EnhanceBodyState extends State<EnhanceBody> {
       child: Stack(
         children: [
           CachedNetworkImage(
-            imageUrl: widget.model.url,
+            imageUrl: widget.model.images[0].url,
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,

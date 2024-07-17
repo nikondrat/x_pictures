@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -12,6 +13,8 @@ class SettingsView extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
+
+    final UserStore userStore = Provider.of<UserStore>(context);
 
     final bool isAndroid = Platform.isAndroid;
     // final bool isAndroid = false;
@@ -40,7 +43,8 @@ class SettingsView extends StatelessWidget {
               tiles: <SettingsTile>[
                 SettingsTile.navigation(
                   title: Text(
-                    '***@yandex.ru',
+                    '***${userStore.email.split('@').last}',
+                    // '***@yandex.ru',
                     style: textTheme.bodyLarge,
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
@@ -51,6 +55,9 @@ class SettingsView extends StatelessWidget {
                     style:
                         textTheme.bodyLarge!.copyWith(color: colorScheme.error),
                   ),
+                  onPressed: (context) {
+                    userStore.logout();
+                  },
                   trailing: const SizedBox.shrink(),
                 ),
                 if (isAndroid) SettingsTile(title: const Divider())
@@ -65,7 +72,8 @@ class SettingsView extends StatelessWidget {
                 tiles: [
                   SettingsTile.navigation(
                     title: Text(
-                      t.settings.trial,
+                      userStore.user.typeVerbose,
+                      // t.settings.trial,
                       style: textTheme.bodyLarge,
                     ),
                     trailing: const SizedBox.shrink(),
@@ -168,6 +176,9 @@ class SettingsView extends StatelessWidget {
                       style: textTheme.bodyLarge!
                           .copyWith(color: colorScheme.error),
                     ),
+                    onPressed: (context) {
+                      userStore.deleteAccount();
+                    },
                     trailing: const SizedBox.shrink(),
                   ),
                   const _TextSection(),

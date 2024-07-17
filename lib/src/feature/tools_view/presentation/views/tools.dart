@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ToolsView extends StatelessWidget {
-  final StyleModel model;
+  final PackModel model;
   final bool isRemoveBackground;
   const ToolsView(
       {super.key, required this.model, this.isRemoveBackground = true});

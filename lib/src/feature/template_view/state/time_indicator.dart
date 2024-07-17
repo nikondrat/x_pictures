@@ -10,7 +10,7 @@ class TimeIndicator extends ChangeNotifier {
   int get getCurrentTimeRemained => _start;
   double get currentPercent => _percent;
 
-  void startTimer(StyleModel model) {
+  void startTimer(PackModel model) {
     const int oneSec = 1;
     Timer.periodic(const Duration(seconds: oneSec), (Timer timer) {
       if (_start == 0) {

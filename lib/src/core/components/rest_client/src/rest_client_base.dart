@@ -34,16 +34,26 @@ abstract base class RestClientBase implements RestClient {
   @protected
   @visibleForTesting
   Uri buildUri({required String path, Map<String, Object?>? queryParams}) {
-    final finalPath = p.join(baseUri.path, path);
+    // Ensure the base path ends with a slash
+    final basePath =
+        baseUri.path.endsWith('/') ? baseUri.path : '${baseUri.path}/';
+
+    // Ensure the path provided ends with a slash
+    final finalPath = p.join(basePath, path.endsWith('/') ? path : '$path/');
+
+    // Ensure query parameters are handled correctly
+    final completeQueryParams = (queryParams != null && queryParams.isNotEmpty)
+        ? {
+            ...baseUri.queryParameters,
+            ...queryParams,
+          }
+        : baseUri.queryParameters.isNotEmpty
+            ? baseUri.queryParameters
+            : null;
+
     return baseUri.replace(
       path: finalPath,
-      queryParameters:
-          (queryParams != null && baseUri.queryParameters.isNotEmpty)
-              ? {
-                  ...baseUri.queryParameters,
-                  ...queryParams,
-                }
-              : null,
+      queryParameters: completeQueryParams,
     );
   }
 
@@ -57,6 +67,7 @@ abstract base class RestClientBase implements RestClient {
     if (body == null) return null;
     try {
       Map<String, Object?> result;
+
       if (body is String) {
         if (body.length > 1000) {
           result = await Isolate.run(

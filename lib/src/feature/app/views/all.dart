@@ -27,7 +27,11 @@ class AllView extends StatelessWidget {
               mainAxisSpacing: AppValues.kPadding,
               crossAxisSpacing: AppValues.kPadding),
           children: packs
-              .map((e) => ItemWithShadow(model: e, onTap: (e) => onTap(e)))
+              .map((e) => GestureDetector(
+                  onTap: () {
+                    onTap(e);
+                  },
+                  child: ItemWithShadow(model: e)))
               .toList(),
         ),
       ),

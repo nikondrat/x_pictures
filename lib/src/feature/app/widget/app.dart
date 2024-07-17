@@ -17,8 +17,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) => DefaultAssetBundle(
         bundle: SentryAssetBundle(),
-        child: Provider(
-          create: (context) => result.dependencies,
+        child: MultiProvider(
+          providers: [
+            Provider(create: (context) => result.dependencies),
+            Provider(
+                create: (context) => UserStore(
+                    tokenStorage: context.read<Dependencies>().tokenStorage,
+                    restClient: context.read<Dependencies>().restClient)),
+          ],
           child: TranslationProvider(child: const MaterialContext()),
         ),
       );

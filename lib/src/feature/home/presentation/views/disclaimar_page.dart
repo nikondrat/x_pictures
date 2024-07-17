@@ -5,7 +5,7 @@ import 'package:x_pictures/src/core/constant/images.dart';
 import 'package:x_pictures/src/data.dart';
 
 class DisclaimarPage extends StatelessWidget {
-  final StyleModel model;
+  final PackModel model;
   const DisclaimarPage({super.key, required this.model});
 
   @override

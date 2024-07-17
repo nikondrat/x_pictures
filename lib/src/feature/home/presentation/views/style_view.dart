@@ -69,8 +69,8 @@ class StyleView extends StatelessWidget {
                             // if (model.onTap != null) {
                             //   model.onTap!(model);
                             // } else {
-                            //   router.goNamed(AppViews.disclaimarPageRoute,
-                            //       extra: {'model': model});
+                            router.goNamed(AppViews.disclaimarPageRoute,
+                                extra: {'model': model});
                             // }
                           },
                           text:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -12,6 +13,14 @@ class InitView extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final ColorScheme colorScheme = themeData.colorScheme;
+
+    final TokenStorage tokenStorage = context.read<Dependencies>().tokenStorage;
+
+    tokenStorage.loadTokenPair().then((value) {
+      if (value != null) {
+        router.goNamed(AppViews.homePageRoute);
+      }
+    });
 
     return Scaffold(body: SafeArea(
       child: AppBody(

@@ -14,26 +14,12 @@ abstract class _JobsStore with Store {
 
   _JobsStore({required this.restClient});
 
-  JobModel body = JobModel(
-    id: 0,
-    lora: LoraModel(
-        id: '',
-        status: Status.completed,
-        estimatedTime: '',
-        estimatedTimestamp: '',
-        trainingTimeSeconds: 1,
-        images: [],
-        cost: '',
-        createdDate: DateTime.now()),
-    pack:
-        PackModel(id: 1, title: '', description: '', category: '', images: []),
-    images: [],
-    timeSpent: 0,
-    estimatedTime: 0,
-    estimatedTimestamp: 0,
-    status: Status.completed,
-    cost: '',
-    createdDate: DateTime.now(),
+  JobsBody body = JobsBody(
+    count: 0,
+    total: 0,
+    nextUrl: '',
+    previousUrl: '',
+    jobs: [],
   );
 
   @observable
@@ -45,16 +31,13 @@ abstract class _JobsStore with Store {
   @action
   Future<List<JobModel>> fetchJobs() async {
     final future = restClient.get(Endpoint().jobs).then((v) {
-      body = JobModel.fromJson(v!);
+      body = JobsBody.fromJson(v!);
 
-      log('$v');
-
-      return body;
+      return body.jobs;
     });
-    // fetchJobsFuture = ObservableFuture(future);
-    // return jobs = ObservableList.of(await future);
+    fetchJobsFuture = ObservableFuture(future);
 
-    return [await future];
+    return jobs = ObservableList.of(await future);
   }
 
   @computed

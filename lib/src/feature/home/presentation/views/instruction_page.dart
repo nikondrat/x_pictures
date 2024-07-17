@@ -5,7 +5,7 @@ import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/data.dart';
 
 class InstructionPage extends StatelessWidget {
-  final StyleModel model;
+  final PackModel model;
   const InstructionPage({super.key, required this.model});
 
   @override

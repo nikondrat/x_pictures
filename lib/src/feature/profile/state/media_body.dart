@@ -92,6 +92,7 @@ abstract class _MediaBodyStore with Store {
         url:
             'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg'),
   ]);
+
   @computed
   Map<DateTime, List<MediaModel>> get groupedItems {
     Map<DateTime, List<MediaModel>> grouped = <DateTime, List<MediaModel>>{};

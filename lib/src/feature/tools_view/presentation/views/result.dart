@@ -7,7 +7,7 @@ import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ImageWithBackgroundResultView extends StatelessWidget {
-  final StyleModel model;
+  final PackModel model;
   const ImageWithBackgroundResultView({super.key, required this.model});
 
   @override
@@ -57,7 +57,7 @@ class ImageWithBackgroundResultView extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.circular(AppValues.kRadius),
                               child: CachedNetworkImage(
-                                imageUrl: model.url,
+                                imageUrl: model.images[0].url,
                                 fit: BoxFit.cover,
                               ),
                             ),

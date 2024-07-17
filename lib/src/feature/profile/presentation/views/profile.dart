@@ -201,6 +201,8 @@ class _ProfileViewState extends State<ProfileView>
 
   @override
   Widget build(BuildContext context) {
+    final UserStore userStore = context.read<UserStore>();
+
     return Provider(
         create: (context) =>
             JobsStore(restClient: context.read<Dependencies>().restClient),
@@ -217,10 +219,10 @@ class _ProfileViewState extends State<ProfileView>
                       child: Column(
                         children: [
                           ProfileInfoWidget(
-                            name: 'Kary Filatova',
-                            email: 'filyapel@yandex.ru',
-                            url:
-                                'https://sleeklens.com/wp-content/uploads/2020/07/ultimate-beauty.jpg',
+                            name: userStore.username ?? 'Nikita',
+                            email: userStore.email ?? 'filyapel@yandex.ru',
+                            url: userStore.imageUrl ??
+                                'https://catherineasquithgallery.com/uploads/posts/2021-02/1614511031_164-p-na-belom-fone-chelovek-185.jpg',
                             onTap: () => router.goNamed(AppViews.settingsView),
                           ),
                           const Gap(AppValues.kPadding),

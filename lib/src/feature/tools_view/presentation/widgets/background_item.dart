@@ -10,10 +10,15 @@ class BackgroundItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: 160,
-        height: cardHeight ?? 240,
-        margin: const EdgeInsets.only(right: AppValues.kPadding),
-        child: ItemWithShadow(model: model, onTap: onTap));
+    return GestureDetector(
+      onDoubleTap: () {
+        onTap(model);
+      },
+      child: Container(
+          width: 160,
+          height: cardHeight ?? 240,
+          margin: const EdgeInsets.only(right: AppValues.kPadding),
+          child: ItemWithShadow(model: model)),
+    );
   }
 }

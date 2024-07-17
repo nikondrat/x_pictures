@@ -8,3 +8,4 @@ export 'select_mode.dart';
 export 'result_item.dart';
 export 'bottom_btns.dart';
 export 'content.dart';
+export 'generate_body.dart';

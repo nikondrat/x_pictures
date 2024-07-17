@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -8,35 +7,33 @@ class GenerateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-        create: (_) => GenerateViewStore(),
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(t.generateView.title),
+    return MultiProvider(
+        providers: [
+          Provider<GenerateViewStore>(
+            create: (_) => GenerateViewStore(),
+            dispose: (context, value) => value.dispose(),
           ),
-          body: AppBody(
-            builder: (windowWidth, windowHeight, windowSize) {
-              return SingleChildScrollView(
-                  padding: HorizontalSpacing.centered(windowWidth),
-                  child: Column(
-                    children: [
-                      const Gap(AppValues.kPadding),
-                      const SelectModeWidget(),
-                      const Gap(AppValues.kPadding),
-                      const GenerateStyles(),
-                      const Gap(AppValues.kPadding),
-                      const GenerateTags(),
-                      const Gap(AppValues.kPadding),
-                      GenerateFormats(
-                        windowHeight: windowHeight,
-                      ),
-                      const Gap(AppValues.kPadding),
-                      const AddDescription(),
-                      const Gap(AppValues.kPadding),
-                    ],
-                  ));
-            },
-          ),
-        ));
+          Provider<GenerateStore>(
+              create: (c) => GenerateStore(
+                    restClient: c.read<Dependencies>().restClient,
+                    viewStore: c.read<GenerateViewStore>(),
+                  ))
+        ],
+        builder: (context, child) {
+          final store = context.read<GenerateStore>();
+
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(t.generateView.title),
+            ),
+            body: AppBody(
+              builder: (windowWidth, windowHeight, windowSize) =>
+                  SingleChildScrollView(
+                padding: HorizontalSpacing.centered(windowWidth),
+                child: GenerateBody(store: store, windowHeight: windowHeight),
+              ),
+            ),
+          );
+        });
   }
 }

@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class MasterpieceView extends StatefulWidget {
-  final StyleModel model;
+  final PackModel model;
   const MasterpieceView({super.key, required this.model});
 
   @override

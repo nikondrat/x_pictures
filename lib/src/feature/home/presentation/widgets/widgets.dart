@@ -18,3 +18,4 @@ export 'style_btm.dart';
 export 'style_view_body.dart';
 export 'search_bar.dart';
 export 'home_body.dart';
+export 'uploading_body.dart';

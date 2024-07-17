@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:x_pictures/src/data.dart';
 
 class EnhanceView extends StatelessWidget {
-  final StyleModel model;
+  final PackModel model;
   const EnhanceView({super.key, required this.model});
 
   @override

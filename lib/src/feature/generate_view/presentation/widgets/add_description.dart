@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class AddDescription extends StatelessWidget {
@@ -12,6 +13,9 @@ class AddDescription extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
 
+    final GenerateViewStore store = context.read<GenerateViewStore>();
+    final GenerateStore genStore = context.read<GenerateStore>();
+
     return TitleWithBody(
         action: const ResetButton(),
         title: t.generateView.add_description,
@@ -19,6 +23,7 @@ class AddDescription extends StatelessWidget {
           children: [
             TextField(
               maxLines: 5,
+              controller: store.controller,
               decoration: InputDecoration(
                   filled: false,
                   hintText: t.generateView.input_hint,
@@ -62,7 +67,8 @@ class AddDescription extends StatelessWidget {
             const Gap(AppValues.kPadding),
             GradientButton(
                 onPressed: () {
-                  router.goNamed(AppViews.resultView);
+                  genStore.generate();
+                  // router.goNamed(AppViews.resultView);
                 },
                 text: t.common.create)
           ],

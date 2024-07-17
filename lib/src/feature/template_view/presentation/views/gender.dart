@@ -6,7 +6,7 @@ import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/feature/template_view/enum/enum.dart';
 
 class GenderView extends StatelessWidget {
-  final StyleModel model;
+  final PackModel model;
   const GenderView({super.key, required this.model});
 
   @override

@@ -6,7 +6,7 @@ import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/feature/template_view/presentation/widgets/cover_image_plan_page.dart';
 
 class PlanView extends StatelessWidget {
-  final StyleModel model;
+  final PackModel model;
   const PlanView({super.key, required this.model});
 
   @override

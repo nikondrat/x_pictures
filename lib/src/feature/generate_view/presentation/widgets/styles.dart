@@ -11,28 +11,36 @@ class GenerateStyles extends StatelessWidget {
   Widget build(BuildContext context) {
     final GenerateViewStore store = Provider.of<GenerateViewStore>(context);
 
+    final GenerateStore genStore = Provider.of<GenerateStore>(context);
+
     return TitleWithBody(
       title: t.generateView.style,
       action: const ResetButton(),
-      child: GridView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: 8,
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            mainAxisSpacing: AppValues.kPadding / 2,
-            crossAxisSpacing: AppValues.kPadding / 2,
-            maxCrossAxisExtent: 100),
-        itemBuilder: (context, index) {
-          return Observer(
-            builder: (_) => GestureDetector(
-                onTap: () {
-                  store.setSelectedStyle(index);
-                },
-                child: _StyleWidget(
-                  isSelected: store.selectedStyle == index,
-                )),
-          );
-        },
+      child: LoadingWidget(
+        future: genStore.data,
+        builder: (v) => GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: genStore.sdModels.length,
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              mainAxisSpacing: AppValues.kPadding / 2,
+              crossAxisSpacing: AppValues.kPadding / 2,
+              maxCrossAxisExtent: 100),
+          itemBuilder: (context, index) {
+            final model = genStore.sdModels[index];
+
+            return Observer(
+              builder: (_) => GestureDetector(
+                  onTap: () {
+                    store.setSelectedStyle(model.id);
+                  },
+                  child: _StyleWidget(
+                    isSelected: store.selectedStyle == model.id,
+                    model: model,
+                  )),
+            );
+          },
+        ),
       ),
     );
   }
@@ -40,7 +48,8 @@ class GenerateStyles extends StatelessWidget {
 
 class _StyleWidget extends StatelessWidget {
   final bool isSelected;
-  const _StyleWidget({required this.isSelected});
+  final SdModel model;
+  const _StyleWidget({required this.isSelected, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +62,9 @@ class _StyleWidget extends StatelessWidget {
         border: isSelected
             ? Border.all(color: colorScheme.primary, width: 4)
             : null,
-        image: const DecorationImage(
+        image: DecorationImage(
             fit: BoxFit.cover,
-            image: CachedNetworkImageProvider(
+            image: CachedNetworkImageProvider(model.imageUrl ??
                 'https://i.artfile.ru/2880x1800_957873_[www.ArtFile.ru].jpg')),
       ),
     );

@@ -36,7 +36,7 @@ abstract class _AuthStore with Store {
       final String? token = value?['token'] as String?;
 
       if (token != null) {
-        tokenStorage.saveTokenPair(Future.value(token));
+        tokenStorage.saveTokenPair(token);
         router.goNamed(AppViews.verify);
       }
     });

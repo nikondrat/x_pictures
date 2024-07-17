@@ -3,9 +3,15 @@ import 'package:x_pictures/src/data.dart';
 
 class HomeBody extends StatefulWidget {
   final PacksStore store;
+  final UserStore userStore;
+
   final double windowWidth;
 
-  const HomeBody({super.key, required this.store, required this.windowWidth});
+  const HomeBody(
+      {super.key,
+      required this.store,
+      required this.userStore,
+      required this.windowWidth});
 
   @override
   State<HomeBody> createState() => _HomeBodyState();
@@ -15,6 +21,7 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   void initState() {
     widget.store.fetchPacks();
+    widget.userStore.getUserData();
     super.initState();
   }
 
@@ -26,20 +33,35 @@ class _HomeBodyState extends State<HomeBody> {
           // final List<PackModel> packs = v;
           final Map<String, List<PackModel>> packs = widget.store.groupedPacks;
 
-          return Padding(
-              padding: HorizontalSpacing.centered(widget.windowWidth) +
-                  const EdgeInsets.only(bottom: AppValues.kPadding),
-              child: Column(
-                  children: packs.entries.map((e) {
-                return BackgroundSection(
-                    title: e.key,
-                    packs: e.value,
-                    onTap: (model) {
-                      router.goNamed(AppViews.officePageRoute, extra: {
-                        'model': model,
-                      });
-                    });
-              }).toList()));
+          return CustomScrollView(slivers: [
+            SliverToBoxAdapter(
+              child: AppBarHomeView(
+                // model: sections[0].items[1],
+                model: packs.values.first.first,
+              ),
+            ),
+            SliverPadding(
+                padding: HorizontalSpacing.centered(widget.windowWidth) +
+                    const EdgeInsets.only(top: AppValues.kPadding),
+                sliver: SliverToBoxAdapter(
+                  child: SearchBarWidget(),
+                )),
+            SliverToBoxAdapter(
+                child: Padding(
+                    padding: HorizontalSpacing.centered(widget.windowWidth) +
+                        const EdgeInsets.only(bottom: AppValues.kPadding),
+                    child: Column(
+                        children: packs.entries.map((e) {
+                      return BackgroundSection(
+                          title: e.key,
+                          packs: e.value,
+                          onTap: (model) {
+                            router.goNamed(AppViews.officePageRoute, extra: {
+                              'model': model,
+                            });
+                          });
+                    }).toList())))
+          ]);
         });
   }
 }

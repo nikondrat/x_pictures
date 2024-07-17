@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'view.g.dart';
@@ -29,5 +30,11 @@ abstract class _GenerateViewStore with Store {
   @action
   void setSelectedFormat(int index) {
     selectedFormat = index;
+  }
+
+  TextEditingController controller = TextEditingController();
+
+  void dispose() {
+    controller.dispose();
   }
 }
