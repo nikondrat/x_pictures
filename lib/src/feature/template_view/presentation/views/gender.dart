@@ -3,11 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
-import 'package:x_pictures/src/feature/template_view/enum/enum.dart';
 
 class GenderView extends StatelessWidget {
-  final PackModel model;
-  const GenderView({super.key, required this.model});
+  final PacksStore store;
+  const GenderView({super.key, required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -125,8 +124,10 @@ class GenderView extends StatelessWidget {
                                 height: 80,
                                 child: GradientButton(
                                     onPressed: () {
-                                      router.goNamed(AppViews.planView,
-                                          extra: {"model": model});
+                                      router
+                                          .pushNamed(AppViews.planView, extra: {
+                                        'store': store,
+                                      });
                                     },
                                     isEnabled: consumerValue.isSelected,
                                     text: t.common.continue_action)),

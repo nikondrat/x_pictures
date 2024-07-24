@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/core/constant/icons.dart';
 import 'package:x_pictures/src/data.dart';
@@ -15,6 +16,8 @@ class AppBarHomeView extends StatelessWidget {
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
+    final PacksStore store = context.read();
+
     return SizedBox(
       height: 400,
       child: Stack(
@@ -28,7 +31,7 @@ class AppBarHomeView extends StatelessWidget {
               alignment: Alignment.topCenter,
               child: Padding(
                 padding: const EdgeInsets.only(top: AppValues.kPadding * 2),
-                child: SvgPicture.asset(AppIcons.xIcon, width: 30),
+                child: SvgPicture.asset(AppIcons.xIcon, width: 28),
               ),
             ),
           ),
@@ -44,8 +47,8 @@ class AppBarHomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(AppValues.kPadding * 1.5),
                 child: SvgPicture.asset(
                   AppIcons.proIcon,
-                  width: 36,
-                  height: 36,
+                  width: 30,
+                  height: 30,
                 ),
               ),
             ),
@@ -64,13 +67,14 @@ class AppBarHomeView extends StatelessWidget {
             children: [
               AutoSizeText(
                 t.homeView.title,
-                style: textTheme.headlineMedium,
+                style: textTheme.headlineSmall,
               ),
               const Gap(AppValues.kPadding),
               GestureDetector(
                 onTap: () {
-                  router.goNamed(AppViews.officePageRoute, extra: {
-                    'model': model,
+                  store.setSelectedPack(model);
+                  router.pushNamed(AppViews.officePageRoute, extra: {
+                    'store': store,
                   });
                 },
                 child: Container(
@@ -81,7 +85,7 @@ class AppBarHomeView extends StatelessWidget {
                             BorderRadius.circular(AppValues.kRadius * 2)),
                     child: AutoSizeText(
                       t.homeView.try_office,
-                      style: textTheme.titleMedium!.copyWith(
+                      style: textTheme.titleSmall!.copyWith(
                           color: colorScheme.onSecondary,
                           fontWeight: FontWeight.bold),
                     )),

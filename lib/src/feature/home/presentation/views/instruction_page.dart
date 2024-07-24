@@ -5,8 +5,8 @@ import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/data.dart';
 
 class InstructionPage extends StatelessWidget {
-  final PackModel model;
-  const InstructionPage({super.key, required this.model});
+  final PacksStore store;
+  const InstructionPage({super.key, required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -145,9 +145,9 @@ class InstructionPage extends StatelessWidget {
                           height: 80,
                           child: GradientButton(
                               onPressed: () {
-                                router.goNamed(
+                                router.pushNamed(
                                     AppViews.uploadingPhotosPageRoute,
-                                    extra: {'model': model});
+                                    extra: {'store': store});
                               },
                               text: t.homeView.upload_photos)),
                     ),

@@ -3,12 +3,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ImageWithBackgroundResultView extends StatelessWidget {
-  final PackModel model;
-  const ImageWithBackgroundResultView({super.key, required this.model});
+  const ImageWithBackgroundResultView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,10 @@ class ImageWithBackgroundResultView extends StatelessWidget {
     final ColorScheme colorScheme = themeData.colorScheme;
     final bool isPro = false;
 
+    final PacksStore store = Provider.of<PacksStore>(context);
+
     return Scaffold(
-      appBar: AppBar(title: Text(model.title)),
+      appBar: AppBar(title: Text(store.selected!.title)),
       body: AppBody(
         builder: (windowWidth, windowHeight, windowSize) {
           return SingleChildScrollView(
@@ -57,7 +59,7 @@ class ImageWithBackgroundResultView extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.circular(AppValues.kRadius),
                               child: CachedNetworkImage(
-                                imageUrl: model.images[0].url,
+                                imageUrl: store.selected!.images[0].url,
                                 fit: BoxFit.cover,
                               ),
                             ),

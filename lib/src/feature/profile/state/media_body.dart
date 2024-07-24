@@ -130,6 +130,7 @@ abstract class _MediaBodyStore with Store {
     for (var item in items) {
       item.isSelected = false;
     }
+    isSelect = false;
   }
 
   @action

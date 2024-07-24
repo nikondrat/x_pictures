@@ -29,6 +29,26 @@ abstract class _MediaStore with Store {
       body = LorasBody.fromJson(v!);
 
       return body.loras;
+    }).catchError((v) {
+      // TODO only for dev
+      return LorasBody(
+        count: 0,
+        total: 0,
+        nextUrl: '',
+        previousUrl: '',
+        loras: [
+          LoraModel(
+            id: '',
+            status: Status.completed,
+            createdDate: DateTime.now(),
+            estimatedTime: '',
+            estimatedTimestamp: '',
+            trainingTimeSeconds: 0,
+            images: [],
+            cost: '',
+          )
+        ],
+      ).loras;
     });
     fetchLorasFuture = ObservableFuture(future);
     return await future;

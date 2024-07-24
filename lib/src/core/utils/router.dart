@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 abstract class AppViews {
@@ -128,9 +127,9 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
             path: _Paths.officePageRoute,
             builder: (context, state) {
               final Map? data = state.extra as Map?;
-              final PackModel model = data?['model'];
+              final store = data?['store'];
               return StyleView(
-                model: model,
+                store: store,
               );
             },
             routes: [
@@ -139,9 +138,9 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                 path: _Paths.enhanceView,
                 builder: (context, state) {
                   final Map? data = state.extra as Map?;
-                  final PackModel model = data?['model'];
+                  final store = data?['store'];
                   return EnhanceView(
-                    model: model,
+                    store: store,
                   );
                 },
               ),
@@ -150,11 +149,9 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                   path: _Paths.toolsView,
                   builder: (context, state) {
                     final Map? data = state.extra as Map?;
-                    final PackModel model = data?['model'];
                     final bool isRemoveBackground =
                         data?['isRemoveBackground'] ?? false;
                     return ToolsView(
-                      model: model,
                       isRemoveBackground: isRemoveBackground,
                     );
                   },
@@ -163,22 +160,14 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                         name: AppViews.backgroundsView,
                         path: _Paths.backgroundsView,
                         builder: (context, state) {
-                          final Map? data = state.extra as Map?;
-                          final PackModel model = data?['model'];
-                          return BackgroundsView(
-                            model: model,
-                          );
+                          return BackgroundsView();
                         },
                         routes: [
                           GoRoute(
                               name: AppViews.imageWithBackground,
                               path: _Paths.imageWithBackground,
                               builder: (_, state) {
-                                final Map map = state.extra as Map;
-                                final PackModel model =
-                                    map['model'] as PackModel;
-                                return ImageWithBackgroundResultView(
-                                    model: model);
+                                return ImageWithBackgroundResultView();
                               })
                         ])
                   ]),
@@ -187,10 +176,9 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                   path: _Paths.disclaimarPageRoute,
                   builder: (context, state) {
                     final Map? data = state.extra as Map?;
-                    final PackModel model = data?['model'];
-
+                    final store = data?['store'];
                     return DisclaimarPage(
-                      model: model,
+                      store: store,
                     );
                   },
                   routes: [
@@ -199,9 +187,9 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                         path: _Paths.instructionPageRoute,
                         builder: (context, state) {
                           final Map? data = state.extra as Map?;
-                          final PackModel model = data?['model'];
+                          final store = data?['store'];
                           return InstructionPage(
-                            model: model,
+                            store: store,
                           );
                         },
                         routes: [
@@ -210,9 +198,9 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                               path: _Paths.uploadingPhotosPageRoute,
                               builder: (context, state) {
                                 final Map? data = state.extra as Map?;
-                                final PackModel model = data?['model'];
+                                final store = data?['store'];
                                 return UploadingPhotosPage(
-                                  model: model,
+                                  store: store,
                                 );
                               },
                               routes: [
@@ -221,9 +209,9 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                     path: _Paths.genderView,
                                     builder: (context, state) {
                                       final Map? data = state.extra as Map?;
-                                      final PackModel model = data?['model'];
+                                      final store = data?['store'];
                                       return GenderView(
-                                        model: model,
+                                        store: store,
                                       );
                                     },
                                     routes: [
@@ -233,10 +221,9 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                           builder: (context, state) {
                                             final Map? data =
                                                 state.extra as Map?;
-                                            final PackModel model =
-                                                data?['model'];
+                                            final store = data?['store'];
                                             return PlanView(
-                                              model: model,
+                                              store: store,
                                             );
                                           },
                                           routes: [
@@ -246,10 +233,9 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                                 builder: (context, state) {
                                                   final Map? data =
                                                       state.extra as Map?;
-                                                  final PackModel model =
-                                                      data?['model'];
+                                                  final store = data?['store'];
                                                   return MasterpieceView(
-                                                    model: model,
+                                                    store: store,
                                                   );
                                                 },
                                                 routes: [

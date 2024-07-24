@@ -58,7 +58,8 @@ class StyleViewBody extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 );
-              }).toList())
+              }).toList()),
+        const Gap(AppValues.kPadding * 8),
       ],
     );
   }

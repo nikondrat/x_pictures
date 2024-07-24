@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({super.key});
+  final Function()? onTap;
+  const CustomBackButton({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,13 @@ class CustomBackButton extends StatelessWidget {
     final ColorScheme colorScheme = themeData.colorScheme;
 
     return IconButton(
-      onPressed: () => context.pop(),
+      onPressed: () {
+        if (onTap != null) {
+          onTap!();
+        } else {
+          context.pop();
+        }
+      },
       icon: Icon(Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
           size: 18, color: colorScheme.outline),
     );

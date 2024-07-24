@@ -56,6 +56,28 @@ abstract class _UserStore with Store {
   void getUserData() {
     restClient.get(Endpoint().getAccountInfo).then((value) {
       user = User.fromJson(value!);
+    }).catchError((error) {
+      // TODO only for development
+      user = User(
+        id: '1',
+        username: 'Ivan Ivanov',
+        email: 'nice@ya.ru',
+        imageUrl:
+            'https://n1s2.hsmedia.ru/fd/0b/da/fd0bdab6296e49f4aabe276afa93f3fb/5146x3425_0xc0a839a2_18538190921484896142.jpeg',
+        balance: 'balance',
+        profileType: ProfileType.basic,
+        typeVerbose: 'Basic',
+        isVerified: true,
+        subscription: Subscription(
+          id: '1',
+          title: 'title',
+          isActive: true,
+          startDate: DateTime.now(),
+          endDate: DateTime.now(),
+        ),
+        created: DateTime.now(),
+        updated: DateTime.now(),
+      );
     });
   }
 

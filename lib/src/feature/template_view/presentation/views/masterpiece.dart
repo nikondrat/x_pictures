@@ -7,8 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class MasterpieceView extends StatefulWidget {
-  final PackModel model;
-  const MasterpieceView({super.key, required this.model});
+  final PacksStore store;
+  const MasterpieceView({super.key, required this.store});
 
   @override
   State<MasterpieceView> createState() => _MasterpieceViewState();
@@ -49,7 +49,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                   ),
                   Consumer<TimeIndicator>(
                       builder: (context, consumerValue, child) {
-                    consumerValue.startTimer(widget.model);
+                    consumerValue.startTimer(widget.store.selected!);
                     if (consumerValue.getCurrentTimeRemained == 0) {}
                     return CircularPercentIndicator(
                       radius: 100.w,

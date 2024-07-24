@@ -8,13 +8,14 @@ import 'package:x_pictures/src/data.dart';
 part 'lora.g.dart';
 
 class LoraStore extends _LoraStore with _$LoraStore {
-  LoraStore({required super.restClient});
+  LoraStore({required super.restClient, required super.store});
 }
 
 abstract class _LoraStore with Store {
   final RestClient restClient;
+  final PacksStore store;
 
-  _LoraStore({required this.restClient});
+  _LoraStore({required this.restClient, required this.store});
 
   @observable
   ObservableList<XFile> photos = ObservableList();
@@ -64,6 +65,10 @@ abstract class _LoraStore with Store {
 
     final future = restClient.post(Endpoint().loras, body: body).then((v) {
       log('$v');
+    });
+
+    router.pushNamed(AppViews.genderView, extra: {
+      'store': store,
     });
   }
 }

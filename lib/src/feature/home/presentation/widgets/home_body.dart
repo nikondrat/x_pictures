@@ -56,8 +56,9 @@ class _HomeBodyState extends State<HomeBody> {
                           title: e.key,
                           packs: e.value,
                           onTap: (model) {
-                            router.goNamed(AppViews.officePageRoute, extra: {
-                              'model': model,
+                            widget.store.setSelectedPack(model);
+                            router.pushNamed(AppViews.officePageRoute, extra: {
+                              'store': widget.store,
                             });
                           });
                     }).toList())))

@@ -35,6 +35,52 @@ abstract class _GenerateStore with Store {
       viewStore.setSelectedStyle(body.currentSDModel ?? 0);
 
       return body;
+    }).catchError((v) {
+      // TODO: only for dev
+      return GenerateFilter(
+        cost: 0,
+        currentSDModel: 0,
+        tags: [
+          Tag(
+            id: 0,
+            title: 'Street casual',
+            categories: [],
+          ),
+          Tag(
+            id: 1,
+            title: 'Old anime',
+            categories: [],
+          ),
+          Tag(
+            id: 2,
+            title: 'Pop art',
+            categories: [],
+          ),
+          Tag(
+            id: 3,
+            title: 'Dark lighting',
+            categories: [],
+          ),
+        ],
+        sdModels: [
+          SdModel(
+            id: 0,
+            title: 'Stable Diffusion v1.4',
+            imageUrl:
+                'https://get.wallhere.com/photo/lake-mountain-top-sunset-landscape-1429015.jpg',
+            isLock: false,
+            availableIn: null,
+          ),
+          SdModel(
+              id: 1,
+              title: 'Stable Diffusion v1.5',
+              isLock: false,
+              availableIn: null,
+              imageUrl:
+                  'https://get.wallhere.com/photo/lake-mountain-top-sunset-landscape-1429015.jpg'),
+        ],
+        actions: [],
+      );
     });
     return data = ObservableFuture(future);
   }
@@ -48,6 +94,21 @@ abstract class _GenerateStore with Store {
       final GenerateResponse body = GenerateResponse.fromJson(v!);
 
       router.goNamed(AppViews.resultView, extra: {'response': body});
+    }).catchError((v) {
+      // TODO: only for dev
+      router.goNamed(AppViews.resultView, extra: {
+        'response': GenerateResponse(
+          status: Status.completed,
+          id: '',
+          content: '',
+          estimatedTime: 0,
+          estimatedTimestamp: DateTime.now(),
+          isBlur: false,
+          userBalance: 0,
+          updatedDate: DateTime.now(),
+          createdDate: DateTime.now(),
+        )
+      });
     });
   }
 

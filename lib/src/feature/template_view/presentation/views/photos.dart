@@ -37,7 +37,11 @@ class _PhotosViewState extends State<PhotosView> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: const CustomBackButton(),
+        leading: CustomBackButton(
+          onTap: () {
+            router.goNamed(AppViews.homePageRoute);
+          },
+        ),
         title: Text(t.photos.title),
         actions: <Widget>[
           TextButton(

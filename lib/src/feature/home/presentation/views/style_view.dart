@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:x_pictures/src/data.dart';
 
 class StyleView extends StatelessWidget {
-  final PackModel model;
-  const StyleView({super.key, required this.model});
+  final PacksStore store;
+  const StyleView({super.key, required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class StyleView extends StatelessWidget {
       appBar: AppBar(
         leading: const CustomBackButton(),
         title: Text(
-          model.title,
+          store.selected!.title,
           style: textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w700),
         ),
       ),
@@ -32,7 +32,7 @@ class StyleView extends StatelessWidget {
                     backgroundColor: colorScheme.surface,
                     leading: const SizedBox(),
                     flexibleSpace: FlexibleSpaceBar(
-                        background: StyleBottomWidget(model: model)),
+                        background: StyleBottomWidget(model: store.selected!)),
                     bottom: PreferredSize(
                       preferredSize: Size.zero,
                       child: Container(
@@ -51,7 +51,7 @@ class StyleView extends StatelessWidget {
                     child: Padding(
                       padding: HorizontalSpacing.centered(windowWidth),
                       child: StyleViewBody(
-                        model: model,
+                        model: store.selected!,
                       ),
                     ),
                   )
@@ -69,8 +69,8 @@ class StyleView extends StatelessWidget {
                             // if (model.onTap != null) {
                             //   model.onTap!(model);
                             // } else {
-                            router.goNamed(AppViews.disclaimarPageRoute,
-                                extra: {'model': model});
+                            router.pushNamed(AppViews.disclaimarPageRoute,
+                                extra: {'store': store});
                             // }
                           },
                           text:

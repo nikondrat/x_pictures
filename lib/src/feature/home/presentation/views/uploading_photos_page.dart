@@ -7,8 +7,8 @@ import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/data.dart';
 
 class UploadingPhotosPage extends StatefulWidget {
-  final PackModel model;
-  const UploadingPhotosPage({super.key, required this.model});
+  final PacksStore store;
+  const UploadingPhotosPage({super.key, required this.store});
 
   @override
   State<UploadingPhotosPage> createState() => _UploadingPhotosPageState();
@@ -37,6 +37,7 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
         body: AppBody(
             builder: (windowWidth, windowHeight, __) => Provider(
                 create: (context) => LoraStore(
+                    store: widget.store,
                     restClient: context.read<Dependencies>().restClient),
                 builder: (context, c) {
                   final LoraStore loraStore = context.watch<LoraStore>();

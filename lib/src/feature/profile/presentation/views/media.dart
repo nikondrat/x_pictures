@@ -15,55 +15,50 @@ class MediaView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-        create: (context) => MediaBodyStore(),
-        builder: (context, child) {
-          final MediaBodyStore store = context.read<MediaBodyStore>();
+    final MediaBodyStore store = context.read<MediaBodyStore>();
 
-          return Column(
-            children: [
-              const Gap(AppValues.kPadding),
-              if (store.items.isNotEmpty)
-                Observer(builder: (context) {
-                  return Row(
-                      mainAxisAlignment: store.isHasSelectedItems
-                          ? MainAxisAlignment.spaceBetween
-                          : MainAxisAlignment.end,
-                      children: [
-                        if (store.isHasSelectedItems)
-                          FilledButton(
-                              style: const ButtonStyle(
-                                  backgroundColor: WidgetStatePropertyAll(
-                                      AppColors.kSecondaryAdditionallyColor)),
-                              onPressed: () {
-                                store.markAllSelected();
-                              },
-                              child: AutoSizeText(t.common.select_all)),
-                        FilledButton(
-                            style: const ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                                    AppColors.kSecondaryAdditionallyColor)),
-                            onPressed: () {
-                              store.toggleSelect();
-                            },
-                            child: AutoSizeText(store.isSelect
-                                ? t.common.cancel
-                                : t.common.select)),
-                      ]);
-                }),
-              store.items.isEmpty
-                  ? IntrinsicHeight(
-                      child: GestureDetector(
-                        onTap: onBannerTap,
-                        child: Image.asset(
-                          Assets.images.banner2.path,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    )
-                  : const Expanded(child: MediaBody())
-            ],
-          );
-        });
+    return Column(
+      children: [
+        const Gap(AppValues.kPadding),
+        if (store.items.isNotEmpty)
+          Observer(builder: (context) {
+            return Row(
+                mainAxisAlignment: store.isHasSelectedItems
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.end,
+                children: [
+                  if (store.isHasSelectedItems)
+                    FilledButton(
+                        style: const ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                                AppColors.kSecondaryAdditionallyColor)),
+                        onPressed: () {
+                          store.markAllSelected();
+                        },
+                        child: AutoSizeText(t.common.select_all)),
+                  FilledButton(
+                      style: const ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                              AppColors.kSecondaryAdditionallyColor)),
+                      onPressed: () {
+                        store.toggleSelect();
+                      },
+                      child: AutoSizeText(
+                          store.isSelect ? t.common.cancel : t.common.select)),
+                ]);
+          }),
+        store.items.isEmpty
+            ? IntrinsicHeight(
+                child: GestureDetector(
+                  onTap: onBannerTap,
+                  child: Image.asset(
+                    Assets.images.banner2.path,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              )
+            : const Expanded(child: MediaBody())
+      ],
+    );
   }
 }

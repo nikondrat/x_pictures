@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:x_pictures/src/data.dart';
 
 class EnhanceView extends StatelessWidget {
-  final PackModel model;
-  const EnhanceView({super.key, required this.model});
+  final PacksStore store;
+  const EnhanceView({super.key, required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class EnhanceView extends StatelessWidget {
             ],
           ),
           body: EnhanceBody(
-            model: model,
+            model: store.selected!,
           ),
           // body: Center(
           //   child: ClipRRect(
@@ -68,7 +68,8 @@ class EnhanceView extends StatelessWidget {
                                               padding: const EdgeInsets.only(
                                                   bottom:
                                                       AppValues.kPadding / 2),
-                                              child: AutoSizeText(model.title),
+                                              child: AutoSizeText(
+                                                  store.selected!.title),
                                             ))
                                       ],
                                     )),

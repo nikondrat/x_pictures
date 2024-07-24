@@ -8,10 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ToolsView extends StatelessWidget {
-  final PackModel model;
   final bool isRemoveBackground;
-  const ToolsView(
-      {super.key, required this.model, this.isRemoveBackground = true});
+  const ToolsView({super.key, this.isRemoveBackground = true});
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +108,9 @@ class ToolsView extends StatelessWidget {
                               icon: Icons.layers_outlined,
                               onTap: () {
                                 if (isRemoveBackground) {
-                                  router.goNamed(AppViews.backgroundsView,
-                                      extra: {'model': model});
+                                  router.goNamed(
+                                    AppViews.backgroundsView,
+                                  );
                                 } else {
                                   // TODO add func to remove objects
                                 }

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:x_pictures/src/data.dart';
 
 class BackgroundsView extends StatelessWidget {
-  final PackModel model;
-  const BackgroundsView({super.key, required this.model});
+  const BackgroundsView({super.key});
 
   @override
   Widget build(BuildContext context) {

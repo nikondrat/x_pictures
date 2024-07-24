@@ -1,8 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
+import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
+import 'package:x_pictures/src/feature/profile/state/media.dart';
 
 class ProfileView extends StatefulWidget {
   final Function() goHome;
@@ -203,56 +206,84 @@ class _ProfileViewState extends State<ProfileView>
   Widget build(BuildContext context) {
     final UserStore userStore = context.read<UserStore>();
 
-    return Provider(
-        create: (context) =>
-            JobsStore(restClient: context.read<Dependencies>().restClient),
+    return MultiProvider(
+        providers: [
+          Provider(
+              create: (context) => JobsStore(
+                  restClient: context.read<Dependencies>().restClient)),
+          Provider(create: (context) => MediaBodyStore()),
+        ],
         builder: (context, child) {
           final JobsStore jobsStore = context.read<JobsStore>();
+          final MediaBodyStore mediaBodyStore = context.read<MediaBodyStore>();
 
-          return Scaffold(
-            body: AppBody(
-              builder: (windowWidth, windowHeight, windowSize) => SafeArea(
-                  child: Padding(
-                      padding: HorizontalSpacing.centered(windowWidth) +
-                          const EdgeInsets.symmetric(
-                              vertical: AppValues.kPadding),
-                      child: Column(
-                        children: [
-                          ProfileInfoWidget(
-                            name: userStore.username ?? 'Nikita',
-                            email: userStore.email ?? 'filyapel@yandex.ru',
-                            url: userStore.imageUrl ??
-                                'https://catherineasquithgallery.com/uploads/posts/2021-02/1614511031_164-p-na-belom-fone-chelovek-185.jpg',
-                            onTap: () => router.goNamed(AppViews.settingsView),
-                          ),
-                          const Gap(AppValues.kPadding),
-                          Container(
-                              decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(AppValues.kRadius)),
-                                  color: AppColors.kSecondaryAdditionallyColor),
-                              child: Row(
-                                  children: tabs.mapIndexed((index, title) {
-                                return Expanded(
-                                    child: CustomTabWidget(
-                                        isSelected: index == controller.index,
-                                        title: title,
-                                        onTap: () {
-                                          setState(() {
-                                            controller.animateTo(index);
-                                          });
-                                        }));
-                              }).toList())),
-                          Expanded(
-                              child: ProfileBody(
-                                  jobsStore: jobsStore,
-                                  controller: controller,
-                                  goHome: widget.goHome,
-                                  goGenerate: widget.goGenerate)),
-                        ],
-                      ))),
-            ),
-          );
+          return Observer(builder: (context) {
+            return Scaffold(
+              appBar: mediaBodyStore.isHasSelectedItems
+                  ? AppBar(
+                      leading: IconButton(
+                          onPressed: () {
+                            mediaBodyStore.markAllNotSelected();
+                          },
+                          icon: const Icon(Icons.close)),
+                      title: Text(t.profile.items_selected(
+                          count: mediaBodyStore.selectedItems.length)),
+                      actions: [
+                        IconButton(
+                          onPressed: () {
+                            mediaBodyStore.markAllSelected();
+                          },
+                          icon: const Icon(Icons.list),
+                        )
+                      ],
+                    )
+                  : null,
+              body: AppBody(
+                builder: (windowWidth, windowHeight, windowSize) => SafeArea(
+                    child: Padding(
+                        padding: HorizontalSpacing.centered(windowWidth) +
+                            const EdgeInsets.symmetric(
+                                vertical: AppValues.kPadding),
+                        child: Column(
+                          children: [
+                            ProfileInfoWidget(
+                              name: userStore.username ?? 'Nikita',
+                              email: userStore.email ?? 'filyapel@yandex.ru',
+                              url: userStore.imageUrl ??
+                                  'https://catherineasquithgallery.com/uploads/posts/2021-02/1614511031_164-p-na-belom-fone-chelovek-185.jpg',
+                              onTap: () =>
+                                  router.goNamed(AppViews.settingsView),
+                            ),
+                            const Gap(AppValues.kPadding),
+                            Container(
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(AppValues.kRadius)),
+                                    color:
+                                        AppColors.kSecondaryAdditionallyColor),
+                                child: Row(
+                                    children: tabs.mapIndexed((index, title) {
+                                  return Expanded(
+                                      child: CustomTabWidget(
+                                          isSelected: index == controller.index,
+                                          title: title,
+                                          onTap: () {
+                                            setState(() {
+                                              controller.animateTo(index);
+                                            });
+                                          }));
+                                }).toList())),
+                            Expanded(
+                                child: ProfileBody(
+                                    jobsStore: jobsStore,
+                                    controller: controller,
+                                    goHome: widget.goHome,
+                                    goGenerate: widget.goGenerate)),
+                          ],
+                        ))),
+              ),
+            );
+          });
         });
   }
 }

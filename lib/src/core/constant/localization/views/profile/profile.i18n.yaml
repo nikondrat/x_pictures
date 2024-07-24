@@ -4,3 +4,5 @@ video: Video
 getting_ready: Getting ready...
 photos: photos
 minutes: min
+
+items_selected: ${count} items selected

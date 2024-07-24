@@ -6,8 +6,8 @@ import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/feature/template_view/presentation/widgets/cover_image_plan_page.dart';
 
 class PlanView extends StatelessWidget {
-  final PackModel model;
-  const PlanView({super.key, required this.model});
+  final PacksStore store;
+  const PlanView({super.key, required this.store});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class PlanView extends StatelessWidget {
       child: Scaffold(floatingActionButton:
           Consumer<PlanState>(builder: (context, consumerValue, child) {
         return SizedBox(
-          height: 76.h,
+          height: 80.h,
           child: Column(
             children: [
               Padding(
@@ -25,8 +25,9 @@ class PlanView extends StatelessWidget {
                   // height: 50.h,
                   child: GradientButton(
                     onPressed: () {
-                      router.goNamed(AppViews.masterpieceView,
-                          extra: {"model": model});
+                      router.pushNamed(AppViews.masterpieceView, extra: {
+                        'store': store,
+                      });
                     },
                     text: t.common.continue_action,
                     isEnabled: consumerValue.isSelected,
