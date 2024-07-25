@@ -51,6 +51,7 @@ dependencies:
 
   # Utils
   # pure: ^0.2.0
+  convert: ^3.0.1
   platform_info: ^4.0.2
   path: ^1.8.3
   path_provider: ^2.1.0

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:mobx/mobx.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -52,6 +55,10 @@ abstract class _UserStore with Store {
   @computed
   String get balance => user.balance;
 
+  @observable
+  Patreon? patreon;
+
+  /// Function to get user data
   @action
   void getUserData() {
     restClient.get(Endpoint().getAccountInfo).then((value) {
@@ -81,6 +88,59 @@ abstract class _UserStore with Store {
     });
   }
 
+  /// Function to change password
+  void changePassword(String oldPassword, String newPassword) {
+    restClient.post(Endpoint().changePassword, body: {
+      "password": oldPassword,
+      "new_password": newPassword
+    }).then((value) {
+      user = User.fromJson(value!);
+    });
+  }
+
+  /// Function to update username
+  @action
+  void updateAccount(String username) {
+    restClient.post(Endpoint().updateAccount, body: {
+      "username": username,
+    }).then((value) {
+      user = User.fromJson(value!);
+    });
+  }
+
+  @action
+  Future uploadImage(File image) async {
+    restClient.post(Endpoint().uploadImage,
+        body: {'image': base64Encode(await image.readAsBytes())});
+  }
+
+  /// Function to activate patreon
+  @action
+  void activatePatreon(String code) {
+    restClient.post(Endpoint().patreon, body: {"code": code}).then((value) {
+      patreon = Patreon.fromJson(value!);
+    });
+  }
+
+  /// Function to get patreon info
+  @action
+  void getPatreonInfo() {
+    restClient.get(Endpoint().patreonInfo).then((value) {
+      patreon = Patreon.fromJson(value!);
+    });
+  }
+
+  /// Function to delete image
+  @action
+  void deleteImage() {
+    // TODO maybe need add id of image in path
+    restClient.delete(Endpoint().deleteImage).then((value) {
+      user = User.fromJson(value!);
+    });
+  }
+
+  /// Function to delete account
+  @action
   void deleteAccount() {
     restClient.delete(Endpoint().deleteAccount).then((value) {
       user = User.fromJson(value!);
@@ -91,6 +151,7 @@ abstract class _UserStore with Store {
     });
   }
 
+  /// Function to logout
   @action
   void logout() {
     tokenStorage.clearTokenPair();

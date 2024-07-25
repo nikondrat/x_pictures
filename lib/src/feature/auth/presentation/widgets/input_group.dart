@@ -46,7 +46,7 @@ class InputGroup extends StatelessWidget {
                   formControlName: 'password',
                   obscuringCharacter: '•',
                   obscureText: !store.isShowPassword,
-                  onSubmitted: (_) => authStore.signIn(),
+                  onSubmitted: (_) => authStore.login(),
                   style: textTheme.titleLarge!
                       .copyWith(color: colorScheme.onSecondary),
                   textInputAction: TextInputAction.done,
@@ -77,7 +77,7 @@ class InputGroup extends StatelessWidget {
             const Gap(AppValues.kPadding / 2),
             Observer(
                 builder: (_) => GradientButton(
-                    onPressed: authStore.signIn,
+                    onPressed: authStore.login,
                     isEnabled: store.isValid,
                     text: t.common.continue_action))
           ],

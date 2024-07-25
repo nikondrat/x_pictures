@@ -41,6 +41,12 @@ class Endpoint {
   /// Endpoint for upload image
   String get uploadImage => '$_profiles/upload-image';
 
+  /// Endpoint for add patreon
+  String get patreon => '$_profiles/patreon';
+
+  /// Endpoint for get patreon
+  String get patreonInfo => '$patreon/info';
+
   // Users
   static const String _users = 'users';
 
@@ -67,6 +73,9 @@ class Endpoint {
 
   /// Endpoint for refresh verification
   String get refreshVerification => '$_users/refresh-verification';
+
+  /// Endpoint for verification by token
+  String get verificationByToken => '$_users/verification/';
 
   // Support
 

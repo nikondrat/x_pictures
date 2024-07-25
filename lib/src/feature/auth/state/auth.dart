@@ -25,10 +25,11 @@ abstract class _AuthStore with Store {
     required this.networkInfo,
   });
 
-  void signIn() async {
+  /// Function to sign in
+  void login() async {
     final ipAddress = await networkInfo.getWifiIP();
 
-    restClient.post('users/login/', body: {
+    restClient.post(Endpoint().login, body: {
       'email': signInViewStore.email,
       'password': signInViewStore.password,
       'ip_address': ipAddress
@@ -40,5 +41,54 @@ abstract class _AuthStore with Store {
         router.goNamed(AppViews.verify);
       }
     });
+  }
+
+  /// Function to login with google
+  void loginWithGoogle(String code) async {
+    final ipAddress = await networkInfo.getWifiIP();
+
+    restClient.post(Endpoint().googleAuth, body: {
+      'ip_address': ipAddress,
+      'code': code,
+    }).then((v) {
+      final String? token = v?['token'] as String?;
+
+      if (token != null) {
+        tokenStorage.saveTokenPair(token);
+        router.goNamed(AppViews.verify);
+      }
+    });
+  }
+
+  /// Function send request for set new password in future
+  void sendPasswordReset() {
+    restClient.post(Endpoint().sendReqPasswordReset,
+        body: {'email': signInViewStore.email}).then((value) {
+      // router.goNamed(AppViews.resetPassword);
+    });
+  }
+
+  /// Function to verification by token
+  void verificationByToken(String token) async {
+    restClient.get('${Endpoint().verificationByToken}/$token', queryParams: {
+      'token': token,
+    });
+  }
+
+  /// Function to set new password
+  void setNewPassword() async {
+    final String token = await tokenStorage.loadTokenPair();
+
+    restClient.post(Endpoint().setNewPassword, body: {
+      'token': token,
+      // TODO change variable if need
+      'new_password': signInViewStore.password,
+    });
+  }
+
+  /// Function to refresh verification
+  void refreshVerification() {
+    restClient.post(Endpoint().refreshVerification, body: {});
+    // router.goNamed(AppViews.verify);
   }
 }
