@@ -38,7 +38,21 @@ abstract class _PacksStore with Store {
     final future = restClient.get(Endpoint().packs).then((v) {
       body = PackBody.fromJson(v!);
 
-      return body.packs;
+      // return body.packs;
+      return ObservableList.of([
+        PackModel(
+          id: 0,
+          title: 'Street casual',
+          images: [
+            ImageModel(
+                id: 0,
+                url:
+                    'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg')
+          ],
+          description: 'Error occured during fetching packs',
+          category: 'LinkedIn',
+        )
+      ]);
     }).catchError((e) {
       // TODO only for dev
       return ObservableList.of([

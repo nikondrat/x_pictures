@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
+import 'package:path/path.dart' as p;
 import 'package:x_pictures/src/data.dart';
 
 part 'lora.g.dart';
@@ -37,38 +39,70 @@ abstract class _LoraStore with Store {
   bool get canGenerateLora => photosLength <= 12;
 
   Future<void> generateLora() async {
-    Map<String, List<int>> fileMap = {};
+    FormData formData = FormData();
 
     for (int i = 0; i < photos.length; i++) {
-      var file = photos[i];
-      var filePath = file.path;
-
-      if (File(filePath).existsSync()) {
-        var fileContent = await File(filePath).readAsBytes();
-
-        // Split the file content into lines and add it to the map
-        // List<String> fileLines =
-        //     fileContentString.split('\n').map((line) => line.trim()).toList();
-        fileMap['file${i + 1}'] = fileContent;
-      }
+      formData.files.add(
+        MapEntry(
+          'file${i + 1}', // Имя поля, под которым сервер ожидает файл
+          await MultipartFile.fromFile(
+            photos[i].path,
+            filename: photos[i].name,
+          ),
+        ),
+      );
     }
 
-    // Convert the map to the required format
-    Map<String, Object?> body = Map<String, Object?>.from(fileMap);
+    Map<String, MultipartFile> fileMap = {};
 
-    // Log the body
-    // log('body: $body');
+    for (var i = 0; i < photos.length; i++) {
+      File file = File(photos[i].path);
+      String fileName = p.basename(file.path);
+      fileMap['file$i'] = MultipartFile(file.openRead(), await file.length(),
+          filename: fileName);
+    }
 
-    // log('items: $photos');
+    var data = FormData.fromMap(fileMap);
 
-    // log('body: $body');
-
-    final future = restClient.post(Endpoint().loras, body: body).then((v) {
+    final future = restClient
+        .post(Endpoint().loras, body: data, contentType: 'multipart/form-data')
+        .then((v) {
       log('$v');
     });
 
-    router.pushNamed(AppViews.genderView, extra: {
-      'store': store,
-    });
+    // router.pushNamed(AppViews.genderView, extra: {
+    //   'store': store,
+    // });
   }
+
+  @observable
+  ObservableFuture<List<LoraModel>> fetchLorasFuture = emptyResponse;
+
+  @observable
+  ObservableList<LoraModel> loras = ObservableList();
+
+  @action
+  Future<List<LoraModel>> fetchLoras() async {
+    final future = restClient.get(Endpoint().loras).then((v) {
+      final LorasBody body = LorasBody.fromJson(v!);
+      return body.loras;
+    });
+
+    fetchLorasFuture = ObservableFuture(future);
+    return loras = ObservableList.of(await future);
+  }
+
+  Future<LoraModel?> getLora(String id) async {
+    final future = restClient.get('${Endpoint().loras}/$id').then((v) {
+      final LoraModel loraModel = LoraModel.fromJson(v!);
+      return loraModel;
+    });
+    return await future;
+  }
+
+  @computed
+  bool get hasResults => fetchLorasFuture.status == FutureStatus.fulfilled;
+
+  static ObservableFuture<List<LoraModel>> emptyResponse =
+      ObservableFuture.value([]);
 }

@@ -109,4 +109,18 @@ abstract class _JobsStore with Store {
 
   static ObservableFuture<List<JobModel>> emptyResponse =
       ObservableFuture.value([]);
+
+  void createJob() {
+    restClient.post(Endpoint().jobs, body: {}).then((v) {
+      final JobModel job = JobModel.fromJson(v!);
+    });
+  }
+
+  Future<JobModel?> getJob(String id) async {
+    final future = restClient.get('${Endpoint().jobs}/$id').then((v) {
+      final JobModel job = JobModel.fromJson(v!);
+      return job;
+    });
+    return await future;
+  }
 }

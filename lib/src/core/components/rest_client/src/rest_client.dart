@@ -10,9 +10,10 @@ abstract class RestClient {
   /// Sends a POST request to the given [path].
   Future<Map<String, Object?>?> post(
     String path, {
-    required Map<String, Object?> body,
+    required Object? body,
     Map<String, Object?>? headers,
     Map<String, Object?>? queryParams,
+    String? contentType,
   });
 
   /// Sends a PUT request to the given [path].

@@ -100,8 +100,11 @@ class Endpoint {
   static const String _order = '$_shop/order';
   static const String _payment = '$_shop/payment';
 
+  /// Endpoint for create payment order
+  String get createPaymentOrder => _order;
+
   /// Endpoint for create order
-  String get createOrder => '$_order/create-order';
+  String get createOrder => '$_payment/create-order';
 
   /// Endpoint for get payment orders
   String get paymentOrders => _payment;
