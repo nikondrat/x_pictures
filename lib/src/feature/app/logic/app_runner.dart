@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -26,7 +28,8 @@ final class AppRunner {
       try {
         final result = await initializationProcessor.initialize();
         // Attach this widget to the root of the tree.
-        runApp(App(result: result));
+        runApp(DevicePreview(
+            enabled: !kReleaseMode, builder: (context) => App(result: result)));
       } catch (e, stackTrace) {
         logger.error('Initialization failed', error: e, stackTrace: stackTrace);
         runApp(

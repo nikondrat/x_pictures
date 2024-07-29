@@ -2,10 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
-import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
-import 'package:x_pictures/src/feature/profile/state/media.dart';
 
 class ProfileView extends StatefulWidget {
   final Function() goHome;
@@ -248,7 +246,7 @@ class _ProfileViewState extends State<ProfileView>
                           children: [
                             ProfileInfoWidget(
                               name: userStore.username ?? 'Nikita',
-                              email: userStore.email ?? 'filyapel@yandex.ru',
+                              email: userStore.email,
                               url: userStore.imageUrl ??
                                   'https://catherineasquithgallery.com/uploads/posts/2021-02/1614511031_164-p-na-belom-fone-chelovek-185.jpg',
                               onTap: () =>

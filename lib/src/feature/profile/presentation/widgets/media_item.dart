@@ -6,7 +6,8 @@ import 'package:x_pictures/src/data.dart';
 
 class MediaItem extends StatelessWidget {
   final MediaModel model;
-  const MediaItem({super.key, required this.model});
+  final bool isProfile;
+  const MediaItem({super.key, required this.model, this.isProfile = true});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class MediaItem extends StatelessWidget {
                 builder: (_) {
                   return PopupImage(
                     url: model.url,
-                    isProfile: true,
+                    isProfile: isProfile,
                   );
                 });
           }

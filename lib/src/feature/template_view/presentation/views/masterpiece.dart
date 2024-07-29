@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/core/constant/images.dart';
@@ -17,6 +18,9 @@ class MasterpieceView extends StatefulWidget {
 class _MasterpieceViewState extends State<MasterpieceView> {
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    final TextTheme textTheme = themeData.textTheme;
+
     return ChangeNotifierProvider(
       create: (context) => TimeIndicator(),
       child: Scaffold(
@@ -49,7 +53,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                   ),
                   Consumer<TimeIndicator>(
                       builder: (context, consumerValue, child) {
-                    consumerValue.startTimer(widget.store.selected!);
+                    consumerValue.startTimer(widget.store);
                     if (consumerValue.getCurrentTimeRemained == 0) {}
                     return CircularPercentIndicator(
                       radius: 100.w,
@@ -57,7 +61,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                       animationDuration: 800,
                       animateFromLastPercent: true,
                       percent: consumerValue.currentPercent,
-                      lineWidth: 10.0,
+                      lineWidth: 10.r,
                       circularStrokeCap: CircularStrokeCap.round,
                       backgroundColor: const Color(0xff3B3B5A),
                       progressColor: Colors.orange[900],
@@ -65,12 +69,14 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            t.masterpiece.remained,
-                            style: AppStyles.subTitleTextStyle,
+                          AutoSizeText(
+                            '${t.masterpiece.remained}:',
+                            style: textTheme.bodyLarge!.copyWith(
+                                fontSize: 12.sp,
+                                color: AppColors.kOutlineColor),
                           ),
-                          Text(
-                            '${consumerValue.getCurrentTimeRemained} sec',
+                          AutoSizeText(
+                            '${consumerValue.getCurrentTimeRemained} min',
                             style: AppStyles.head1TextStyle,
                           )
                         ],
@@ -82,7 +88,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                   ),
                   Text(
                     t.masterpiece.description,
-                    style: AppStyles.subTitleTextStyle,
+                    style: textTheme.bodyMedium!.copyWith(fontSize: 17.sp),
                     textAlign: TextAlign.center,
                   )
                 ],

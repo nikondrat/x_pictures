@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,7 +15,7 @@ class MaterialContext extends StatelessWidget {
 
   // This global key is needed for [MaterialApp]
   // to work properly when Widgets Inspector is enabled.
-  static final _globalKey = GlobalKey();
+  // static final _globalKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +37,7 @@ class MaterialContext extends StatelessWidget {
               localizationsDelegates: GlobalMaterialLocalizations.delegates,
               supportedLocales: AppLocaleUtils.supportedLocales,
               locale: TranslationProvider.of(context).flutterLocale,
-              builder: (context, child) => MediaQuery.withClampedTextScaling(
-                key: _globalKey,
-                minScaleFactor: 1.0,
-                maxScaleFactor: 2.0,
-                child: child!,
-              ),
+              builder: DevicePreview.appBuilder,
             );
           });
         });

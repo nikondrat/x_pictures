@@ -21,6 +21,7 @@ class SettingsView extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
+          leading: const CustomBackButton(),
           title: Text(t.settings.title),
         ),
         body: SettingsList(

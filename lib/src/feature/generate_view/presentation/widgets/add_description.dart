@@ -2,19 +2,18 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class AddDescription extends StatelessWidget {
-  const AddDescription({super.key});
+  final GenerateViewStore store;
+  final GenerateStore genStore;
+  const AddDescription(
+      {super.key, required this.store, required this.genStore});
 
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
-
-    final GenerateViewStore store = context.read<GenerateViewStore>();
-    final GenerateStore genStore = context.read<GenerateStore>();
 
     return TitleWithBody(
         action: const ResetButton(),

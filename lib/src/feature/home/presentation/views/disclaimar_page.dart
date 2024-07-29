@@ -82,16 +82,19 @@ class DisclaimarPage extends StatelessWidget {
                     child: Padding(
                       padding: HorizontalSpacing.centered(windowWidth) +
                           EdgeInsets.only(bottom: AppValues.kPadding * 2),
-                      child: SizedBox(
-                          height: 80,
-                          child: GradientButton(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GradientButton(
                               onPressed: () {
                                 router.pushNamed(AppViews.instructionPageRoute,
                                     extra: {
                                       'store': store,
                                     });
                               },
-                              text: t.homeView.get_started)),
+                              text: t.homeView.get_started),
+                        ],
+                      ),
                     ),
                   ),
                 ]))));

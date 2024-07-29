@@ -23,7 +23,7 @@ class CustomTabWidget extends StatelessWidget {
         ? GradientButton(
             textStyle: textTheme.bodyLarge,
             padding:
-                const EdgeInsets.symmetric(vertical: AppValues.kPadding / 2),
+                const EdgeInsets.symmetric(vertical: AppValues.kPadding / 4),
             onPressed: onTap,
             text: title)
         : GestureDetector(

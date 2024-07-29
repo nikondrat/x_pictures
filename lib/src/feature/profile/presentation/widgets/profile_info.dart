@@ -32,7 +32,7 @@ class ProfileInfoWidget extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              radius: 30.h,
+              radius: 16.r,
               backgroundImage: CachedNetworkImageProvider(url),
             ),
             const Gap(AppValues.kPadding),
@@ -42,13 +42,12 @@ class ProfileInfoWidget extends StatelessWidget {
                 children: [
                   AutoSizeText(
                     name,
-                    style: textTheme.titleLarge,
+                    style: textTheme.titleMedium,
                     maxLines: 2,
                   ),
-                  const Gap(AppValues.kPadding / 3),
                   AutoSizeText(
                     email,
-                    style: textTheme.titleMedium!
+                    style: textTheme.titleSmall!
                         .copyWith(color: AppColors.kOutlineColor),
                     maxLines: 1,
                   ),

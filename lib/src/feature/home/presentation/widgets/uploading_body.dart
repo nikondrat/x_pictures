@@ -23,6 +23,7 @@ class UploadingPhotosBody extends StatelessWidget {
                   (context, index) {
                     if (index < loraStore.photosLength) {
                       return ImageItemUploadingPhotosPage(
+                          haveError: index == 3,
                           imageFile: loraStore.photos[index]);
                     }
                     if (index == loraStore.photosLength) {
@@ -50,7 +51,9 @@ class UploadingPhotosBody extends StatelessWidget {
                     }
                     return const SizedBox.shrink();
                   },
-                  childCount: loraStore.photosLength + 1,
+                  childCount: loraStore.photosLength < 9
+                      ? loraStore.photosLength + 1
+                      : 9,
                 ),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,

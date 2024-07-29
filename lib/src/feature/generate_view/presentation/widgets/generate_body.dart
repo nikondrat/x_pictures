@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class GenerateBody extends StatefulWidget {
@@ -21,6 +23,9 @@ class _GenerateBodyState extends State<GenerateBody> {
 
   @override
   Widget build(BuildContext context) {
+    final GenerateViewStore store = context.read<GenerateViewStore>();
+    final GenerateStore genStore = context.read<GenerateStore>();
+
     return Column(
       children: [
         const Gap(AppValues.kPadding),
@@ -34,7 +39,30 @@ class _GenerateBodyState extends State<GenerateBody> {
           windowHeight: widget.windowHeight,
         ),
         const Gap(AppValues.kPadding),
-        const AddDescription(),
+        GestureDetector(
+          onTap: () {
+            showModalBottomSheet(
+              context: context,
+              shape: const BeveledRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(AppValues.kRadius))),
+              builder: (context) {
+                return Padding(
+                  padding: const EdgeInsets.all(AppValues.kPadding),
+                  child: AddDescription(
+                    store: store,
+                    genStore: genStore,
+                  ),
+                );
+              },
+            );
+          },
+          child: AbsorbPointer(
+              child: AddDescription(
+            store: store,
+            genStore: genStore,
+          )),
+        ),
         const Gap(AppValues.kPadding),
       ],
     );

@@ -62,9 +62,10 @@ class StyleView extends StatelessWidget {
                 child: Padding(
                   padding: HorizontalSpacing.centered(windowWidth) +
                       const EdgeInsets.only(bottom: AppValues.kPadding * 2),
-                  child: SizedBox(
-                      height: 80,
-                      child: GradientButton(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GradientButton(
                           onPressed: () {
                             // if (model.onTap != null) {
                             //   model.onTap!(model);
@@ -75,7 +76,9 @@ class StyleView extends StatelessWidget {
                           },
                           text:
                               //  model.actionTitle ??
-                              t.homeView.get_pack)),
+                              t.homeView.get_pack),
+                    ],
+                  ),
                 ),
               ),
             ],

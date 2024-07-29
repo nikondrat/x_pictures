@@ -10,10 +10,12 @@ import 'package:x_pictures/src/data.dart';
 
 class ImageItemUploadingPhotosPage extends StatelessWidget {
   final XFile imageFile;
+  final bool haveError;
 
   const ImageItemUploadingPhotosPage({
     super.key,
     required this.imageFile,
+    this.haveError = false,
   });
 
   @override
@@ -24,17 +26,24 @@ class ImageItemUploadingPhotosPage extends StatelessWidget {
       alignment: Alignment.topRight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.r),
+        border: haveError ? Border.all(color: Colors.red) : null,
         image: DecorationImage(
           image: FileImage(File(imageFile.path)),
           fit: BoxFit.cover,
         ),
       ),
+      foregroundDecoration: haveError
+          ? BoxDecoration(
+              color: Colors.red.withAlpha(100),
+              borderRadius: BorderRadius.circular(8.r))
+          : null,
       child: GestureDetector(
         onTap: () => loraStore.removePhoto(imageFile),
         child: Container(
           margin: EdgeInsets.all(5.r),
+          padding: EdgeInsets.all(1.r),
           decoration: BoxDecoration(
-            color: Colors.grey[700],
+            color: haveError ? Colors.red : Colors.grey[700],
             borderRadius: BorderRadius.circular(90.r),
           ),
           child: const Icon(

@@ -14,7 +14,7 @@ class SelectModeWidget extends StatelessWidget {
 
     return Observer(builder: (context) {
       return SizedBox(
-        height: 30.h,
+        height: 18.h,
         child: Row(
           children: [
             Expanded(
@@ -54,8 +54,10 @@ class _Tab extends StatelessWidget {
             onPressed: onTap,
             text: title,
             padding:
-                const EdgeInsets.symmetric(vertical: AppValues.kPadding / 3),
-            textStyle: textTheme.bodyMedium,
+                const EdgeInsets.symmetric(vertical: AppValues.kPadding / 4),
+            textStyle: textTheme.bodyLarge!.copyWith(
+              fontSize: 10.sp,
+            ),
           )
         : Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -64,15 +66,22 @@ class _Tab extends StatelessWidget {
                 child: TextButton(
                   onPressed: onTap,
                   style: const ButtonStyle(
+                      padding: WidgetStatePropertyAll(
+                        EdgeInsets.symmetric(
+                          vertical: AppValues.kPadding / 4,
+                        ),
+                      ),
                       shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(AppValues.kRadius)))),
-                      backgroundColor:
-                          WidgetStatePropertyAll(AppColors.kAdditionalColor)),
+                          borderRadius: BorderRadius.horizontal(
+                              right: Radius.circular(AppValues.kRadius)))),
+                      backgroundColor: WidgetStatePropertyAll(
+                          AppColors.kSecondaryAdditionallyColor)),
                   child: AutoSizeText(
                     title,
-                    style: textTheme.bodyMedium!
-                        .copyWith(color: colorScheme.onSurface),
+                    style: textTheme.bodyLarge!.copyWith(
+                      color: colorScheme.onSurface,
+                      fontSize: 10.sp,
+                    ),
                   ),
                 ),
               ),

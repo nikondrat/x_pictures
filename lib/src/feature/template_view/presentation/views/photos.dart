@@ -1,13 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:svg_flutter/svg.dart';
-import 'package:x_pictures/src/core/constant/icons.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PhotosView extends StatefulWidget {
-  final List<ImageModel> models;
+  final List<MediaModel> models;
   const PhotosView({super.key, required this.models});
 
   @override
@@ -44,12 +41,12 @@ class _PhotosViewState extends State<PhotosView> {
         ),
         title: Text(t.photos.title),
         actions: <Widget>[
-          TextButton(
-              onPressed: () {},
-              child: Text(
-                t.photos.save_all,
-                style: TextStyle(color: Colors.white),
-              ))
+          // TextButton(
+          //     onPressed: () {},
+          //     child: Text(
+          //       t.photos.save_all,
+          //       style: TextStyle(color: Colors.white),
+          //     ))
         ],
       ),
       body: SingleChildScrollView(
@@ -59,7 +56,7 @@ class _PhotosViewState extends State<PhotosView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                t.photos.save_all,
+                t.homeView.ready,
                 style: AppStyles.subTitleTextStyle.copyWith(
                   fontSize: 10.sp,
                 ),
@@ -94,31 +91,37 @@ class _PhotosViewState extends State<PhotosView> {
                   crossAxisCount: 3,
                   childAspectRatio: (itemWidth / itemHeight),
                   children: widget.models.map((e) {
-                    return GestureDetector(
-                      onTap: () => _showCustomDialog(e.url),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(AppValues.kRadius),
-                          image: DecorationImage(
-                              image: CachedNetworkImageProvider(e.url),
-                              fit: BoxFit.cover),
-                        ),
-                        child: Align(
-                          alignment: Alignment(0.9, -0.9),
-                          child: Container(
-                            width: 18.h,
-                            height: 18.h,
-                            child: GestureDetector(
-                              child: SvgPicture.asset(
-                                AppIcons.downloadGreyCircle,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                    return MediaItem(
+                      model: e,
+                      isProfile: false,
                     );
                   }).toList(),
+
+                  //   return GestureDetector(
+                  //     onTap: () => _showCustomDialog(e.url),
+                  //     child: Container(
+                  //       decoration: BoxDecoration(
+                  //         borderRadius:
+                  //             BorderRadius.circular(AppValues.kRadius),
+                  //         image: DecorationImage(
+                  //             image: CachedNetworkImageProvider(e.url),
+                  //             fit: BoxFit.cover),
+                  //       ),
+                  //       child: Align(
+                  //         alignment: Alignment(0.9, -0.9),
+                  //         child: Container(
+                  //           width: 18.h,
+                  //           height: 18.h,
+                  //           child: GestureDetector(
+                  //             child: SvgPicture.asset(
+                  //               AppIcons.downloadGreyCircle,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   );
+                  // }).toList(),
                 ),
               )
             ],

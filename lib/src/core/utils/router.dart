@@ -246,7 +246,7 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                                           (context, state) {
                                                         final Map? data =
                                                             state.extra as Map?;
-                                                        final List<ImageModel>
+                                                        final List<MediaModel>
                                                             models =
                                                             data?['models'] ??
                                                                 [];

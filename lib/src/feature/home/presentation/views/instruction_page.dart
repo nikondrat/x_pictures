@@ -25,8 +25,8 @@ class InstructionPage extends StatelessWidget {
           leading: const CustomBackButton(),
           title: Text(
             t.homeView.instruction,
-            style:
-                textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w700),
+            style: textTheme.headlineSmall!
+                .copyWith(fontWeight: FontWeight.w700, fontSize: 10.sp),
           ),
         ),
         body: AppBody(
@@ -42,7 +42,7 @@ class InstructionPage extends StatelessWidget {
                           Text(
                             'Step 1 of 3',
                             style: AppStyles.subTitleTextStyle.copyWith(
-                              fontSize: 10.sp,
+                              fontSize: 6.sp,
                             ),
                           ),
                           SizedBox(
@@ -52,7 +52,8 @@ class InstructionPage extends StatelessWidget {
                             padding: EdgeInsets.only(right: 50.w),
                             child: Text(
                               'Pick 8-12 photos of yourself',
-                              style: AppStyles.head1TextStyle,
+                              style: textTheme.bodyLarge!.copyWith(
+                                  fontSize: 12.sp, fontWeight: FontWeight.bold),
                             ),
                           ),
                           SizedBox(
@@ -60,57 +61,59 @@ class InstructionPage extends StatelessWidget {
                           ),
                           Text(
                             'Your photos are completely confidential and will only be used to create avatars.',
-                            style: AppStyles.subTitleTextStyle.copyWith(
-                              fontSize: 17.sp,
-                            ),
+                            style: textTheme.bodyMedium!.copyWith(
+                                fontSize: 9.sp, color: AppColors.kOutlineColor),
                           ),
                           SizedBox(
                             height: 20.h,
                           ),
                           Text(
                             'Good photos',
-                            style: AppStyles.title2TextStyle,
+                            style: textTheme.bodyLarge!.copyWith(
+                                fontSize: 10.sp, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 5.h,
                           ),
                           Text(
                               'Excellent quality, good angle, one face, different backgrounds, lighting, etc',
-                              style: AppStyles.subTitleTextStyle),
+                              style: textTheme.bodyMedium!.copyWith(
+                                  fontSize: 9.sp,
+                                  color: AppColors.kOutlineColor)),
                           SizedBox(
-                            height: 15.h,
+                            height: 5.h,
                           ),
                           SizedBox(
-                            height: 90.h,
+                            height: 60.h,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: 4,
                               itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: EdgeInsets.only(right: 10.w),
-                                  child: Image.asset(AppImages.goodPhotoExa),
-                                );
+                                return Image.asset(AppImages.goodPhotoExa);
                               },
                             ),
                           ),
                           SizedBox(
-                            height: 15.h,
+                            height: 5.h,
                           ),
                           Text(
                             'Bad photos',
-                            style: AppStyles.title2TextStyle,
+                            style: textTheme.bodyLarge!.copyWith(
+                                fontSize: 10.sp, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 5.h,
                           ),
                           Text(
                               'A lot of faces, glasses, poor quality, nudity, kids, etc.',
-                              style: AppStyles.subTitleTextStyle),
+                              style: textTheme.bodyMedium!.copyWith(
+                                  fontSize: 9.sp,
+                                  color: AppColors.kOutlineColor)),
                           SizedBox(
-                            height: 15.h,
+                            height: 5.h,
                           ),
                           SizedBox(
-                              height: 90.h,
+                              height: 60.h,
                               child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [
@@ -132,6 +135,9 @@ class InstructionPage extends StatelessWidget {
                                   ),
                                 ],
                               )),
+                          SizedBox(
+                            height: 50.h,
+                          ),
                         ],
                       ),
                     ),
@@ -141,15 +147,18 @@ class InstructionPage extends StatelessWidget {
                     child: Padding(
                       padding: HorizontalSpacing.centered(windowWidth) +
                           EdgeInsets.only(bottom: AppValues.kPadding * 2),
-                      child: SizedBox(
-                          height: 80,
-                          child: GradientButton(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GradientButton(
                               onPressed: () {
                                 router.pushNamed(
                                     AppViews.uploadingPhotosPageRoute,
                                     extra: {'store': store});
                               },
-                              text: t.homeView.upload_photos)),
+                              text: t.homeView.upload_photos),
+                        ],
+                      ),
                     ),
                   ),
                 ]))));

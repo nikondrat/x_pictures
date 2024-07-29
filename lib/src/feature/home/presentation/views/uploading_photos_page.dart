@@ -21,6 +21,8 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
+    bool haveError = true;
+
     return Scaffold(
         // appBar: const CustomAppBar(textName: 'Uploading photos'),
         appBar: AppBar(
@@ -56,7 +58,7 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                                 Text(
                                   'Step 2 of 3',
                                   style: AppStyles.subTitleTextStyle.copyWith(
-                                    fontSize: 10.sp,
+                                    fontSize: 6.sp,
                                   ),
                                 ),
                                 SizedBox(
@@ -66,7 +68,9 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                                   padding: EdgeInsets.only(right: 50.w),
                                   child: Text(
                                     'Your photos have been processed',
-                                    style: AppStyles.head1TextStyle,
+                                    style: textTheme.bodyLarge!.copyWith(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 SizedBox(
@@ -74,9 +78,9 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                                 ),
                                 Text(
                                   'Description',
-                                  style: AppStyles.subTitleTextStyle.copyWith(
-                                    fontSize: 17.sp,
-                                  ),
+                                  style: textTheme.bodyMedium!.copyWith(
+                                      fontSize: 9.sp,
+                                      color: AppColors.kOutlineColor),
                                 ),
                                 SizedBox(
                                   height: 20.h,
@@ -94,12 +98,24 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                                     );
                                   }
                                   return const SizedBox.shrink();
-                                })
+                                }),
                               ],
                             ),
                           ),
                         ),
                         const UploadingPhotosBody(),
+                        if (haveError)
+                          SliverPadding(
+                            padding: EdgeInsets.only(
+                                left: 15.w, right: 15.w, bottom: 80.h),
+                            sliver: SliverToBoxAdapter(
+                              child: AutoSizeText(
+                                t.homeView.not_comply,
+                                style: textTheme.bodyLarge!
+                                    .copyWith(color: colorScheme.error),
+                              ),
+                            ),
+                          )
                       ],
                     ),
                     Align(

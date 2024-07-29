@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -40,63 +41,70 @@ class PopupImage extends StatelessWidget {
           },
         ),
         actions: [
-          SizedBox(
-            width: isProfile ? 190.w : 250.w,
-            height: 50.h,
-            child: ElevatedButton.icon(
-              style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.white),
-                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(AppValues.kRadius)))),
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                Assets.icons.download,
-                color: AppColors.kAdditionalColor,
-                width: 20.h,
-                height: 20.h,
-              ),
-              label: Text(
-                t.photos.download,
-                style: textTheme.headlineSmall!
-                    .copyWith(color: colorScheme.onSecondary),
-                // style: TextStyle(
-                //     color: AppColors.kAdditionalColor,
-                //     fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Container(
-              decoration: BoxDecoration(
-                  color: AppColors.kAdditionalColor,
-                  borderRadius: BorderRadius.circular(AppValues.kRadius)),
-              width: 50.h,
-              height: 50.h,
-              padding: const EdgeInsets.all(AppValues.kPadding * 0.9),
-              child: GestureDetector(
-                child: SvgPicture.asset(
-                  Assets.icons.share,
-                  width: 20.h,
-                  height: 20.h,
-                  color: Colors.white,
-                ),
-              )),
-          if (isProfile)
-            Container(
-                decoration: BoxDecoration(
-                    color: AppColors.kAdditionalColor,
-                    borderRadius: BorderRadius.circular(AppValues.kRadius)),
-                width: 50.h,
-                height: 50.h,
-                padding: const EdgeInsets.all(AppValues.kPadding * 0.9),
-                child: GestureDetector(
-                  child: SvgPicture.asset(
-                    Assets.icons.trashBinMinimalistic,
-                    width: 20.h,
-                    height: 20.h,
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  // width: isProfile ? 190.w : 250.w,
+                  height: 50.h,
+                  child: ElevatedButton.icon(
+                    style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all(Colors.white),
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(AppValues.kRadius)))),
+                    onPressed: () {},
+                    icon: SvgPicture.asset(
+                      Assets.icons.download,
+                      color: AppColors.kAdditionalColor,
+                      width: 20.h,
+                      height: 20.h,
+                    ),
+                    label: Text(
+                      t.photos.download,
+                      style: textTheme.headlineSmall!.copyWith(
+                          color: colorScheme.onSecondary,
+                          fontWeight: FontWeight.bold),
+                      // style: TextStyle(
+                      //     color: AppColors.kAdditionalColor,
+                      //     fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ))
+                ),
+              ),
+              const Gap(AppValues.kPadding),
+              Container(
+                  decoration: BoxDecoration(
+                      color: AppColors.kSecondaryAdditionallyColor,
+                      borderRadius: BorderRadius.circular(AppValues.kRadius)),
+                  width: 50.h,
+                  height: 50.h,
+                  padding: EdgeInsets.all(16.w),
+                  child: GestureDetector(
+                    child: SvgPicture.asset(
+                      Assets.icons.share,
+                      color: Colors.white,
+                    ),
+                  )),
+              if (isProfile) const Gap(AppValues.kPadding),
+              if (isProfile)
+                Container(
+                    decoration: BoxDecoration(
+                        color: AppColors.kSecondaryAdditionallyColor,
+                        borderRadius: BorderRadius.circular(AppValues.kRadius)),
+                    width: 50.h,
+                    height: 50.h,
+                    padding: EdgeInsets.all(16.w),
+                    child: GestureDetector(
+                      child: SvgPicture.asset(
+                        Assets.icons.trashBinMinimalistic,
+                        width: 20.h,
+                        height: 20.h,
+                      ),
+                    ))
+            ],
+          ),
         ],
       ),
     );
