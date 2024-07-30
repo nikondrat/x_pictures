@@ -26,12 +26,12 @@ class InputGroup extends StatelessWidget {
               title: t.init.providers.email,
               inputWidget: ReactiveTextField(
                   formControlName: 'email',
-                  style: textTheme.titleLarge!
-                      .copyWith(color: colorScheme.onSecondary),
+                  style: textTheme.titleLarge!.copyWith(
+                      color: colorScheme.onSecondary, fontSize: 12.sp),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(
-                        horizontal: AppValues.kPadding, vertical: 8.h),
+                        horizontal: AppValues.kPadding, vertical: 9.h),
                     hintStyle: textTheme.titleLarge!
                         .copyWith(color: colorScheme.outline, fontSize: 12.sp),
                     hintText: t.auth.hint
@@ -46,12 +46,12 @@ class InputGroup extends StatelessWidget {
                   obscuringCharacter: '•',
                   obscureText: !store.isShowPassword,
                   onSubmitted: (_) => authStore.login(),
-                  style: textTheme.titleLarge!
-                      .copyWith(color: colorScheme.onSecondary),
+                  style: textTheme.titleLarge!.copyWith(
+                      color: colorScheme.onSecondary, fontSize: 12.sp),
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(
-                        horizontal: AppValues.kPadding, vertical: 8.h),
+                        horizontal: AppValues.kPadding, vertical: 9.h),
                     suffixIcon: Padding(
                       padding: const EdgeInsets.only(right: AppValues.kPadding),
                       child: IconButton(

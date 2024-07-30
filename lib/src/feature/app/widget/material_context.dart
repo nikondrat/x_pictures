@@ -22,7 +22,7 @@ class MaterialContext extends StatelessWidget {
     final settings = Provider.of<Dependencies>(context).settingsStore;
 
     return ScreenUtilInit(
-        designSize: const Size(360, 690),
+        designSize: const Size(375, 836),
         minTextAdapt: true,
         enableScaleText: () => false,
         splitScreenMode: true,
