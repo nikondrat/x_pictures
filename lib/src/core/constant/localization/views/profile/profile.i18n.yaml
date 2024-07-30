@@ -6,3 +6,6 @@ photos: photos
 minutes: min
 
 items_selected: ${count} items selected
+photos_selected: ${count} Photo selected
+my_ai_profiles: My ai profiles
+send: Send

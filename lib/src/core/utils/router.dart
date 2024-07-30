@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:x_pictures/src/data.dart';
@@ -210,8 +212,10 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                     builder: (context, state) {
                                       final Map? data = state.extra as Map?;
                                       final store = data?['store'];
+                                      final model = data?['model'];
                                       return GenderView(
                                         store: store,
+                                        model: model,
                                       );
                                     },
                                     routes: [
@@ -222,8 +226,10 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                             final Map? data =
                                                 state.extra as Map?;
                                             final store = data?['store'];
+                                            final model = data?['model'];
                                             return PlanView(
                                               store: store,
+                                              model: model,
                                             );
                                           },
                                           routes: [
@@ -234,8 +240,10 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                                   final Map? data =
                                                       state.extra as Map?;
                                                   final store = data?['store'];
+                                                  final model = data?['model'];
                                                   return MasterpieceView(
                                                     store: store,
+                                                    model: model,
                                                   );
                                                 },
                                                 routes: [
@@ -250,10 +258,17 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                                             models =
                                                             data?['models'] ??
                                                                 [];
-                                                        // final PackModel model =
-                                                        //     data?['model'];
+                                                        final bool isProfile =
+                                                            data?['isProfile'] ??
+                                                                false;
+
+                                                        final String? title =
+                                                            data?['title'];
+
                                                         return PhotosView(
                                                           models: models,
+                                                          isProfile: isProfile,
+                                                          title: title,
                                                         );
                                                       })
                                                 ])

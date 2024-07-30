@@ -27,7 +27,11 @@ class PackItem extends StatelessWidget {
       ]),
       child: GestureDetector(
         onTap: () {
-          router.pushNamed(AppViews.photosView, extra: {'models': pack.images});
+          router.pushNamed(AppViews.photosView, extra: {
+            'title': pack.category,
+            'models': pack.images,
+            'isProfile': true,
+          });
         },
         child: Container(
             margin: const EdgeInsets.only(bottom: AppValues.kPadding),

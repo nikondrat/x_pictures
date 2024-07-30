@@ -87,7 +87,8 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                                 ),
                                 Text(
                                   'Your photos',
-                                  style: AppStyles.title2TextStyle,
+                                  style: AppStyles.title2TextStyle
+                                      .copyWith(fontSize: 12.sp),
                                 ),
                                 Observer(builder: (context) {
                                   if (!loraStore.canGenerateLora) {
@@ -122,17 +123,17 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                       alignment: Alignment.bottomCenter,
                       child: Padding(
                         padding: HorizontalSpacing.centered(windowWidth) +
-                            const EdgeInsets.only(
-                                bottom: AppValues.kPadding * 2),
-                        child: SizedBox(
-                            height: 80,
-                            child: GradientButton(
+                            EdgeInsets.only(bottom: AppValues.kPadding * 2),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GradientButton(
                                 onPressed: () {
                                   loraStore.generateLora();
-                                  // router.goNamed(AppViews.genderView,
-                                  //     extra: {'model': widget.model});
                                 },
-                                text: t.common.continue_action)),
+                                text: t.common.continue_action),
+                          ],
+                        ),
                       ),
                     ),
                   ]));

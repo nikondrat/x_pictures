@@ -6,7 +6,8 @@ import 'package:x_pictures/src/core/constant/styles.dart';
 
 class GenderView extends StatelessWidget {
   final PacksStore store;
-  const GenderView({super.key, required this.store});
+  final LoraModel model;
+  const GenderView({super.key, required this.store, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class GenderView extends StatelessWidget {
                                   Text(
                                     t.template.step_third,
                                     style: AppStyles.subTitleTextStyle.copyWith(
-                                      fontSize: 10.sp,
+                                      fontSize: 8.sp,
                                     ),
                                   ),
                                   SizedBox(
@@ -56,7 +57,9 @@ class GenderView extends StatelessWidget {
                                     padding: EdgeInsets.only(right: 50.w),
                                     child: Text(
                                       t.gender.title,
-                                      style: AppStyles.head1TextStyle,
+                                      style: AppStyles.head1TextStyle.copyWith(
+                                        fontSize: 14.sp,
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
@@ -65,7 +68,7 @@ class GenderView extends StatelessWidget {
                                   Text(
                                     t.gender.description,
                                     style: AppStyles.subTitleTextStyle.copyWith(
-                                      fontSize: 17.sp,
+                                      fontSize: 10.sp,
                                     ),
                                   ),
                                   SizedBox(
@@ -118,21 +121,23 @@ class GenderView extends StatelessWidget {
                           alignment: Alignment.bottomCenter,
                           child: Padding(
                             padding: HorizontalSpacing.centered(windowWidth) +
-                                const EdgeInsets.only(
-                                    bottom: AppValues.kPadding * 2),
-                            child: SizedBox(
-                                height: 80,
-                                child: GradientButton(
+                                EdgeInsets.only(bottom: AppValues.kPadding * 2),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                GradientButton(
                                     onPressed: () {
                                       router
                                           .pushNamed(AppViews.planView, extra: {
                                         'store': store,
+                                        'model': model,
                                       });
                                     },
-                                    isEnabled: consumerValue.isSelected,
-                                    text: t.common.continue_action)),
+                                    text: t.common.continue_action),
+                              ],
+                            ),
                           ),
-                        )
+                        ),
                       ]))))),
     );
   }

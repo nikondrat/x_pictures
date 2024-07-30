@@ -4,10 +4,14 @@ import 'package:x_pictures/src/data.dart';
 part 'media_body.g.dart';
 
 class MediaBodyStore extends _MediaBodyStore with _$MediaBodyStore {
-  MediaBodyStore();
+  MediaBodyStore({required super.homeStore});
 }
 
 abstract class _MediaBodyStore with Store {
+  final HomeStore homeStore;
+
+  _MediaBodyStore({required this.homeStore});
+
   @observable
   ObservableList<MediaModel> items = ObservableList.of([
     MediaModel(
@@ -100,7 +104,7 @@ abstract class _MediaBodyStore with Store {
       if (grouped.containsKey(item.createdDate)) {
         grouped[item.createdDate]!.add(item);
       } else {
-        grouped[item.createdDate] = [item];
+        grouped[item.createdDate ?? DateTime.now()] = [item];
       }
     }
     return grouped;
@@ -111,6 +115,9 @@ abstract class _MediaBodyStore with Store {
       ObservableList.of(items.where((item) => item.isSelected));
 
   @computed
+  int get selectedItemsCount => selectedItems.length;
+
+  @computed
   bool get isHasSelectedItems => selectedItems.isNotEmpty;
 
   @observable
@@ -119,6 +126,7 @@ abstract class _MediaBodyStore with Store {
   @action
   void toggleSelect() {
     isSelect = !isSelect;
+    homeStore.setShowBottomBar(false);
 
     if (!isSelect) {
       markAllNotSelected();
@@ -131,6 +139,7 @@ abstract class _MediaBodyStore with Store {
       item.isSelected = false;
     }
     isSelect = false;
+    homeStore.setShowBottomBar(true);
   }
 
   @action

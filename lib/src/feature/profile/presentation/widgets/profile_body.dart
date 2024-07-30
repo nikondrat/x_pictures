@@ -29,6 +29,17 @@ class _ProfileBodyState extends State<ProfileBody> {
   Widget build(BuildContext context) {
     return LoadingWidget(
         future: widget.jobsStore.fetchJobsFuture,
+        emptyData: IntrinsicHeight(
+          child: GestureDetector(
+            onTap: widget.controller.index == 0
+                ? widget.goHome
+                : widget.goGenerate,
+            child: Image.asset(
+              Assets.images.banner2.path,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
         builder: (v) {
           final List<JobModel> jobs = v;
 

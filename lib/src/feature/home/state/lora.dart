@@ -39,39 +39,31 @@ abstract class _LoraStore with Store {
   bool get canGenerateLora => photosLength <= 12;
 
   Future<void> generateLora() async {
-    // FormData formData = FormData();
+    FormData formData = FormData();
 
-    // for (int i = 0; i < photos.length; i++) {
-    //   formData.files.add(
-    //     MapEntry(
-    //       'file${i + 1}', // Имя поля, под которым сервер ожидает файл
-    //       await MultipartFile.fromFile(
-    //         photos[i].path,
-    //         filename: photos[i].name,
-    //       ),
-    //     ),
-    //   );
-    // }
+    for (int i = 0; i < photos.length; i++) {
+      formData.files.add(
+        MapEntry(
+          'file${i + 1}', // Имя поля, под которым сервер ожидает файл
+          await MultipartFile.fromFile(
+            photos[i].path,
+            filename: photos[i].name,
+          ),
+        ),
+      );
+    }
 
-    // Map<String, MultipartFile> fileMap = {};
-
-    // for (var i = 0; i < photos.length; i++) {
-    //   File file = File(photos[i].path);
-    //   String fileName = p.basename(file.path);
-    //   fileMap['file$i'] = MultipartFile(file.openRead(), await file.length(),
-    //       filename: fileName);
-    // }
-
-    // var data = FormData.fromMap(fileMap);
-
-    // final future = restClient
-    //     .post(Endpoint().loras, body: data, contentType: 'multipart/form-data')
-    //     .then((v) {
-    //   log('$v');
-    // });
-
-    router.pushNamed(AppViews.genderView, extra: {
-      'store': store,
+    final future = restClient
+        .post(Endpoint().loras,
+            body: formData, contentType: 'multipart/form-data')
+        .then((v) {
+      if (v?['detail'] == null) {
+        final LoraModel model = LoraModel.fromJson(v!);
+        router.pushNamed(AppViews.genderView, extra: {
+          'store': store,
+          'model': model,
+        });
+      }
     });
   }
 

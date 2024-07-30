@@ -51,7 +51,7 @@ abstract class _PackModel with Store {
 
   @JsonKey()
   @observable
-  List<ImageModel> images;
+  List<MediaModel> images;
 
   @computed
   int get length => images.length;

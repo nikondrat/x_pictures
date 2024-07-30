@@ -24,6 +24,11 @@ class App extends StatelessWidget {
                 create: (context) => UserStore(
                     tokenStorage: context.read<Dependencies>().tokenStorage,
                     restClient: context.read<Dependencies>().restClient)),
+            Provider(create: (context) => HomeStore()),
+            Provider(
+                create: (context) => MediaBodyStore(
+                      homeStore: context.read<HomeStore>(),
+                    )),
           ],
           child: TranslationProvider(child: const MaterialContext()),
         ),

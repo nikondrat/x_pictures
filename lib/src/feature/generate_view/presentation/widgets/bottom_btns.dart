@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
@@ -13,35 +14,44 @@ class ResultViewBottomButtons extends StatelessWidget {
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
-    return Row(
-      children: [
-        Expanded(
-          flex: 5,
-          child: FilledButton.icon(
-            onPressed: () {},
-            label: Text(
-              model != null ? t.common.copy : t.generateView.repeat,
-              style: textTheme.titleLarge!.copyWith(
-                  color: colorScheme.onSecondary, fontWeight: FontWeight.bold),
+    return SizedBox(
+      height: 32.r,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            flex: 4,
+            child: FilledButton.icon(
+              onPressed: () {},
+              label: Text(
+                model != null ? t.common.copy : t.generateView.repeat,
+                style: textTheme.titleLarge!.copyWith(
+                    color: colorScheme.onSecondary,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.bold),
+              ),
+              icon: model != null
+                  ? const SizedBox.shrink()
+                  : SvgPicture.asset(Assets.icons.repeat),
+              style: ButtonStyle(
+                  backgroundColor:
+                      WidgetStatePropertyAll(colorScheme.secondary)),
             ),
-            icon: model != null
-                ? SizedBox.shrink()
-                : SvgPicture.asset(Assets.icons.generate),
-            style: ButtonStyle(
-                padding: const WidgetStatePropertyAll(
-                    EdgeInsets.all(AppValues.kPadding)),
-                backgroundColor: WidgetStatePropertyAll(colorScheme.secondary)),
           ),
-        ),
-        const Gap(AppValues.kPadding / 2),
-        Expanded(
-            child: _MiniButton(
-                icon: const Icon(Icons.file_download_outlined), onTap: () {})),
-        const Gap(AppValues.kPadding / 2),
-        Expanded(
-            child: _MiniButton(
-                icon: const Icon(Icons.ios_share_outlined), onTap: () {})),
-      ],
+          const Gap(AppValues.kPadding / 2),
+          Expanded(
+              child: _MiniButton(
+                  icon: SvgPicture.asset(
+                    Assets.icons.download,
+                    color: colorScheme.onPrimary,
+                  ),
+                  onTap: () {})),
+          const Gap(AppValues.kPadding / 2),
+          Expanded(
+              child: _MiniButton(
+                  icon: SvgPicture.asset(Assets.icons.share), onTap: () {})),
+        ],
+      ),
     );
   }
 }
@@ -55,6 +65,7 @@ class _MiniButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
         onPressed: onTap,
+        visualDensity: VisualDensity.comfortable,
         color: AppColors.kSecondaryAdditionallyColor,
         shape: ContinuousRectangleBorder(
           borderRadius: BorderRadius.circular(AppValues.kRadius),

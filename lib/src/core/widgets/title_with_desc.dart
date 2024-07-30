@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -27,7 +28,8 @@ class TitleWithDesc extends StatelessWidget {
           child: AutoSizeText(
             title,
             minFontSize: 17,
-            style: titleStyle ?? textTheme.headlineMedium,
+            style: titleStyle ??
+                textTheme.headlineMedium!.copyWith(fontSize: 18.sp),
             maxLines: 1,
           ),
         ),
@@ -41,8 +43,8 @@ class TitleWithDesc extends StatelessWidget {
                 description,
                 textAlign: TextAlign.center,
                 style: descriptionStyle ??
-                    textTheme.titleLarge!
-                        .copyWith(color: AppColors.kOutlineColor),
+                    textTheme.titleLarge!.copyWith(
+                        color: AppColors.kOutlineColor, fontSize: 10.sp),
                 maxLines: 2,
               ),
             )),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -16,6 +18,7 @@ class MediaView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaBodyStore store = context.read<MediaBodyStore>();
+    final isIOS = Platform.isIOS;
 
     return Column(
       children: [
@@ -23,11 +26,13 @@ class MediaView extends StatelessWidget {
         if (store.items.isNotEmpty)
           Observer(builder: (context) {
             return Row(
-                mainAxisAlignment: store.isHasSelectedItems
-                    ? MainAxisAlignment.spaceBetween
-                    : MainAxisAlignment.end,
+                mainAxisAlignment:
+                    //  store.isHasSelectedItems
+                    // ? MainAxisAlignment.spaceBetween
+                    // :
+                    MainAxisAlignment.end,
                 children: [
-                  if (store.isHasSelectedItems)
+                  if (store.isHasSelectedItems && isIOS)
                     FilledButton(
                         style: const ButtonStyle(
                             backgroundColor: WidgetStatePropertyAll(

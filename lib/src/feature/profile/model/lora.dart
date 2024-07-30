@@ -12,13 +12,13 @@ class LoraModel {
   final Status status;
 
   @JsonKey(name: 'estimated_time')
-  final String estimatedTime;
+  final int estimatedTime;
 
   @JsonKey(name: 'estimated_timestamp')
-  final String estimatedTimestamp;
+  final int estimatedTimestamp;
 
   @JsonKey(name: 'training_time_seconds')
-  final int trainingTimeSeconds;
+  final int? trainingTimeSeconds;
 
   @JsonKey(name: 'training_faces')
   final List<ImageModel> images;

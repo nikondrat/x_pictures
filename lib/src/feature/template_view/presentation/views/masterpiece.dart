@@ -9,7 +9,8 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 class MasterpieceView extends StatefulWidget {
   final PacksStore store;
-  const MasterpieceView({super.key, required this.store});
+  final LoraModel model;
+  const MasterpieceView({super.key, required this.store, required this.model});
 
   @override
   State<MasterpieceView> createState() => _MasterpieceViewState();
@@ -45,7 +46,9 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                 children: <Widget>[
                   Text(
                     t.masterpiece.title,
-                    style: AppStyles.head1TextStyle,
+                    style: AppStyles.head1TextStyle.copyWith(
+                      fontSize: 12.sp,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
@@ -53,15 +56,15 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                   ),
                   Consumer<TimeIndicator>(
                       builder: (context, consumerValue, child) {
-                    consumerValue.startTimer(widget.store);
+                    consumerValue.startTimer(widget.store, widget.model);
                     if (consumerValue.getCurrentTimeRemained == 0) {}
                     return CircularPercentIndicator(
-                      radius: 100.w,
+                      radius: 70.r,
                       animation: true,
                       animationDuration: 800,
                       animateFromLastPercent: true,
                       percent: consumerValue.currentPercent,
-                      lineWidth: 10.r,
+                      lineWidth: 7.r,
                       circularStrokeCap: CircularStrokeCap.round,
                       backgroundColor: const Color(0xff3B3B5A),
                       progressColor: Colors.orange[900],
@@ -72,12 +75,12 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                           AutoSizeText(
                             '${t.masterpiece.remained}:',
                             style: textTheme.bodyLarge!.copyWith(
-                                fontSize: 12.sp,
-                                color: AppColors.kOutlineColor),
+                                fontSize: 8.sp, color: AppColors.kOutlineColor),
                           ),
                           AutoSizeText(
                             '${consumerValue.getCurrentTimeRemained} min',
-                            style: AppStyles.head1TextStyle,
+                            style: AppStyles.head1TextStyle
+                                .copyWith(fontSize: 18.sp),
                           )
                         ],
                       ),
@@ -88,7 +91,7 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                   ),
                   Text(
                     t.masterpiece.description,
-                    style: textTheme.bodyMedium!.copyWith(fontSize: 17.sp),
+                    style: textTheme.bodyMedium!.copyWith(fontSize: 10.sp),
                     textAlign: TextAlign.center,
                   )
                 ],

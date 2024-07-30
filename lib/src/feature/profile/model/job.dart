@@ -15,7 +15,7 @@ class JobModel {
   final PackModel pack;
 
   @JsonKey(name: 'results')
-  final List<ImageModel> images;
+  final List<MediaModel> images;
 
   @JsonKey(name: 'time_spent')
   final int timeSpent;

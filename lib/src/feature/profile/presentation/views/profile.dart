@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -203,13 +205,15 @@ class _ProfileViewState extends State<ProfileView>
   @override
   Widget build(BuildContext context) {
     final UserStore userStore = context.read<UserStore>();
+    final isIOS = Platform.isIOS;
 
     return MultiProvider(
         providers: [
           Provider(
               create: (context) => JobsStore(
                   restClient: context.read<Dependencies>().restClient)),
-          Provider(create: (context) => MediaBodyStore()),
+          Provider(
+              create: (context) => MediaBodyStore(homeStore: context.read())),
         ],
         builder: (context, child) {
           final JobsStore jobsStore = context.read<JobsStore>();
@@ -217,7 +221,7 @@ class _ProfileViewState extends State<ProfileView>
 
           return Observer(builder: (context) {
             return Scaffold(
-              appBar: mediaBodyStore.isHasSelectedItems
+              appBar: mediaBodyStore.isHasSelectedItems && !isIOS
                   ? AppBar(
                       leading: IconButton(
                           onPressed: () {

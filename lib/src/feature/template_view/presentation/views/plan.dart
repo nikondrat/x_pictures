@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -7,92 +8,15 @@ import 'package:x_pictures/src/feature/template_view/presentation/widgets/cover_
 
 class PlanView extends StatelessWidget {
   final PacksStore store;
-  const PlanView({super.key, required this.store});
+  final LoraModel model;
+  const PlanView({super.key, required this.store, required this.model});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => PlanState(),
-      child: Scaffold(floatingActionButton:
-          Consumer<PlanState>(builder: (context, consumerValue, child) {
-        return SizedBox(
-          height: 80.h,
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 30.w),
-                child: SizedBox(
-                  // height: 50.h,
-                  child: GradientButton(
-                    onPressed: () {
-                      router.pushNamed(AppViews.masterpieceView, extra: {
-                        'store': store,
-                      });
-                    },
-                    text: t.common.continue_action,
-                    isEnabled: consumerValue.isSelected,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 5.h,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 30.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SizedBox(
-                      height: 20.h,
-                      child: TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                          child: Text(
-                            t.common.terms_use,
-                            style: AppStyles.subTitleTextStyle.copyWith(
-                              fontSize: 10.sp,
-                            ),
-                          )),
-                    ),
-                    Text(
-                      t.common.point,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                      child: TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                          child: Text(
-                            t.common.privacy_police,
-                            style: AppStyles.subTitleTextStyle.copyWith(
-                              fontSize: 10.sp,
-                            ),
-                          )),
-                    ),
-                    Text(
-                      t.common.point,
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                      child: TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                          child: Text(
-                            t.common.restore_purchase,
-                            style: AppStyles.subTitleTextStyle.copyWith(
-                              fontSize: 10.sp,
-                            ),
-                          )),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        );
-      }), body: Consumer<PlanState>(builder: (context, consumerValue, child) {
+      child: Scaffold(
+          body: Consumer<PlanState>(builder: (context, consumerValue, child) {
         return CustomScrollView(
           slivers: <Widget>[
             SliverToBoxAdapter(
@@ -105,13 +29,13 @@ class PlanView extends StatelessWidget {
                   children: [
                     Text(
                       t.plan.title,
-                      style: AppStyles.head1TextStyle,
+                      style: AppStyles.head1TextStyle.copyWith(fontSize: 14.sp),
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       t.plan.description,
                       style: AppStyles.subTitleTextStyle.copyWith(
-                        fontSize: 17.sp,
+                        fontSize: 10.sp,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -154,6 +78,92 @@ class PlanView extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            SliverToBoxAdapter(
+              child:
+                  Consumer<PlanState>(builder: (context, consumerValue, child) {
+                return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: SizedBox(
+                      height: 80.h,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            // height: 50.h,
+                            child: GradientButton(
+                              onPressed: () {
+                                router.pushNamed(AppViews.masterpieceView,
+                                    extra: {
+                                      'store': store,
+                                      'model': model,
+                                    });
+                              },
+                              text: t.common.continue_action,
+                              isEnabled: consumerValue.isSelected,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5.h,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                height: 20.h,
+                                child: TextButton(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                        padding: EdgeInsets.zero),
+                                    child: AutoSizeText(
+                                      t.common.terms_use,
+                                      style:
+                                          AppStyles.subTitleTextStyle.copyWith(
+                                        fontSize: 8.sp,
+                                      ),
+                                    )),
+                              ),
+                              AutoSizeText(
+                                t.common.point,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                                child: TextButton(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                        padding: EdgeInsets.zero),
+                                    child: AutoSizeText(
+                                      t.common.privacy_police,
+                                      style:
+                                          AppStyles.subTitleTextStyle.copyWith(
+                                        fontSize: 8.sp,
+                                      ),
+                                    )),
+                              ),
+                              AutoSizeText(
+                                t.common.point,
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                                child: TextButton(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                        padding: EdgeInsets.zero),
+                                    child: AutoSizeText(
+                                      t.common.restore_purchase,
+                                      style:
+                                          AppStyles.subTitleTextStyle.copyWith(
+                                        fontSize: 8.sp,
+                                      ),
+                                    )),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ));
+              }),
             )
           ],
         );

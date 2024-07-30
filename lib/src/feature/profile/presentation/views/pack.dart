@@ -16,6 +16,7 @@ class PackView extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Gap(AppValues.kPadding),
+          const ProfilesWidget(),
           // TODO add packs
           Column(
               mainAxisSize: MainAxisSize.min,

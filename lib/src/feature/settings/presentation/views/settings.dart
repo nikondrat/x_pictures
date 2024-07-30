@@ -17,7 +17,7 @@ class SettingsView extends StatelessWidget {
     final UserStore userStore = Provider.of<UserStore>(context);
 
     final bool isAndroid = Platform.isAndroid;
-    // final bool isAndroid = false;
+    // final bool isAndroid = true;
 
     return Scaffold(
         appBar: AppBar(

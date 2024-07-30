@@ -16,6 +16,7 @@ class InitView extends StatelessWidget {
 
     final TokenStorage tokenStorage = context.read<Dependencies>().tokenStorage;
 
+    // TODO
     tokenStorage.loadTokenPair().then((value) {
       if (value != null) {
         router.goNamed(AppViews.homePageRoute);

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:x_pictures/src/data.dart';
@@ -10,7 +11,7 @@ class TimeIndicator extends ChangeNotifier {
   int get getCurrentTimeRemained => _start;
   double get currentPercent => _percent;
 
-  void startTimer(PacksStore store) {
+  void startTimer(PacksStore store, LoraModel model) {
     const int oneSec = 1;
 
     Timer.periodic(const Duration(seconds: oneSec), (Timer timer) {
@@ -18,71 +19,60 @@ class TimeIndicator extends ChangeNotifier {
         timer.cancel();
         router.goNamed(AppViews.photosView, extra: {
           "store": store,
-          "models": [
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-            MediaModel(
-                type: MediaType.image,
-                url:
-                    'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-                createdDate: DateTime.now()),
-          ]
-          // 'model': model,
-          // 'urls': [
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          //   'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
-          // ]
+          "models": !kDebugMode
+              ? model.images
+              : [
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                  MediaModel(
+                      type: MediaType.image,
+                      url:
+                          'https://mykaleidoscope.ru/x/uploads/posts/2023-12/1702643243_mykaleidoscope-ru-p-marlin-monro-pinterest-15.jpg',
+                      createdDate: DateTime.now()),
+                ]
         });
       } else {
         _start--;

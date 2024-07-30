@@ -22,7 +22,7 @@ class DecoratedContentWidget extends StatelessWidget {
         padding: const EdgeInsets.all(AppValues.kPadding),
         child: AutoSizeText(
           content,
-          style: textTheme.bodyLarge!.copyWith(color: colorScheme.outline),
+          style: textTheme.bodyMedium!.copyWith(color: colorScheme.outline),
         ),
       ))
     ]);

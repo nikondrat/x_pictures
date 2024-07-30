@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:x_pictures/src/data.dart';
 
 class AddDescription extends StatelessWidget {
@@ -66,6 +67,7 @@ class AddDescription extends StatelessWidget {
             const Gap(AppValues.kPadding),
             GradientButton(
                 onPressed: () {
+                  context.pop();
                   genStore.generate();
                   // router.goNamed(AppViews.resultView);
                 },

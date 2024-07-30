@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_pictures/src/data.dart';
 
 class AuthButton extends StatelessWidget {
@@ -27,12 +28,14 @@ class AuthButton extends StatelessWidget {
       label: AutoSizeText(
         title,
         style: textTheme.titleLarge!.copyWith(
-            color: AppColors.kBackgroundColor, fontWeight: FontWeight.w700),
+            fontSize: 10.sp,
+            color: AppColors.kBackgroundColor,
+            fontWeight: FontWeight.w700),
         maxLines: 1,
       ),
       style: ButtonStyle(
           padding: WidgetStatePropertyAll(EdgeInsets.symmetric(
-              vertical: windowHeight * .03, horizontal: AppValues.kPadding)),
+              vertical: 8.h, horizontal: AppValues.kPadding)),
           backgroundColor:
               const WidgetStatePropertyAll(AppColors.kSecondaryColor)),
     );
