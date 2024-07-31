@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
@@ -44,8 +45,9 @@ class GenderView extends StatelessWidget {
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  AutoSizeText(
                                     t.template.step_third,
+                                    minFontSize: 8,
                                     style: AppStyles.subTitleTextStyle.copyWith(
                                       fontSize: 8.sp,
                                     ),
@@ -55,24 +57,24 @@ class GenderView extends StatelessWidget {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(right: 50.w),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       t.gender.title,
                                       style: AppStyles.head1TextStyle.copyWith(
-                                        fontSize: 14.sp,
+                                        fontSize: 17.sp,
                                       ),
                                     ),
                                   ),
                                   SizedBox(
                                     height: 5.h,
                                   ),
-                                  Text(
+                                  AutoSizeText(
                                     t.gender.description,
                                     style: AppStyles.subTitleTextStyle.copyWith(
                                       fontSize: 10.sp,
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 10.h,
+                                    height: 30.h,
                                   ),
                                   RadioButton(
                                       text: t.gender.female,

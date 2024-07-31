@@ -15,7 +15,7 @@ class ResultViewBottomButtons extends StatelessWidget {
     final ColorScheme colorScheme = themeData.colorScheme;
 
     return SizedBox(
-      height: 32.r,
+      height: 60.h,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

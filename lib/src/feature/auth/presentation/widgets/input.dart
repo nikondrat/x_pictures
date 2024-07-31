@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:x_pictures/src/data.dart';
 
 class InputWithTitleWidget extends StatelessWidget {
   final String title;
@@ -20,11 +20,12 @@ class InputWithTitleWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: textTheme.titleMedium!.copyWith(color: colorScheme.outline),
+          style: textTheme.titleMedium!
+              .copyWith(color: colorScheme.outline, fontSize: 12.sp),
         ),
-        const Gap(AppValues.kPadding / 3),
+        Gap(6.h),
         inputWidget,
-        const Gap(AppValues.kPadding)
+        Gap(12.h),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -22,7 +23,7 @@ class SettingsView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           leading: const CustomBackButton(),
-          title: Text(t.settings.title),
+          title: AutoSizeText(t.settings.title),
         ),
         body: SettingsList(
           darkTheme: SettingsThemeData(

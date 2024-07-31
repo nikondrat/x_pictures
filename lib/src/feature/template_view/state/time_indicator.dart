@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:x_pictures/src/data.dart';
 
@@ -18,6 +17,7 @@ class TimeIndicator extends ChangeNotifier {
       if (_start == 0) {
         timer.cancel();
         router.goNamed(AppViews.photosView, extra: {
+          "model": model,
           "store": store,
           "models": !kDebugMode
               ? model.images

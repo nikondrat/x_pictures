@@ -26,6 +26,7 @@ class InputGroup extends StatelessWidget {
               title: t.init.providers.email,
               inputWidget: ReactiveTextField(
                   formControlName: 'email',
+                  validationMessages: {'notFound': (c) => t.auth.errors.email},
                   style: textTheme.titleLarge!.copyWith(
                       color: colorScheme.onSecondary, fontSize: 12.sp),
                   textInputAction: TextInputAction.next,
@@ -72,7 +73,7 @@ class InputGroup extends StatelessWidget {
                 );
               }),
             ),
-            const Gap(AppValues.kPadding / 2),
+            Gap(10.h),
             Observer(
                 builder: (_) => GradientButton(
                     onPressed: authStore.login,

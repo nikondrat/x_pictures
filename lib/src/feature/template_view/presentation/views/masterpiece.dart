@@ -44,22 +44,22 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  AutoSizeText(
                     t.masterpiece.title,
                     style: AppStyles.head1TextStyle.copyWith(
-                      fontSize: 12.sp,
+                      fontSize: 17.sp,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 50.h,
                   ),
                   Consumer<TimeIndicator>(
                       builder: (context, consumerValue, child) {
                     consumerValue.startTimer(widget.store, widget.model);
                     if (consumerValue.getCurrentTimeRemained == 0) {}
                     return CircularPercentIndicator(
-                      radius: 70.r,
+                      radius: 100.h,
                       animation: true,
                       animationDuration: 800,
                       animateFromLastPercent: true,
@@ -87,11 +87,11 @@ class _MasterpieceViewState extends State<MasterpieceView> {
                     );
                   }),
                   SizedBox(
-                    height: 30.h,
+                    height: 60.h,
                   ),
-                  Text(
+                  AutoSizeText(
                     t.masterpiece.description,
-                    style: textTheme.bodyMedium!.copyWith(fontSize: 10.sp),
+                    style: textTheme.bodyMedium!.copyWith(fontSize: 12.sp),
                     textAlign: TextAlign.center,
                   )
                 ],

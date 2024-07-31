@@ -44,7 +44,7 @@ abstract class _LoraStore with Store {
     for (int i = 0; i < photos.length; i++) {
       formData.files.add(
         MapEntry(
-          'file${i + 1}', // Имя поля, под которым сервер ожидает файл
+          'file${i + 1}',
           await MultipartFile.fromFile(
             photos[i].path,
             filename: photos[i].name,
@@ -65,6 +65,19 @@ abstract class _LoraStore with Store {
         });
       }
     });
+
+    // router.pushNamed(AppViews.genderView, extra: {
+    //   'store': store,
+    //   'model': LoraModel(
+    //       id: '',
+    //       status: Status.completed,
+    //       estimatedTime: 0,
+    //       estimatedTimestamp: 0,
+    //       trainingTimeSeconds: 0,
+    //       images: [],
+    //       cost: '',
+    //       createdDate: DateTime.now()),
+    // });
   }
 
   @observable

@@ -24,10 +24,12 @@ abstract class _SignInViewStore with Store {
   }
 
   final FormGroup formGroup = FormGroup({
-    "email": FormControl(validators: [
-      Validators.required,
-      Validators.email,
-    ]),
+    "email": FormControl(
+      validators: [
+        Validators.required,
+        Validators.email,
+      ],
+    ),
     "password": FormControl<String>(validators: [
       Validators.required,
       Validators.minLength(8),

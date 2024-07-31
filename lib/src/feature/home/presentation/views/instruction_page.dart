@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_pictures/src/core/constant/images.dart';
@@ -23,10 +24,10 @@ class InstructionPage extends StatelessWidget {
         // appBar: const CustomAppBar(textName: 'Instruction'),
         appBar: AppBar(
           leading: const CustomBackButton(),
-          title: Text(
+          title: AutoSizeText(
             t.homeView.instruction,
             style: textTheme.headlineSmall!
-                .copyWith(fontWeight: FontWeight.w700, fontSize: 10.sp),
+                .copyWith(fontWeight: FontWeight.w700, fontSize: 17.sp),
           ),
         ),
         body: AppBody(
@@ -39,8 +40,9 @@ class InstructionPage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          AutoSizeText(
                             'Step 1 of 3',
+                            minFontSize: 8,
                             style: AppStyles.subTitleTextStyle.copyWith(
                               fontSize: 6.sp,
                             ),
@@ -53,67 +55,71 @@ class InstructionPage extends StatelessWidget {
                             child: Text(
                               'Pick 8-12 photos of yourself',
                               style: textTheme.bodyLarge!.copyWith(
-                                  fontSize: 12.sp, fontWeight: FontWeight.bold),
+                                  fontSize: 17.sp, fontWeight: FontWeight.bold),
                             ),
                           ),
                           SizedBox(
                             height: 5.h,
                           ),
-                          Text(
+                          AutoSizeText(
                             'Your photos are completely confidential and will only be used to create avatars.',
                             style: textTheme.bodyMedium!.copyWith(
-                                fontSize: 9.sp, color: AppColors.kOutlineColor),
+                                fontSize: 12.sp,
+                                color: AppColors.kOutlineColor),
                           ),
                           SizedBox(
                             height: 20.h,
                           ),
-                          Text(
+                          AutoSizeText(
                             'Good photos',
                             style: textTheme.bodyLarge!.copyWith(
-                                fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                fontSize: 17.sp, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 5.h,
                           ),
-                          Text(
+                          AutoSizeText(
                               'Excellent quality, good angle, one face, different backgrounds, lighting, etc',
                               style: textTheme.bodyMedium!.copyWith(
-                                  fontSize: 9.sp,
+                                  fontSize: 12.sp,
                                   color: AppColors.kOutlineColor)),
                           SizedBox(
-                            height: 5.h,
+                            height: 20.h,
                           ),
                           SizedBox(
-                            height: 60.h,
+                            height: 100.h,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: 4,
                               itemBuilder: (BuildContext context, int index) {
-                                return Image.asset(AppImages.goodPhotoExa);
+                                return Padding(
+                                  padding: EdgeInsets.only(right: 10.r),
+                                  child: Image.asset(AppImages.goodPhotoExa),
+                                );
                               },
                             ),
                           ),
                           SizedBox(
-                            height: 5.h,
+                            height: 20.h,
                           ),
-                          Text(
+                          AutoSizeText(
                             'Bad photos',
                             style: textTheme.bodyLarge!.copyWith(
-                                fontSize: 10.sp, fontWeight: FontWeight.bold),
+                                fontSize: 17.sp, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 5.h,
                           ),
-                          Text(
+                          AutoSizeText(
                               'A lot of faces, glasses, poor quality, nudity, kids, etc.',
                               style: textTheme.bodyMedium!.copyWith(
-                                  fontSize: 9.sp,
+                                  fontSize: 12.sp,
                                   color: AppColors.kOutlineColor)),
                           SizedBox(
-                            height: 5.h,
+                            height: 20.h,
                           ),
                           SizedBox(
-                              height: 60.h,
+                              height: 100.h,
                               child: ListView(
                                 scrollDirection: Axis.horizontal,
                                 children: [

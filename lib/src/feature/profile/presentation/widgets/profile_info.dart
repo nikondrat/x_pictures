@@ -32,7 +32,7 @@ class ProfileInfoWidget extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              radius: 16.r,
+              radius: 34.h,
               backgroundImage: CachedNetworkImageProvider(url),
             ),
             const Gap(AppValues.kPadding),

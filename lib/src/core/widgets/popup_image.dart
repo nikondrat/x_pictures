@@ -25,7 +25,7 @@ class PopupImage extends StatelessWidget {
         content: Builder(
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.all(AppValues.kPadding),
+              padding: EdgeInsets.all(24.h),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.5,
@@ -42,12 +42,12 @@ class PopupImage extends StatelessWidget {
         ),
         actions: [
           SizedBox(
-            height: 30.r,
+            height: 40.w,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  flex: 4,
+                  flex: isProfile ? 6 : 5,
                   child: SizedBox(
                     // width: isProfile ? 190.w : 250.w,
                     child: ElevatedButton.icon(
@@ -58,7 +58,7 @@ class PopupImage extends StatelessWidget {
                               WidgetStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(
-                                          AppValues.kRadius)))),
+                                          AppValues.kRadius.r)))),
                       onPressed: () {},
                       icon: SvgPicture.asset(
                         Assets.icons.download,
@@ -86,7 +86,7 @@ class PopupImage extends StatelessWidget {
                           color: AppColors.kSecondaryAdditionallyColor,
                           borderRadius:
                               BorderRadius.circular(AppValues.kRadius)),
-                      padding: EdgeInsets.symmetric(horizontal: 8.h),
+                      padding: EdgeInsets.symmetric(horizontal: 14.h),
                       child: SvgPicture.asset(
                         Assets.icons.share,
                         color: Colors.white,
@@ -100,7 +100,7 @@ class PopupImage extends StatelessWidget {
                             color: AppColors.kSecondaryAdditionallyColor,
                             borderRadius:
                                 BorderRadius.circular(AppValues.kRadius)),
-                        padding: EdgeInsets.symmetric(horizontal: 8.h),
+                        padding: EdgeInsets.symmetric(horizontal: 14.h),
                         child: GestureDetector(
                           child: SvgPicture.asset(
                             Assets.icons.trashBinMinimalistic,

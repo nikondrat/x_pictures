@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
@@ -27,20 +28,20 @@ class PlanView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
                 child: Column(
                   children: [
-                    Text(
+                    AutoSizeText(
                       t.plan.title,
-                      style: AppStyles.head1TextStyle.copyWith(fontSize: 14.sp),
+                      style: AppStyles.head1TextStyle.copyWith(fontSize: 17.sp),
                       textAlign: TextAlign.center,
                     ),
-                    Text(
+                    AutoSizeText(
                       t.plan.description,
                       style: AppStyles.subTitleTextStyle.copyWith(
-                        fontSize: 10.sp,
+                        fontSize: 12.sp,
                       ),
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(
-                      height: 10.h,
+                      height: 20.h,
                     ),
                     RadioButton(
                         text: t.plan.plan_first,
@@ -85,7 +86,7 @@ class PlanView extends StatelessWidget {
                 return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15.w),
                     child: SizedBox(
-                      height: 80.h,
+                      height: 100.h,
                       child: Column(
                         children: [
                           SizedBox(
@@ -164,6 +165,9 @@ class PlanView extends StatelessWidget {
                       ),
                     ));
               }),
+            ),
+            SliverToBoxAdapter(
+              child: Gap(40.h),
             )
           ],
         );

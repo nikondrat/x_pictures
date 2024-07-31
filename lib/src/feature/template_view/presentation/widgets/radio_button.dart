@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
@@ -33,10 +34,10 @@ class RadioButton extends StatelessWidget {
         activeColor: Colors.orange[900],
         // fillColor: WidgetStateProperty.all(const Color(0xff3B3B5A)),
 
-        title: Text(
+        title: AutoSizeText(
           text,
           style: AppStyles.title2TextStyle
-              .copyWith(color: Colors.white, fontSize: 10.sp),
+              .copyWith(color: Colors.white, fontSize: 12.sp),
         ),
         value: value,
         groupValue: groupValue,

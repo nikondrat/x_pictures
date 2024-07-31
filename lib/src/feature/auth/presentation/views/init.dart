@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
@@ -17,11 +18,11 @@ class InitView extends StatelessWidget {
     final TokenStorage tokenStorage = context.read<Dependencies>().tokenStorage;
 
     // TODO
-    // tokenStorage.loadTokenPair().then((value) {
-    //   if (value != null) {
-    //     router.goNamed(AppViews.homePageRoute);
-    //   }
-    // });
+    tokenStorage.loadTokenPair().then((value) {
+      if (value != null) {
+        router.goNamed(AppViews.homePageRoute);
+      }
+    });
 
     return Scaffold(body: SafeArea(
       child: AppBody(
@@ -29,30 +30,30 @@ class InitView extends StatelessWidget {
           return ListView(
             padding: HorizontalSpacing.centered(windowWidth),
             children: [
-              const Gap(AppValues.kPadding),
+              Gap(16.h),
               Image.asset(
                 Assets.images.banner.path,
                 fit: BoxFit.contain,
                 height: windowHeight * .5,
               ),
-              const Gap(AppValues.kPadding),
+              Gap(16.h),
               TitleWithDesc(
                   title: t.init.title, description: t.init.description),
-              const Gap(AppValues.kPadding * 2),
+              Gap(16.h),
               AuthButton(
                 windowHeight: windowHeight,
                 icon: SvgPicture.asset(Assets.icons.apple),
                 title: t.init.sign_in_with(provider: t.init.providers.apple),
                 onPressed: () {},
               ),
-              const Gap(AppValues.kPadding),
+              Gap(2.h),
               AuthButton(
                 windowHeight: windowHeight,
                 icon: SvgPicture.asset(Assets.icons.google),
                 title: t.init.sign_in_with(provider: t.init.providers.google),
                 onPressed: () {},
               ),
-              const Gap(AppValues.kPadding),
+              Gap(2.h),
               AuthButton(
                 windowHeight: windowHeight,
                 icon: Icon(

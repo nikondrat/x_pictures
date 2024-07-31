@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -23,11 +24,11 @@ class ResultItem extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: AppValues.kPadding / 4),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(AppValues.kRadius),
+              borderRadius: BorderRadius.circular(AppValues.kRadius.r),
               child: CachedNetworkImage(
                 imageUrl: url,
                 fit: BoxFit.cover,
-                height: windowHeight * .06,
+                height: 70.h,
                 // width: windowHeight * .07,
               ),
             ),
@@ -44,10 +45,10 @@ class _Pro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: windowHeight * .06,
+      height: 70.h,
       margin: const EdgeInsets.all(AppValues.kPadding / 4),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppValues.kRadius),
+        borderRadius: BorderRadius.circular(AppValues.kRadius.r),
         color: AppColors.kSecondaryAdditionallyColor,
       ),
       child: Center(child: SvgPicture.asset(Assets.icons.pro)),

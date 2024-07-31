@@ -29,7 +29,7 @@ class TitleWithDesc extends StatelessWidget {
             title,
             minFontSize: 17,
             style: titleStyle ??
-                textTheme.headlineMedium!.copyWith(fontSize: 18.sp),
+                textTheme.headlineMedium!.copyWith(fontSize: 30.sp),
             maxLines: 1,
           ),
         ),

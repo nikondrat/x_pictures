@@ -21,7 +21,7 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
-    bool haveError = true;
+    // bool haveError = true;
 
     return Scaffold(
         // appBar: const CustomAppBar(textName: 'Uploading photos'),
@@ -55,8 +55,9 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                AutoSizeText(
                                   'Step 2 of 3',
+                                  minFontSize: 8,
                                   style: AppStyles.subTitleTextStyle.copyWith(
                                     fontSize: 6.sp,
                                   ),
@@ -66,29 +67,29 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(right: 50.w),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     'Your photos have been processed',
                                     style: textTheme.bodyLarge!.copyWith(
-                                        fontSize: 12.sp,
+                                        fontSize: 17.sp,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 SizedBox(
                                   height: 5.h,
                                 ),
-                                Text(
+                                AutoSizeText(
                                   'Description',
                                   style: textTheme.bodyMedium!.copyWith(
-                                      fontSize: 9.sp,
+                                      fontSize: 12.sp,
                                       color: AppColors.kOutlineColor),
                                 ),
                                 SizedBox(
                                   height: 20.h,
                                 ),
-                                Text(
+                                AutoSizeText(
                                   'Your photos',
                                   style: AppStyles.title2TextStyle
-                                      .copyWith(fontSize: 12.sp),
+                                      .copyWith(fontSize: 17.sp),
                                 ),
                                 Observer(builder: (context) {
                                   if (!loraStore.canGenerateLora) {
@@ -105,25 +106,28 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                           ),
                         ),
                         const UploadingPhotosBody(),
-                        if (haveError)
-                          SliverPadding(
-                            padding: EdgeInsets.only(
-                                left: 15.w, right: 15.w, bottom: 80.h),
-                            sliver: SliverToBoxAdapter(
-                              child: AutoSizeText(
-                                t.homeView.not_comply,
-                                style: textTheme.bodyLarge!
-                                    .copyWith(color: colorScheme.error),
+                        Observer(builder: (_) {
+                          if (loraStore.photosLength > 7)
+                            return SliverPadding(
+                              padding: EdgeInsets.only(
+                                  left: 15.w, right: 15.w, bottom: 120.h),
+                              sliver: SliverToBoxAdapter(
+                                child: AutoSizeText(
+                                  t.homeView.not_comply,
+                                  style: textTheme.bodyLarge!
+                                      .copyWith(color: colorScheme.error),
+                                ),
                               ),
-                            ),
-                          )
+                            );
+                          return SliverToBoxAdapter();
+                        })
                       ],
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
                         padding: HorizontalSpacing.centered(windowWidth) +
-                            EdgeInsets.only(bottom: AppValues.kPadding * 2),
+                            EdgeInsets.only(bottom: 20.h),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [

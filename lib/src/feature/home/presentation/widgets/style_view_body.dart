@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -18,11 +19,14 @@ class StyleViewBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AutoSizeText(t.homeView.what_style, style: textTheme.headlineSmall),
+        AutoSizeText(t.homeView.what_style,
+            style: textTheme.headlineSmall!
+                .copyWith(fontSize: 20.sp, fontWeight: FontWeight.bold)),
         const Gap(AppValues.kPadding / 2),
         AutoSizeText(
           model.description,
-          style: textTheme.titleLarge!.copyWith(color: AppColors.kOutlineColor),
+          style: textTheme.titleLarge!
+              .copyWith(color: AppColors.kOutlineColor, fontSize: 12.sp),
         ),
         // const Gap(AppValues.kPadding / 2),
         // AutoSizeText(t.homeView.for_what, style: textTheme.headlineSmall),
@@ -40,7 +44,8 @@ class StyleViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: AppValues.kPadding),
             child: AutoSizeText(t.homeView.outputs,
-                style: textTheme.headlineSmall),
+                style: textTheme.headlineSmall!
+                    .copyWith(fontSize: 20.sp, fontWeight: FontWeight.bold)),
           ),
         if (hasImages)
           GridView(

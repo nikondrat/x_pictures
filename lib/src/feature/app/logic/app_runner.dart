@@ -29,7 +29,9 @@ final class AppRunner {
         final result = await initializationProcessor.initialize();
         // Attach this widget to the root of the tree.
         runApp(DevicePreview(
-            enabled: !kReleaseMode, builder: (context) => App(result: result)));
+            enabled: !kReleaseMode,
+            // enabled: false,
+            builder: (context) => App(result: result)));
       } catch (e, stackTrace) {
         logger.error('Initialization failed', error: e, stackTrace: stackTrace);
         runApp(

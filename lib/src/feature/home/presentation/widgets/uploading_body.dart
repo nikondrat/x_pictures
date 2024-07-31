@@ -16,14 +16,14 @@ class UploadingPhotosBody extends StatelessWidget {
     final picker = ImagePicker();
 
     return SliverPadding(
-      padding: EdgeInsets.only(left: 15.w, right: 15.w, bottom: 80.h),
+      padding: EdgeInsets.only(left: 15.w, right: 15.w, bottom: 10.h),
       sliver: Observer(
           builder: (context) => SliverGrid(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     if (index < loraStore.photosLength) {
                       return ImageItemUploadingPhotosPage(
-                          haveError: index == 3,
+                          haveError: index == 6,
                           imageFile: loraStore.photos[index]);
                     }
                     if (index == loraStore.photosLength) {

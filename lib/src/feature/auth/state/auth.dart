@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:mobx/mobx.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:x_pictures/src/data.dart';
@@ -38,7 +40,31 @@ abstract class _AuthStore with Store {
 
       if (token != null) {
         tokenStorage.saveTokenPair(token);
+        router.goNamed(AppViews.homePageRoute);
+      } else {
+        signUp();
+      }
+    });
+  }
+
+  /// Function to sign up
+  void signUp() async {
+    final ipAddress = await networkInfo.getWifiIP();
+    restClient.post(Endpoint().register, body: {
+      'email': signInViewStore.email,
+      'password': signInViewStore.password,
+      'ip_address': ipAddress
+    }).then((value) {
+      final String? token = value?['token'] as String?;
+
+      if (token != null) {
+        tokenStorage.saveTokenPair(token);
         router.goNamed(AppViews.verify);
+      } else {
+        signInViewStore.formGroup
+            .control('email')
+            .setErrors({'notFound': true});
+        signInViewStore.formGroup.markAllAsTouched();
       }
     });
   }

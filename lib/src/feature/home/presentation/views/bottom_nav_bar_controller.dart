@@ -61,7 +61,7 @@ class _BottomNavBarControllerPageState
                     backgroundColor: const Color(0xff0D1120),
                     selectedItemColor: Colors.orange[900],
                     selectedLabelStyle: TextStyle(
-                      fontSize: 6.sp,
+                      fontSize: 8.sp,
                       fontWeight: FontWeight.w700,
                     ),
                     selectedIconTheme: IconThemeData(
@@ -71,7 +71,7 @@ class _BottomNavBarControllerPageState
                       color: Color(0xff6F6F72),
                     ),
                     unselectedLabelStyle: TextStyle(
-                      fontSize: 6.sp,
+                      fontSize: 8.sp,
                       fontWeight: FontWeight.w400,
                       color: const Color(0xff6F6F72),
                     ),
@@ -84,6 +84,8 @@ class _BottomNavBarControllerPageState
                           color: _selectedIndex == 0
                               ? Colors.orange[900]
                               : const Color(0xff6F6F72),
+                          width: 22.h,
+                          height: 22.h,
                         ),
                         label: 'Home',
                       ),
@@ -93,6 +95,8 @@ class _BottomNavBarControllerPageState
                           color: _selectedIndex == 1
                               ? Colors.orange[900]
                               : const Color(0xff6F6F72),
+                          width: 24.h,
+                          height: 24.h,
                         ),
                         label: 'Generate',
                       ),
@@ -102,6 +106,7 @@ class _BottomNavBarControllerPageState
                           color: _selectedIndex == 2
                               ? Colors.orange[900]
                               : const Color(0xff6F6F72),
+                          size: 24.h,
                         ),
                         label: 'My Profile',
                       ),

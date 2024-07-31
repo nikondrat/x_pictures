@@ -41,8 +41,8 @@ class ProfilesWidget extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   children: [
                     Container(
-                      width: 35.r,
-                      height: 35.r,
+                      width: 70.h,
+                      height: 70.h,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: isSelected

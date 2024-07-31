@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
@@ -77,30 +78,31 @@ class PhotosView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (!isProfile)
-                    Text(
+                    AutoSizeText(
                       t.homeView.ready,
+                      minFontSize: 8,
                       style: AppStyles.subTitleTextStyle.copyWith(
-                        fontSize: 10.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                   if (!isProfile)
                     SizedBox(
                       height: 5.h,
                     ),
-                  Text(
+                  AutoSizeText(
                     title ?? t.photos.photos_ready,
                     style: AppStyles.head1TextStyle.copyWith(
-                      fontSize: 14.sp,
+                      fontSize: 17.sp,
                     ),
                   ),
                   SizedBox(
                     height: 5.h,
                   ),
                   if (!isProfile)
-                    Text(
+                    AutoSizeText(
                       t.photos.account,
                       style: AppStyles.subTitleTextStyle.copyWith(
-                        fontSize: 10.sp,
+                        fontSize: 12.sp,
                       ),
                     ),
                   SizedBox(

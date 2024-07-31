@@ -28,7 +28,7 @@ class GradientButton extends StatelessWidget {
     return GestureDetector(
       onTap: isEnabled ? onPressed : null,
       child: Container(
-        padding: padding ?? const EdgeInsets.all(AppValues.kPadding),
+        padding: padding ?? EdgeInsets.symmetric(vertical: 20.h),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: isEnabled
@@ -40,7 +40,7 @@ class GradientButton extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
-          borderRadius: BorderRadius.circular(AppValues.kRadius),
+          borderRadius: BorderRadius.circular(AppValues.kRadius.r),
         ),
         child: Center(
           child: AutoSizeText(
@@ -49,7 +49,7 @@ class GradientButton extends StatelessWidget {
                 textTheme.titleMedium!.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.5,
-                  fontSize: 8.sp,
+                  fontSize: 10.sp,
                   color: isEnabled
                       ? textTheme.titleMedium!.color
                       : textTheme.titleMedium!.color!.withOpacity(0.5),

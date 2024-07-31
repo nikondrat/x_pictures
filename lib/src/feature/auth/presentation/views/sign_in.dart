@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +41,7 @@ class SignInView extends StatelessWidget {
                   const Gap(AppValues.kPadding),
                   TitleWithDesc(
                       title: t.auth.hint.add, description: t.auth.description),
-                  const Gap(AppValues.kPadding * 2),
+                  Gap(30.h),
                   const InputGroup(),
                   const Gap(AppValues.kPadding)
                 ],

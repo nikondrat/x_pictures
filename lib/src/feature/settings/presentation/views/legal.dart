@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:x_pictures/src/data.dart';
@@ -10,16 +13,20 @@ class LegalView extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
+    final bool isAndroid = Platform.isAndroid;
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(t.settings.other.legal.title),
+          leading: const CustomBackButton(),
+          title: AutoSizeText(t.settings.other.legal.title),
         ),
         body: SettingsList(
           darkTheme: SettingsThemeData(
             titleTextColor: AppColors.kOutlineColor,
             settingsListBackground: colorScheme.surface,
-            settingsSectionBackground: AppColors.kSecondaryAdditionallyColor,
+            settingsSectionBackground: isAndroid
+                ? colorScheme.surface
+                : AppColors.kSecondaryAdditionallyColor,
           ),
           platform: PlatformUtils.detectPlatform(context),
           sections: [

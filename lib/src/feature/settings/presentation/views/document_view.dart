@@ -14,6 +14,7 @@ class DocumentView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: const CustomBackButton(),
         title: Text(title),
       ),
       body: AppBody(

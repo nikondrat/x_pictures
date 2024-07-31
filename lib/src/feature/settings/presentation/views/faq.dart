@@ -8,6 +8,7 @@ class FaqView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const CustomBackButton(),
         title: Text(t.settings.help_center.faq),
       ),
       body: AppBody(

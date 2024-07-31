@@ -14,7 +14,7 @@ class SelectModeWidget extends StatelessWidget {
 
     return Observer(builder: (context) {
       return SizedBox(
-        height: 18.h,
+        height: 40.h,
         child: Row(
           children: [
             Expanded(

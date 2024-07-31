@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
@@ -25,6 +26,7 @@ class _GenerateBodyState extends State<GenerateBody> {
   Widget build(BuildContext context) {
     final GenerateViewStore store = context.read<GenerateViewStore>();
     final GenerateStore genStore = context.read<GenerateStore>();
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Column(
       children: [
@@ -43,12 +45,14 @@ class _GenerateBodyState extends State<GenerateBody> {
           onTap: () {
             showModalBottomSheet(
               context: context,
+              useSafeArea: true,
               shape: const BeveledRectangleBorder(
                   borderRadius: BorderRadius.vertical(
                       top: Radius.circular(AppValues.kRadius))),
               builder: (context) {
                 return Padding(
-                  padding: const EdgeInsets.all(AppValues.kPadding),
+                  padding: EdgeInsets.fromLTRB(
+                      20.h, 20.h, 20.h, mediaQueryData.viewInsets.bottom),
                   child: AddDescription(
                     store: store,
                     genStore: genStore,

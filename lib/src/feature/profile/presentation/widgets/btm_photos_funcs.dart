@@ -40,7 +40,7 @@ class BottomBarPhotosFuncs extends StatelessWidget {
             _Item(
                 icon: Icon(
                   Icons.ios_share,
-                  size: 10.r,
+                  size: 20.h,
                 ),
                 title: t.profile.send),
             if (isIOS)
@@ -54,8 +54,8 @@ class BottomBarPhotosFuncs extends StatelessWidget {
                 icon: SvgPicture.asset(
                   Assets.icons.trashBinMinimalistic,
                   color: Colors.white,
-                  height: 10.r,
-                  width: 10.r,
+                  height: 20.h,
+                  width: 20.h,
                 ),
                 title: t.settings.delete.title),
           ].map((e) {
