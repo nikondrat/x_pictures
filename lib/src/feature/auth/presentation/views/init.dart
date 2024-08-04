@@ -36,24 +36,24 @@ class InitView extends StatelessWidget {
                 fit: BoxFit.contain,
                 height: windowHeight * .5,
               ),
-              Gap(16.h),
+              Gap(14.h),
               TitleWithDesc(
                   title: t.init.title, description: t.init.description),
-              Gap(16.h),
+              Gap(14.h),
               AuthButton(
                 windowHeight: windowHeight,
                 icon: SvgPicture.asset(Assets.icons.apple),
                 title: t.init.sign_in_with(provider: t.init.providers.apple),
                 onPressed: () {},
               ),
-              Gap(2.h),
+              Gap(4.h),
               AuthButton(
                 windowHeight: windowHeight,
                 icon: SvgPicture.asset(Assets.icons.google),
                 title: t.init.sign_in_with(provider: t.init.providers.google),
                 onPressed: () {},
               ),
-              Gap(2.h),
+              Gap(4.h),
               AuthButton(
                 windowHeight: windowHeight,
                 icon: Icon(

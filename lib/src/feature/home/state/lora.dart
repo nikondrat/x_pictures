@@ -1,10 +1,6 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
-import 'package:path/path.dart' as p;
 import 'package:x_pictures/src/data.dart';
 
 part 'lora.g.dart';

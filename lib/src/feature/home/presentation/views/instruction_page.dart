@@ -152,7 +152,7 @@ class InstructionPage extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     child: Padding(
                       padding: HorizontalSpacing.centered(windowWidth) +
-                          EdgeInsets.only(bottom: AppValues.kPadding * 2),
+                          const EdgeInsets.only(bottom: AppValues.kPadding * 2),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [

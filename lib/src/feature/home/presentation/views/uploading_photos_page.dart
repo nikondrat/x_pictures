@@ -107,7 +107,7 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                         ),
                         const UploadingPhotosBody(),
                         Observer(builder: (_) {
-                          if (loraStore.photosLength > 7)
+                          if (loraStore.photosLength > 7) {
                             return SliverPadding(
                               padding: EdgeInsets.only(
                                   left: 15.w, right: 15.w, bottom: 120.h),
@@ -119,7 +119,8 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                                 ),
                               ),
                             );
-                          return SliverToBoxAdapter();
+                          }
+                          return const SliverToBoxAdapter();
                         })
                       ],
                     ),
