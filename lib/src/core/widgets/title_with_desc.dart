@@ -44,7 +44,7 @@ class TitleWithDesc extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: descriptionStyle ??
                     textTheme.titleLarge!.copyWith(
-                        color: AppColors.kOutlineColor, fontSize: 10.sp),
+                        color: AppColors.kOutlineColor, fontSize: 17.sp),
                 maxLines: 2,
               ),
             )),

@@ -66,7 +66,7 @@ class _GenerateBodyState extends State<GenerateBody> {
             genStore: genStore,
           )),
         ),
-        const Gap(AppValues.kPadding),
+        Gap(AppValues.kPadding.h),
       ],
     );
   }

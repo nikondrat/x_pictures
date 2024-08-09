@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -24,49 +25,58 @@ class InitView extends StatelessWidget {
       }
     });
 
-    return Scaffold(body: SafeArea(
-      child: AppBody(
-        builder: (windowWidth, windowHeight, windowSize) {
-          return ListView(
-            padding: HorizontalSpacing.centered(windowWidth),
-            children: [
-              Gap(16.h),
-              Image.asset(
-                Assets.images.banner.path,
-                fit: BoxFit.contain,
-                height: windowHeight * .5,
+    return Scaffold(
+        body: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: Image.asset(Assets.images.banners.path).image,
+            fit: BoxFit.cover),
+      ),
+      child: SafeArea(
+        child: AppBody(
+          builder: (windowWidth, windowHeight, windowSize) {
+            return Padding(
+              padding: HorizontalSpacing.centered(windowWidth),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Gap(14.h),
+                  TitleWithDesc(
+                      title: t.init.title, description: t.init.description),
+                  Gap(14.h),
+                  AuthButton(
+                    windowHeight: windowHeight,
+                    icon: SvgPicture.asset(Assets.icons.apple),
+                    title:
+                        t.init.sign_in_with(provider: t.init.providers.apple),
+                    onPressed: () {},
+                  ),
+                  Gap(8.h),
+                  AuthButton(
+                    windowHeight: windowHeight,
+                    icon: SvgPicture.asset(Assets.icons.google),
+                    title:
+                        t.init.sign_in_with(provider: t.init.providers.google),
+                    onPressed: () {},
+                  ),
+                  Gap(8.h),
+                  AuthButton(
+                    windowHeight: windowHeight,
+                    icon: Icon(
+                      Icons.email,
+                      color: colorScheme.onSecondary,
+                    ),
+                    title:
+                        t.init.sign_in_with(provider: t.init.providers.email),
+                    onPressed: () => router.goNamed(AppViews.signIn),
+                  ),
+                  const Gap(AppValues.kPadding)
+                ],
               ),
-              Gap(14.h),
-              TitleWithDesc(
-                  title: t.init.title, description: t.init.description),
-              Gap(14.h),
-              AuthButton(
-                windowHeight: windowHeight,
-                icon: SvgPicture.asset(Assets.icons.apple),
-                title: t.init.sign_in_with(provider: t.init.providers.apple),
-                onPressed: () {},
-              ),
-              Gap(4.h),
-              AuthButton(
-                windowHeight: windowHeight,
-                icon: SvgPicture.asset(Assets.icons.google),
-                title: t.init.sign_in_with(provider: t.init.providers.google),
-                onPressed: () {},
-              ),
-              Gap(4.h),
-              AuthButton(
-                windowHeight: windowHeight,
-                icon: Icon(
-                  Icons.email,
-                  color: colorScheme.onSecondary,
-                ),
-                title: t.init.sign_in_with(provider: t.init.providers.email),
-                onPressed: () => router.goNamed(AppViews.signIn),
-              ),
-              const Gap(AppValues.kPadding)
-            ],
-          );
-        },
+            );
+          },
+        ),
       ),
     ));
   }
