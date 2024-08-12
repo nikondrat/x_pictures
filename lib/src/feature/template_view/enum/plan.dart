@@ -1,1 +1,1 @@
-enum Plan { firstPlan, secondPlan, thirdPlan, notSelected }
+enum Plan { weekly, yearly, notSelected }

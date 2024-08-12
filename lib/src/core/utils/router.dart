@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:x_pictures/src/data.dart';
+import 'package:x_pictures/src/feature/template_view/presentation/views/plan.dart';
 
 abstract class AppViews {
   static const init = 'init';
