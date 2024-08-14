@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,11 +20,11 @@ class InitView extends StatelessWidget {
     final TokenStorage tokenStorage = context.read<Dependencies>().tokenStorage;
 
     // TODO
-    tokenStorage.loadTokenPair().then((value) {
-      if (value != null) {
-        router.goNamed(AppViews.homePageRoute);
-      }
-    });
+    // tokenStorage.loadTokenPair().then((value) {
+    //   if (value != null) {
+    //     router.goNamed(AppViews.homePageRoute);
+    //   }
+    // });
 
     return Scaffold(
         body: Container(
@@ -44,6 +45,8 @@ class InitView extends StatelessWidget {
                   Gap(14.h),
                   TitleWithDesc(
                       title: t.init.title, description: t.init.description),
+                  Gap(14.h),
+                  AutoSizeText('ApiURL: ${Config().apiUrl}'),
                   Gap(14.h),
                   AuthButton(
                     windowHeight: windowHeight,
