@@ -249,10 +249,9 @@ class _ProfileViewState extends State<ProfileView>
                         child: Column(
                           children: [
                             ProfileInfoWidget(
-                              name: userStore.username ?? 'Nikita',
+                              name: userStore.username ?? 'No name',
                               email: userStore.email,
-                              url: userStore.imageUrl ??
-                                  'https://catherineasquithgallery.com/uploads/posts/2021-02/1614511031_164-p-na-belom-fone-chelovek-185.jpg',
+                              url: userStore.imageUrl,
                               onTap: () =>
                                   router.goNamed(AppViews.settingsView),
                             ),

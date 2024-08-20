@@ -39,25 +39,7 @@ abstract class _PacksStore with Store {
     final future = restClient.get(Endpoint().packs).then((v) {
       body = PackBody.fromJson(v!);
 
-      if (kDebugMode) {
-        return ObservableList.of([
-          PackModel(
-            id: 0,
-            title: 'Street casual',
-            images: [
-              MediaModel(
-                  id: 0,
-                  url:
-                      'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg')
-            ],
-            description: 'Error occured during fetching packs',
-            category: 'LinkedIn',
-          )
-        ]);
-      }
-      return body.packs;
-    }).catchError((e) {
-      // TODO only for dev
+      // if (!kDebugMode) {
       return ObservableList.of([
         PackModel(
           id: 0,
@@ -66,12 +48,78 @@ abstract class _PacksStore with Store {
             MediaModel(
                 id: 0,
                 url:
+                    'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg'),
+            MediaModel(
+                id: 0,
+                url:
+                    'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg'),
+            MediaModel(
+                id: 0,
+                url:
                     'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg')
           ],
-          description: 'Error occured during fetching packs',
+          description: 'Something test data',
           category: 'LinkedIn',
-        )
+        ),
+        PackModel(
+          id: 0,
+          title: 'Street',
+          images: [
+            MediaModel(
+                id: 0,
+                url:
+                    'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg'),
+            MediaModel(
+                id: 0,
+                url:
+                    'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg'),
+            MediaModel(
+                id: 0,
+                url:
+                    'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg')
+          ],
+          description: 'Something test data',
+          category: 'LinkedIn',
+        ),
+        PackModel(
+          id: 0,
+          title: 'Office',
+          images: [
+            MediaModel(
+                id: 0,
+                url:
+                    'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg'),
+            MediaModel(
+                id: 0,
+                url:
+                    'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg'),
+            MediaModel(
+                id: 0,
+                url:
+                    'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg')
+          ],
+          description: 'Something test data',
+          category: 'Instagram',
+        ),
       ]);
+      // }
+      // return body.packs;
+      // }).catchError((e) {
+      //   // TODO only for dev
+      //   return ObservableList.of([
+      //     PackModel(
+      //       id: 0,
+      //       title: 'Street casual',
+      //       images: [
+      //         MediaModel(
+      //             id: 0,
+      //             url:
+      //                 'https://i.pinimg.com/originals/96/41/89/96418906f38ce612daab3ac25455fee2.jpg')
+      //       ],
+      //       description: 'Error occured during fetching packs',
+      //       category: 'LinkedIn',
+      //     )
+      // ]);
     });
     fetchPacksFuture = ObservableFuture(future);
     return packs = ObservableList.of(await future);

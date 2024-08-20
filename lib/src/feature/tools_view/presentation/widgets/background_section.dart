@@ -30,20 +30,17 @@ class BackgroundSection extends StatelessWidget {
               title,
               style: textTheme.titleLarge,
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: AppValues.kPadding),
-              child: TextButton(
-                  onPressed: () {
-                    router.goNamed(AppViews.allStyles, extra: {
-                      'title': t.backgrounds.title,
-                      'items': packs,
-                      'onTap': (PackModel model) {
-                        onTap(model);
-                      }
-                    });
-                  },
-                  child: Text(t.common.all)),
-            ),
+            TextButton(
+                onPressed: () {
+                  router.goNamed(AppViews.allStyles, extra: {
+                    'title': title,
+                    'items': packs,
+                    'onTap': (PackModel model) {
+                      onTap(model);
+                    }
+                  });
+                },
+                child: Text(t.common.all)),
           ],
         ),
         const Gap(AppValues.kPadding),

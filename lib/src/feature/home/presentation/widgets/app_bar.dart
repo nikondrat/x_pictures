@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
@@ -30,10 +31,7 @@ class AppBarHomeView extends StatelessWidget {
           SafeArea(
             child: Align(
               alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(top: AppValues.kPadding * 2),
-                child: SvgPicture.asset(AppIcons.xIcon, width: 28),
-              ),
+              child: SvgPicture.asset(AppIcons.xIcon, width: 28),
             ),
           ),
           // Positioned(
@@ -41,11 +39,12 @@ class AppBarHomeView extends StatelessWidget {
           //   left: MediaQuery.of(context).size.width / 2 - 10.w,
           //   child: SvgPicture.asset(AppIcons.xIcon),
           // ),
+          //
           SafeArea(
             child: Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.all(AppValues.kPadding * 1.5),
+                padding: EdgeInsets.only(right: 10.w),
                 child: SvgPicture.asset(
                   AppIcons.proIcon,
                   width: 30,
@@ -68,7 +67,10 @@ class AppBarHomeView extends StatelessWidget {
             children: [
               AutoSizeText(
                 t.homeView.title,
-                style: textTheme.headlineSmall,
+                style: textTheme.headlineSmall!.copyWith(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const Gap(AppValues.kPadding),
               GestureDetector(
@@ -79,14 +81,15 @@ class AppBarHomeView extends StatelessWidget {
                   });
                 },
                 child: Container(
-                    padding: const EdgeInsets.all(8),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 12.r, vertical: 10.r),
                     decoration: BoxDecoration(
                         color: colorScheme.secondary,
                         borderRadius:
                             BorderRadius.circular(AppValues.kRadius * 2)),
                     child: AutoSizeText(
                       t.homeView.try_office,
-                      style: textTheme.titleSmall!.copyWith(
+                      style: textTheme.titleMedium!.copyWith(
                           color: colorScheme.onSecondary,
                           fontWeight: FontWeight.bold),
                     )),

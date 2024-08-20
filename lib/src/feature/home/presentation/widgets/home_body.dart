@@ -48,8 +48,7 @@ class _HomeBodyState extends State<HomeBody> {
                 )),
             SliverToBoxAdapter(
                 child: Padding(
-                    padding: HorizontalSpacing.centered(widget.windowWidth) +
-                        const EdgeInsets.only(bottom: AppValues.kPadding),
+                    padding: const EdgeInsets.only(left: AppValues.kPadding),
                     child: Column(
                         children: packs.entries.map((e) {
                       return BackgroundSection(

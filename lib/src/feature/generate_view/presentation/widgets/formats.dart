@@ -75,19 +75,19 @@ class _FormatWidget extends StatelessWidget {
     final double fixedWidth = windowHeight * .07;
     final bool isSquare = format.width == format.height;
     final double height =
-        isSquare ? fixedWidth : (format.height / format.width) * 50;
+        isSquare ? fixedWidth : (format.height / format.width) * 60;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: AppValues.kPadding / 4),
       child: SizedBox(
         width: fixedWidth,
         height: height,
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
-              color: isSelected ? colorScheme.primary : Colors.grey,
+              color: isSelected ? colorScheme.primary : AppColors.kOutlineColor,
             ),
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(AppValues.kRadius),
           ),
           child: Center(
             child: AutoSizeText(

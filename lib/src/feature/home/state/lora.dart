@@ -36,47 +36,49 @@ abstract class _LoraStore with Store {
   bool get canGenerateLora => photosLength <= 12;
 
   Future<void> generateLora() async {
-    if (kDebugMode) {
-      router.pushNamed(AppViews.genderView, extra: {
-        'store': store,
-        'model': LoraModel(
-            id: '',
-            status: Status.completed,
-            estimatedTime: 0,
-            estimatedTimestamp: 0,
-            trainingTimeSeconds: 0,
-            images: [],
-            cost: '',
-            createdDate: DateTime.now()),
-      });
-    } else {
-      FormData formData = FormData();
+    // TODO setted for debug and tests
+    // if (!kDebugMode) {
+    router.pushNamed(AppViews.genderView, extra: {
+      'store': store,
+      'model': LoraModel(
+          id: '',
+          status: Status.completed,
+          estimatedTime: 0,
+          estimatedTimestamp: 0,
+          trainingTimeSeconds: 0,
+          images: [],
+          cost: '',
+          createdDate: DateTime.now()),
+    });
 
-      for (int i = 0; i < photos.length; i++) {
-        formData.files.add(
-          MapEntry(
-            'file${i + 1}',
-            await MultipartFile.fromFile(
-              photos[i].path,
-              filename: photos[i].name,
-            ),
-          ),
-        );
-      }
+    // TODO use this for production
+    //   FormData formData = FormData();
 
-      final future = restClient
-          .post(Endpoint().loras,
-              body: formData, contentType: 'multipart/form-data')
-          .then((v) {
-        if (v?['detail'] == null) {
-          final LoraModel model = LoraModel.fromJson(v!);
-          router.pushNamed(AppViews.genderView, extra: {
-            'store': store,
-            'model': model,
-          });
-        }
-      });
-    }
+    //   for (int i = 0; i < photos.length; i++) {
+    //     formData.files.add(
+    //       MapEntry(
+    //         'file${i + 1}',
+    //         await MultipartFile.fromFile(
+    //           photos[i].path,
+    //           filename: photos[i].name,
+    //         ),
+    //       ),
+    //     );
+    //   }
+
+    //   final future = restClient
+    //       .post(Endpoint().loras,
+    //           body: formData, contentType: 'multipart/form-data')
+    //       .then((v) {
+    //     if (v?['detail'] == null) {
+    //       final LoraModel model = LoraModel.fromJson(v!);
+    //       router.pushNamed(AppViews.genderView, extra: {
+    //         'store': store,
+    //         'model': model,
+    //       });
+    //     }
+    //   });
+    // }
   }
 
   @observable

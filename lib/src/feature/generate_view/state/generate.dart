@@ -17,7 +17,40 @@ abstract class _GenerateStore with Store {
   ObservableFuture<GenerateFilter> data = emptyResponse;
 
   @computed
-  ObservableList<Tag> get tags => ObservableList.of(data.value?.tags ?? []);
+  ObservableList<Tag> get tags => ObservableList.of(
+          // data.value?.tags ??
+          [
+            Tag(
+              id: 0,
+              title: 'Street casual',
+              categories: [],
+            ),
+            Tag(
+              id: 1,
+              title: 'Old anime',
+              categories: [],
+            ),
+            Tag(
+              id: 2,
+              title: 'Pop art',
+              categories: [],
+            ),
+            Tag(
+              id: 3,
+              title: 'Dark lighting',
+              categories: [],
+            ),
+            Tag(
+              id: 3,
+              title: 'Dark lighting',
+              categories: [],
+            ),
+            Tag(
+              id: 3,
+              title: 'Dark lighting',
+              categories: [],
+            ),
+          ]);
 
   @computed
   ObservableList<SdModel> get sdModels =>

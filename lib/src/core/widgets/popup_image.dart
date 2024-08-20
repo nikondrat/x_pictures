@@ -42,12 +42,12 @@ class PopupImage extends StatelessWidget {
         ),
         actions: [
           SizedBox(
-            height: 40.w,
+            height: 60.r,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                  flex: isProfile ? 6 : 5,
+                  flex: isProfile ? 4 : 5,
                   child: SizedBox(
                     // width: isProfile ? 190.w : 250.w,
                     child: ElevatedButton.icon(
@@ -69,7 +69,7 @@ class PopupImage extends StatelessWidget {
                       label: Text(
                         t.photos.download,
                         style: textTheme.titleLarge!.copyWith(
-                            fontSize: 10.sp,
+                            fontSize: 17.sp,
                             color: colorScheme.onSecondary,
                             fontWeight: FontWeight.bold),
                         // style: TextStyle(
@@ -79,20 +79,20 @@ class PopupImage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Gap(6.h),
+                Gap(8.r),
                 Expanded(
                   child: Container(
                       decoration: BoxDecoration(
                           color: AppColors.kSecondaryAdditionallyColor,
                           borderRadius:
                               BorderRadius.circular(AppValues.kRadius)),
-                      padding: EdgeInsets.symmetric(horizontal: 14.h),
+                      padding: EdgeInsets.symmetric(horizontal: 16.r),
                       child: SvgPicture.asset(
                         Assets.icons.share,
                         color: Colors.white,
                       )),
                 ),
-                if (isProfile) Gap(6.h),
+                if (isProfile) Gap(8.r),
                 if (isProfile)
                   Expanded(
                     child: Container(
@@ -100,7 +100,7 @@ class PopupImage extends StatelessWidget {
                             color: AppColors.kSecondaryAdditionallyColor,
                             borderRadius:
                                 BorderRadius.circular(AppValues.kRadius)),
-                        padding: EdgeInsets.symmetric(horizontal: 14.h),
+                        padding: EdgeInsets.symmetric(horizontal: 16.r),
                         child: GestureDetector(
                           child: SvgPicture.asset(
                             Assets.icons.trashBinMinimalistic,

@@ -21,7 +21,7 @@ class LoraModel {
   final int? trainingTimeSeconds;
 
   @JsonKey(name: 'training_faces')
-  final List<ImageModel> images;
+  final List<MediaModel> images;
 
   final String cost;
 

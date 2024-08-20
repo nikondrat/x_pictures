@@ -14,6 +14,7 @@ abstract class _AppThemeStore with Store {
   _AppThemeStore({required this.mode, required this.seed})
       : lightTheme = FlexThemeData.light(
           useMaterial3: true,
+          fontFamily: 'Rubik',
         ),
         darkTheme = FlexThemeData.dark(
             useMaterial3: true,
@@ -26,6 +27,7 @@ abstract class _AppThemeStore with Store {
             textTheme: const TextTheme(
                 headlineMedium: TextStyle(
                     fontSize: 34,
+                    fontFamily: 'Rubik',
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5)),
             subThemesData: const FlexSubThemesData(

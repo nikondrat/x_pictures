@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -31,71 +32,81 @@ class RadioButton extends StatelessWidget {
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme scheme = themeData.colorScheme;
 
-    return Stack(
-      children: [
-        RadioListTile(
-            visualDensity: VisualDensity.comfortable,
-            dense: true,
-            contentPadding: const EdgeInsets.symmetric(
-                horizontal: AppValues.kPadding * 0.8,
-                vertical: AppValues.kPadding * 0.25),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppValues.kRadius),
-                side: BorderSide(
-                  color: isSelected
-                      ? Colors.orange[900]!
-                      : const Color(0xff3B3B5A),
-                )),
-            activeColor: Colors.orange[900],
-            title: Row(
+    return GestureDetector(
+      onTap: () {
+        onChanged(value);
+      },
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: AppValues.kPadding),
+            padding: EdgeInsets.symmetric(vertical: AppValues.kPadding / 4),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppValues.kRadius),
+              border: Border.all(
+                color: isSelected ? scheme.primary : AppColors.kOutlineColor,
+              ),
+            ),
+            child: Row(
               children: [
+                Radio(
+                  value: value,
+                  groupValue: groupValue,
+                  onChanged: onChanged,
+                ),
                 Expanded(
-                  child: AutoSizeText(
-                    text,
-                    style: AppStyles.title2TextStyle
-                        .copyWith(color: Colors.white, fontSize: 14.sp),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AutoSizeText(
+                              text,
+                              style: AppStyles.title2TextStyle.copyWith(
+                                  color: Colors.white, fontSize: 14.sp),
+                            ),
+                            if (subtitle != null)
+                              AutoSizeText(
+                                subtitle!,
+                                style: textTheme.bodyMedium!.copyWith(
+                                    color: AppColors.kOutlineColor,
+                                    fontSize: 12.sp),
+                              )
+                          ],
+                        ),
+                      ),
+                      if (price != null)
+                        AutoSizeText('€$price/${t.template.week}',
+                            style: textTheme.bodyLarge!.copyWith(
+                                fontWeight: FontWeight.bold, fontSize: 14.sp)),
+                      const Gap(AppValues.kPadding)
+                    ],
                   ),
                 ),
-                if (price != null)
-                  Padding(
-                    padding: EdgeInsets.only(top: showDiscount ? 14.r : 0),
-                    child: AutoSizeText('€$price/${t.template.week}',
-                        style: textTheme.bodyLarge!.copyWith(
-                            fontWeight: FontWeight.bold, fontSize: 14.sp)),
-                  ),
               ],
             ),
-            subtitle: subtitle != null
-                ? AutoSizeText(
-                    subtitle!,
-                    style: textTheme.bodyMedium!.copyWith(
-                        color: AppColors.kOutlineColor, fontSize: 12.sp),
-                  )
-                : null,
-            value: value,
-            groupValue: groupValue,
-            onChanged: onChanged),
-        if (showDiscount)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                margin: EdgeInsets.only(right: 20.r, bottom: 10.r),
+          ),
+          if (showDiscount)
+            Positioned(
+              right: 20,
+              top: -15,
+              child: Container(
+                // margin: EdgeInsets.only(right: 20.r, bottom: 10.r),
                 decoration: BoxDecoration(
                     color: scheme.onPrimary,
                     borderRadius: BorderRadius.circular(AppValues.kRadius.r)),
                 padding: EdgeInsets.all(6.r),
-                child: Center(
-                  child: AutoSizeText(
-                    "${t.template.save} 90%",
-                    style: textTheme.bodySmall!
-                        .copyWith(color: scheme.onSecondary),
-                  ),
+                child: AutoSizeText(
+                  "${t.template.save} 90%",
+                  style:
+                      textTheme.bodySmall!.copyWith(color: scheme.onSecondary),
                 ),
               ),
-            ],
-          ),
-      ],
+            ),
+        ],
+      ),
     );
   }
 }

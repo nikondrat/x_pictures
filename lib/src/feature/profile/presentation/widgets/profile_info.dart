@@ -8,13 +8,13 @@ import 'package:x_pictures/src/data.dart';
 class ProfileInfoWidget extends StatelessWidget {
   final String name;
   final String email;
-  final String url;
+  final String? url;
   final Function() onTap;
   const ProfileInfoWidget(
       {super.key,
       required this.name,
       required this.email,
-      required this.url,
+      this.url,
       required this.onTap});
 
   @override
@@ -33,7 +33,8 @@ class ProfileInfoWidget extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 34.h,
-              backgroundImage: CachedNetworkImageProvider(url),
+              backgroundImage:
+                  url != null ? CachedNetworkImageProvider(url!) : null,
             ),
             const Gap(AppValues.kPadding),
             Expanded(

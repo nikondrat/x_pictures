@@ -27,11 +27,10 @@ class GenerateView extends StatelessWidget {
               title: Text(t.generateView.title),
             ),
             body: AppBody(
-              builder: (windowWidth, windowHeight, windowSize) =>
-                  SingleChildScrollView(
-                padding: HorizontalSpacing.centered(windowWidth),
-                child: GenerateBody(store: store, windowHeight: windowHeight),
-              ),
+              builder: (windowWidth, windowHeight, windowSize) => GenerateBody(
+                  store: store,
+                  windowWidth: windowWidth,
+                  windowHeight: windowHeight),
             ),
           );
         });

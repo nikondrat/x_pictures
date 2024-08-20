@@ -25,57 +25,62 @@ class BottomBarPhotosFuncs extends StatelessWidget {
     final isIOS = Platform.isIOS;
     // final isIOS = true;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: AppValues.kPadding / 2),
-      decoration: const BoxDecoration(
-        color: AppColors.kSecondaryAdditionallyColor,
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(AppValues.kRadius),
-        ),
-      ),
-      child: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _Item(
-                icon: Icon(
-                  Icons.ios_share,
-                  size: 20.h,
+    return Observer(builder: (context) {
+      return store?.isSelect ?? false
+          ? Container(
+              padding:
+                  const EdgeInsets.symmetric(vertical: AppValues.kPadding / 2),
+              decoration: const BoxDecoration(
+                color: AppColors.kSecondaryAdditionallyColor,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(AppValues.kRadius),
                 ),
-                title: t.profile.send),
-            if (isIOS)
-              _Item(
-                  icon: Observer(builder: (context) {
-                    return AutoSizeText(t.profile
-                        .photos_selected(count: store!.selectedItemsCount));
-                  }),
-                  title: ''),
-            _Item(
-                icon: SvgPicture.asset(
-                  Assets.icons.trashBinMinimalistic,
-                  color: Colors.white,
-                  height: 20.h,
-                  width: 20.h,
+              ),
+              child: SafeArea(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _Item(
+                        icon: Icon(
+                          Icons.ios_share,
+                          size: 20.h,
+                        ),
+                        title: t.profile.send),
+                    if (isIOS)
+                      _Item(
+                          icon: Observer(builder: (context) {
+                            return AutoSizeText(t.profile.photos_selected(
+                                count: store!.selectedItemsCount));
+                          }),
+                          title: ''),
+                    _Item(
+                        icon: SvgPicture.asset(
+                          Assets.icons.trashBinMinimalistic,
+                          color: Colors.white,
+                          height: 20.h,
+                          width: 20.h,
+                        ),
+                        title: t.settings.delete.title),
+                  ].map((e) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        e.icon,
+                        if (!isIOS) Gap(2.r),
+                        if (!isIOS)
+                          AutoSizeText(e.title,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(fontSize: 6.sp)),
+                      ],
+                    );
+                  }).toList(),
                 ),
-                title: t.settings.delete.title),
-          ].map((e) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                e.icon,
-                if (!isIOS) Gap(2.r),
-                if (!isIOS)
-                  AutoSizeText(e.title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleSmall!
-                          .copyWith(fontSize: 6.sp)),
-              ],
-            );
-          }).toList(),
-        ),
-      ),
-    );
+              ),
+            )
+          : const SizedBox.shrink();
+    });
     // return BottomNavigationBar(
     //     backgroundColor: AppColors.kAdditionalColor,
     //     items: [

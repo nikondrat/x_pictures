@@ -34,86 +34,84 @@ abstract class _JobsStore with Store {
 
       // TODO only for dev
 
-      if (kDebugMode) {
-        return JobsBody(
-          count: 0,
-          total: 0,
-          nextUrl: null,
-          previousUrl: null,
-          jobs: [
-            JobModel(
-                id: 0,
-                status: Status.completed,
-                createdDate: DateTime.now(),
-                estimatedTime: 0,
-                estimatedTimestamp: 0,
-                images: [
-                  MediaModel(
-                      type: MediaType.image,
-                      url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg',
-                      createdDate: DateTime.now()),
-                  MediaModel(
-                      type: MediaType.image,
-                      url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg',
-                      createdDate: DateTime.now()),
-                  MediaModel(
-                      type: MediaType.image,
-                      url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg',
-                      createdDate: DateTime.now()),
-                  MediaModel(
-                      type: MediaType.image,
-                      url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg',
-                      createdDate: DateTime.now()),
-                  // ImageModel(
-                  //     id: 0,
-                  //     url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
-                  // ImageModel(
-                  //     id: 0,
-                  //     url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
-                  // ImageModel(
-                  //     id: 0,
-                  //     url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
-                  // ImageModel(
-                  //     id: 0,
-                  //     url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
-                ],
-                cost: '',
-                timeSpent: 0,
-                pack: PackModel(
-                    id: 0,
-                    title: 'dfgfgd',
-                    description: 'sdfsdfs',
-                    category: 'Pinterest',
-                    images: [
-                      MediaModel(
-                          id: 0,
-                          url:
-                              'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
-                      MediaModel(
-                          id: 0,
-                          url:
-                              'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
-                      MediaModel(
-                          id: 0,
-                          url:
-                              'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
-                      MediaModel(
-                          id: 0,
-                          url:
-                              'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
-                    ]),
-                lora: LoraModel(
-                    id: '',
-                    status: Status.completed,
-                    estimatedTime: 0,
-                    estimatedTimestamp: 0,
-                    trainingTimeSeconds: 0,
-                    images: [],
-                    cost: '',
-                    createdDate: DateTime.now()))
-          ],
-        ).jobs;
-      }
+      return JobsBody(
+        count: 0,
+        total: 0,
+        nextUrl: null,
+        previousUrl: null,
+        jobs: [
+          JobModel(
+              id: 0,
+              status: Status.completed,
+              createdDate: DateTime.now(),
+              estimatedTime: 0,
+              estimatedTimestamp: 0,
+              images: [
+                MediaModel(
+                    type: MediaType.image,
+                    url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg',
+                    createdDate: DateTime.now()),
+                MediaModel(
+                    type: MediaType.image,
+                    url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg',
+                    createdDate: DateTime.now()),
+                MediaModel(
+                    type: MediaType.image,
+                    url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg',
+                    createdDate: DateTime.now()),
+                MediaModel(
+                    type: MediaType.image,
+                    url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg',
+                    createdDate: DateTime.now()),
+                // ImageModel(
+                //     id: 0,
+                //     url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
+                // ImageModel(
+                //     id: 0,
+                //     url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
+                // ImageModel(
+                //     id: 0,
+                //     url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
+                // ImageModel(
+                //     id: 0,
+                //     url: 'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
+              ],
+              cost: '',
+              timeSpent: 0,
+              pack: PackModel(
+                  id: 0,
+                  title: 'dfgfgd',
+                  description: 'sdfsdfs',
+                  category: 'Pinterest',
+                  images: [
+                    MediaModel(
+                        id: 0,
+                        url:
+                            'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
+                    MediaModel(
+                        id: 0,
+                        url:
+                            'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
+                    MediaModel(
+                        id: 0,
+                        url:
+                            'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
+                    MediaModel(
+                        id: 0,
+                        url:
+                            'https://telegra.ph/file/299a9e951b4472a5832ef.jpg'),
+                  ]),
+              lora: LoraModel(
+                  id: '',
+                  status: Status.completed,
+                  estimatedTime: 0,
+                  estimatedTimestamp: 0,
+                  trainingTimeSeconds: 0,
+                  images: [],
+                  cost: '',
+                  createdDate: DateTime.now()))
+        ],
+      ).jobs;
       return body.jobs;
     }).catchError((v) {
       // TODO only for dev

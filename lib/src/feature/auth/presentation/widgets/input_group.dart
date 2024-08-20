@@ -32,9 +32,9 @@ class InputGroup extends StatelessWidget {
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(
-                        horizontal: AppValues.kPadding, vertical: 9.h),
+                        horizontal: AppValues.kPadding, vertical: 14.h),
                     hintStyle: textTheme.titleLarge!
-                        .copyWith(color: colorScheme.outline, fontSize: 12.sp),
+                        .copyWith(color: colorScheme.outline, fontSize: 17.sp),
                     hintText: t.auth.hint
                         .input(t: t.init.providers.email.toLowerCase()),
                   )),
@@ -52,7 +52,7 @@ class InputGroup extends StatelessWidget {
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(
-                        horizontal: AppValues.kPadding, vertical: 9.h),
+                        horizontal: AppValues.kPadding, vertical: 14.h),
                     suffixIcon: Padding(
                       padding: const EdgeInsets.only(right: AppValues.kPadding),
                       child: IconButton(
@@ -66,7 +66,7 @@ class InputGroup extends StatelessWidget {
                       ),
                     ),
                     hintStyle: textTheme.titleLarge!
-                        .copyWith(color: colorScheme.outline, fontSize: 12.sp),
+                        .copyWith(color: colorScheme.outline, fontSize: 17.sp),
                     hintText:
                         t.auth.hint.input(t: t.auth.password.toLowerCase()),
                   ),

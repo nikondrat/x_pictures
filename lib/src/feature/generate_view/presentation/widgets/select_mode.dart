@@ -14,7 +14,7 @@ class SelectModeWidget extends StatelessWidget {
 
     return Observer(builder: (context) {
       return SizedBox(
-        height: 40.h,
+        height: 30.r,
         child: Row(
           children: [
             Expanded(
@@ -56,7 +56,7 @@ class _Tab extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: AppValues.kPadding / 4),
             textStyle: textTheme.bodyLarge!.copyWith(
-              fontSize: 10.sp,
+              fontSize: 14.sp,
             ),
           )
         : Column(
@@ -80,7 +80,7 @@ class _Tab extends StatelessWidget {
                     title,
                     style: textTheme.bodyLarge!.copyWith(
                       color: colorScheme.onSurface,
-                      fontSize: 10.sp,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ),

@@ -35,9 +35,21 @@ class AddDescription extends StatelessWidget {
                         hintText: t.generateView.input_hint,
                         contentPadding:
                             const EdgeInsets.all(AppValues.kPadding),
-                        border: const OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: AppColors.kOutlineColor))),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.circular(AppValues.kRadius),
+                            borderSide: const BorderSide(
+                                color: AppColors.kOutlineColor)),
+                        disabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.circular(AppValues.kRadius),
+                            borderSide: const BorderSide(
+                                color: AppColors.kOutlineColor)),
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.circular(AppValues.kRadius),
+                            borderSide: const BorderSide(
+                                color: AppColors.kOutlineColor))),
                   ),
                   Gap(14.h),
                   ScrollConfiguration(

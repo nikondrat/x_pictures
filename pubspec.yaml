@@ -5,7 +5,7 @@ description: >
 # Prevent accidental publishing to pub.dev.
 publish_to: "none"
 
-version: 0.0.1+1
+version: 0.0.1+9
 
 environment:
   sdk: ">=3.0.5 <4.0.0"
@@ -32,7 +32,7 @@ dependencies:
   flutter_mobx: ^2.2.0+2
 
   # -- codegen -- #
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   freezed_annotation: ^2.4.1
 
   # -- networking -- #

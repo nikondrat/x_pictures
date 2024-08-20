@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -27,20 +26,31 @@ class GenerateTags extends StatelessWidget {
       action: const ResetButton(),
       child: Observer(
           builder: (context) => Wrap(
-                spacing: AppValues.kPadding / 2,
-                runSpacing: AppValues.kPadding / 2,
-                children: store.tags
-                    .map((e) => ActionChip(
-                          onPressed: () {},
-                          backgroundColor:
-                              AppColors.kSecondaryAdditionallyColor,
-                          label:
-                              AutoSizeText(e.title, style: textTheme.bodyLarge),
-                          side:
-                              const BorderSide(color: AppColors.kOutlineColor),
-                        ))
-                    .toList(),
-              )),
+              spacing: AppValues.kPadding / 4,
+              runSpacing: AppValues.kPadding / 4,
+              children: store.tags
+                  .map((e) => ActionChip(
+                        onPressed: () {},
+                        backgroundColor: AppColors.kSecondaryAdditionallyColor,
+                        label: Text(e.title, style: textTheme.bodyLarge),
+                        side: const BorderSide(color: AppColors.kOutlineColor),
+                      ))
+                  .toList())),
+      // Wrap(
+      //       spacing: AppValues.kPadding / 2,
+      //       runSpacing: AppValues.kPadding / 2,
+      //       children: store.tags
+      //           .map((e) => ActionChip(
+      //                 onPressed: () {},
+      //                 backgroundColor:
+      //                     AppColors.kSecondaryAdditionallyColor,
+      //                 label:
+      //                     AutoSizeText(e.title, style: textTheme.bodyLarge),
+      //                 side:
+      //                     const BorderSide(color: AppColors.kOutlineColor),
+      //               ))
+      //           .toList(),
+      //     )),
     );
   }
 }

@@ -79,14 +79,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           child: TextField(
             focusNode: _focusNode,
             decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search,
-                  color: _hasFocus ? scheme.outline : scheme.secondary),
-              suffixIcon: _hasFocus
-                  ? Icon(Icons.keyboard_voice, color: scheme.outline)
-                  : null,
+              prefixIcon: Icon(Icons.search, color: scheme.secondary),
+              suffixIcon: Icon(Icons.keyboard_voice, color: scheme.secondary),
               hintText: t.homeView.search,
-              hintStyle: textTheme.bodyLarge!.copyWith(
-                  color: _hasFocus ? scheme.outline : scheme.secondary),
+              hintStyle: textTheme.bodyLarge!.copyWith(color: scheme.outline),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(AppValues.kRadius),
                 borderSide: BorderSide.none,
@@ -94,9 +90,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
               focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(AppValues.kRadius)),
-              fillColor: _hasFocus
-                  ? AppColors.kSearchBarActiveColor
-                  : AppColors.kSecondaryAdditionallyColor,
+              fillColor: AppColors.kSecondaryAdditionallyColor,
               focusColor: AppColors.kSecondaryAdditionallyColor,
               hoverColor: AppColors.kSecondaryAdditionallyColor,
             ),
