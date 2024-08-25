@@ -1,0 +1,109 @@
+version: '3.5'
+
+networks:
+  x-pictures-nw:
+    driver: bridge
+
+services:
+  backend:
+    container_name: x-pictures-backend
+    image: x-pictures-backend:latest
+    restart: always
+    working_dir: /usr/src/project/backend/
+    ports:
+      - "8800:8800"
+    volumes:
+      - ./../:/usr/src/project/
+    command: python manage.py runserver 0.0.0.0:8800
+    env_file:
+      - ./.env
+    networks:
+      - x-pictures-nw
+
+  request-daemon:
+    container_name: x-pictures-request-daemon
+    image: x-pictures-backend:latest
+    restart: always
+    working_dir: /usr/src/project/backend/
+    volumes:
+      - ./../:/usr/src/project/
+    command: python manage.py save_ml_images_daemon
+    env_file:
+      - ./.env
+    networks:
+      - x-pictures-nw
+
+  celery:
+    container_name: x-pictures-celery
+    image: x-pictures-backend:latest
+    restart: always
+    volumes:
+      - ./../:/usr/src/project/
+    working_dir: /usr/src/project/backend/
+    command: celery -A backend worker -l INFO -E -B -c 1
+    depends_on:
+      - backend
+    env_file:
+      - ./.env
+    networks:
+      - x-pictures-nw
+
+  celery-generate-queues:
+    image: x-pictures-backend:latest
+    container_name: x-pictures-celery-generate-queues
+    restart: always
+    volumes:
+      - ./../:/usr/src/project/
+    working_dir: /usr/src/project/backend/
+    command: celery -A backend worker -l INFO -E -B -c 4 -Q gen_super_premium_queue,gen_premium_queue,gen_advance_queue,gen_basic_queue,gen_free_queue
+    depends_on:
+      - backend
+    env_file:
+      - ./.env
+    networks:
+      - x-pictures-nw
+
+  celery-undress-queues:
+    image: x-pictures-backend:latest
+    container_name: x-pictures-celery-undress-queues
+    restart: always
+    volumes:
+      - ./../:/usr/src/project/
+    working_dir: /usr/src/project/backend/
+    command: celery -A backend worker -l INFO -E -B -c 4 -Q und_super_premium_queue,und_premium_queue,und_advance_queue,und_basic_queue,und_free_queue
+    depends_on:
+      - backend
+    env_file:
+      - ./.env
+    networks:
+      - x-pictures-nw
+
+  celery-inst-undress-queues:
+    image: x-pictures-backend:latest
+    container_name: x-pictures-celery-inst-undress-queues
+    restart: always
+    volumes:
+      - ./../:/usr/src/project/
+    working_dir: /usr/src/project/backend/
+    command: celery -A backend worker -l INFO -E -B -c 4 -Q inst_basic_queue,inst_advance_queue,inst_premium_queue,inst_super_premium_queue
+    depends_on:
+      - backend
+    env_file:
+      - ./.env
+    networks:
+      - x-pictures-nw
+
+  celery-video-queues:
+    image: x-pictures-backend:latest
+    container_name: x-pictures-celery-video-queues
+    restart: always
+    volumes:
+      - ./../:/usr/src/project/
+    working_dir: /usr/src/project/backend/
+    command: celery -A backend worker -l INFO -E -B -c 10 -Q vid_basic_queue,vid_advance_queue,vid_premium_queue,vid_super_premium_queue
+    depends_on:
+      - backend
+    env_file:
+      - ./.env
+    networks:
+      - x-pictures-nw

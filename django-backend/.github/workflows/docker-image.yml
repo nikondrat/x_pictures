@@ -1,0 +1,12 @@
+name: x-pictures-back
+
+on:
+  push:
+    branches: [ "master" ]
+jobs:
+  build:    
+    runs-on: [undress-runner]
+
+    steps:
+    - name: Build
+      run: /home/ubuntu/script-back.sh

@@ -1,0 +1,19 @@
+# Database config
+DEFAULT_DATABASE_NAME=
+DEFAULT_DATABASE_USERNAME=
+DEFAULT_DATABASE_PASSWORD=
+DEFAULT_DATABASE_HOST=
+DEFAULT_DATABASE_PORT=
+
+# Microservice config
+RABBITMQ_URL=
+REDIS_URL=
+
+# Email sender
+UNISENDER_API_KEY=
+UNISENDER_FROM_EMAIL=
+
+# Access to the service by ips : ALLOWED_IP_{num} and add in settings
+ALLOWED_IP_1=
+# Access to the service by secret_key : ACCESS_TOKEN_{num} and add in settings
+ACCESS_TOKEN_1=

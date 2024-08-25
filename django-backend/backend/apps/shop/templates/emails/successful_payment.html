@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>X-pictures</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/css">
+      body {
+        width: 100% !important;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+        line-height: 100%;
+        font-family: 'Rubik', sans-serif;
+        background-color: #15171a;
+      }
+
+      img {
+        outline: none;
+        text-decoration: none;
+        border: none;
+        -ms-interpolation-mode: bicubic;
+        max-width: 100% !important;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+
+      table td {
+        border-collapse: collapse;
+      }
+
+      table {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+
+      .table-600 {
+        border-radius: 16px;
+        margin-top: 100px;
+        margin-bottom: 100px;
+      }
+    </style>
+  </head>
+
+  <body style="margin: 0; padding: 0">
+    <table
+      style="
+        font-size: 0px;
+        color: #8585a7;
+        opacity: 0;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        display: none;
+      "
+    >
+      <tr>
+        <td>X-pictures</td>
+      </tr>
+    </table>
+    <table cellpadding="0" cellspacing="0" width="100%" align="center">
+      <tr>
+        <td>
+          <table
+            style="background-color: #002; width: 100%; max-width: 665px"
+            align="center"
+          >
+            <tr>
+              <td style="padding: 60px">
+                <table style="width: 100%" align="center">
+                  <tr>
+                    <td
+                      style="
+                        background: #002;
+                        text-align: center;
+                        padding-bottom: 30px;
+                      "
+                    >
+                      <a
+                        href="https://app.x-pictures.io/"
+                        target="_blank"
+                        style="display: block; height: auto; text-align: center"
+                      >
+                        <img
+                          alt="Logo"
+                          src="https://app.x-pictures.io/images/mail/shop-logo.png"
+                          style="height: auto; width: 124px; margin: 0 auto"
+                        />
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      style="
+                        background: #002;
+                        text-align: center;
+                        padding-bottom: 6px;
+                      "
+                    >
+                      <img
+                        alt="Logo"
+                        src="https://app.x-pictures.io/images/mail/purchase-successful-bg.png"
+                        style="height: auto; width: 100%; margin: 0 auto"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-bottom: 10px">
+                      <table style="width: 100%">
+                        <tr>
+                          <td
+                            style="
+                              padding: 30px;
+                              border-radius: 16px;
+                              background-color: #01012a;
+                            "
+                          >
+                            <table style="width: 100%">
+                              <tr>
+                                <td
+                                  style="
+                                    padding-bottom: 24px;
+                                    color: #8585a7;
+                                    font-size: 16px;
+                                    line-height: 140%;
+                                  "
+                                >
+                                  <table style="width: 100%">
+                                    <tr>
+                                      <td
+                                        style="
+                                          color: #8585a7;
+                                          font-size: 16px;
+                                          line-height: 140%;
+                                          padding-bottom: 24px;
+                                        "
+                                      >
+                                        Dear Customer,
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td
+                                        style="
+                                          color: #8585a7;
+                                          font-size: 16px;
+                                          line-height: 140%;
+                                          padding-bottom: 24px;
+                                        "
+                                      >
+                                        We are thrilled to inform you that your
+                                        recent online book purchase was
+                                        successful! Thank you for choosing to
+                                        shop with us, and congratulations on
+                                        adding a new book to your collection.
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td
+                                        style="
+                                          color: #fff;
+                                          font-size: 16px;
+                                          line-height: 140%;
+                                          padding-bottom: 24px;
+                                        "
+                                      >
+                                        Here are the details of your purchase:
+                                        <br />
+                                        <br />
+                                        &bull; Order Number: {{ order.pk }}<br />
+                                        &bull; Book Title: {{ order.book_name }}<br />
+                                        &bull; Price: $ {{ order.price }}<br />
+                                        &bull; Payment Method: {{ order.get_gateway_type_display }}
+                                        <br />
+                                        <br />
+                                        In the attached file to the email, you
+                                        will find the purchased book.
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td
+                                        style="
+                                          color: #8585a7;
+                                          font-size: 16px;
+                                          line-height: 140%;
+                                        "
+                                      >
+                                        We hope you enjoy reading your new book
+                                        and find it both informative and
+                                        entertaining. Thank you for choosing our
+                                        online bookstore for your literary
+                                        needs. We look forward to serving you
+                                        again in the future.
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      style="
+                        padding: 30px;
+                        border-radius: 16px;
+                        background-color: #01012a;
+                      "
+                    >
+                      <table style="width: 100%">
+                        <tr>
+                          <td
+                            style="
+                              color: #8585a7;
+                              font-size: 16px;
+                              line-height: 140%;
+                              padding-bottom: 20px;
+                              border-bottom: 1px solid #8585a7;
+                            "
+                          >
+                            Happy reading!
+                            <br />
+                            <br />
+                            Warm regards,
+                            <br />
+                            <br />
+                            X-shop
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="
+                              font-size: 14px;
+                              color: #8585a7;
+                              line-height: 140%;
+                              padding-top: 20px;
+                            "
+                          >
+                            Need help?
+                            <a
+                              href="https://app.x-pictures.io/support"
+                              style="
+                                font-size: 14px;
+                                color: #fff;
+                                line-height: 140%;
+                                text-decoration-line: underline;
+                              "
+                              >Contact the support team</a
+                            >
+                            or email us on Twitter @discord.
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

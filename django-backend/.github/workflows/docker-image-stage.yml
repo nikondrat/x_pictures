@@ -1,0 +1,12 @@
+name: x-pictures-back
+
+on:
+  push:
+    branches: [ "new/v2" ]
+jobs:
+  build:    
+    runs-on: [backend-stage]
+
+    steps:
+    - name: Build
+      run: /home/ubuntu/script-back.sh
