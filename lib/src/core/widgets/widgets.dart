@@ -4,3 +4,4 @@ export 'title_with_desc.dart';
 export 'back_btn.dart';
 export 'item_with_shadow.dart';
 export 'popup_image.dart';
+export 'pro_upgrade_btn.dart';
