@@ -51,6 +51,10 @@ class MediaModel extends _MediaModel with _$MediaModel {
 
 abstract class _MediaModel with Store {
   @observable
+  @JsonKey(
+    includeFromJson: false,
+    includeToJson: false,
+  )
   bool isSelected = false;
 
   @action

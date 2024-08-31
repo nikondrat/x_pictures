@@ -38,8 +38,14 @@ class ItemWithShadow extends StatelessWidget {
                       },
                     ),
                   )
-                : const Center(
-                    child: Icon(Icons.hourglass_empty),
+                : DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppValues.kRadius),
+                      color: AppColors.kSecondaryAdditionallyColor,
+                    ),
+                    child: const Center(
+                      child: Icon(Icons.image_not_supported_outlined),
+                    ),
                   )),
         Align(
             alignment: Alignment.bottomLeft,

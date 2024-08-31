@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class StyleBottomWidget extends StatelessWidget {
@@ -12,6 +13,9 @@ class StyleBottomWidget extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
     // return ImageWithShader(url: model.url);
+
+    final PacksStore store = context.watch();
+    final PackModel model = store.selected;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppValues.kRadius * 2),

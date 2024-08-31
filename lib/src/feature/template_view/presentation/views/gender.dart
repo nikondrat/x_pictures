@@ -6,9 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
 
 class GenderView extends StatelessWidget {
-  final PacksStore store;
-  final LoraModel model;
-  const GenderView({super.key, required this.store, required this.model});
+  const GenderView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -123,11 +121,7 @@ class GenderView extends StatelessWidget {
                               children: [
                                 GradientButton(
                                     onPressed: () {
-                                      router
-                                          .pushNamed(AppViews.planView, extra: {
-                                        'store': store,
-                                        'model': model,
-                                      });
+                                      router.pushNamed(AppViews.planView);
                                     },
                                     text: t.common.continue_action),
                               ],

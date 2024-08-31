@@ -29,6 +29,14 @@ class App extends StatelessWidget {
                 create: (context) => MediaBodyStore(
                       homeStore: context.read<HomeStore>(),
                     )),
+            Provider(
+                create: (context) => PacksStore(
+                      restClient: context.read<Dependencies>().restClient,
+                    )),
+            Provider(
+                create: (context) => LoraStore(
+                      restClient: context.read<Dependencies>().restClient,
+                    ))
           ],
           child: TranslationProvider(child: const MaterialContext()),
         ),

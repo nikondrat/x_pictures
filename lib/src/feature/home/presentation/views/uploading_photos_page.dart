@@ -7,8 +7,7 @@ import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/data.dart';
 
 class UploadingPhotosPage extends StatefulWidget {
-  final PacksStore store;
-  const UploadingPhotosPage({super.key, required this.store});
+  const UploadingPhotosPage({super.key});
 
   @override
   State<UploadingPhotosPage> createState() => _UploadingPhotosPageState();
@@ -20,6 +19,7 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
+    final LoraStore loraStore = context.watch<LoraStore>();
 
     // bool haveError = true;
 
@@ -37,112 +37,104 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
         //     onTap: () => router
         //         .goNamed(AppViews.genderView, extra: {"model": widget.model})),
         body: AppBody(
-            builder: (windowWidth, windowHeight, __) => Provider(
-                create: (context) => LoraStore(
-                    store: widget.store,
-                    restClient: context.read<Dependencies>().restClient),
-                builder: (context, c) {
-                  final LoraStore loraStore = context.watch<LoraStore>();
-
-                  return SafeArea(
-                      child: Stack(fit: StackFit.expand, children: [
-                    CustomScrollView(
-                      slivers: <Widget>[
-                        SliverToBoxAdapter(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15.w, vertical: 15.h),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AutoSizeText(
-                                  'Step 2 of 3',
-                                  minFontSize: 8,
-                                  style: AppStyles.subTitleTextStyle.copyWith(
-                                    fontSize: 6.sp,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(right: 50.w),
-                                  child: AutoSizeText(
-                                    'Your photos have been processed',
-                                    style: textTheme.bodyLarge!.copyWith(
-                                        fontSize: 17.sp,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5.h,
-                                ),
-                                AutoSizeText(
-                                  'Description',
-                                  style: textTheme.bodyMedium!.copyWith(
-                                      fontSize: 12.sp,
-                                      color: AppColors.kOutlineColor),
-                                ),
-                                SizedBox(
-                                  height: 20.h,
-                                ),
-                                AutoSizeText(
-                                  'Your photos',
-                                  style: AppStyles.title2TextStyle
-                                      .copyWith(fontSize: 17.sp),
-                                ),
-                                Observer(builder: (context) {
-                                  if (!loraStore.canGenerateLora) {
-                                    return AutoSizeText(
-                                      'Maximum of 12 photos can be uploaded.',
-                                      style: textTheme.bodyLarge!
-                                          .copyWith(color: colorScheme.error),
-                                    );
-                                  }
-                                  return const SizedBox.shrink();
-                                }),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const UploadingPhotosBody(),
-                        Observer(builder: (_) {
-                          if (loraStore.photosLength > 7) {
-                            return SliverPadding(
-                              padding: EdgeInsets.only(
-                                  left: 15.w, right: 15.w, bottom: 120.h),
-                              sliver: SliverToBoxAdapter(
-                                child: AutoSizeText(
-                                  t.homeView.not_comply,
-                                  style: textTheme.bodyLarge!
-                                      .copyWith(color: colorScheme.error),
+            builder: (windowWidth, windowHeight, __) => SafeArea(
+                    child: Stack(fit: StackFit.expand, children: [
+                  CustomScrollView(
+                    slivers: <Widget>[
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15.w, vertical: 15.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AutoSizeText(
+                                'Step 2 of 3',
+                                minFontSize: 8,
+                                style: AppStyles.subTitleTextStyle.copyWith(
+                                  fontSize: 6.sp,
                                 ),
                               ),
-                            );
-                          }
-                          return const SliverToBoxAdapter();
-                        })
-                      ],
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: HorizontalSpacing.centered(windowWidth) +
-                            EdgeInsets.only(bottom: 20.h),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            GradientButton(
-                                onPressed: () {
-                                  loraStore.generateLora();
-                                },
-                                text: t.common.continue_action),
-                          ],
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 50.w),
+                                child: AutoSizeText(
+                                  'Your photos have been processed',
+                                  style: textTheme.bodyLarge!.copyWith(
+                                      fontSize: 17.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              AutoSizeText(
+                                'Description',
+                                style: textTheme.bodyMedium!.copyWith(
+                                    fontSize: 12.sp,
+                                    color: AppColors.kOutlineColor),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              AutoSizeText(
+                                'Your photos',
+                                style: AppStyles.title2TextStyle
+                                    .copyWith(fontSize: 17.sp),
+                              ),
+                              Observer(builder: (context) {
+                                if (!loraStore.canGenerateLora) {
+                                  return AutoSizeText(
+                                    'Maximum of 12 photos can be uploaded.',
+                                    style: textTheme.bodyLarge!
+                                        .copyWith(color: colorScheme.error),
+                                  );
+                                }
+                                return const SizedBox.shrink();
+                              }),
+                            ],
+                          ),
                         ),
                       ),
+                      const UploadingPhotosBody(),
+                      Observer(builder: (_) {
+                        if (loraStore.photosLength > 7) {
+                          return SliverPadding(
+                            padding: EdgeInsets.only(
+                                left: 15.w, right: 15.w, bottom: 120.h),
+                            sliver: SliverToBoxAdapter(
+                              child: AutoSizeText(
+                                t.homeView.not_comply,
+                                style: textTheme.bodyLarge!
+                                    .copyWith(color: colorScheme.error),
+                              ),
+                            ),
+                          );
+                        }
+                        return const SliverToBoxAdapter();
+                      })
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: HorizontalSpacing.centered(windowWidth) +
+                          EdgeInsets.only(bottom: 20.h),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GradientButton(
+                              onPressed: () {
+                                router.pushNamed(AppViews.genderView);
+                              },
+                              text: t.common.continue_action),
+                        ],
+                      ),
                     ),
-                  ]));
-                })));
+                  ),
+                ]))));
   }
 
   // Widget uploadPhoto(int index, BuildContext context) {

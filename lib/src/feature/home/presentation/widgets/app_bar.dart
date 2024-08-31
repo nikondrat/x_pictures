@@ -27,7 +27,7 @@ class AppBarHomeView extends StatelessWidget {
           ImageWithShader(
               url: model.images.isNotEmpty
                   ? model.images.first.url
-                  : 'https://savilerowco.com/wp/wp-content/uploads/2017/02/11.jpg'),
+                  : 'https://images.livemint.com/img/2021/02/02/1140x641/hunters-race-MYbhN8KaaEc-unsplash_1612280206849_1612280227004.jpg'),
           SafeArea(
             child: Align(
               alignment: Alignment.topCenter,

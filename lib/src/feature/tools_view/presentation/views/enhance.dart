@@ -1,16 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class EnhanceView extends StatelessWidget {
-  final PacksStore store;
-  const EnhanceView({super.key, required this.store});
+  const EnhanceView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
+
+    final PacksStore store = context.watch();
 
     return StudyingView(
       url:

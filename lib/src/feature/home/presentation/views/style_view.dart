@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class StyleView extends StatelessWidget {
-  final PacksStore store;
+  final PacksStore? store;
   const StyleView({super.key, required this.store});
 
   @override
@@ -11,11 +12,13 @@ class StyleView extends StatelessWidget {
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
+    final PacksStore store = this.store ?? context.watch<PacksStore>();
+
     return Scaffold(
       appBar: AppBar(
         leading: const CustomBackButton(),
         title: Text(
-          store.selected!.title,
+          store.selected.title,
           style: textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w700),
         ),
       ),
@@ -32,7 +35,7 @@ class StyleView extends StatelessWidget {
                     backgroundColor: colorScheme.surface,
                     leading: const SizedBox(),
                     flexibleSpace: FlexibleSpaceBar(
-                        background: StyleBottomWidget(model: store.selected!)),
+                        background: StyleBottomWidget(model: store.selected)),
                     bottom: PreferredSize(
                       preferredSize: Size.zero,
                       child: Container(
@@ -51,7 +54,7 @@ class StyleView extends StatelessWidget {
                     child: Padding(
                       padding: HorizontalSpacing.centered(windowWidth),
                       child: StyleViewBody(
-                        model: store.selected!,
+                        model: store.selected,
                       ),
                     ),
                   )

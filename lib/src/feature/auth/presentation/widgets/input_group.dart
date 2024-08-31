@@ -28,7 +28,7 @@ class InputGroup extends StatelessWidget {
                   formControlName: 'email',
                   validationMessages: {'notFound': (c) => t.auth.errors.email},
                   style: textTheme.titleLarge!.copyWith(
-                      color: colorScheme.onSecondary, fontSize: 12.sp),
+                      color: colorScheme.onSecondary, fontSize: 17.sp),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(
@@ -48,7 +48,7 @@ class InputGroup extends StatelessWidget {
                   obscureText: !store.isShowPassword,
                   onSubmitted: (_) => authStore.login(),
                   style: textTheme.titleLarge!.copyWith(
-                      color: colorScheme.onSecondary, fontSize: 12.sp),
+                      color: colorScheme.onSecondary, fontSize: 17.sp),
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(

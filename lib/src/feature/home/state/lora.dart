@@ -7,14 +7,13 @@ import 'package:x_pictures/src/data.dart';
 part 'lora.g.dart';
 
 class LoraStore extends _LoraStore with _$LoraStore {
-  LoraStore({required super.restClient, required super.store});
+  LoraStore({required super.restClient});
 }
 
 abstract class _LoraStore with Store {
   final RestClient restClient;
-  final PacksStore store;
 
-  _LoraStore({required this.restClient, required this.store});
+  _LoraStore({required this.restClient});
 
   @observable
   ObservableList<XFile> photos = ObservableList();
@@ -38,47 +37,59 @@ abstract class _LoraStore with Store {
   Future<void> generateLora() async {
     // TODO setted for debug and tests
     // if (!kDebugMode) {
-    router.pushNamed(AppViews.genderView, extra: {
-      'store': store,
-      'model': LoraModel(
-          id: '',
-          status: Status.completed,
-          estimatedTime: 0,
-          estimatedTimestamp: 0,
-          trainingTimeSeconds: 0,
-          images: [],
-          cost: '',
-          createdDate: DateTime.now()),
-    });
+    // router.pushNamed(AppViews.genderView, extra: {
+    //   'store': store,
+    //   'model': LoraModel(
+    //       id: '',
+    //       status: Status.completed,
+    //       estimatedTime: 0,
+    //       estimatedTimestamp: 0,
+    //       trainingTimeSeconds: 0,
+    //       images: [],
+    //       cost: '',
+    //       createdDate: DateTime.now()),
+    // });
 
-    // TODO use this for production
-    //   FormData formData = FormData();
+    if (kDebugMode) {
+      router.pushNamed(AppViews.masterpieceView, extra: {
+        'model': LoraModel(
+            id: '',
+            status: Status.completed,
+            estimatedTime: 0,
+            estimatedTimestamp: 0,
+            trainingTimeSeconds: 0,
+            images: [],
+            cost: '',
+            createdDate: DateTime.now()),
+      });
+    } else {
+      // TODO use this for production
+      FormData formData = FormData();
 
-    //   for (int i = 0; i < photos.length; i++) {
-    //     formData.files.add(
-    //       MapEntry(
-    //         'file${i + 1}',
-    //         await MultipartFile.fromFile(
-    //           photos[i].path,
-    //           filename: photos[i].name,
-    //         ),
-    //       ),
-    //     );
-    //   }
+      for (int i = 0; i < photos.length; i++) {
+        formData.files.add(
+          MapEntry(
+            'file${i + 1}',
+            await MultipartFile.fromFile(
+              photos[i].path,
+              filename: photos[i].name,
+            ),
+          ),
+        );
+      }
 
-    //   final future = restClient
-    //       .post(Endpoint().loras,
-    //           body: formData, contentType: 'multipart/form-data')
-    //       .then((v) {
-    //     if (v?['detail'] == null) {
-    //       final LoraModel model = LoraModel.fromJson(v!);
-    //       router.pushNamed(AppViews.genderView, extra: {
-    //         'store': store,
-    //         'model': model,
-    //       });
-    //     }
-    //   });
-    // }
+      restClient
+          .post(Endpoint().loras,
+              body: formData, contentType: 'multipart/form-data')
+          .then((v) {
+        if (v?['detail'] == null) {
+          final LoraModel model = LoraModel.fromJson(v!);
+          router.pushNamed(AppViews.masterpieceView, extra: {
+            'model': model,
+          });
+        }
+      });
+    }
   }
 
   @observable

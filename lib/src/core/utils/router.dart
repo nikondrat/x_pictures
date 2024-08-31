@@ -127,8 +127,8 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
             name: AppViews.officePageRoute,
             path: _Paths.officePageRoute,
             builder: (context, state) {
-              final Map? data = state.extra as Map?;
-              final store = data?['store'];
+              final Map data = state.extra as Map;
+              final PacksStore? store = data['store'] as PacksStore?;
               return StyleView(
                 store: store,
               );
@@ -138,11 +138,7 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                 name: AppViews.enhanceView,
                 path: _Paths.enhanceView,
                 builder: (context, state) {
-                  final Map? data = state.extra as Map?;
-                  final store = data?['store'];
-                  return EnhanceView(
-                    store: store,
-                  );
+                  return const EnhanceView();
                 },
               ),
               GoRoute(
@@ -160,76 +156,43 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                     GoRoute(
                         name: AppViews.backgroundsView,
                         path: _Paths.backgroundsView,
-                        builder: (context, state) {
-                          return BackgroundsView();
-                        },
+                        builder: (context, state) => const BackgroundsView(),
                         routes: [
                           GoRoute(
                               name: AppViews.imageWithBackground,
                               path: _Paths.imageWithBackground,
-                              builder: (_, state) {
-                                return ImageWithBackgroundResultView();
-                              })
+                              builder: (_, state) =>
+                                  const ImageWithBackgroundResultView())
                         ])
                   ]),
               GoRoute(
                   name: AppViews.disclaimarPageRoute,
                   path: _Paths.disclaimarPageRoute,
-                  builder: (context, state) {
-                    final Map? data = state.extra as Map?;
-                    final store = data?['store'];
-                    return DisclaimarPage(
-                      store: store,
-                    );
-                  },
+                  builder: (context, state) => const DisclaimarPage(),
                   routes: [
                     GoRoute(
                         name: AppViews.instructionPageRoute,
                         path: _Paths.instructionPageRoute,
-                        builder: (context, state) {
-                          final Map? data = state.extra as Map?;
-                          final store = data?['store'];
-                          return InstructionPage(
-                            store: store,
-                          );
-                        },
+                        builder: (context, state) => const InstructionPage(),
                         routes: [
                           GoRoute(
                               name: AppViews.uploadingPhotosPageRoute,
                               path: _Paths.uploadingPhotosPageRoute,
-                              builder: (context, state) {
-                                final Map? data = state.extra as Map?;
-                                final store = data?['store'];
-                                return UploadingPhotosPage(
-                                  store: store,
-                                );
-                              },
+                              builder: (context, state) =>
+                                  const UploadingPhotosPage(),
                               routes: [
                                 GoRoute(
                                     name: AppViews.genderView,
                                     path: _Paths.genderView,
                                     builder: (context, state) {
-                                      final Map? data = state.extra as Map?;
-                                      final store = data?['store'];
-                                      final model = data?['model'];
-                                      return GenderView(
-                                        store: store,
-                                        model: model,
-                                      );
+                                      return const GenderView();
                                     },
                                     routes: [
                                       GoRoute(
                                           name: AppViews.planView,
                                           path: _Paths.planView,
                                           builder: (context, state) {
-                                            final Map? data =
-                                                state.extra as Map?;
-                                            final store = data?['store'];
-                                            final model = data?['model'];
-                                            return PlanView(
-                                              store: store,
-                                              model: model,
-                                            );
+                                            return const PlanView();
                                           },
                                           routes: [
                                             GoRoute(
@@ -238,10 +201,8 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                                 builder: (context, state) {
                                                   final Map? data =
                                                       state.extra as Map?;
-                                                  final store = data?['store'];
                                                   final model = data?['model'];
                                                   return MasterpieceView(
-                                                    store: store,
                                                     model: model,
                                                   );
                                                 },

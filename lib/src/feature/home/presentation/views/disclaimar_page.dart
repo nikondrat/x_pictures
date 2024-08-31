@@ -5,8 +5,7 @@ import 'package:x_pictures/src/core/constant/images.dart';
 import 'package:x_pictures/src/data.dart';
 
 class DisclaimarPage extends StatelessWidget {
-  final PacksStore store;
-  const DisclaimarPage({super.key, required this.store});
+  const DisclaimarPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -87,10 +86,7 @@ class DisclaimarPage extends StatelessWidget {
                         children: [
                           GradientButton(
                               onPressed: () {
-                                router.pushNamed(AppViews.instructionPageRoute,
-                                    extra: {
-                                      'store': store,
-                                    });
+                                router.pushNamed(AppViews.instructionPageRoute);
                               },
                               text: t.homeView.get_started),
                         ],

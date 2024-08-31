@@ -1,25 +1,22 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 import 'package:x_pictures/src/data.dart';
 
 part 'photos_loader.g.dart';
 
 class PhotosLoaderStore extends _PhotosLoaderStore with _$PhotosLoaderStore {
-  PhotosLoaderStore({required super.store, required super.model});
+  PhotosLoaderStore({required super.model});
 }
 
 abstract class _PhotosLoaderStore with Store {
-  final PacksStore store;
   final LoraModel model;
 
-  _PhotosLoaderStore({required this.store, required this.model});
+  _PhotosLoaderStore({required this.model});
 
   Timer? _timer;
 
-  @observable
-  int seconds = 5;
+  late int seconds = model.trainingTimeSeconds ?? 0;
 
   @computed
   double get percent => seconds / 5;
@@ -39,7 +36,6 @@ abstract class _PhotosLoaderStore with Store {
     dispose();
     router.goNamed(AppViews.photosView, extra: {
       "model": model,
-      "store": store,
       "models":
           // !kDebugMode
           //     ? model.images

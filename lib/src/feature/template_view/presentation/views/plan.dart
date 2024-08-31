@@ -8,14 +8,19 @@ import 'package:x_pictures/src/data.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
 
 class PlanView extends StatelessWidget {
-  final PacksStore store;
-  final LoraModel model;
-  const PlanView({super.key, required this.store, required this.model});
+  const PlanView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final TextTheme textTheme = theme.textTheme;
+    final UserStore userStore = Provider.of<UserStore>(context);
+    final LoraStore loraStore = Provider.of<LoraStore>(context);
+
+    if (userStore.profileType == ProfileType.premium ||
+        userStore.profileType == ProfileType.superPremium) {
+      loraStore.generateLora();
+    }
 
     return ChangeNotifierProvider(
       create: (context) => PlanState(),
@@ -113,12 +118,7 @@ class PlanView extends StatelessWidget {
                                         // height: 50.h,
                                         child: GradientButton(
                                           onPressed: () {
-                                            router.pushNamed(
-                                                AppViews.masterpieceView,
-                                                extra: {
-                                                  'store': store,
-                                                  'model': model,
-                                                });
+                                            loraStore.generateLora();
                                           },
                                           text: t.common.continue_action,
                                           isEnabled: consumerValue.isSelected,

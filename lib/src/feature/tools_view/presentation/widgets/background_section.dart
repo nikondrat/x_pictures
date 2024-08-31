@@ -15,7 +15,7 @@ class BackgroundSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = Theme.of(context);
+    final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
 
     return Column(

@@ -55,6 +55,9 @@ abstract class _UserStore with Store {
   @computed
   String get balance => user.balance;
 
+  @computed
+  ProfileType get profileType => user.profileType;
+
   @observable
   Patreon? patreon;
 
