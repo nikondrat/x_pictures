@@ -14,3 +14,6 @@ select: Select
 select_all: Select all
 months: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
 now: "${month} ${day}th"
+upgrade_pro: Upgrade to PRO Premium
+banner_pro_text: Text
+banner_pro_btn_text: Button
