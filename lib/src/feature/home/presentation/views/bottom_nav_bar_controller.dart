@@ -49,9 +49,9 @@ class _BottomNavBarControllerPageState
             return const BottomBarPhotosFuncs();
           }
 
-          return Container(
+          return DecoratedBox(
             decoration: BoxDecoration(
-                border: Border(
+                border: const Border(
                     top: BorderSide(
                   color: Color(0xFF3B3B5A),
                 )),
@@ -60,69 +60,74 @@ class _BottomNavBarControllerPageState
                   topRight: Radius.circular(20.r),
                 ),
                 color: const Color(0xff0D1120)),
-            child: Row(
-              children: [
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    Assets.icons.home,
-                    color: _selectedIndex == 0
-                        ? Colors.orange[900]
-                        : const Color(0xff6F6F72),
-                    width: 22.h,
-                    height: 22.h,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                bottom: AppValues.kPadding,
+              ),
+              child: Row(
+                children: [
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset(
+                      Assets.icons.home,
+                      color: _selectedIndex == 0
+                          ? Colors.orange[900]
+                          : const Color(0xff6F6F72),
+                      width: 22.h,
+                      height: 22.h,
+                    ),
+                    label: 'Home',
                   ),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    AppIcons.generateIcon,
-                    color: _selectedIndex == 1
-                        ? Colors.orange[900]
-                        : const Color(0xff6F6F72),
-                    width: 24.h,
-                    height: 24.h,
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset(
+                      AppIcons.generateIcon,
+                      color: _selectedIndex == 1
+                          ? Colors.orange[900]
+                          : const Color(0xff6F6F72),
+                      width: 24.h,
+                      height: 24.h,
+                    ),
+                    label: 'Generate',
                   ),
-                  label: 'Generate',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.account_circle_outlined,
-                    color: _selectedIndex == 2
-                        ? Colors.orange[900]
-                        : const Color(0xff6F6F72),
-                    size: 24.h,
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.account_circle_outlined,
+                      color: _selectedIndex == 2
+                          ? Colors.orange[900]
+                          : const Color(0xff6F6F72),
+                      size: 24.h,
+                    ),
+                    label: 'My Profile',
                   ),
-                  label: 'My Profile',
-                ),
-              ]
-                  .mapIndexed((i, e) => Expanded(
-                          child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _selectedIndex = i;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: AppValues.kPadding / 2),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              e.icon,
-                              AutoSizeText(
-                                e.label!,
-                                style: TextStyle(
-                                  fontSize: 8.sp,
-                                  fontWeight: _selectedIndex == i
-                                      ? FontWeight.w700
-                                      : FontWeight.w400,
+                ]
+                    .mapIndexed((i, e) => Expanded(
+                            child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _selectedIndex = i;
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: AppValues.kPadding / 2),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                e.icon,
+                                AutoSizeText(
+                                  e.label!,
+                                  style: TextStyle(
+                                    fontSize: 8.sp,
+                                    fontWeight: _selectedIndex == i
+                                        ? FontWeight.w700
+                                        : FontWeight.w400,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      )))
-                  .toList(),
+                        )))
+                    .toList(),
+              ),
             ),
           );
 

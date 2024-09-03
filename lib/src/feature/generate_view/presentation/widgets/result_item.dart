@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -44,14 +45,19 @@ class _Pro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 70.h,
-      margin: const EdgeInsets.all(AppValues.kPadding / 4),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppValues.kRadius.r),
-        color: AppColors.kSecondaryAdditionallyColor,
+    return GestureDetector(
+      onTap: () {
+        context.pushNamed(AppViews.planView);
+      },
+      child: Container(
+        height: 70.h,
+        margin: const EdgeInsets.all(AppValues.kPadding / 4),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppValues.kRadius.r),
+          color: AppColors.kSecondaryAdditionallyColor,
+        ),
+        child: Center(child: SvgPicture.asset(Assets.icons.pro)),
       ),
-      child: Center(child: SvgPicture.asset(Assets.icons.pro)),
     );
   }
 }

@@ -38,7 +38,7 @@ class GenerationResult extends StatelessWidget {
                             imageUrl:
                                 'https://s1.1zoom.me/big3/446/375561-svetik.jpg',
                             fit: BoxFit.cover,
-                            height: 600.h,
+                            height: 400.r,
                             width: windowWidth,
                             placeholder: (context, url) {
                               return Shimmer.fromColors(
