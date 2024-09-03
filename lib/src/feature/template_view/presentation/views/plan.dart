@@ -8,7 +8,11 @@ import 'package:x_pictures/src/data.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
 
 class PlanView extends StatelessWidget {
-  const PlanView({super.key});
+  final Function()? continuePressed;
+  const PlanView({
+    super.key,
+    this.continuePressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +122,9 @@ class PlanView extends StatelessWidget {
                                         // height: 50.h,
                                         child: GradientButton(
                                           onPressed: () {
-                                            loraStore.generateLora();
+                                            continuePressed != null
+                                                ? continuePressed!()
+                                                : loraStore.generateLora();
                                           },
                                           text: t.common.continue_action,
                                           isEnabled: consumerValue.isSelected,

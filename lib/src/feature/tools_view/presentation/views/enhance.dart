@@ -32,7 +32,7 @@ class EnhanceView extends StatelessWidget {
             ],
           ),
           body: EnhanceBody(
-            model: store.selected!,
+            model: store.selected,
           ),
           // body: Center(
           //   child: ClipRRect(

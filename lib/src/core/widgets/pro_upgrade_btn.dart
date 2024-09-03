@@ -17,63 +17,74 @@ class ProUpgradeBtn extends StatelessWidget {
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppValues.kRadius.r),
-      child: Container(
-        height: 80.h,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            colorScheme.primary,
-            AppColors.kPrimaryAdditionallyColor
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter),
+    return GestureDetector(
+      onTap: onPressed,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(AppValues.kRadius.r),
+        child: SizedBox(
+          height: 80.h,
+          child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+                  colorScheme.primary,
+                  AppColors.kPrimaryAdditionallyColor
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+              ),
+              child: Stack(
+                children: [
+                  Positioned(
+                    left: 0.w,
+                    top: 14.h,
+                    child: SvgPicture.asset(Assets.icons.bannerProElem01),
+                  ),
+                  Positioned(
+                    right: 0.w,
+                    bottom: 0.h,
+                    child: SvgPicture.asset(Assets.icons.bannerProElem02),
+                  ),
+                  ListTile(
+                      title: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.h),
+                        child: Text(
+                          t.common.upgrade_pro,
+                          style: textTheme.titleLarge!.copyWith(
+                              fontSize: 14.sp, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      subtitle: Text(t.common.banner_pro_text),
+                      trailing: DecoratedBox(
+                        decoration: BoxDecoration(
+                            color: colorScheme.onPrimary,
+                            borderRadius:
+                                BorderRadius.circular(AppValues.kRadius * 2.r)),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
+                          child: Text(t.common.banner_pro_btn_text,
+                              style: textTheme.titleSmall!.copyWith(
+                                color: colorScheme.onSecondary,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12.sp,
+                              )),
+                        ),
+                      )
+                      // ElevatedButton(
+                      //     onPressed: onPressed,
+                      //     style: ElevatedButton.styleFrom(
+                      //         backgroundColor: AppColors.kSecondaryColor),
+                      //     child: Text(
+                      //       t.common.banner_pro_btn_text,
+                      //       style: textTheme.titleSmall!.copyWith(
+                      //         fontSize: 12.sp,
+                      //         color: AppColors.kBackgroundColor,
+                      //         fontWeight: FontWeight.w400,
+                      //       ),
+                      //     )),
+                      )
+                ],
+              )),
         ),
-        child: Stack(
-          children: [
-            Positioned(
-                left: 0.w,
-                top: 20.h,
-                child: SvgPicture.asset(
-                    Assets.icons.bannerProElem01),
-            ),
-            Positioned(
-                right: 0.w,
-                bottom: 0.h,
-                child: SvgPicture.asset(Assets.icons.bannerProElem02),
-            ),
-            ListTile(
-              title: Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.h),
-                child: Text(
-                    t.common.upgrade_pro,
-                style: textTheme.titleLarge!.copyWith(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.bold
-                ),
-                ),
-              ),
-              subtitle: Text(t.common.banner_pro_text),
-              trailing: Padding(
-                padding: EdgeInsets.only(top: 8.h),
-                child: ElevatedButton(
-                    onPressed: onPressed,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.kSecondaryColor
-                    ),
-                    child: Text(
-                        t.common.banner_pro_btn_text,
-                    style: textTheme.titleSmall!.copyWith(
-                      fontSize: 12.sp,
-                      color: AppColors.kBackgroundColor,
-                      fontWeight: FontWeight.w400,
-                    ),)),
-              ),
-            )
-          ],
-        )
       ),
     );
   }
 }
-

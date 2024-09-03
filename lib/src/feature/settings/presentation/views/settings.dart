@@ -58,7 +58,78 @@ class SettingsView extends StatelessWidget {
                         textTheme.bodyLarge!.copyWith(color: colorScheme.error),
                   ),
                   onPressed: (context) {
-                    userStore.logout();
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog.adaptive(
+                          title: Text(t.settings.exit_confirm),
+                          content: !isAndroid
+                              ? Text(t.settings.exit_confirm_additional)
+                              : null,
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog.adaptive(
+                                      title: Text(
+                                          t.settings.exit_next_confirmation),
+                                      content: !isAndroid
+                                          ? Text(t
+                                              .settings.exit_confirm_additional)
+                                          : null,
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                            userStore.logout();
+                                          },
+                                          child: Text(
+                                            t.settings.delete.title,
+                                            style: textTheme.bodyLarge!
+                                                .copyWith(
+                                                    color: isAndroid
+                                                        ? colorScheme.error
+                                                        : null),
+                                          ),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            t.common.no,
+                                            style: textTheme.bodyLarge,
+                                          ),
+                                        )
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: Text(
+                                t.common.yes,
+                                style: textTheme.bodyLarge!.copyWith(
+                                    color:
+                                        isAndroid ? colorScheme.error : null),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text(
+                                t.common.no,
+                                style: textTheme.bodyLarge,
+                              ),
+                            )
+                          ],
+                        );
+                      },
+                    );
                   },
                   trailing: const SizedBox.shrink(),
                 ),

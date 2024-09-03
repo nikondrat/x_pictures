@@ -26,12 +26,16 @@ class _EnhanceBodyState extends State<EnhanceBody> {
       borderRadius: BorderRadius.circular(AppValues.kRadius),
       child: Stack(
         children: [
-          CachedNetworkImage(
-            imageUrl: widget.model.images[0].url,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-          ),
+          widget.model.images.isNotEmpty
+              ? CachedNetworkImage(
+                  imageUrl: widget.model.images[0].url,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: double.infinity,
+                )
+              : const Center(
+                  child: Icon(Icons.image_not_supported_outlined),
+                ),
           Column(
             children: [
               Expanded(

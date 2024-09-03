@@ -192,7 +192,12 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                           name: AppViews.planView,
                                           path: _Paths.planView,
                                           builder: (context, state) {
-                                            return const PlanView();
+                                            final Map data = state.extra as Map;
+                                            final Function()? continueAction =
+                                                data['continueAction'];
+                                            return PlanView(
+                                              continuePressed: continueAction,
+                                            );
                                           },
                                           routes: [
                                             GoRoute(

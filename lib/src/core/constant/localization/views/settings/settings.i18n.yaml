@@ -1,6 +1,9 @@
 title: Settings
 exit: Exit
 trial: Free trial
+exit_confirm: Do you really want to log out of your personal account?
+exit_confirm_additional: Do you want to continue?
+exit_next_confirmation: Do you really want to delete your account? All your data will be deleted
 
 account:
   title: Account

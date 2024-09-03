@@ -20,7 +20,7 @@ class ImageWithBackgroundResultView extends StatelessWidget {
     final PacksStore store = Provider.of<PacksStore>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text(store.selected!.title)),
+      appBar: AppBar(title: Text(store.selected.title)),
       body: AppBody(
         builder: (windowWidth, windowHeight, windowSize) {
           return SingleChildScrollView(

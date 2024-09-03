@@ -17,3 +17,5 @@ now: "${month} ${day}th"
 upgrade_pro: Upgrade to PRO Premium
 banner_pro_text: Text
 banner_pro_btn_text: Button
+yes: Yes
+no: No
