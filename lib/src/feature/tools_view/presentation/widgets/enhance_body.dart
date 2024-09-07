@@ -78,7 +78,7 @@ class _EnhanceBodyState extends State<EnhanceBody> {
                         left:
                             MediaQuery.of(context).size.width * _linePosition -
                                 23,
-                        top: (MediaQuery.of(context).size.height * 0.4),
+                        top: (MediaQuery.of(context).size.height * 0.28),
                         child: GestureDetector(
                           onPanUpdate: (details) {
                             setState(() {

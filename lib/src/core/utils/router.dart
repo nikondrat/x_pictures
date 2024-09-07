@@ -146,8 +146,8 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
             name: AppViews.officePageRoute,
             path: _Paths.officePageRoute,
             builder: (context, state) {
-              final Map data = state.extra as Map;
-              final PacksStore? store = data['store'] as PacksStore?;
+              final Map? data = state.extra as Map?;
+              final PacksStore? store = data?['store'] as PacksStore?;
               return StyleView(
                 store: store,
               );
@@ -211,9 +211,10 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                                           name: AppViews.planView,
                                           path: _Paths.planView,
                                           builder: (context, state) {
-                                            final Map data = state.extra as Map;
+                                            final Map? data =
+                                                state.extra as Map?;
                                             final Function()? continueAction =
-                                                data['continueAction'];
+                                                data?['continueAction'];
                                             return PlanView(
                                               continuePressed: continueAction,
                                             );
