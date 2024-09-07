@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:x_pictures/src/data.dart';
-import 'package:x_pictures/src/feature/template_view/presentation/views/plan.dart';
 
 abstract class AppViews {
   static const init = 'init';
   static const signIn = 'signIn';
   static const verify = 'verify';
+  static const forgot = 'forgot';
+  static const newPassword = 'newPassword';
 
   static const String homePageRoute = 'homePage';
   static const String viewAllPageRoute = 'viewAllPage';
@@ -61,10 +62,28 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
             builder: (context, state) => const SignInView(),
             routes: [
               GoRoute(
-                name: AppViews.verify,
-                path: _Paths.verify,
-                builder: (context, state) => const VerifyView(),
-              ),
+                  name: AppViews.forgot,
+                  path: _Paths.forgot,
+                  builder: (context, state) {
+                    final Map? map = state.extra as Map?;
+                    final SignInViewStore? store =
+                        map?['store'] as SignInViewStore?;
+                    return ForgotPasswordView(store: store);
+                  },
+                  routes: [
+                    GoRoute(
+                        name: AppViews.verify,
+                        path: _Paths.verify,
+                        builder: (context, state) => const VerifyView(),
+                        routes: [
+                          GoRoute(
+                            name: AppViews.newPassword,
+                            path: _Paths.newPassword,
+                            builder: (context, state) =>
+                                const NewPasswordView(),
+                          ),
+                        ]),
+                  ]),
             ]),
       ]),
   GoRoute(
@@ -250,6 +269,8 @@ abstract class _Paths {
   static const init = '/';
   static const signIn = AppViews.signIn;
   static const verify = AppViews.verify;
+  static const forgot = AppViews.forgot;
+  static const newPassword = AppViews.newPassword;
 
   // TODO
   // static const String homePageRoute = '/';

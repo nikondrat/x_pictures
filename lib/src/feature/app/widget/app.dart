@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -38,7 +39,12 @@ class App extends StatelessWidget {
                       restClient: context.read<Dependencies>().restClient,
                     ))
           ],
-          child: TranslationProvider(child: const MaterialContext()),
+          child: ReactiveFormConfig(validationMessages: {
+            ValidationMessage.required: (error) => t.auth.errors.empty,
+            ValidationMessage.email: (error) => t.auth.errors.email,
+            ValidationMessage.minLength: (error) => t.auth.errors.min_length,
+            ValidationMessage.mustMatch: (error) => t.auth.errors.must_match
+          }, child: TranslationProvider(child: const MaterialContext())),
         ),
       );
 }

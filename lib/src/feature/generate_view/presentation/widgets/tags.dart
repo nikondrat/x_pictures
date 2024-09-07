@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -24,17 +25,24 @@ class GenerateTags extends StatelessWidget {
     return TitleWithBody(
       title: t.generateView.tags.title,
       action: const ResetButton(),
+      padding: AppValues.kPadding / 2,
       child: Observer(
           builder: (context) => Wrap(
-              spacing: AppValues.kPadding / 4,
-              runSpacing: AppValues.kPadding / 4,
+              spacing: 6,
               children: store.tags
-                  .map((e) => ActionChip(
-                        onPressed: () {},
-                        backgroundColor: AppColors.kSecondaryAdditionallyColor,
-                        label: Text(e.title, style: textTheme.bodyLarge),
-                        side: const BorderSide(color: AppColors.kOutlineColor),
-                      ))
+                  .map((e) => Observer(builder: (context) {
+                        return ActionChip(
+                          onPressed: () => e.setIsSelected(!e.isSelected),
+                          backgroundColor:
+                              AppColors.kSecondaryAdditionallyColor,
+                          label: AutoSizeText(e.title,
+                              maxLines: 2, style: textTheme.bodyMedium),
+                          side: BorderSide(
+                              color: e.isSelected
+                                  ? AppColors.kPrimaryColor
+                                  : AppColors.kOutlineColor),
+                        );
+                      }))
                   .toList())),
       // Wrap(
       //       spacing: AppValues.kPadding / 2,

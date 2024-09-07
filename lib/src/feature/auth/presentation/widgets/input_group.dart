@@ -26,7 +26,12 @@ class InputGroup extends StatelessWidget {
               title: t.init.providers.email,
               inputWidget: ReactiveTextField(
                   formControlName: 'email',
-                  validationMessages: {'notFound': (c) => t.auth.errors.email},
+                  onChanged: (control) {
+                    control.markAsTouched();
+                  },
+                  validationMessages: {
+                    'notFound': (c) => t.auth.errors.incorrect
+                  },
                   style: textTheme.titleLarge!.copyWith(
                       color: colorScheme.onSecondary, fontSize: 17.sp),
                   textInputAction: TextInputAction.next,
@@ -74,11 +79,19 @@ class InputGroup extends StatelessWidget {
               }),
             ),
             Gap(10.h),
-            Observer(
-                builder: (_) => GradientButton(
-                    onPressed: authStore.login,
-                    isEnabled: store.isValid,
-                    text: t.common.continue_action))
+            ReactiveValueListenableBuilder(
+                formControlName: 'email',
+                builder: (context, emailControl, child) {
+                  return ReactiveValueListenableBuilder(
+                      formControlName: 'password',
+                      builder: (context, passwordControl, child) {
+                        return GradientButton(
+                            onPressed: authStore.login,
+                            isEnabled:
+                                emailControl.valid && passwordControl.valid,
+                            text: t.common.continue_action);
+                      });
+                })
           ],
         ));
   }

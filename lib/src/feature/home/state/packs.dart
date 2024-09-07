@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:collection/collection.dart';
 import 'package:mobx/mobx.dart';
 import 'package:x_pictures/src/data.dart';
@@ -33,9 +31,28 @@ abstract class _PacksStore with Store {
     selected = value;
   }
 
+  @observable
+  String query = '';
+
+  @action
+  void setQuery(String value) {
+    query = value;
+  }
+
   @computed
-  Map<String, List<PackModel>> get groupedPacks =>
-      groupBy(packs, (PackModel pack) => pack.category);
+  Map<String, List<PackModel>> get groupedPacks {
+    if (query.isEmpty) {
+      return groupBy(packs, (PackModel pack) => pack.category);
+    } else {
+      final List<PackModel> filtered = packs
+          .where((pack) =>
+              pack.category.toLowerCase().contains(query.toLowerCase()) ||
+              pack.title.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+
+      return groupBy(filtered, (PackModel pack) => pack.category);
+    }
+  }
 
   @observable
   int page = 1;

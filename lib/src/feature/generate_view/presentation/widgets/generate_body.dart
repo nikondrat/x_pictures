@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:x_pictures/src/data.dart';
 
 class GenerateBody extends StatefulWidget {
@@ -29,7 +30,6 @@ class _GenerateBodyState extends State<GenerateBody> {
   Widget build(BuildContext context) {
     final GenerateViewStore store = context.read<GenerateViewStore>();
     final GenerateStore genStore = context.read<GenerateStore>();
-    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return LoadingWidget(
       future: widget.store.data,
@@ -50,23 +50,39 @@ class _GenerateBodyState extends State<GenerateBody> {
           const Gap(AppValues.kPadding),
           GestureDetector(
             onTap: () {
-              showModalBottomSheet(
+              showMaterialModalBottomSheet(
                 context: context,
-                useSafeArea: true,
-                shape: const BeveledRectangleBorder(
+                bounce: true,
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(AppValues.kRadius))),
-                builder: (context) {
-                  return Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        20.h, 20.h, 20.h, mediaQueryData.viewInsets.bottom),
-                    child: AddDescription(
-                      store: store,
-                      genStore: genStore,
-                    ),
-                  );
-                },
+                        top: Radius.circular(
+                  AppValues.kRadius,
+                ))),
+                builder: (context) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: AddDescription(
+                    store: store,
+                    genStore: genStore,
+                  ),
+                ),
               );
+              // showModalBottomSheet(
+              //   context: context,
+              //   useSafeArea: true,
+              //   shape: const BeveledRectangleBorder(
+              //       borderRadius: BorderRadius.vertical(
+              //           top: Radius.circular(AppValues.kRadius))),
+              //   builder: (context) {
+              //     return Padding(
+              //       padding: EdgeInsets.fromLTRB(
+              //           20.h, 20.h, 20.h, mediaQueryData.viewInsets.bottom),
+              //       child: AddDescription(
+              //         store: store,
+              //         genStore: genStore,
+              //       ),
+              //     );
+              //   },
+              // );
             },
             child: AbsorbPointer(
                 child: AddDescription(

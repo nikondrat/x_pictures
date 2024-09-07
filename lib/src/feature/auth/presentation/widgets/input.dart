@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -18,8 +19,10 @@ class InputWithTitleWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        AutoSizeText(
           title,
+          maxFontSize: 22,
+          maxLines: 1,
           style: textTheme.titleMedium!
               .copyWith(color: colorScheme.outline, fontSize: 12.sp),
         ),

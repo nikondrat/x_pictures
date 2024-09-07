@@ -6,8 +6,13 @@ class TitleWithBody extends StatelessWidget {
   final String title;
   final Widget? action;
   final Widget child;
+  final double? padding;
   const TitleWithBody(
-      {super.key, required this.child, required this.title, this.action});
+      {super.key,
+      required this.child,
+      this.padding,
+      required this.title,
+      this.action});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +33,7 @@ class TitleWithBody extends StatelessWidget {
             if (action != null) action!,
           ],
         ),
-        const Gap(AppValues.kPadding),
+        Gap(padding ?? AppValues.kPadding),
         child
       ],
     );

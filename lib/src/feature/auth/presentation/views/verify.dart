@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -23,7 +24,12 @@ class VerifyView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             leading: const CustomBackButton(),
-            title: Text(t.auth.title),
+            title: AutoSizeText(
+              t.auth.title,
+              style: textTheme.bodyMedium!.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             centerTitle: true,
           ),
           body: AppBody(
@@ -33,19 +39,18 @@ class VerifyView extends StatelessWidget {
                 const Gap(AppValues.kPadding),
                 TitleWithDesc(
                     title: t.auth.hint.verify.title,
-                    // TODO: change email
-                    description: t.auth.hint.verify.description(email: '')),
+                    description: t.auth.hint.verify.description),
                 const Gap(AppValues.kPadding * 4),
                 CustomPinput(
                   windowHeight: windowHeight,
                   windowWidth: windowWidth,
                 ),
-                const Gap(AppValues.kPadding * 1.5),
-                GradientButton(
-                    onPressed: () {
-                      router.goNamed(AppViews.homePageRoute);
-                    },
-                    text: t.common.continue_action),
+                // const Gap(AppValues.kPadding * 1.5),
+                // GradientButton(
+                //     onPressed: () {
+                //       router.goNamed(AppViews.homePageRoute);
+                //     },
+                //     text: t.common.continue_action),
               ],
             ),
           ),

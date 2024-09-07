@@ -4,11 +4,22 @@ password: Password
 hint:
   input: Your $t
   add: Add your email
+
+  forgot_password:
+    title: Forgot Password
+    description: We need your registration phone number to send you password reset code!
+    new_password: New password
+    new_password_hint: Enter a new password
+    confirm_password: Confirm password
   verify:
     title: Verify your email
-    description: We just sent code to $email
+    description: Enter the code we sent you
     did_not_get(rich): Didn't get the code? ${value(Try again)}
 
 errors:
-  email: Oops! Email or password incorrect try another one.
+  incorrect: Oops! Email or password incorrect try another one.
+  email: Please enter a valid email
   invalid_code: Invalid code, please try again
+  empty: The field must not be empty
+  min_length: The password must be at least 8 characters
+  must_match: The passwords must match

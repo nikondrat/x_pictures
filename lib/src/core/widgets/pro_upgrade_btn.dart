@@ -22,7 +22,7 @@ class ProUpgradeBtn extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppValues.kRadius.r),
         child: SizedBox(
-          height: 80.h,
+          height: 90,
           child: DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
@@ -31,6 +31,7 @@ class ProUpgradeBtn extends StatelessWidget {
                 ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
               ),
               child: Stack(
+                alignment: Alignment.center,
                 children: [
                   Positioned(
                     left: 0.w,
@@ -43,15 +44,19 @@ class ProUpgradeBtn extends StatelessWidget {
                     child: SvgPicture.asset(Assets.icons.bannerProElem02),
                   ),
                   ListTile(
-                      title: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.h),
-                        child: Text(
-                          t.common.upgrade_pro,
-                          style: textTheme.titleLarge!.copyWith(
-                              fontSize: 14.sp, fontWeight: FontWeight.bold),
-                        ),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: AppValues.kPadding),
+                      title: Text(
+                        t.common.upgrade_pro,
+                        style: textTheme.titleLarge!.copyWith(
+                            fontSize: 14.sp, fontWeight: FontWeight.bold),
                       ),
-                      subtitle: Text(t.common.banner_pro_text),
+                      subtitle: Padding(
+                        padding: const EdgeInsets.only(
+                          top: AppValues.kPadding / 3,
+                        ),
+                        child: Text(t.common.banner_pro_text),
+                      ),
                       trailing: DecoratedBox(
                         decoration: BoxDecoration(
                             color: colorScheme.onPrimary,

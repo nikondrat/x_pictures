@@ -21,7 +21,7 @@ dependencies:
   intl: any
 
   # Stream
-  stream_transform: ^2.1.0
+  # stream_transform: ^2.1.0
   rxdart: ^0.27.7
 
   # -- service locator -- #
@@ -33,16 +33,16 @@ dependencies:
 
   # -- codegen -- #
   json_annotation: ^4.9.0
-  freezed_annotation: ^2.4.1
+  # freezed_annotation: ^2.4.1
 
   # -- networking -- #
   dio: ^5.3.3
 
   # Persisting
-  drift: ^2.13.1
-  sqlite3: ^2.3.0
+  # drift: ^2.13.1
+  # sqlite3: ^2.3.0
   shared_preferences: ^2.2.2
-  sqlite3_flutter_libs: ^0.5.18
+  # sqlite3_flutter_libs: ^0.5.18
 
   # Logging
   stack_trace: ^1.11.0
@@ -64,6 +64,7 @@ dependencies:
   svg_flutter: ^0.0.1
   network_info_plus: ^5.0.3
   flutter_secure_storage: ^9.2.2
+  share_plus: ^10.0.2
 
   # -- navigation -- #
   go_router: ^13.1.0
@@ -86,10 +87,13 @@ dependencies:
   flutter_screenutil: ^5.9.3
   settings_ui: ^2.0.2
   flutter_slidable: ^3.1.0
-  pro_image_editor: ^4.2.5
+  # pro_image_editor: ^4.2.5
   percent_indicator: ^4.2.3
   grouped_list: ^6.0.0
   grouped_grid: ^0.1.2
+  modal_bottom_sheet: ^3.0.0
+  carousel_slider: ^5.0.0
+  smooth_page_indicator: ^1.2.0+3
 
 dev_dependencies:
   # -- testing -- #
@@ -102,8 +106,6 @@ dev_dependencies:
   flutter_native_splash: ^2.3.5
 
   # -- codegen -- #
-  freezed: ^2.4.5
-  drift_dev: ^2.13.1
   build_runner: ^2.4.6
   mobx_codegen: ^2.6.0+1
   json_serializable: ^6.7.1
@@ -115,6 +117,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/photos/
     - assets/icons/
 
   fonts:

@@ -126,7 +126,7 @@ abstract class _MediaBodyStore with Store {
   @action
   void toggleSelect() {
     isSelect = !isSelect;
-    homeStore.setShowBottomBar(false);
+    homeStore.setShowBottomBar(!isSelect);
 
     if (!isSelect) {
       markAllNotSelected();

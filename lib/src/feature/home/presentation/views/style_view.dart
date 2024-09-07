@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -11,19 +14,23 @@ class StyleView extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
+    final bool isAndroid = Platform.isAndroid;
 
     final PacksStore store = this.store ?? context.watch<PacksStore>();
 
     return Scaffold(
-      appBar: AppBar(
-        leading: const CustomBackButton(),
-        title: Text(
-          store.selected.title,
-          style: textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w700),
-        ),
-      ),
+      appBar: isAndroid
+          ? AppBar(
+              leading: const CustomBackButton(),
+              title: Text(
+                store.selected.title,
+                style: textTheme.headlineSmall!
+                    .copyWith(fontSize: 17.sp, fontWeight: FontWeight.w700),
+              ))
+          : null,
       body: AppBody(
         builder: (windowWidth, _, __) => SafeArea(
+          top: isAndroid ? true : false,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -33,20 +40,24 @@ class StyleView extends StatelessWidget {
                     pinned: true,
                     expandedHeight: 400,
                     backgroundColor: colorScheme.surface,
-                    leading: const SizedBox(),
+                    leading: isAndroid
+                        ? const SizedBox.shrink()
+                        : const CustomBackButton(),
                     flexibleSpace: FlexibleSpaceBar(
                         background: StyleBottomWidget(model: store.selected)),
                     bottom: PreferredSize(
                       preferredSize: Size.zero,
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: colorScheme.surface,
-                          borderRadius: const BorderRadius.vertical(
-                            top: Radius.circular(AppValues.kRadius * 2),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: colorScheme.surface,
+                            borderRadius: const BorderRadius.vertical(
+                              top: Radius.circular(AppValues.kRadius * 2),
+                            ),
                           ),
+                          child: const Text(''),
                         ),
-                        child: const Text(''),
                       ),
                     ),
                   ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -15,7 +17,7 @@ class CustomPinput extends StatelessWidget {
     final ColorScheme colorScheme = themeData.colorScheme;
 
     final double width = windowWidth * .8;
-    final double height = windowHeight * .1;
+    final double height = windowHeight * .11.spMin;
 
     return Pinput(
       length: 5,
@@ -34,7 +36,7 @@ class CustomPinput extends StatelessWidget {
             border: Border.all(
               color: colorScheme.primary,
             ),
-            borderRadius: BorderRadius.circular(AppValues.kRadius * 2),
+            borderRadius: BorderRadius.circular(AppValues.kRadius.r),
           ),
           textStyle:
               textTheme.displaySmall!.copyWith(color: colorScheme.onPrimary)
@@ -52,7 +54,7 @@ class CustomPinput extends StatelessWidget {
             border: Border.all(
               color: const Color(0xff3B3B5A),
             ),
-            borderRadius: BorderRadius.circular(AppValues.kRadius * 2),
+            borderRadius: BorderRadius.circular(AppValues.kRadius.r),
           ),
           textStyle:
               textTheme.displaySmall!.copyWith(color: colorScheme.onPrimary)
@@ -61,6 +63,12 @@ class CustomPinput extends StatelessWidget {
           //   // fontSize: 19.sp,
           // ),
           ),
+      onCompleted: (value) {
+        if (value == '22222') {
+          context.goNamed(AppViews.newPassword);
+        }
+      },
+      onTapOutside: (event) => FocusScope.of(context).unfocus(),
       validator: (pin) {
         if (pin == '22222') return null;
 

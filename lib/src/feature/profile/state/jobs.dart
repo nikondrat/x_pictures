@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 import 'package:x_pictures/src/data.dart';
 

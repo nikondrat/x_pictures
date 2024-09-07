@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -22,6 +23,7 @@ class AddDescription extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(bottom: mediaQueryData.viewInsets.bottom),
         child: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: AppValues.kPadding * 3),
           child: TitleWithBody(
               action: const ResetButton(),
               title: t.generateView.add_description,
@@ -65,24 +67,31 @@ class AddDescription extends StatelessWidget {
                           children:
                               // TODO change this
                               [
-                            'Astronaut',
-                            'Tropical staircase',
-                            'Other',
-                            'Other',
-                            'Other',
-                            'Other',
-                            'Other',
-                            'Other'
+                            Tag(id: 0, title: 'Astronaut', categories: []),
+                            Tag(
+                                id: 0,
+                                title: 'Tropical staircase',
+                                categories: []),
+                            Tag(id: 0, title: 'Other', categories: []),
+                            Tag(id: 0, title: 'Other', categories: []),
+                            Tag(id: 0, title: 'Other', categories: []),
+                            Tag(id: 0, title: 'Other', categories: []),
+                            Tag(id: 0, title: 'Other', categories: []),
                           ]
-                                  .map((e) => ActionChip(
-                                        onPressed: () {},
-                                        label:
-                                            Text(e, style: textTheme.bodyLarge),
-                                        backgroundColor: AppColors
-                                            .kSecondaryAdditionallyColor,
-                                        side: const BorderSide(
-                                            color: AppColors.kOutlineColor),
-                                      ))
+                                  .map((e) => Observer(
+                                      builder: (context) => ActionChip(
+                                            onPressed: () {
+                                              e.setIsSelected(!e.isSelected);
+                                            },
+                                            label: Text(e.title,
+                                                style: textTheme.bodyLarge),
+                                            backgroundColor: AppColors
+                                                .kSecondaryAdditionallyColor,
+                                            side: BorderSide(
+                                                color: e.isSelected
+                                                    ? AppColors.kPrimaryColor
+                                                    : AppColors.kOutlineColor),
+                                          )))
                                   .toList()),
                     ),
                   ),
@@ -93,7 +102,7 @@ class AddDescription extends StatelessWidget {
                         genStore.generate();
                         // router.goNamed(AppViews.resultView);
                       },
-                      text: t.common.create)
+                      text: t.common.create),
                 ],
               )),
         ),

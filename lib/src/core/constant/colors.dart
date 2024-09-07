@@ -15,4 +15,6 @@ class AppColors {
   static const Color kInactiveColor = Color(0xFF192039);
 
   static Color kSearchBarActiveColor = const Color(0xFF767680).withOpacity(0.3);
+
+  static const Color greenColor = Color(0xFF34A853);
 }

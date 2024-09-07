@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -13,9 +16,13 @@ class StyleBottomWidget extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
     // return ImageWithShader(url: model.url);
+    final bool isAndroid = Platform.isAndroid;
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(AppValues.kRadius * 2),
+      borderRadius: BorderRadius.vertical(
+          top: isAndroid
+              ? Radius.circular(AppValues.kRadius * 2.r)
+              : Radius.zero),
       child: Observer(builder: (context) {
         return Stack(
           fit: StackFit.expand,

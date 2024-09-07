@@ -28,6 +28,7 @@ class TitleWithDesc extends StatelessWidget {
           child: AutoSizeText(
             title,
             minFontSize: 17,
+            maxFontSize: 40,
             style: titleStyle ??
                 textTheme.headlineMedium!.copyWith(fontSize: 30.sp),
             maxLines: 1,
@@ -41,6 +42,7 @@ class TitleWithDesc extends StatelessWidget {
                   horizontal: AppValues.kPadding * 2),
               child: AutoSizeText(
                 description,
+                maxFontSize: 28,
                 textAlign: TextAlign.center,
                 style: descriptionStyle ??
                     textTheme.titleLarge!.copyWith(

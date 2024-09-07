@@ -33,7 +33,11 @@ import 'package:x_pictures/src/data.dart';
 // }
 
 class SearchBarWidget extends StatefulWidget {
-  const SearchBarWidget({super.key});
+  final PacksStore store;
+  const SearchBarWidget({
+    super.key,
+    required this.store,
+  });
 
   @override
   _SearchBarWidgetState createState() => _SearchBarWidgetState();
@@ -43,9 +47,12 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   late FocusNode _focusNode;
   bool _hasFocus = false;
 
+  late final TextEditingController _controller;
+
   @override
   void initState() {
     super.initState();
+    _controller = TextEditingController();
     _focusNode = FocusNode();
     _focusNode.addListener(() {
       setState(() {
@@ -56,6 +63,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
 
   @override
   void dispose() {
+    _controller.dispose();
     _focusNode.dispose();
     super.dispose();
   }
@@ -64,6 +72,9 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
     setState(() {
       _hasFocus = false;
     });
+    _controller.clear();
+    widget.store.setQuery('');
+
     _focusNode.unfocus();
   }
 
@@ -77,7 +88,11 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
       children: [
         Expanded(
           child: TextField(
+            controller: _controller,
             focusNode: _focusNode,
+            onChanged: (value) {
+              widget.store.setQuery(value);
+            },
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search, color: scheme.secondary),
               suffixIcon: Icon(Icons.keyboard_voice, color: scheme.secondary),

@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:x_pictures/src/core/constant/images.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -12,6 +11,24 @@ class InstructionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
+
+    final List<AssetGenImage> badPhotos = [
+      Assets.images.photos.badly1,
+      Assets.images.photos.badly2,
+      Assets.images.photos.badly3,
+      Assets.images.photos.badly4,
+      Assets.images.photos.badly5,
+      Assets.images.photos.badly6,
+    ];
+
+    final List<AssetGenImage> goodPhotos = [
+      Assets.images.photos.goodly1,
+      Assets.images.photos.goodly2,
+      Assets.images.photos.goodly3,
+      Assets.images.photos.goodly4,
+      Assets.images.photos.goodly5,
+      Assets.images.photos.goodly6,
+    ];
 
     return Scaffold(
         // floatingActionButton: CustomFloatingButton(
@@ -89,11 +106,13 @@ class InstructionPage extends StatelessWidget {
                             height: 100.h,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
-                              itemCount: 4,
+                              itemCount: goodPhotos.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Padding(
                                   padding: EdgeInsets.only(right: 10.r),
-                                  child: Image.asset(AppImages.goodPhotoExa),
+                                  child: PhotoWidget(
+                                      isBadPhoto: false,
+                                      path: goodPhotos[index].path),
                                 );
                               },
                             ),
@@ -118,28 +137,19 @@ class InstructionPage extends StatelessWidget {
                             height: 20.h,
                           ),
                           SizedBox(
-                              height: 100.h,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 10.r),
-                                    child: Image.asset(AppImages.badPhotoExa1),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 10.r),
-                                    child: Image.asset(AppImages.badPhotoExa2),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 10.r),
-                                    child: Image.asset(AppImages.badPhotoExa3),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 10.r),
-                                    child: Image.asset(AppImages.badPhotoExa2),
-                                  ),
-                                ],
-                              )),
+                            height: 100.h,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: badPhotos.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: EdgeInsets.only(right: 10.r),
+                                  child:
+                                      PhotoWidget(path: goodPhotos[index].path),
+                                );
+                              },
+                            ),
+                          ),
                           SizedBox(
                             height: 50.h,
                           ),

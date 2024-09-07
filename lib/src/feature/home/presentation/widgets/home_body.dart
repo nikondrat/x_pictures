@@ -54,8 +54,10 @@ class _HomeBodyState extends State<HomeBody> {
             SliverPadding(
                 padding: HorizontalSpacing.centered(widget.windowWidth) +
                     const EdgeInsets.only(top: AppValues.kPadding),
-                sliver: const SliverToBoxAdapter(
-                  child: SearchBarWidget(),
+                sliver: SliverToBoxAdapter(
+                  child: SearchBarWidget(
+                    store: widget.store,
+                  ),
                 )),
             SliverList.separated(
               itemCount: packs.entries.length + 1,

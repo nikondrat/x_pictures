@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:x_pictures/src/core/constant/icons.dart';
@@ -19,15 +21,34 @@ class AppBarHomeView extends StatelessWidget {
 
     final PacksStore store = context.read();
 
+    final CarouselSliderController controller = CarouselSliderController();
+
     return SizedBox(
       height: 400,
       child: Stack(
         fit: StackFit.expand,
         children: [
-          ImageWithShader(
-              url: model.images.isNotEmpty
-                  ? model.images.first.url
-                  : 'https://images.livemint.com/img/2021/02/02/1140x641/hunters-race-MYbhN8KaaEc-unsplash_1612280206849_1612280227004.jpg'),
+          CarouselSlider.builder(
+            carouselController: controller,
+            itemCount: model.images.length,
+            itemBuilder: (context, index, realIndex) {
+              return Row(
+                children: [
+                  Expanded(
+                      child: ImageWithShader(url: model.images[index].url)),
+                ],
+              );
+            },
+            options: CarouselOptions(
+              height: 400,
+              viewportFraction: 1,
+              autoPlay: true,
+            ),
+          ),
+          // ImageWithShader(
+          //     url: model.images.isNotEmpty
+          //         ? model.images.first.url
+          //         : 'https://images.livemint.com/img/2021/02/02/1140x641/hunters-race-MYbhN8KaaEc-unsplash_1612280206849_1612280227004.jpg'),
           SafeArea(
             child: Align(
               alignment: Alignment.topCenter,
@@ -45,10 +66,16 @@ class AppBarHomeView extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Padding(
                 padding: EdgeInsets.only(right: 10.w),
-                child: SvgPicture.asset(
-                  AppIcons.proIcon,
-                  width: 30,
-                  height: 30,
+                child: GestureDetector(
+                  onTap: () {
+                    context.pushNamed(AppViews.planView,
+                        extra: {'continueAction': () {}});
+                  },
+                  child: SvgPicture.asset(
+                    AppIcons.proIcon,
+                    width: 30,
+                    height: 30,
+                  ),
                 ),
               ),
             ),

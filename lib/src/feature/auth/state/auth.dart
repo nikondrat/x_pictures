@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:mobx/mobx.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:x_pictures/src/data.dart';

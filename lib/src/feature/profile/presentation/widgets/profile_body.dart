@@ -41,7 +41,7 @@ class _ProfileBodyState extends State<ProfileBody> {
           ),
         ),
         builder: (v) {
-          final List<JobModel> jobs = v;
+          // final List<JobModel> jobs = v;
 
           return TabBarView(controller: widget.controller, children: [
             PackView(
