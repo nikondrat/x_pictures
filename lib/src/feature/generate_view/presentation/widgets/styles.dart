@@ -15,7 +15,10 @@ class GenerateStyles extends StatelessWidget {
 
     return TitleWithBody(
       title: t.generateView.style,
-      action: const ResetButton(),
+      action: ResetButton(
+        // TODO need set functions
+        onPressed: () {},
+      ),
       child: LoadingWidget(
         future: genStore.data,
         builder: (v) => GridView.builder(

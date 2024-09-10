@@ -26,7 +26,7 @@ class StyleViewBody extends StatelessWidget {
         AutoSizeText(
           model.description,
           style: textTheme.titleLarge!
-              .copyWith(color: AppColors.kOutlineColor, fontSize: 12.sp),
+              .copyWith(color: AppColors.kOutlineColor, fontSize: 14.sp),
         ),
         // const Gap(AppValues.kPadding / 2),
         // AutoSizeText(t.homeView.for_what, style: textTheme.headlineSmall),

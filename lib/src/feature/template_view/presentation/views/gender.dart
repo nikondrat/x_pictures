@@ -10,12 +10,19 @@ class GenderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return ChangeNotifierProvider(
       create: (context) => GenderState(),
       child: Scaffold(
           appBar: AppBar(
             leading: const CustomBackButton(),
-            title: Text(t.gender.title),
+            title: Text(
+              t.gender.title,
+              style: textTheme.bodyMedium!.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ),
           // floatingActionButton:
           //     Consumer<GenderState>(builder: (context, consumerValue, child) {
@@ -68,7 +75,7 @@ class GenderView extends StatelessWidget {
                                   AutoSizeText(
                                     t.gender.description,
                                     style: AppStyles.subTitleTextStyle.copyWith(
-                                      fontSize: 10.sp,
+                                      fontSize: 14.sp,
                                     ),
                                   ),
                                   SizedBox(

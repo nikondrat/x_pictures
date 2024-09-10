@@ -23,13 +23,17 @@ class GenerateFormats extends StatelessWidget {
       _Format(width: 2, height: 3),
       _Format(width: 3, height: 2),
       _Format(width: 1, height: 1),
-      _Format(width: 19, height: 6),
+      _Format(width: 9, height: 6),
       _Format(width: 16, height: 9),
     ];
 
     return TitleWithBody(
       title: t.generateView.format,
-      action: const ResetButton(),
+      action: ResetButton(
+        onPressed: () {
+          store.setSelectedFormat(0);
+        },
+      ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: LayoutBuilder(builder: (context, size) {

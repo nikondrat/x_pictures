@@ -13,11 +13,17 @@ class GenerationResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         leading: const CustomBackButton(),
         title: Text(
-            model == null ? t.generateView.title : t.generateView.type.video),
+          model == null ? t.generateView.title : t.generateView.type.video,
+          style: textTheme.bodyMedium!.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: AppBody(
           builder: (windowWidth, windowHeight, windowSize) =>

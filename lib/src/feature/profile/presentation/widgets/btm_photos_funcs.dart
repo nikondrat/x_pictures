@@ -32,67 +32,70 @@ class BottomBarPhotosFuncs extends StatelessWidget {
     // final isIOS = true;
 
     return Observer(builder: (context) {
-      return SafeArea(
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: AppValues.kPadding / 2),
-          decoration: const BoxDecoration(
-            color: AppColors.kSecondaryAdditionallyColor,
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(AppValues.kRadius),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _Item(
-                  icon: Icon(
-                    Icons.ios_share,
-                    size: 20.h,
+      return store != null && !store.isHasSelectedItems
+          ? SizedBox.shrink()
+          : SafeArea(
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                    vertical: AppValues.kPadding / 2),
+                decoration: const BoxDecoration(
+                  color: AppColors.kSecondaryAdditionallyColor,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(AppValues.kRadius),
                   ),
-                  onTap: () {
-                    final List<XFile> selectedItems = store != null
-                        ? store.selectedItems.map((e) {
-                            return XFile(e.url);
-                          }).toList()
-                        : <XFile>[];
-                    Share.shareXFiles(selectedItems);
-                  },
-                  title: t.profile.send),
-              if (isIOS)
-                _Item(
-                    icon: Observer(builder: (context) {
-                      return AutoSizeText(t.profile
-                          .photos_selected(count: store!.selectedItemsCount));
-                    }),
-                    title: ''),
-              _Item(
-                  icon: SvgPicture.asset(
-                    Assets.icons.trashBinMinimalistic,
-                    color: Colors.white,
-                    height: 20.h,
-                    width: 20.h,
-                  ),
-                  title: t.settings.delete.title),
-            ].map((e) {
-              return GestureDetector(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    e.icon,
-                    if (!isIOS) Gap(2.r),
-                    if (!isIOS)
-                      AutoSizeText(e.title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall!
-                              .copyWith(fontSize: 6.sp)),
-                  ],
                 ),
-              );
-            }).toList(),
-          ),
-        ),
-      );
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _Item(
+                        icon: Icon(
+                          Icons.ios_share,
+                          size: 20.h,
+                        ),
+                        onTap: () {
+                          final List<XFile> selectedItems = store != null
+                              ? store.selectedItems.map((e) {
+                                  return XFile(e.url);
+                                }).toList()
+                              : <XFile>[];
+                          Share.shareXFiles(selectedItems);
+                        },
+                        title: t.profile.send),
+                    if (isIOS)
+                      _Item(
+                          icon: Observer(builder: (context) {
+                            return AutoSizeText(t.profile.photos_selected(
+                                count: store!.selectedItemsCount));
+                          }),
+                          title: ''),
+                    _Item(
+                        icon: SvgPicture.asset(
+                          Assets.icons.trashBinMinimalistic,
+                          color: Colors.white,
+                          height: 20.h,
+                          width: 20.h,
+                        ),
+                        title: t.settings.delete.title),
+                  ].map((e) {
+                    return GestureDetector(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          e.icon,
+                          if (!isIOS) Gap(2.r),
+                          if (!isIOS)
+                            AutoSizeText(e.title,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(fontSize: 6.sp)),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            );
     });
     // return BottomNavigationBar(
     //     backgroundColor: AppColors.kAdditionalColor,

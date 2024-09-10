@@ -13,9 +13,16 @@ class AllView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          title,
+          style: textTheme.bodyMedium!.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: AppBody(
         builder: (windowWidth, windowHeight, size) => GridView(

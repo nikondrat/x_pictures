@@ -6,9 +6,14 @@ import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:x_pictures/src/data.dart';
 
-class SettingsView extends StatelessWidget {
+class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
 
+  @override
+  State<SettingsView> createState() => _SettingsViewState();
+}
+
+class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -17,13 +22,21 @@ class SettingsView extends StatelessWidget {
 
     final UserStore userStore = Provider.of<UserStore>(context);
 
+    final SettingsStore settingsStore =
+        Provider.of<Dependencies>(context).settingsStore;
+
     final bool isAndroid = Platform.isAndroid;
     // final bool isAndroid = true;
 
     return Scaffold(
         appBar: AppBar(
           leading: const CustomBackButton(),
-          title: AutoSizeText(t.settings.title),
+          title: AutoSizeText(
+            t.settings.title,
+            style: textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
         ),
         body: SettingsList(
           darkTheme: SettingsThemeData(
@@ -49,7 +62,7 @@ class SettingsView extends StatelessWidget {
                     // '***@yandex.ru',
                     style: textTheme.bodyLarge,
                   ),
-                  trailing: const Icon(Icons.arrow_forward_ios),
+                  // trailing: const Icon(Icons.arrow_forward_ios),
                 ),
                 SettingsTile.navigation(
                   title: Text(
@@ -193,8 +206,11 @@ class SettingsView extends StatelessWidget {
                 ),
                 tiles: [
                   SettingsTile.switchTile(
-                    onToggle: (value) {},
-                    initialValue: true,
+                    onToggle: (value) {
+                      settingsStore.setReceiveNewsletters(value);
+                      setState(() {});
+                    },
+                    initialValue: settingsStore.receiveNewsletters,
                     activeSwitchColor: Platform.isIOS || Platform.isMacOS
                         ? colorScheme.primary
                         : null,

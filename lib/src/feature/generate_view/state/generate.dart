@@ -52,6 +52,13 @@ abstract class _GenerateStore with Store {
             ),
           ]);
 
+  @action
+  void markAllTagsAsNotSelected() {
+    for (final tag in tags) {
+      tag.setIsSelected(false);
+    }
+  }
+
   @computed
   ObservableList<SdModel> get sdModels =>
       ObservableList.of(data.value?.sdModels ?? []);

@@ -29,8 +29,9 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
             leading: const CustomBackButton(),
             title: Text(
               t.homeView.uploading_photos,
-              style: textTheme.headlineSmall!
-                  .copyWith(fontWeight: FontWeight.w700),
+              style: textTheme.bodyMedium!.copyWith(
+                fontWeight: FontWeight.w700,
+              ),
             )),
         // floatingActionButton: CustomFloatingButton(
         //     buttonName: 'Continue',
@@ -73,7 +74,7 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
                               AutoSizeText(
                                 'Description',
                                 style: textTheme.bodyMedium!.copyWith(
-                                    fontSize: 12.sp,
+                                    fontSize: 14.sp,
                                     color: AppColors.kOutlineColor),
                               ),
                               SizedBox(

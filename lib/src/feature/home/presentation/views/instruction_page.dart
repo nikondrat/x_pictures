@@ -42,140 +42,149 @@ class InstructionPage extends StatelessWidget {
           leading: const CustomBackButton(),
           title: AutoSizeText(
             t.homeView.instruction,
-            style: textTheme.headlineSmall!
-                .copyWith(fontWeight: FontWeight.w700, fontSize: 17.sp),
+            style: textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
         body: AppBody(
             builder: (windowWidth, windowHeight, __) => SafeArea(
-                    child: Stack(fit: StackFit.expand, children: [
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 15.w, vertical: 15.h),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Stack(
+                        // fit: StackFit.expand,
                         children: [
-                          AutoSizeText(
-                            'Step 1 of 3',
-                            minFontSize: 8,
-                            style: AppStyles.subTitleTextStyle.copyWith(
-                              fontSize: 6.sp,
-                            ),
+                      SingleChildScrollView(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15.w, vertical: 15.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AutoSizeText(
+                                'Step 1 of 3',
+                                minFontSize: 8,
+                                style: AppStyles.subTitleTextStyle.copyWith(
+                                  fontSize: 8.sp,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 50.w),
+                                child: Text(
+                                  'Pick 8-12 photos of yourself',
+                                  style: textTheme.bodyLarge!.copyWith(
+                                      fontSize: 17.sp,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              AutoSizeText(
+                                'Your photos are completely confidential and will only be used to create avatars.',
+                                style: textTheme.bodyMedium!.copyWith(
+                                    fontSize: 14.sp,
+                                    color: AppColors.kOutlineColor),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              AutoSizeText(
+                                'Good photos',
+                                style: textTheme.bodyLarge!.copyWith(
+                                    fontSize: 17.sp,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              AutoSizeText(
+                                  'Excellent quality, good angle, one face, different backgrounds, lighting, etc',
+                                  style: textTheme.bodyMedium!.copyWith(
+                                      fontSize: 14.sp,
+                                      color: AppColors.kOutlineColor)),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              SizedBox(
+                                height: 100.h,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: goodPhotos.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Padding(
+                                      padding: EdgeInsets.only(right: 10.r),
+                                      child: PhotoWidget(
+                                          isBadPhoto: false,
+                                          path: goodPhotos[index].path),
+                                    );
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              AutoSizeText(
+                                'Bad photos',
+                                style: textTheme.bodyLarge!.copyWith(
+                                    fontSize: 17.sp,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              AutoSizeText(
+                                  'A lot of faces, glasses, poor quality, nudity, kids, etc.',
+                                  style: textTheme.bodyMedium!.copyWith(
+                                      fontSize: 14.sp,
+                                      color: AppColors.kOutlineColor)),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              SizedBox(
+                                height: 100.h,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: badPhotos.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Padding(
+                                      padding: EdgeInsets.only(right: 10.r),
+                                      child: PhotoWidget(
+                                          path: badPhotos[index].path),
+                                    );
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 50.h,
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(right: 50.w),
-                            child: Text(
-                              'Pick 8-12 photos of yourself',
-                              style: textTheme.bodyLarge!.copyWith(
-                                  fontSize: 17.sp, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          AutoSizeText(
-                            'Your photos are completely confidential and will only be used to create avatars.',
-                            style: textTheme.bodyMedium!.copyWith(
-                                fontSize: 12.sp,
-                                color: AppColors.kOutlineColor),
-                          ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          AutoSizeText(
-                            'Good photos',
-                            style: textTheme.bodyLarge!.copyWith(
-                                fontSize: 17.sp, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          AutoSizeText(
-                              'Excellent quality, good angle, one face, different backgrounds, lighting, etc',
-                              style: textTheme.bodyMedium!.copyWith(
-                                  fontSize: 12.sp,
-                                  color: AppColors.kOutlineColor)),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          SizedBox(
-                            height: 100.h,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: goodPhotos.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: EdgeInsets.only(right: 10.r),
-                                  child: PhotoWidget(
-                                      isBadPhoto: false,
-                                      path: goodPhotos[index].path),
-                                );
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          AutoSizeText(
-                            'Bad photos',
-                            style: textTheme.bodyLarge!.copyWith(
-                                fontSize: 17.sp, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 5.h,
-                          ),
-                          AutoSizeText(
-                              'A lot of faces, glasses, poor quality, nudity, kids, etc.',
-                              style: textTheme.bodyMedium!.copyWith(
-                                  fontSize: 12.sp,
-                                  color: AppColors.kOutlineColor)),
-                          SizedBox(
-                            height: 20.h,
-                          ),
-                          SizedBox(
-                            height: 100.h,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: badPhotos.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: EdgeInsets.only(right: 10.r),
-                                  child:
-                                      PhotoWidget(path: goodPhotos[index].path),
-                                );
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: 50.h,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: HorizontalSpacing.centered(windowWidth) +
-                          const EdgeInsets.only(bottom: AppValues.kPadding * 2),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GradientButton(
-                              onPressed: () {
-                                router.pushNamed(
-                                  AppViews.uploadingPhotosPageRoute,
-                                );
-                              },
-                              text: t.homeView.upload_photos),
-                        ],
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: HorizontalSpacing.centered(windowWidth) +
+                              const EdgeInsets.only(
+                                  bottom: AppValues.kPadding * 2),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              GradientButton(
+                                  onPressed: () {
+                                    router.pushNamed(
+                                      AppViews.uploadingPhotosPageRoute,
+                                    );
+                                  },
+                                  text: t.homeView.upload_photos),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ]))));
+                    ]))));
   }
 }

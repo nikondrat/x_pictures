@@ -6,10 +6,17 @@ class FaqView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         leading: const CustomBackButton(),
-        title: Text(t.settings.help_center.faq),
+        title: Text(
+          t.settings.help_center.faq,
+          style: textTheme.bodyMedium!.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: AppBody(
           builder: (windowWidth, windowHeight, windowSize) => Padding(

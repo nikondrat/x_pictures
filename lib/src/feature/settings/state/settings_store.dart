@@ -12,6 +12,8 @@ class SettingsStore extends _SettingsStore with _$SettingsStore {
     required super.themeRepository,
     required super.locale,
     required super.appTheme,
+    required super.userPrefsRepository,
+    required super.receiveNewsletters,
   });
 }
 
@@ -19,12 +21,15 @@ abstract class _SettingsStore with Store {
   _SettingsStore({
     required this.localeRepository,
     required this.themeRepository,
+    required this.userPrefsRepository,
     required this.locale,
     required this.appTheme,
+    required this.receiveNewsletters,
   });
 
   final LocaleRepository localeRepository;
   final ThemeRepository themeRepository;
+  final UserPrefsRepository userPrefsRepository;
 
   /// Get the current [Locale]
   @observable
@@ -44,6 +49,15 @@ abstract class _SettingsStore with Store {
 
   /// Get the current [themeMode].
   ThemeMode get themeMode => appTheme.mode;
+
+  @observable
+  bool receiveNewsletters = false;
+
+  @action
+  void setReceiveNewsletters(bool value) {
+    receiveNewsletters = value;
+    userPrefsRepository.setIsReceiveNewsletters(value);
+  }
 
   /// Set locale to [locale].
   @action

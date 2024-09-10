@@ -18,7 +18,12 @@ class LegalView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           leading: const CustomBackButton(),
-          title: AutoSizeText(t.settings.other.legal.title),
+          title: AutoSizeText(
+            t.settings.other.legal.title,
+            style: textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
         ),
         body: SettingsList(
           darkTheme: SettingsThemeData(

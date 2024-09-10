@@ -42,6 +42,7 @@ class _BottomNavBarControllerPageState
     final HomeStore store = context.read();
 
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         // bottomNavigationBar: Observer(builder: (context) {
         //   if (!store.showBottomBar) {

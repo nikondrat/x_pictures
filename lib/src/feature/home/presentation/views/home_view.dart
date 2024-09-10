@@ -176,6 +176,7 @@ class HomeView extends StatelessWidget {
           final UserStore userStore = Provider.of<UserStore>(context);
 
           return Scaffold(
+            resizeToAvoidBottomInset: false,
             body: AppBody(
               builder: (windowWidth, windowHeight, windowSize) {
                 return HomeBody(

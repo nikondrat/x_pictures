@@ -24,7 +24,11 @@ class GenerateTags extends StatelessWidget {
 
     return TitleWithBody(
       title: t.generateView.tags.title,
-      action: const ResetButton(),
+      action: ResetButton(
+        onPressed: () {
+          store.markAllTagsAsNotSelected();
+        },
+      ),
       padding: AppValues.kPadding / 2,
       child: Observer(
           builder: (context) => Wrap(

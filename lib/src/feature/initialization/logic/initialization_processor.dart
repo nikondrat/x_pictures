@@ -55,13 +55,20 @@ final class InitializationProcessor {
         codec: const ThemeModeCodec(),
       ),
     );
+    final userPrefsRepository = UserPrefsRepositoryImpl(
+        source: UserPrefsDataSourceLocal(sharedPreferences: prefs));
 
     final localeFuture = localeRepository.getLocale();
     final theme = await themeRepository.getTheme();
     final locale = await localeFuture;
+    final isReceiveNewsletters =
+        await userPrefsRepository.getIsReceiveNewsletters();
+
     final settingsStore = SettingsStore(
       localeRepository: localeRepository,
       themeRepository: themeRepository,
+      userPrefsRepository: userPrefsRepository,
+      receiveNewsletters: isReceiveNewsletters ?? true,
       locale: locale ?? Locale(Intl.systemLocale),
       appTheme: theme ??
           AppThemeStore(mode: ThemeMode.dark, seed: AppColors.kPrimaryColor),

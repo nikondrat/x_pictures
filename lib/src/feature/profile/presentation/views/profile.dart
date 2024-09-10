@@ -204,6 +204,8 @@ class _ProfileViewState extends State<ProfileView>
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    final TextTheme textTheme = themeData.textTheme;
     final UserStore userStore = context.read<UserStore>();
     final isIOS = Platform.isIOS;
 
@@ -228,8 +230,13 @@ class _ProfileViewState extends State<ProfileView>
                             mediaBodyStore.markAllNotSelected();
                           },
                           icon: const Icon(Icons.close)),
-                      title: Text(t.profile.items_selected(
-                          count: mediaBodyStore.selectedItems.length)),
+                      title: Text(
+                        t.profile.items_selected(
+                            count: mediaBodyStore.selectedItems.length),
+                        style: textTheme.bodyMedium!.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                       actions: [
                         IconButton(
                           onPressed: () {
@@ -269,6 +276,9 @@ class _ProfileViewState extends State<ProfileView>
                                           isSelected: index == controller.index,
                                           title: title,
                                           onTap: () {
+                                            if (mediaBodyStore.isSelect) {
+                                              mediaBodyStore.toggleSelect();
+                                            }
                                             setState(() {
                                               controller.animateTo(index);
                                             });

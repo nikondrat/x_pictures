@@ -15,7 +15,12 @@ class DocumentView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const CustomBackButton(),
-        title: Text(title),
+        title: Text(
+          title,
+          style: textTheme.bodyMedium!.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: AppBody(
         builder: (windowWidth, __, ___) => Padding(

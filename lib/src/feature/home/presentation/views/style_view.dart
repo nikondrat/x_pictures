@@ -24,8 +24,9 @@ class StyleView extends StatelessWidget {
               leading: const CustomBackButton(),
               title: Text(
                 store.selected.title,
-                style: textTheme.headlineSmall!
-                    .copyWith(fontSize: 17.sp, fontWeight: FontWeight.w700),
+                style: textTheme.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ))
           : null,
       body: AppBody(

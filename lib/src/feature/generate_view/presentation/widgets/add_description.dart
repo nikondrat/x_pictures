@@ -19,13 +19,30 @@ class AddDescription extends StatelessWidget {
     final TextTheme textTheme = themeData.textTheme;
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
+    final List<Tag> tags = [
+      Tag(id: 0, title: 'Astronaut', categories: []),
+      Tag(id: 0, title: 'Tropical staircase', categories: []),
+      Tag(id: 0, title: 'Other', categories: []),
+      Tag(id: 0, title: 'Other', categories: []),
+      Tag(id: 0, title: 'Other', categories: []),
+      Tag(id: 0, title: 'Other', categories: []),
+      Tag(id: 0, title: 'Other', categories: []),
+    ];
+
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.only(bottom: mediaQueryData.viewInsets.bottom),
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(bottom: AppValues.kPadding * 3),
           child: TitleWithBody(
-              action: const ResetButton(),
+              action: ResetButton(
+                onPressed: () {
+                  store.controller.clear();
+                  for (var e in tags) {
+                    e.setIsSelected(false);
+                  }
+                },
+              ),
               title: t.generateView.add_description,
               child: Column(
                 children: [
@@ -66,18 +83,7 @@ class AddDescription extends StatelessWidget {
                           spacing: AppValues.kPadding,
                           children:
                               // TODO change this
-                              [
-                            Tag(id: 0, title: 'Astronaut', categories: []),
-                            Tag(
-                                id: 0,
-                                title: 'Tropical staircase',
-                                categories: []),
-                            Tag(id: 0, title: 'Other', categories: []),
-                            Tag(id: 0, title: 'Other', categories: []),
-                            Tag(id: 0, title: 'Other', categories: []),
-                            Tag(id: 0, title: 'Other', categories: []),
-                            Tag(id: 0, title: 'Other', categories: []),
-                          ]
+                              tags
                                   .map((e) => Observer(
                                       builder: (context) => ActionChip(
                                             onPressed: () {

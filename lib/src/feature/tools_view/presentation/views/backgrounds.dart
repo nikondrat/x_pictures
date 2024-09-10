@@ -108,9 +108,16 @@ class BackgroundsView extends StatelessWidget {
     //   ])
     // ];
 
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(t.backgrounds.title),
+        title: Text(
+          t.backgrounds.title,
+          style: textTheme.bodyMedium!.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.only(

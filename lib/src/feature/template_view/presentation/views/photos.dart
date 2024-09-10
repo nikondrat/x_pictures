@@ -61,9 +61,15 @@ class PhotosView extends StatelessWidget {
                         router.goNamed(AppViews.homePageRoute);
                       },
                     ),
-              title: Text(store.isHasSelectedItems && isAndroid
-                  ? t.profile.items_selected(count: store.selectedItems.length)
-                  : title ?? t.photos.title),
+              title: Text(
+                store.isHasSelectedItems && isAndroid
+                    ? t.profile
+                        .items_selected(count: store.selectedItems.length)
+                    : title ?? t.photos.title,
+                style: textTheme.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               actions: [
                 if (isProfile)
                   Observer(builder: (context) {

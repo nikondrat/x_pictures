@@ -7,6 +7,8 @@ class GenerateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return MultiProvider(
         providers: [
           Provider<GenerateViewStore>(
@@ -24,7 +26,12 @@ class GenerateView extends StatelessWidget {
 
           return Scaffold(
             appBar: AppBar(
-              title: Text(t.generateView.title),
+              title: Text(
+                t.generateView.title,
+                style: textTheme.bodyMedium!.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ),
             body: AppBody(
               builder: (windowWidth, windowHeight, windowSize) => GenerateBody(

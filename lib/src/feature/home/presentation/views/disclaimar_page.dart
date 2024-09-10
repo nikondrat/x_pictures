@@ -17,8 +17,9 @@ class DisclaimarPage extends StatelessWidget {
           leading: const CustomBackButton(),
           title: Text(
             t.homeView.disclaimer,
-            style:
-                textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.w700),
+            style: textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
         // floatingActionButton: CustomFloatingButton(
