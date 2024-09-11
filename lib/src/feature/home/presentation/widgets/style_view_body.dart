@@ -49,6 +49,7 @@ class StyleViewBody extends StatelessWidget {
           ),
         if (hasImages)
           GridView(
+              padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

@@ -22,6 +22,15 @@ abstract class _PacksStore with Store {
   @observable
   ObservableList<PackModel> packs = ObservableList();
 
+  @computed
+  PackModel get pack => body.packs.isNotEmpty
+      ? body.packs.first
+      : PackModel(id: 0, title: '', description: '', category: '', images: [
+          MediaModel(
+              url:
+                  'https://x-pictures-back-main.s3.us-east-2.amazonaws.com/media/face2img_packs_default_images/58ac1659-7a6d-4e9e-908e-5c0f7cb9fadd.png')
+        ]);
+
   @observable
   PackModel selected =
       PackModel(id: 0, title: '', description: '', category: '', images: []);

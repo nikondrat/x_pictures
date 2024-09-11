@@ -41,7 +41,6 @@ class _GenerateBodyState extends State<GenerateBody> {
           const Gap(AppValues.kPadding),
           const GenerateStyles(),
           const Gap(AppValues.kPadding),
-          const Gap(AppValues.kPadding),
           const GenerateTags(),
           const Gap(AppValues.kPadding),
           GenerateFormats(

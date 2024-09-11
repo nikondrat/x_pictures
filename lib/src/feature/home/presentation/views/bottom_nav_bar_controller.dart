@@ -219,69 +219,72 @@ class _BottomNavBarControllerPageState
                       topRight: Radius.circular(20.r),
                     ),
                     color: const Color(0xff0D1120)),
-                child: Row(
-                  children: [
-                    BottomNavigationBarItem(
-                      icon: SvgPicture.asset(
-                        Assets.icons.home,
-                        color: _selectedIndex == 0
-                            ? Colors.orange[900]
-                            : const Color(0xff6F6F72),
-                        width: 22.h,
-                        height: 22.h,
-                      ),
-                      label: 'Home',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: SvgPicture.asset(
-                        AppIcons.generateIcon,
-                        color: _selectedIndex == 1
-                            ? Colors.orange[900]
-                            : const Color(0xff6F6F72),
-                        width: 24.h,
-                        height: 24.h,
-                      ),
-                      label: 'Generate',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.account_circle_outlined,
-                        color: _selectedIndex == 2
-                            ? Colors.orange[900]
-                            : const Color(0xff6F6F72),
-                        size: 24.h,
-                      ),
-                      label: 'My Profile',
-                    ),
-                  ].mapIndexed((i, e) {
-                    return Expanded(
-                        child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _selectedIndex = i;
-                        });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: AppValues.kPadding / 2),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            e.icon,
-                            AutoSizeText(
-                              e.label!,
-                              style: TextStyle(
-                                fontSize: 8.sp,
-                                fontWeight: _selectedIndex == i
-                                    ? FontWeight.w700
-                                    : FontWeight.w400,
-                              ),
-                            ),
-                          ],
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 14),
+                  child: Row(
+                    children: [
+                      BottomNavigationBarItem(
+                        icon: SvgPicture.asset(
+                          Assets.icons.home,
+                          color: _selectedIndex == 0
+                              ? Colors.orange[900]
+                              : const Color(0xff6F6F72),
+                          width: 22.h,
+                          height: 22.h,
                         ),
+                        label: 'Home',
                       ),
-                    ));
-                  }).toList(),
+                      BottomNavigationBarItem(
+                        icon: SvgPicture.asset(
+                          AppIcons.generateIcon,
+                          color: _selectedIndex == 1
+                              ? Colors.orange[900]
+                              : const Color(0xff6F6F72),
+                          width: 24.h,
+                          height: 24.h,
+                        ),
+                        label: 'Generate',
+                      ),
+                      BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.account_circle_outlined,
+                          color: _selectedIndex == 2
+                              ? Colors.orange[900]
+                              : const Color(0xff6F6F72),
+                          size: 24.h,
+                        ),
+                        label: 'My Profile',
+                      ),
+                    ].mapIndexed((i, e) {
+                      return Expanded(
+                          child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectedIndex = i;
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: AppValues.kPadding / 2),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              e.icon,
+                              AutoSizeText(
+                                e.label!,
+                                style: TextStyle(
+                                  fontSize: 8.sp,
+                                  fontWeight: _selectedIndex == i
+                                      ? FontWeight.w700
+                                      : FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ));
+                    }).toList(),
+                  ),
                 ),
               ),
             );

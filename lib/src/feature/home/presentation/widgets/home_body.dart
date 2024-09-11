@@ -48,7 +48,8 @@ class _HomeBodyState extends State<HomeBody> {
             SliverToBoxAdapter(
               child: AppBarHomeView(
                 // model: sections[0].items[1],
-                model: packs.values.first.first,
+                // model: packs.values.first.first,
+                model: widget.store.pack,
               ),
             ),
             SliverPadding(
