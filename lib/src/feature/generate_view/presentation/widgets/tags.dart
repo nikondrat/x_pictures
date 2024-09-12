@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -46,40 +45,6 @@ class GenerateTags extends StatelessWidget {
                     ))
                 .toList());
       })),
-      // child: Observer(builder: (_) {
-      //   return Wrap(
-      //       spacing: 6,
-      //       children: store.tags
-      //           .map((e) => Observer(builder: (context) {
-      //                 return ActionChip(
-      //                   onPressed: () => e.setIsSelected(!e.isSelected),
-      //                   backgroundColor:
-      //                       AppColors.kSecondaryAdditionallyColor,
-      //                   label: AutoSizeText(e.title,
-      //                       maxLines: 2, style: textTheme.bodyMedium),
-      //                   side: BorderSide(
-      //                       color: e.isSelected
-      //                           ? AppColors.kPrimaryColor
-      //                           : AppColors.kOutlineColor),
-      //                 );
-      //               }))
-      //           .toList());
-      // }),
-      // Wrap(
-      //       spacing: AppValues.kPadding / 2,
-      //       runSpacing: AppValues.kPadding / 2,
-      //       children: store.tags
-      //           .map((e) => ActionChip(
-      //                 onPressed: () {},
-      //                 backgroundColor:
-      //                     AppColors.kSecondaryAdditionallyColor,
-      //                 label:
-      //                     AutoSizeText(e.title, style: textTheme.bodyLarge),
-      //                 side:
-      //                     const BorderSide(color: AppColors.kOutlineColor),
-      //               ))
-      //           .toList(),
-      //     )),
     );
   }
 }

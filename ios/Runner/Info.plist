@@ -47,5 +47,7 @@
 		<true/>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Photo Library Access to use in app</string>
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false/>
 	</dict>
 </plist>
