@@ -20,5 +20,6 @@ class OrdersBody extends PageModel {
       _$OrdersBodyFromJson(json);
 
   /// Connect the generated [_$OrdersBodyToJson] function to the `toJson` method.
+  @override
   Map<String, dynamic> toJson() => _$OrdersBodyToJson(this);
 }

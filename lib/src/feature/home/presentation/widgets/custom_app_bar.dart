@@ -20,6 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         textName,
         style: textTheme.bodyMedium!.copyWith(
           fontWeight: FontWeight.w700,
+          fontSize: 17,
         ),
       ),
       leading: IconButton(

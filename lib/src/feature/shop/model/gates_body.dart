@@ -20,5 +20,6 @@ class GatesBody extends PageModel {
       _$GatesBodyFromJson(json);
 
   /// Connect the generated [_$GatesBodyToJson] function to the `toJson` method.
+  @override
   Map<String, dynamic> toJson() => _$GatesBodyToJson(this);
 }

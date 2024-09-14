@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:x_pictures/src/core/constant/images.dart';
 import 'package:x_pictures/src/data.dart';
 
 class DisclaimarPage extends StatelessWidget {
@@ -19,6 +18,7 @@ class DisclaimarPage extends StatelessWidget {
             t.homeView.disclaimer,
             style: textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w700,
+              fontSize: 17,
             ),
           ),
         ),
@@ -46,7 +46,7 @@ class DisclaimarPage extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.circular(AppValues.kRadius),
                               child: Image.asset(
-                                AppImages.testImage,
+                                Assets.images.testimage.path,
                                 fit: BoxFit.cover,
                               ),
                             ),

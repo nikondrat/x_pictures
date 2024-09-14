@@ -235,6 +235,7 @@ class _ProfileViewState extends State<ProfileView>
                             count: mediaBodyStore.selectedItems.length),
                         style: textTheme.bodyMedium!.copyWith(
                           fontWeight: FontWeight.w700,
+                          fontSize: 17,
                         ),
                       ),
                       actions: [

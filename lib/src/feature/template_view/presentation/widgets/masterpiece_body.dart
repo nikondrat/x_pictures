@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:x_pictures/src/core/constant/images.dart';
 import 'package:x_pictures/src/core/constant/styles.dart';
 import 'package:x_pictures/src/data.dart';
 
@@ -42,9 +41,9 @@ class _MasterpieceBodyState extends State<MasterpieceBody> {
           padding: const EdgeInsets.all(AppValues.kPadding),
           child: Container(
             decoration: BoxDecoration(
-                image: const DecorationImage(
+                image: DecorationImage(
                     image: AssetImage(
-                      AppImages.bannerNoSign,
+                      Assets.images.bannerNoSign.path,
                     ),
                     fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(AppValues.kRadius)),

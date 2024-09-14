@@ -21,6 +21,7 @@ class GenderView extends StatelessWidget {
               t.gender.title,
               style: textTheme.bodyMedium!.copyWith(
                 fontWeight: FontWeight.w700,
+                fontSize: 17,
               ),
             ),
           ),
@@ -85,7 +86,7 @@ class GenderView extends StatelessWidget {
                                       text: t.gender.female,
                                       isSelected:
                                           consumerValue.isSelectedList[0],
-                                      value: Gender.Female,
+                                      value: Gender.female,
                                       groupValue: consumerValue.currentGender,
                                       onChanged: (value) {
                                         consumerValue
@@ -97,7 +98,7 @@ class GenderView extends StatelessWidget {
                                       text: t.gender.male,
                                       isSelected:
                                           consumerValue.isSelectedList[1],
-                                      value: Gender.Male,
+                                      value: Gender.male,
                                       groupValue: consumerValue.currentGender,
                                       onChanged: (value) {
                                         consumerValue
@@ -109,7 +110,7 @@ class GenderView extends StatelessWidget {
                                       text: t.gender.other,
                                       isSelected:
                                           consumerValue.isSelectedList[2],
-                                      value: Gender.Other,
+                                      value: Gender.other,
                                       groupValue: consumerValue.currentGender,
                                       onChanged: (value) {
                                         consumerValue

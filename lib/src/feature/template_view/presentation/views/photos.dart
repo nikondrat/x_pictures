@@ -68,6 +68,7 @@ class PhotosView extends StatelessWidget {
                     : title ?? t.photos.title,
                 style: textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.w700,
+                  fontSize: 17,
                 ),
               ),
               actions: [
@@ -93,7 +94,11 @@ class PhotosView extends StatelessWidget {
                   })
               ],
             ),
-            bottomNavigationBar: isProfile ? BottomBarPhotosFuncs() : null,
+            bottomNavigationBar: isProfile
+                ? BottomBarPhotosFuncs(
+                    isPacks: true,
+                  )
+                : null,
             body: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),

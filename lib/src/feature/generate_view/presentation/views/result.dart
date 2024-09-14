@@ -22,6 +22,7 @@ class GenerationResult extends StatelessWidget {
           model == null ? t.generateView.title : t.generateView.type.video,
           style: textTheme.bodyMedium!.copyWith(
             fontWeight: FontWeight.w700,
+            fontSize: 17,
           ),
         ),
       ),

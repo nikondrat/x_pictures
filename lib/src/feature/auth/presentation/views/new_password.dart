@@ -25,6 +25,7 @@ class NewPasswordView extends StatelessWidget {
             t.auth.hint.forgot_password.title,
             style: textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w700,
+              fontSize: 17,
             ),
           ),
         ),

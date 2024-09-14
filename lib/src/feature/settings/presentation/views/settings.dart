@@ -35,6 +35,7 @@ class _SettingsViewState extends State<SettingsView> {
             t.settings.title,
             style: textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w700,
+              fontSize: 17,
             ),
           ),
         ),

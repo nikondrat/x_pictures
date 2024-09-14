@@ -25,6 +25,7 @@ class StyleView extends StatelessWidget {
                 store.selected.title,
                 style: textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.w700,
+                  fontSize: 17,
                 ),
               ))
           : null,

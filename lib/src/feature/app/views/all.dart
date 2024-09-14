@@ -20,6 +20,7 @@ class AllView extends StatelessWidget {
         title: Text(
           title,
           style: textTheme.bodyMedium!.copyWith(
+            fontSize: 17,
             fontWeight: FontWeight.w700,
           ),
         ),

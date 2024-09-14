@@ -22,6 +22,7 @@ class LegalView extends StatelessWidget {
             t.settings.other.legal.title,
             style: textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.w700,
+              fontSize: 17,
             ),
           ),
         ),

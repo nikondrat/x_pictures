@@ -15,7 +15,8 @@ class ImageWithBackgroundResultView extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
     final ColorScheme colorScheme = themeData.colorScheme;
-    final bool isPro = false;
+    final UserStore userStore = Provider.of<UserStore>(context);
+    final bool isPro = userStore.profileType != ProfileType.basic;
 
     final PacksStore store = Provider.of<PacksStore>(context);
 
@@ -25,6 +26,7 @@ class ImageWithBackgroundResultView extends StatelessWidget {
         store.selected.title,
         style: textTheme.bodyMedium!.copyWith(
           fontWeight: FontWeight.w700,
+          fontSize: 17,
         ),
       )),
       body: AppBody(
@@ -65,7 +67,7 @@ class ImageWithBackgroundResultView extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.circular(AppValues.kRadius),
                               child: CachedNetworkImage(
-                                imageUrl: store.selected!.images[0].url,
+                                imageUrl: store.selected.images[0].url,
                                 fit: BoxFit.cover,
                               ),
                             ),

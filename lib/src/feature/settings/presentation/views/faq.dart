@@ -15,6 +15,7 @@ class FaqView extends StatelessWidget {
           t.settings.help_center.faq,
           style: textTheme.bodyMedium!.copyWith(
             fontWeight: FontWeight.w700,
+            fontSize: 17,
           ),
         ),
       ),

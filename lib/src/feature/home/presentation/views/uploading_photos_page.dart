@@ -31,6 +31,7 @@ class _UploadingPhotosPageState extends State<UploadingPhotosPage> {
               t.homeView.uploading_photos,
               style: textTheme.bodyMedium!.copyWith(
                 fontWeight: FontWeight.w700,
+                fontSize: 17,
               ),
             )),
         // floatingActionButton: CustomFloatingButton(

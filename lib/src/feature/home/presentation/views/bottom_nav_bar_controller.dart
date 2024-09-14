@@ -5,7 +5,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
-import 'package:x_pictures/src/core/constant/icons.dart';
 import 'package:x_pictures/src/data.dart';
 
 class BottomNavBarControllerPage extends StatefulWidget {
@@ -236,7 +235,8 @@ class _BottomNavBarControllerPageState
                       ),
                       BottomNavigationBarItem(
                         icon: SvgPicture.asset(
-                          AppIcons.generateIcon,
+                          // AppIcons.generateIcon,
+                          Assets.icons.generate,
                           color: _selectedIndex == 1
                               ? Colors.orange[900]
                               : const Color(0xff6F6F72),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:x_pictures/src/core/constant/images.dart';
 import 'package:x_pictures/src/data.dart';
 
 class CoverImagePlanPage extends StatelessWidget {
@@ -16,7 +15,7 @@ class CoverImagePlanPage extends StatelessWidget {
       child: Stack(
         children: [
           Image.asset(
-            AppImages.bannerImage,
+            Assets.images.banner.path,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.4,
             fit: BoxFit.cover,

@@ -71,7 +71,7 @@ class EnhanceView extends StatelessWidget {
                                                   bottom:
                                                       AppValues.kPadding / 2),
                                               child: AutoSizeText(
-                                                  store.selected!.title),
+                                                  store.selected.title),
                                             ))
                                       ],
                                     )),

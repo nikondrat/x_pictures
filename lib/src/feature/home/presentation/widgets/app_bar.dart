@@ -6,7 +6,6 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:svg_flutter/svg.dart';
-import 'package:x_pictures/src/core/constant/icons.dart';
 import 'package:x_pictures/src/data.dart';
 
 class AppBarHomeView extends StatelessWidget {
@@ -52,7 +51,7 @@ class AppBarHomeView extends StatelessWidget {
           SafeArea(
             child: Align(
               alignment: Alignment.topCenter,
-              child: SvgPicture.asset(AppIcons.xIcon, width: 28),
+              child: SvgPicture.asset(Assets.icons.x, width: 28),
             ),
           ),
           // Positioned(
@@ -72,7 +71,7 @@ class AppBarHomeView extends StatelessWidget {
                         extra: {'continueAction': () {}});
                   },
                   child: SvgPicture.asset(
-                    AppIcons.proIcon,
+                    Assets.icons.pro,
                     width: 30,
                     height: 30,
                   ),

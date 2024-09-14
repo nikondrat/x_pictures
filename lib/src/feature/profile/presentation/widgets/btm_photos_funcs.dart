@@ -23,7 +23,11 @@ class _Item {
 }
 
 class BottomBarPhotosFuncs extends StatelessWidget {
-  const BottomBarPhotosFuncs({super.key});
+  final bool isPacks;
+  const BottomBarPhotosFuncs({
+    super.key,
+    this.isPacks = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,9 @@ class BottomBarPhotosFuncs extends StatelessWidget {
     // final isIOS = true;
 
     return Observer(builder: (context) {
-      return store != null && !store.isHasSelectedItems
+      return store != null &&
+              ((isPacks && !store.isHasSelectedItems) ||
+                  (!isPacks && store.isSelect))
           ? const SizedBox.shrink()
           : Container(
               padding: const EdgeInsets.only(bottom: 30, top: 10),

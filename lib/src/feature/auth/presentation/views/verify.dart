@@ -28,6 +28,7 @@ class VerifyView extends StatelessWidget {
               t.auth.title,
               style: textTheme.bodyMedium!.copyWith(
                 fontWeight: FontWeight.w700,
+                fontSize: 17,
               ),
             ),
             centerTitle: true,

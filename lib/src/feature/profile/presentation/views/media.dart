@@ -26,18 +26,17 @@ class MediaView extends StatelessWidget {
         if (store.items.isNotEmpty)
           Observer(builder: (context) {
             return Row(
-                mainAxisAlignment:
-                    //  store.isHasSelectedItems
-                    // ? MainAxisAlignment.spaceBetween
-                    // :
-                    MainAxisAlignment.end,
+                mainAxisAlignment: isIOS
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.end,
                 children: [
-                  if (store.isHasSelectedItems && isIOS)
+                  if (isIOS)
                     FilledButton(
                         style: const ButtonStyle(
                             backgroundColor: WidgetStatePropertyAll(
                                 AppColors.kSecondaryAdditionallyColor)),
                         onPressed: () {
+                          store.toggleSelect();
                           store.markAllSelected();
                         },
                         child: AutoSizeText(t.common.select_all)),

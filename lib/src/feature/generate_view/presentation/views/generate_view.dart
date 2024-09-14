@@ -29,6 +29,7 @@ class GenerateView extends StatelessWidget {
               title: Text(
                 t.generateView.title,
                 style: textTheme.bodyMedium!.copyWith(
+                  fontSize: 17,
                   fontWeight: FontWeight.w700,
                 ),
               ),

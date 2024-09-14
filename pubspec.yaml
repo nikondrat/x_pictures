@@ -94,6 +94,7 @@ dependencies:
   modal_bottom_sheet: ^3.0.0
   carousel_slider: ^5.0.0
   smooth_page_indicator: ^1.2.0+3
+  toggle_switch: ^2.3.0
 
 dev_dependencies:
   # -- testing -- #

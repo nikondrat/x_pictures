@@ -18,7 +18,7 @@ class MediaBody extends StatelessWidget {
           crossAxisSpacing: AppValues.kPadding,
           mainAxisSpacing: AppValues.kPadding,
           maxCrossAxisExtent: 200,
-          childAspectRatio: .6),
+          childAspectRatio: .7),
       groupKeys: store.groupedItems.keys,
       itemBuilder: (context, group) {
         MediaModel model = store.groupedItems[group.key]![group.itemIndex];

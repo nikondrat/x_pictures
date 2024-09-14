@@ -40,9 +40,9 @@ class _GenerateBodyState extends State<GenerateBody> {
           const SelectModeWidget(),
           const Gap(AppValues.kPadding),
           const GenerateStyles(),
-          const Gap(AppValues.kPadding),
+          const Gap(AppValues.kPadding / 2),
           const GenerateTags(),
-          const Gap(AppValues.kPadding),
+          const Gap(AppValues.kPadding / 2),
           GenerateFormats(
             windowHeight: widget.windowHeight,
           ),
