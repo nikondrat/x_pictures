@@ -34,7 +34,13 @@ class AppBarHomeView extends StatelessWidget {
               return Row(
                 children: [
                   Expanded(
-                      child: ImageWithShader(url: model.images[index].url)),
+                      child: ImageWithShader(
+                    url: model.images[index].url,
+                    colors: const [
+                      AppColors.kBackgroundColor,
+                      Colors.transparent,
+                    ],
+                  )),
                 ],
               );
             },

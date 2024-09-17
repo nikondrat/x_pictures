@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ProfileView extends StatefulWidget {
@@ -214,8 +214,6 @@ class _ProfileViewState extends State<ProfileView>
           Provider(
               create: (context) => JobsStore(
                   restClient: context.read<Dependencies>().restClient)),
-          Provider(
-              create: (context) => MediaBodyStore(homeStore: context.read())),
         ],
         builder: (context, child) {
           final JobsStore jobsStore = context.read<JobsStore>();
@@ -264,27 +262,45 @@ class _ProfileViewState extends State<ProfileView>
                                   router.goNamed(AppViews.settingsView),
                             ),
                             const Gap(AppValues.kPadding),
-                            Container(
-                                decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(AppValues.kRadius)),
-                                    color:
-                                        AppColors.kSecondaryAdditionallyColor),
-                                child: Row(
-                                    children: tabs.mapIndexed((index, title) {
-                                  return Expanded(
-                                      child: CustomTabWidget(
-                                          isSelected: index == controller.index,
-                                          title: title,
-                                          onTap: () {
-                                            if (mediaBodyStore.isSelect) {
-                                              mediaBodyStore.toggleSelect();
-                                            }
-                                            setState(() {
-                                              controller.animateTo(index);
-                                            });
-                                          }));
-                                }).toList())),
+                            ToggleSwitch(
+                              minWidth: 400,
+                              totalSwitches: 3,
+                              animate: true,
+                              animationDuration: 400,
+                              inactiveBgColor:
+                                  AppColors.kSecondaryAdditionallyColor,
+                              radiusStyle: true,
+                              labels: tabs,
+                              dividerColor:
+                                  AppColors.kSecondaryAdditionallyColor,
+                              onToggle: (index) {
+                                if (mediaBodyStore.isSelect) {
+                                  mediaBodyStore.toggleSelect();
+                                }
+                                controller.animateTo(index!);
+                              },
+                            ),
+                            // Container(
+                            //     decoration: const BoxDecoration(
+                            //         borderRadius: BorderRadius.all(
+                            //             Radius.circular(AppValues.kRadius)),
+                            //         color:
+                            //             AppColors.kSecondaryAdditionallyColor),
+                            //     child: Row(
+                            //         children: tabs.mapIndexed((index, title) {
+                            //       return Expanded(
+                            //           child: CustomTabWidget(
+                            //               isSelected: index == controller.index,
+                            //               title: title,
+                            //               onTap: () {
+                            //                 if (mediaBodyStore.isSelect) {
+                            //                   mediaBodyStore.toggleSelect();
+                            //                 }
+                            //                 setState(() {
+                            //                   controller.animateTo(index);
+                            //                 });
+                            //               }));
+                            //     }).toList())),
                             Expanded(
                                 child: ProfileBody(
                                     jobsStore: jobsStore,

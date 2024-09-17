@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -31,75 +30,70 @@ class BottomBarPhotosFuncs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MediaBodyStore? store = context.read<MediaBodyStore?>();
+    final MediaBodyStore store = context.read();
     final isIOS = Platform.isIOS;
     // final isIOS = true;
 
     return Observer(builder: (context) {
-      return store != null &&
-              ((isPacks && !store.isHasSelectedItems) ||
-                  (!isPacks && store.isSelect))
-          ? const SizedBox.shrink()
-          : Container(
-              padding: const EdgeInsets.only(bottom: 30, top: 10),
-              // padding: const EdgeInsets.symmetric(vertical: 26),
-              decoration: const BoxDecoration(
-                color: AppColors.kSecondaryAdditionallyColor,
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(AppValues.kRadius),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _Item(
-                      icon: Icon(
-                        Icons.ios_share,
-                        size: 20.h,
-                      ),
-                      onTap: () {
-                        final List<XFile> selectedItems = store != null
-                            ? store.selectedItems.map((e) {
-                                return XFile(e.url);
-                              }).toList()
-                            : <XFile>[];
-                        Share.shareXFiles(selectedItems);
-                      },
-                      title: t.profile.send),
-                  if (isIOS)
-                    _Item(
-                        icon: Observer(builder: (context) {
-                          return AutoSizeText(t.profile.photos_selected(
-                              count: store!.selectedItemsCount));
-                        }),
-                        title: ''),
-                  _Item(
-                      icon: SvgPicture.asset(
-                        Assets.icons.trashBinMinimalistic,
-                        color: Colors.white,
-                        height: 20.h,
-                        width: 20.h,
-                      ),
-                      title: t.settings.delete.title),
-                ].map((e) {
-                  return GestureDetector(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
+      return
+          // ((isPacks && !store.isHasSelectedItems) ||
+          (store.isSelect)
+              ? BottomBarDecoration(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: AppValues.kPadding / 2),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        e.icon,
-                        if (!isIOS) Gap(2.r),
-                        if (!isIOS)
-                          AutoSizeText(e.title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleSmall!
-                                  .copyWith(fontSize: 6.sp)),
-                      ],
+                        _Item(
+                            icon: Icon(
+                              Icons.ios_share,
+                              size: 20.h,
+                            ),
+                            onTap: () {
+                              final List<XFile> selectedItems =
+                                  store.selectedItems.map((e) {
+                                return XFile(e.url);
+                              }).toList();
+                              Share.shareXFiles(selectedItems);
+                            },
+                            title: t.profile.send),
+                        if (isIOS)
+                          _Item(
+                              icon: Observer(builder: (context) {
+                                return AutoSizeText(t.profile.photos_selected(
+                                    count: store.selectedItemsCount));
+                              }),
+                              title: ''),
+                        _Item(
+                            icon: SvgPicture.asset(
+                              Assets.icons.trashBinMinimalistic,
+                              color: Colors.white,
+                              height: 20.h,
+                              width: 20.h,
+                            ),
+                            title: t.settings.delete.title),
+                      ].map((e) {
+                        return GestureDetector(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              e.icon,
+                              if (!isIOS) Gap(2.r),
+                              if (!isIOS)
+                                AutoSizeText(e.title,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .copyWith(fontSize: 6.sp)),
+                            ],
+                          ),
+                        );
+                      }).toList(),
                     ),
-                  );
-                }).toList(),
-              ),
-            );
+                  ),
+                )
+              : SizedBox.shrink();
     });
     // return BottomNavigationBar(
     //     backgroundColor: AppColors.kAdditionalColor,

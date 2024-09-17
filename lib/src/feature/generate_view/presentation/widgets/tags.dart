@@ -32,8 +32,10 @@ class GenerateTags extends StatelessWidget {
       child: IntrinsicHeight(child: Observer(builder: (_) {
         return Wrap(
             spacing: 6,
+            runSpacing: 6,
             children: store.tags
                 .map((e) => ActionChip(
+                      padding: EdgeInsets.zero,
                       onPressed: () => e.setIsSelected(!e.isSelected),
                       backgroundColor: AppColors.kSecondaryAdditionallyColor,
                       label: Text(e.title,

@@ -10,3 +10,4 @@ export 'search_bar.dart';
 export 'home_body.dart';
 export 'uploading_body.dart';
 export 'photo.dart';
+export 'btm_bar_decoration.dart';

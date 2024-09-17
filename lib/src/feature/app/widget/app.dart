@@ -37,7 +37,11 @@ class App extends StatelessWidget {
             Provider(
                 create: (context) => LoraStore(
                       restClient: context.read<Dependencies>().restClient,
-                    ))
+                    )),
+            Provider(
+                create: (context) => MediaBodyStore(
+                      homeStore: context.read<HomeStore>(),
+                    )),
           ],
           child: ReactiveFormConfig(validationMessages: {
             ValidationMessage.required: (error) => t.auth.errors.empty,
