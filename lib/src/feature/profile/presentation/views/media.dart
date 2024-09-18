@@ -36,7 +36,6 @@ class MediaView extends StatelessWidget {
                             backgroundColor: WidgetStatePropertyAll(
                                 AppColors.kSecondaryAdditionallyColor)),
                         onPressed: () {
-                          store.toggleSelect();
                           store.markAllSelected();
                         },
                         child: AutoSizeText(t.common.select_all)),
