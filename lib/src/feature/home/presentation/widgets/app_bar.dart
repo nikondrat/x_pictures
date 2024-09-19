@@ -121,23 +121,45 @@ class AppBarHomeView extends StatelessWidget {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SliderTheme(
-                        data: SliderTheme.of(context).copyWith(
-                          activeTrackColor: colorScheme.onPrimary,
-                          inactiveTrackColor:
-                              AppColors.sliderColor.withOpacity(.6),
-                          trackHeight: 2.0,
-                          thumbShape: const RoundSliderThumbShape(
-                              enabledThumbRadius: 0),
-                          overlayShape:
-                              const RoundSliderOverlayShape(overlayRadius: 0),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        const SizedBox(
+                          width: 140,
+                          height: 2,
+                          child: DecoratedBox(
+                              decoration: BoxDecoration(
+                            color: Colors.grey,
+                          )),
                         ),
-                        child: Slider(
-                          value: store.carouselIndex.toDouble(),
-                          min: 0,
-                          max: model.images.length.toDouble(),
-                          onChanged: (value) {},
-                        )),
+                        Positioned(
+                          left: store.carouselIndex * 24,
+                          child: const SizedBox(
+                            width: 20,
+                            height: 2,
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
+                              color: AppColors.kSecondaryColor,
+                            )),
+                          ),
+                        ),
+                        SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            trackHeight: 0,
+                            thumbShape: const RoundSliderThumbShape(
+                                enabledThumbRadius: 0),
+                            overlayShape:
+                                const RoundSliderOverlayShape(overlayRadius: 0),
+                          ),
+                          child: Slider(
+                            value: store.carouselIndex.toDouble(),
+                            min: 0,
+                            max: model.images.length.toDouble(),
+                            onChanged: (value) {},
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 );
               }),
