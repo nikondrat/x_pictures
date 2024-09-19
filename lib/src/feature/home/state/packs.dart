@@ -13,6 +13,14 @@ abstract class _PacksStore with Store {
 
   _PacksStore({required this.restClient});
 
+  @observable
+  int carouselIndex = 0;
+
+  @action
+  void setCarouselIndex(int value) {
+    carouselIndex = value;
+  }
+
   PackBody body =
       PackBody(count: 0, total: 0, nextUrl: '', previousUrl: '', packs: []);
 

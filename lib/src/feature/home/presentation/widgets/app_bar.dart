@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -48,6 +49,9 @@ class AppBarHomeView extends StatelessWidget {
               height: 400,
               viewportFraction: 1,
               autoPlay: true,
+              onPageChanged: (index, reason) {
+                store.setCarouselIndex(index);
+              },
             ),
           ),
           // ImageWithShader(
@@ -60,12 +64,6 @@ class AppBarHomeView extends StatelessWidget {
               child: SvgPicture.asset(Assets.icons.x, width: 28),
             ),
           ),
-          // Positioned(
-          //   top: 40.h,
-          //   left: MediaQuery.of(context).size.width / 2 - 10.w,
-          //   child: SvgPicture.asset(AppIcons.xIcon),
-          // ),
-          //
           SafeArea(
             child: Align(
               alignment: Alignment.topRight,
@@ -86,14 +84,6 @@ class AppBarHomeView extends StatelessWidget {
             ),
           ),
 
-          // Positioned(
-          //   top: 40,
-          //   right: 20,
-          //   child: SvgPicture.asset(
-          //     AppIcons.proIcon,
-          //     width: 65.w,
-          //   ),
-          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -127,38 +117,33 @@ class AppBarHomeView extends StatelessWidget {
                     )),
               ),
               const Gap(AppValues.kPadding * 2),
+              Observer(builder: (context) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          activeTrackColor: colorScheme.onPrimary,
+                          inactiveTrackColor:
+                              AppColors.sliderColor.withOpacity(.6),
+                          trackHeight: 2.0,
+                          thumbShape: const RoundSliderThumbShape(
+                              enabledThumbRadius: 0),
+                          overlayShape:
+                              const RoundSliderOverlayShape(overlayRadius: 0),
+                        ),
+                        child: Slider(
+                          value: store.carouselIndex.toDouble(),
+                          min: 0,
+                          max: model.images.length.toDouble(),
+                          onChanged: (value) {},
+                        )),
+                  ],
+                );
+              }),
+              const Gap(AppValues.kPadding),
             ],
           ),
-
-          // Positioned(
-          //   left: MediaQuery.of(context).size.width / 2 - 90.w,
-          //   bottom: 70.h,
-          //   child: Text(
-          //     'Create 30 office of you',
-          //     style: AppStyles.title2TextStyle,
-          //   ),
-          // ),
-          // Positioned(
-          //   bottom: 25.h,
-          //   left: MediaQuery.of(context).size.width / 2 - 35.w,
-          //   child: GestureDetector(
-          //     onTap: () {
-          //       router.goNamed(AppViews.officePageRoute);
-          //     },
-          //     child: Container(
-          //       padding: const EdgeInsets.all(8),
-          //       decoration: BoxDecoration(
-          //           color: Colors.white,
-          //           borderRadius: BorderRadius.circular(30.r)),
-          //       child: Text(
-          //         'Try office',
-          //         style: TextStyle(
-          //             fontWeight: FontWeight.w400,
-          //             color: colorScheme.onSecondary),
-          //       ),
-          //     ),
-          //   ),
-          // )
         ],
       ),
     );
