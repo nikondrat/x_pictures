@@ -41,7 +41,7 @@ class BottomBarPhotosFuncs extends StatelessWidget {
               ? BottomBarDecoration(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: AppValues.kPadding / 2),
+                        vertical: AppValues.kPadding),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

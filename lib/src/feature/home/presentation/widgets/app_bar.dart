@@ -54,10 +54,6 @@ class AppBarHomeView extends StatelessWidget {
               },
             ),
           ),
-          // ImageWithShader(
-          //     url: model.images.isNotEmpty
-          //         ? model.images.first.url
-          //         : 'https://images.livemint.com/img/2021/02/02/1140x641/hunters-race-MYbhN8KaaEc-unsplash_1612280206849_1612280227004.jpg'),
           SafeArea(
             child: Align(
               alignment: Alignment.topCenter,
@@ -83,7 +79,6 @@ class AppBarHomeView extends StatelessWidget {
               ),
             ),
           ),
-
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -132,32 +127,40 @@ class AppBarHomeView extends StatelessWidget {
                             color: Colors.grey,
                           )),
                         ),
-                        Positioned(
-                          left: store.carouselIndex * 24,
-                          child: const SizedBox(
-                            width: 20,
-                            height: 2,
-                            child: DecoratedBox(
-                                decoration: BoxDecoration(
-                              color: AppColors.kSecondaryColor,
-                            )),
-                          ),
-                        ),
+                        TweenAnimationBuilder<double>(
+                            tween: Tween<double>(
+                              begin: store.carouselIndex *
+                                  (120 / (model.images.length - 1)),
+                              end: store.carouselIndex *
+                                  (120 / (model.images.length - 1)),
+                            ),
+                            duration: const Duration(
+                                milliseconds: 300), // Длительность анимации
+                            builder: (context, value, child) => Positioned(
+                                  left: value,
+                                  child: const SizedBox(
+                                    width: 20,
+                                    height: 2,
+                                    child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                      color: AppColors.kSecondaryColor,
+                                    )),
+                                  ),
+                                )),
                         SliderTheme(
-                          data: SliderTheme.of(context).copyWith(
-                            trackHeight: 0,
-                            thumbShape: const RoundSliderThumbShape(
-                                enabledThumbRadius: 0),
-                            overlayShape:
-                                const RoundSliderOverlayShape(overlayRadius: 0),
-                          ),
-                          child: Slider(
-                            value: store.carouselIndex.toDouble(),
-                            min: 0,
-                            max: model.images.length.toDouble(),
-                            onChanged: (value) {},
-                          ),
-                        ),
+                            data: SliderTheme.of(context).copyWith(
+                              trackHeight: 0,
+                              thumbShape: const RoundSliderThumbShape(
+                                  enabledThumbRadius: 0),
+                              overlayShape: const RoundSliderOverlayShape(
+                                  overlayRadius: 0),
+                            ),
+                            child: Slider(
+                              value: store.carouselIndex.toDouble(),
+                              min: 0,
+                              max: model.images.length.toDouble(),
+                              onChanged: (value) {},
+                            ))
                       ],
                     ),
                   ],

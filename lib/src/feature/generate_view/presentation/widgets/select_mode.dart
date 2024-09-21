@@ -1,104 +1,57 @@
+import 'dart:math';
+
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:x_pictures/src/data.dart';
 
 class SelectModeWidget extends StatelessWidget {
-  const SelectModeWidget({super.key});
+  const SelectModeWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ToggleSwitch(
-          minWidth: 400,
-          totalSwitches: 2,
-          animate: true,
-          animationDuration: 400,
-          inactiveBgColor: AppColors.kSecondaryAdditionallyColor,
-          radiusStyle: true,
-          labels: [
-            t.generateView.type.images,
-            t.generateView.type.video,
-          ],
-        ),
-      ],
-    );
+    final GenerateViewStore store = context.watch<GenerateViewStore>();
 
-    // return Observer(builder: (context) {
-    //   return SizedBox(
-    //     height: 30.r,
-    //     child: Row(
-    //       children: [
-    //         Expanded(
-    //             child: _Tab(
-    //           onTap: () => store.setSelected(0),
-    //           title: t.generateView.type.images,
-    //           isSelected: store.selected == 0,
-    //         )),
-    //         Expanded(
-    //             child: _Tab(
-    //           onTap: () => store.setSelected(1),
-    //           title: t.generateView.type.video,
-    //           isSelected: store.selected == 1,
-    //         )),
-    //       ],
-    //     ),
-    //   );
-    // });
+    return Observer(builder: (context) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: AnimatedToggleSwitch<int>.size(
+              current: min(store.selected, 2),
+              iconOpacity: 1.0,
+              selectedIconScale: 1.0,
+              style: ToggleStyle(
+                backgroundColor: AppColors.kSecondaryAdditionallyColor,
+                indicatorColor: AppColors.kPrimaryColor,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              values: const [0, 1],
+              height: 40,
+              indicatorSize: const Size.fromWidth(200),
+              iconAnimationType: AnimationType.onHover,
+              styleAnimationType: AnimationType.onSelected,
+              customIconBuilder: (context, local, global) {
+                final text = [
+                  t.generateView.type.images,
+                  t.generateView.type.video,
+                ][local.index];
+                return Center(
+                    child: Text(text,
+                        style:
+                            const TextStyle(color: AppColors.kSecondaryColor)));
+              },
+              borderWidth: 0,
+              onChanged: (i) {
+                store.setSelected(i);
+              },
+            ),
+          )
+        ],
+      );
+    });
   }
 }
-
-// class _Tab extends StatelessWidget {
-//   final Function() onTap;
-//   final String title;
-//   final bool isSelected;
-//   const _Tab(
-//       {required this.onTap, required this.title, required this.isSelected});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final ThemeData themeData = Theme.of(context);
-//     final TextTheme textTheme = themeData.textTheme;
-//     final ColorScheme colorScheme = themeData.colorScheme;
-
-//     return isSelected
-//         ? GradientButton(
-//             onPressed: onTap,
-//             text: title,
-//             padding:
-//                 const EdgeInsets.symmetric(vertical: AppValues.kPadding / 4),
-//             textStyle: textTheme.bodyLarge!.copyWith(
-//               fontSize: 14.sp,
-//             ),
-//           )
-//         : Column(
-//             crossAxisAlignment: CrossAxisAlignment.stretch,
-//             children: [
-//               Expanded(
-//                 child: TextButton(
-//                   onPressed: onTap,
-//                   style: const ButtonStyle(
-//                       padding: WidgetStatePropertyAll(
-//                         EdgeInsets.symmetric(
-//                           vertical: AppValues.kPadding / 4,
-//                         ),
-//                       ),
-//                       shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.horizontal(
-//                               right: Radius.circular(AppValues.kRadius)))),
-//                       backgroundColor: WidgetStatePropertyAll(
-//                           AppColors.kSecondaryAdditionallyColor)),
-//                   child: AutoSizeText(
-//                     title,
-//                     style: textTheme.bodyLarge!.copyWith(
-//                       color: colorScheme.onSurface,
-//                       fontSize: 14.sp,
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           );
-//   }
-// }

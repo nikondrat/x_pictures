@@ -257,6 +257,9 @@ class _BottomNavBarControllerPageState
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         e.icon,
+                        const SizedBox(
+                          height: 6,
+                        ),
                         AutoSizeText(
                           e.label!,
                           style: TextStyle(

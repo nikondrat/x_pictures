@@ -21,6 +21,7 @@ class TitleWithBody extends StatelessWidget {
     final ColorScheme colorScheme = themeData.colorScheme;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

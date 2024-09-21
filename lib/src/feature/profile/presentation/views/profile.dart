@@ -1,10 +1,11 @@
 import 'dart:io';
+import 'dart:math';
 
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 import 'package:x_pictures/src/data.dart';
 
 class ProfileView extends StatefulWidget {
@@ -193,6 +194,9 @@ class _ProfileViewState extends State<ProfileView>
   @override
   void initState() {
     controller = TabController(length: 3, vsync: this);
+    controller.addListener(() {
+      setState(() {});
+    });
     super.initState();
   }
 
@@ -262,45 +266,64 @@ class _ProfileViewState extends State<ProfileView>
                                   router.goNamed(AppViews.settingsView),
                             ),
                             const Gap(AppValues.kPadding),
-                            ToggleSwitch(
-                              minWidth: 400,
-                              totalSwitches: 3,
-                              animate: true,
-                              animationDuration: 400,
-                              inactiveBgColor:
-                                  AppColors.kSecondaryAdditionallyColor,
-                              radiusStyle: true,
-                              labels: tabs,
-                              dividerColor:
-                                  AppColors.kSecondaryAdditionallyColor,
-                              onToggle: (index) {
-                                if (mediaBodyStore.isSelect) {
-                                  mediaBodyStore.toggleSelect();
-                                }
-                                controller.animateTo(index!);
-                              },
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: AnimatedToggleSwitch<int>.size(
+                                    current: min(controller.index, 2),
+                                    iconOpacity: 1.0,
+                                    selectedIconScale: 1.0,
+                                    style: ToggleStyle(
+                                      backgroundColor:
+                                          AppColors.kSecondaryAdditionallyColor,
+                                      indicatorColor: AppColors.kPrimaryColor,
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    values: const [0, 1, 2],
+                                    height: 40,
+                                    indicatorSize: const Size.fromWidth(200),
+                                    iconAnimationType: AnimationType.onHover,
+                                    styleAnimationType:
+                                        AnimationType.onSelected,
+                                    customIconBuilder:
+                                        (context, local, global) {
+                                      final text = tabs[local.index];
+                                      return Center(
+                                          child: Text(text,
+                                              style: const TextStyle(
+                                                  color: AppColors
+                                                      .kSecondaryColor)));
+                                    },
+                                    borderWidth: 0,
+                                    onChanged: (i) {
+                                      if (mediaBodyStore.isSelect) {
+                                        mediaBodyStore.toggleSelect();
+                                      }
+                                      controller.animateTo(i);
+                                    },
+                                  ),
+                                )
+                              ],
                             ),
-                            // Container(
-                            //     decoration: const BoxDecoration(
-                            //         borderRadius: BorderRadius.all(
-                            //             Radius.circular(AppValues.kRadius)),
-                            //         color:
-                            //             AppColors.kSecondaryAdditionallyColor),
-                            //     child: Row(
-                            //         children: tabs.mapIndexed((index, title) {
-                            //       return Expanded(
-                            //           child: CustomTabWidget(
-                            //               isSelected: index == controller.index,
-                            //               title: title,
-                            //               onTap: () {
-                            //                 if (mediaBodyStore.isSelect) {
-                            //                   mediaBodyStore.toggleSelect();
-                            //                 }
-                            //                 setState(() {
-                            //                   controller.animateTo(index);
-                            //                 });
-                            //               }));
-                            //     }).toList())),
+                            // ToggleSwitch(
+                            //   minWidth: 400,
+                            //   totalSwitches: 3,
+                            //   animate: true,
+                            //   animationDuration: 400,
+                            //   inactiveBgColor:
+                            //       AppColors.kSecondaryAdditionallyColor,
+                            //   radiusStyle: true,
+                            //   labels: tabs,
+                            //   dividerColor:
+                            //       AppColors.kSecondaryAdditionallyColor,
+                            //   onToggle: (index) {
+                            //     if (mediaBodyStore.isSelect) {
+                            //       mediaBodyStore.toggleSelect();
+                            //     }
+                            //     controller.animateTo(index!);
+                            //   },
+                            // ),
                             Expanded(
                                 child: ProfileBody(
                                     jobsStore: jobsStore,

@@ -57,13 +57,12 @@ class _SettingsViewState extends State<SettingsView> {
                     .copyWith(color: AppColors.kOutlineColor),
               ),
               tiles: <SettingsTile>[
-                SettingsTile.navigation(
+                SettingsTile(
                   title: Text(
                     '***${userStore.email.split('@').last}',
                     // '***@yandex.ru',
                     style: textTheme.bodyLarge,
                   ),
-                  // trailing: const Icon(Icons.arrow_forward_ios),
                 ),
                 SettingsTile.navigation(
                   title: Text(
@@ -84,45 +83,7 @@ class _SettingsViewState extends State<SettingsView> {
                             TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
-
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog.adaptive(
-                                      title: Text(
-                                          t.settings.exit_next_confirmation),
-                                      content: !isAndroid
-                                          ? Text(t
-                                              .settings.exit_confirm_additional)
-                                          : null,
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                            userStore.logout();
-                                          },
-                                          child: Text(
-                                            t.settings.delete.title,
-                                            style: textTheme.bodyLarge!
-                                                .copyWith(
-                                                    color: isAndroid
-                                                        ? colorScheme.error
-                                                        : null),
-                                          ),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Text(
-                                            t.common.no,
-                                            style: textTheme.bodyLarge,
-                                          ),
-                                        )
-                                      ],
-                                    );
-                                  },
-                                );
+                                userStore.logout();
                               },
                               child: Text(
                                 t.common.yes,
@@ -267,7 +228,44 @@ class _SettingsViewState extends State<SettingsView> {
                           .copyWith(color: colorScheme.error),
                     ),
                     onPressed: (context) {
-                      userStore.deleteAccount();
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog.adaptive(
+                            title: Text(t.settings.exit_next_confirmation),
+                            content: !isAndroid
+                                ? Text(t.settings.exit_confirm_additional)
+                                : null,
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  userStore.logout();
+
+                                  userStore.deleteAccount();
+                                },
+                                child: Text(
+                                  isAndroid
+                                      ? t.settings.delete.title
+                                      : t.common.yes,
+                                  style: textTheme.bodyLarge!.copyWith(
+                                      color:
+                                          isAndroid ? colorScheme.error : null),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  t.common.no,
+                                  style: textTheme.bodyLarge,
+                                ),
+                              )
+                            ],
+                          );
+                        },
+                      );
                     },
                     trailing: const SizedBox.shrink(),
                   ),
