@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -15,15 +17,19 @@ class MasterpieceBody extends StatefulWidget {
 }
 
 class _MasterpieceBodyState extends State<MasterpieceBody> {
+  Timer? _timer;
+
   @override
   void initState() {
-    widget.store.startTimer();
+    _timer = Timer(const Duration(seconds: 10), () {
+      widget.store.stopTimer();
+    });
     super.initState();
   }
 
   @override
   void dispose() {
-    widget.store.dispose();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -63,35 +69,25 @@ class _MasterpieceBodyState extends State<MasterpieceBody> {
                   SizedBox(
                     height: 50.h,
                   ),
-                  Observer(builder: (context) {
-                    return CircularPercentIndicator(
-                        radius: 100.h,
-                        animation: true,
-                        animationDuration: 800,
-                        animateFromLastPercent: true,
-                        percent: widget.store.percent,
-                        lineWidth: 7.r,
-                        circularStrokeCap: CircularStrokeCap.round,
-                        backgroundColor: const Color(0xff3B3B5A),
-                        progressColor: Colors.orange[900],
-                        center: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            AutoSizeText(
-                              '${t.masterpiece.remained}:',
-                              style: textTheme.bodyLarge!.copyWith(
-                                  fontSize: 8.sp,
-                                  color: AppColors.kOutlineColor),
-                            ),
-                            AutoSizeText(
-                              '${widget.store.seconds} min',
-                              style: AppStyles.head1TextStyle
-                                  .copyWith(fontSize: 18.sp),
-                            )
-                          ],
-                        ));
-                  }),
+                  SizedBox(
+                    height: 200,
+                    width: 200,
+                    child: CircularProgressIndicator(
+                      color: AppColors.kPrimaryColor,
+                      strokeWidth: 10,
+                    ),
+                  ),
+                  // CircularPercentIndicator(
+                  //   radius: 100.h,
+                  //   animation: true,
+                  //   animationDuration: 800,
+                  //   animateFromLastPercent: true,
+                  //   percent: percent,
+                  //   lineWidth: 7.r,
+                  //   circularStrokeCap: CircularStrokeCap.round,
+                  //   backgroundColor: const Color(0xff3B3B5A),
+                  //   progressColor: Colors.orange[900],
+                  // ),
                   SizedBox(
                     height: 60.h,
                   ),

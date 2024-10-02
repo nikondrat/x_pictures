@@ -14,26 +14,26 @@ abstract class _PhotosLoaderStore with Store {
 
   _PhotosLoaderStore({required this.model});
 
-  Timer? _timer;
+  // Timer? _timer;
 
-  late int seconds = model.trainingTimeSeconds ?? 0;
+  // late int seconds = model.trainingTimeSeconds ?? 0;
 
-  @computed
-  double get percent => seconds / 5;
+  // @computed
+  // double get percent => seconds / 5;
 
-  @action
-  void startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (seconds == 0) {
-        return stopTimer();
-      }
-      seconds--;
-    });
-  }
+  // @action
+  // void startTimer() {
+  //   _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+  //     if (seconds == 0) {
+  //       return stopTimer();
+  //     }
+  //     print(seconds);
+  //     seconds--;
+  //   });
+  // }
 
   @action
   void stopTimer() {
-    dispose();
     router.goNamed(AppViews.photosView, extra: {
       "model": model,
       "models": model.images.isNotEmpty
@@ -97,15 +97,15 @@ abstract class _PhotosLoaderStore with Store {
     });
   }
 
-  @action
-  void resetTimer() {
-    _timer?.cancel();
-    seconds = 0;
-  }
+  // @action
+  // void resetTimer() {
+  //   _timer?.cancel();
+  //   seconds = 0;
+  // }
 
-  @action
-  void dispose() {
-    _timer?.cancel();
-    _timer = null;
-  }
+  // @action
+  // void dispose() {
+  //   _timer?.cancel();
+  //   _timer = null;
+  // }
 }
