@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:x_pictures/src/data.dart';
 
 class HomeBody extends StatefulWidget {
@@ -64,8 +65,11 @@ class _HomeBodyState extends State<HomeBody> {
               itemCount: packs.entries.length + 1,
               itemBuilder: (context, index) {
                 if (index == packs.entries.length) {
-                  return const Center(
-                      child: CircularProgressIndicator.adaptive());
+                  return SizedBox(
+                    height: 400,
+                    child: LoadingAnimationWidget.fourRotatingDots(
+                        color: AppColors.kPrimaryColor, size: 30),
+                  );
                 }
 
                 final entry = packs.entries.elementAt(index);

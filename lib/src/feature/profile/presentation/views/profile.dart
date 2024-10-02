@@ -273,6 +273,8 @@ class _ProfileViewState extends State<ProfileView>
                                   child: AnimatedToggleSwitch<int>.size(
                                     current: min(controller.index, 2),
                                     iconOpacity: 1.0,
+                                    animationDuration:
+                                        const Duration(milliseconds: 200),
                                     selectedIconScale: 1.0,
                                     style: ToggleStyle(
                                       backgroundColor:

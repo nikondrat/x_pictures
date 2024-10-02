@@ -22,16 +22,16 @@ class FaqView extends StatelessWidget {
       body: AppBody(
           builder: (windowWidth, windowHeight, windowSize) => Padding(
               padding: HorizontalSpacing.centered(windowWidth),
-              child: ListView(
+              child: ListView.builder(
+                itemCount: t.settings.faq.titles.length,
                 padding:
                     const EdgeInsets.symmetric(vertical: AppValues.kPadding),
-                children: const [
-                  // TODO change data
-                  CustomExpansionTile(
-                    title: 'hh',
-                    content: 'Content',
-                  ),
-                ],
+                itemBuilder: (context, index) {
+                  final String title = t.settings.faq.titles[index];
+                  final String content = t.settings.faq.contents[index];
+
+                  return CustomExpansionTile(title: title, content: content);
+                },
               ))),
     );
   }

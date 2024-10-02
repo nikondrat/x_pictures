@@ -76,6 +76,7 @@ dependencies:
   slang_flutter: ^3.25.0
 
   # -- ui -- #
+  loading_animation_widget: ^1.2.1
   flex_color_scheme: ^7.3.1
   font_awesome_flutter: ^10.7.0
   cupertino_icons: ^1.0.6
@@ -121,6 +122,7 @@ flutter:
     - assets/images/
     - assets/images/photos/
     - assets/icons/
+    - assets/docs/
 
   fonts:
     - family: Rubik

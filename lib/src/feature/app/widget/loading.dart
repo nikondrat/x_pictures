@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:mobx/mobx.dart';
+import 'package:x_pictures/src/data.dart';
 
 class LoadingWidget<T> extends StatelessWidget {
   final ObservableFuture<T> future;
@@ -26,9 +28,9 @@ class LoadingWidget<T> extends StatelessWidget {
         switch (future.status) {
           case FutureStatus.pending:
             return loadingWidget ??
-                const Center(
-                  child: CircularProgressIndicator(),
-                );
+                Center(
+                    child: LoadingAnimationWidget.fourRotatingDots(
+                        color: AppColors.kPrimaryColor, size: 30));
           case FutureStatus.rejected:
             return errorWidget ??
                 const Center(

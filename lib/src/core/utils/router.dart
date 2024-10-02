@@ -111,7 +111,7 @@ final GoRouter router = GoRouter(navigatorKey: navKey, routes: [
                         name: AppViews.documentView,
                         builder: (context, state) => DocumentView(
                               title: (state.extra as Map)['title'] ?? '',
-                              content: (state.extra as Map)['content'] ?? '',
+                              filePath: (state.extra as Map)['filePath'] ?? '',
                             )),
                   ]),
             ]),

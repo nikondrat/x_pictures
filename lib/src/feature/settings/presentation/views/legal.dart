@@ -49,11 +49,11 @@ class LegalView extends StatelessWidget {
                     style: textTheme.bodyLarge,
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
-                  onPressed: (context) => router.goNamed(AppViews.documentView,
-                      extra: {
-                        'title': t.settings.other.legal.privacy_policy,
-                        'content': 'content'
-                      }),
+                  onPressed: (context) =>
+                      router.goNamed(AppViews.documentView, extra: {
+                    'title': t.settings.other.legal.privacy_policy,
+                    'filePath': Assets.docs.privacyPolicy
+                  }),
                 ),
                 SettingsTile.navigation(
                   title: Text(
@@ -64,7 +64,7 @@ class LegalView extends StatelessWidget {
                   onPressed: (context) => router.goNamed(AppViews.documentView,
                       extra: {
                         'title': t.settings.other.legal.terms_of_use,
-                        'content': 'content'
+                        'filePath': Assets.docs.terms
                       }),
                 ),
               ],
