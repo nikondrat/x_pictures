@@ -61,7 +61,7 @@ dependencies:
   svg_flutter: ^0.0.1
 
   # -- navigation -- #
-  go_router: ^13.1.0
+  go_router: ^14.3.0
 
   # -- localization -- #
   flutter_localizations:
